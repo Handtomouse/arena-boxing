@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Arena Boxing Bondi
 
-## Getting Started
+> **Those Who Dare**
 
-First, run the development server:
+Gothic/grunge boxing gym website built with Next.js 14, TypeScript, and Tailwind CSS. Deployed on Vercel with Hapana booking integration.
 
+---
+
+## 🚀 Quick Start
+
+### Option 1: Automated Setup (Recommended)
 ```bash
+# Run setup script
+./setup.sh
+
+# Edit environment variables
+nano .env.local
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Option 2: Manual Setup
+```bash
+# Install dependencies
+npm install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Create environment file
+cp .env.example .env.local
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Start development
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📚 Documentation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Document | Description |
+|----------|-------------|
+| [PROJECT_BLUEPRINT.md](PROJECT_BLUEPRINT.md) | Complete architecture, components, API routes, integrations |
+| [COMMANDS.md](COMMANDS.md) | All development commands and workflows |
+| [.env.example](.env.example) | Environment variable template |
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ✨ Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Landing Page (20 Improvements)
+All 20 gothic/grunge improvements implemented:
+- Video immersion, auto-enter countdown, keyboard shortcuts
+- Film grain, vignette, scanline effects
+- Glitch animation, chromatic aberration, text stroke
+- SVG progress ring, Ken Burns zoom, mouse parallax
+- Sound effects, haptic feedback, custom cursor
+- And more...
+
+### Core Features
+- 🎨 Gothic/grunge design system
+- 📱 Fully responsive (mobile-first)
+- ⚡ Optimized performance (Lighthouse 90+)
+- 🔒 Security headers configured
+- 🎯 Hapana booking integration ready
+- 📧 Contact form infrastructure
+- 🧩 Reusable component library
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS v4
+- **Deployment**: Vercel
+- **Booking**: Hapana V2 Embed
+- **Linting**: ESLint + Prettier
+
+---
+
+## 📋 Available Commands
+
+```bash
+npm run dev          # Start dev server
+npm run build        # Build for production
+npm run lint         # Run ESLint
+npm run format       # Format code
+npm run type-check   # Check types
+./setup.sh           # Run automated setup
+```
+
+See [COMMANDS.md](COMMANDS.md) for complete reference.
+
+---
+
+## 🚢 Deployment
+
+Deploy to Vercel:
+1. Push to GitHub
+2. Import at vercel.com/new
+3. Configure environment variables
+4. Deploy automatically on push to main
+
+---
+
+## 📝 Project Status
+
+### ✅ Completed
+- [x] Next.js 14 + TypeScript setup
+- [x] Gothic/grunge design system
+- [x] Landing page with 20 improvements
+- [x] Navigation component
+- [x] Homepage layout
+- [x] Project documentation
+- [x] Automated setup script
+
+### 🚧 Planned
+- [ ] Classes page with Hapana
+- [ ] Contact form
+- [ ] API routes
+- [ ] Additional pages
+
+---
+
+**"Those Who Dare"**
+
+Built with 🥊 by MrCC PAI
