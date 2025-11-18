@@ -245,7 +245,7 @@ h3 {
     opacity: 0;
   }
   50% {
-    opacity: 0.4;
+    opacity: 0.25;
   }
   100% {
     opacity: 0;
@@ -254,6 +254,51 @@ h3 {
 
 .animate-blood-flash {
   animation: blood-flash 0.2s ease-out forwards;
+}
+
+/* Icon Float Animation */
+@keyframes icon-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-icon-float {
+  animation: icon-float 5s ease-in-out infinite;
+}
+
+/* Victory Burst (Radial Expansion at Completion) */
+@keyframes victory-burst {
+  0% {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+/* Rotation Settle (Elastic Landing Effect) */
+@keyframes settle-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(3deg);
+  }
+  60% {
+    transform: rotate(-2deg);
+  }
+  80% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 /* Fade Out Transition (Cinematic Exit) */
@@ -361,6 +406,27 @@ h3 {
 
 .animate-blood-glow {
   animation: blood-glow 1.5s ease-in-out infinite;
+}
+
+/* ==================== PREMIUM ICON GLOW ==================== */
+
+/* Luxury Ambient Glow (Premium, Sophisticated) */
+@keyframes premium-ambient-glow {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 40px rgba(125, 30, 30, 0.15))
+      drop-shadow(0 0 80px rgba(125, 30, 30, 0.08));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 50px rgba(125, 30, 30, 0.2))
+      drop-shadow(0 0 100px rgba(125, 30, 30, 0.12));
+  }
+}
+
+.premium-glow-icon {
+  animation: premium-ambient-glow 6s ease-in-out infinite;
+  position: relative;
 }
 
 /* ==================== CINEMATIC + EDITORIAL ANIMATIONS ==================== */
