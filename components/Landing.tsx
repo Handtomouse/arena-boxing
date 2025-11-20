@@ -164,13 +164,14 @@ export default function Landing() {
         loop
         muted
         playsInline
+        poster="/images/video-poster.jpg"
         className="absolute inset-0 w-full h-full object-cover opacity-0"
         style={{
           animation: 'ken-burns 20s ease-out forwards, fade-in 4s ease-out forwards',
         }}
       >
         <source
-          src="/videos/bb9897603397493d9b48c695b009df4e.HD-1080p-7.2Mbps-55774870.mp4"
+          src="/videos/arena-background-compressed.mp4"
           type="video/mp4"
         />
       </video>

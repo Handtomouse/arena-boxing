@@ -74,6 +74,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/old-london/old-london.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="antialiased bg-cream-primary">
         <Navigation />
         <main>
