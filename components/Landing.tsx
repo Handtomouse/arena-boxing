@@ -187,11 +187,18 @@ export default function Landing() {
       />
 
       {/* Content - Premium Layout with Perfect Vertical Rhythm */}
-      <div className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 sm:px-5 md:px-6 lg:px-8 py-6 sm:py-8 md:py-10 lg:py-12">
+      <div
+        className="relative z-10 flex flex-col items-center min-h-[100dvh] min-h-screen px-4 sm:px-5 md:px-6 lg:px-8 pt-16 pb-6 sm:pt-20 sm:pb-8 md:pt-24 md:pb-10 lg:pt-28 lg:pb-12 space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-20"
+        style={{
+          paddingTop: 'max(4rem, calc(env(safe-area-inset-top) + 2rem))',
+          paddingBottom: 'max(1.5rem, calc(env(safe-area-inset-bottom) + 0.5rem))',
+          minHeight: '-webkit-fill-available',
+        }}
+      >
 
         {/* 1. TOP: "those who dare" SVG Logo - Cinematic Entrance */}
         <div
-          className="animate-blur-in w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl opacity-90"
+          className="animate-blur-in motion-reduce:animate-none motion-reduce:opacity-100 w-full max-w-[340px] sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl opacity-90"
           style={{
             animationDelay: '1.0s',
             letterSpacing: '0.08em',
@@ -214,7 +221,7 @@ export default function Landing() {
         <div className="flex flex-col items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full">
           {/* ARENA Wordmark (HERO) - Stroke-Drawing Animation */}
           <div
-            className={`w-[85vw] max-w-[280px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[520px] xl:max-w-[640px] 2xl:max-w-[720px] transition-transform duration-700 hover:scale-[1.01] ${countdown > 0 && countdown < 20 ? 'wordmark-glow-active' : 'drop-shadow-2xl'}`}
+            className={`w-full max-w-[280px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[520px] xl:max-w-[640px] 2xl:max-w-[720px] transition-transform duration-700 hover:scale-[1.01] ${countdown > 0 && countdown < 20 ? 'wordmark-glow-active' : 'drop-shadow-2xl'}`}
             style={{
               animation: 'fade-in 3s ease-out forwards',
               opacity: 0
@@ -391,6 +398,10 @@ export default function Landing() {
               tracking-[0.20em]
               sm:tracking-[0.22em]
               md:tracking-[0.25em]
+              px-8
+              py-4
+              min-w-[120px]
+              min-h-[44px]
               transition-all
               duration-700
               delay-75
@@ -401,6 +412,8 @@ export default function Landing() {
               active:brightness-90
               subpixel-antialiased
               animate-blur-in
+              motion-reduce:animate-none
+              motion-reduce:opacity-100
               relative
             "
             style={{
