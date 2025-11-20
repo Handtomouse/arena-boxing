@@ -9,6 +9,7 @@ export interface HapanaEmbedProps {
   className?: string;
   theme?: 'light' | 'dark';
   mode?: 'demo' | 'live';
+  dataType?: 'classes' | 'packages';
   onBookingComplete?: (booking: unknown) => void;
 }
 
@@ -30,6 +31,7 @@ const HapanaEmbed: React.FC<HapanaEmbedProps> = ({
   className = '',
   theme = 'light',
   mode,
+  dataType = 'packages',
   onBookingComplete,
 }) => {
   // Determine mode: prop > env > default
@@ -45,6 +47,7 @@ const HapanaEmbed: React.FC<HapanaEmbedProps> = ({
         <RealHapanaWidget
           widgetId={effectiveWidgetId}
           theme={theme}
+          dataType={dataType}
           onBookingComplete={onBookingComplete}
         />
       </div>
