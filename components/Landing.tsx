@@ -188,10 +188,10 @@ export default function Landing() {
 
       {/* Content - Premium Layout with Perfect Vertical Rhythm */}
       <div
-        className="relative z-10 flex flex-col items-center min-h-[100dvh] min-h-screen px-4 sm:px-5 md:px-6 lg:px-8 pt-16 pb-6 sm:pt-20 sm:pb-8 md:pt-24 md:pb-10 lg:pt-28 lg:pb-12 space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-20"
+        className="relative z-10 flex flex-col items-center justify-between min-h-[100dvh] min-h-screen px-4 sm:px-5 md:px-6 lg:px-8 pt-14 pb-14 sm:pt-18 sm:pb-18 md:pt-[86px] md:pb-[86px] lg:pt-[101px] lg:pb-[101px]"
         style={{
-          paddingTop: 'max(4rem, calc(env(safe-area-inset-top) + 2rem))',
-          paddingBottom: 'max(1.5rem, calc(env(safe-area-inset-bottom) + 0.5rem))',
+          paddingTop: 'max(3.5rem, calc(env(safe-area-inset-top) + 1.5rem))',
+          paddingBottom: 'max(3.5rem, calc(env(safe-area-inset-bottom) + 1.5rem))',
           minHeight: '-webkit-fill-available',
         }}
       >
