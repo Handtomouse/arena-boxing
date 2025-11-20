@@ -12,11 +12,17 @@ import Image from 'next/image';
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAtHero, setIsAtHero] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
+      const heroThreshold = window.innerHeight * 0.2; // Show nav after scrolling 20% of viewport
+      setIsAtHero(window.scrollY < heroThreshold);
       setIsScrolled(window.scrollY > 50);
     };
+
+    // Initial check
+    handleScroll();
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -36,7 +42,8 @@ export default function Navigation() {
         fixed top-0 left-0 right-0 z-50
         bg-[var(--burgundy-primary)]
         border-b-2 border-[var(--cream-primary)]
-        transition-all duration-300
+        transition-all duration-500 ease-out
+        ${isAtHero ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}
         ${isScrolled ? 'py-3.5 shadow-[var(--shadow-intense)]' : 'py-5'}
       `}
     >

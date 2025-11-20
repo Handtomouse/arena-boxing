@@ -1,369 +1,394 @@
 /**
- * Arena Boxing - Homepage
- * Cinematic Drama + Editorial Luxury aesthetic
+ * Arena Boxing - Homepage (The Immersive)
+ * Cinematic, interactive homepage with expandable class cards
+ * Option 3 design from plan
  */
 
 'use client';
 
-import { useEffect, useRef } from 'react';
-import Button from "@/components/ui/Button";
-import Card from "@/components/ui/Card";
-import Image from "next/image";
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import Button from '@/components/ui/Button';
+import StrokeAnimatedIcon from '@/components/ui/StrokeAnimatedIcon';
+import ScrollTransition from '@/components/sections/ScrollTransition';
+import ExpandableClassCard, { ClassType } from '@/components/sections/ExpandableClassCard';
+import RealHapanaWidget from '@/components/sections/RealHapanaWidget';
 
 export default function HomePage() {
-  const manifestoRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const [expandedCard, setExpandedCard] = useState<ClassType | null>(null);
+  const [showVictoryBurst, setShowVictoryBurst] = useState(false);
 
+  const handleExpandCard = (type: ClassType) => {
+    setExpandedCard(expandedCard === type ? null : type);
+  };
+
+  const handleCTAClick = () => {
+    // Haptic feedback (mobile)
+    if (navigator.vibrate) {
+      navigator.vibrate(50);
+    }
+
+    // Trigger victory burst animation
+    setShowVictoryBurst(true);
+    setTimeout(() => setShowVictoryBurst(false), 800);
+
+    // Navigate to booking page after animation
+    setTimeout(() => {
+      router.push('/booking');
+    }, 400);
+  };
+
+  // Preload critical assets
   useEffect(() => {
-    // Scroll-triggered animations
-    const observers: IntersectionObserver[] = [];
+    const preloadAssets = [
+      { href: '/images/icon/icon-cream.webp', as: 'image', type: 'image/webp' },
+      { href: '/images/tagline/those-who-dare-cream.webp', as: 'image', type: 'image/webp' },
+    ];
 
-    if (manifestoRef.current) {
-      const manifestoObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('animate-fade-slide');
-            }
-          });
-        },
-        { threshold: 0.2 }
-      );
-      manifestoObserver.observe(manifestoRef.current);
-      observers.push(manifestoObserver);
-    }
-
-    if (cardsRef.current) {
-      const cardElements = cardsRef.current.querySelectorAll('.card-item');
-      cardElements.forEach((card, index) => {
-        const cardObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                (entry.target as HTMLElement).style.animationDelay = `${index * 0.2}s`;
-                entry.target.classList.add('animate-slide-in');
-              }
-            });
-          },
-          { threshold: 0.2 }
-        );
-        cardObserver.observe(card);
-        observers.push(cardObserver);
-      });
-    }
+    const links = preloadAssets.map((asset) => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = asset.href;
+      link.as = asset.as;
+      if (asset.type) link.type = asset.type;
+      document.head.appendChild(link);
+      return link;
+    });
 
     return () => {
-      observers.forEach((observer) => observer.disconnect());
+      // Cleanup preload links
+      links.forEach((link) => {
+        if (document.head.contains(link)) {
+          document.head.removeChild(link);
+        }
+      });
     };
   }, []);
 
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleCTAClick();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
+
   return (
-    <div className="min-h-screen relative">
-      {/* Pure Black Transition Overlay (fades out after transition complete) */}
-      <div
-        className="fixed inset-0 bg-black z-[100] pointer-events-none"
+    <div className="relative bg-charcoal-black">
+      {/* ==================== SECTION 1: HERO ==================== */}
+      <section
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{
-          animation: 'fade-out 0.5s ease-out 1.5s forwards',
+          minHeight: '-webkit-fill-available',
         }}
-      />
-
-      {/* Hero Section - Full Screen Video Background */}
-      <section className="relative h-screen w-full overflow-hidden flex items-center justify-start pt-[20vh] pb-[30vh]">
+      >
         {/* Video Background */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-40 animate-slow-pan"
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-0"
+          style={{
+            animation: 'ken-burns 20s ease-out forwards, fade-in 4s ease-out forwards',
+          }}
+        >
+          <source
+            src="/videos/bb9897603397493d9b48c695b009df4e.HD-1080p-7.2Mbps-55774870.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black opacity-75" />
+
+        {/* Burgundy Radial Gradient with Slow Pan */}
+        <div
+          className="absolute inset-0 animate-slow-pan"
+          style={{
+            background:
+              'radial-gradient(ellipse at 45% 50%, rgba(125,30,30,0.15) 0%, rgba(80,20,20,0.20) 50%, rgba(0,0,0,0.3) 100%)',
+          }}
+        />
+
+        {/* Grunge Texture Overlay */}
+        <div
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{
+            backgroundImage: 'url(/textures/grunge-light.webp)',
+            backgroundSize: 'cover',
+            mixBlendMode: 'multiply',
+          }}
+        />
+
+        {/* Content */}
+        <div
+          className="relative z-10 flex flex-col items-center justify-center gap-8 md:gap-12 px-4 sm:px-6 md:px-8 text-center"
+          style={{
+            paddingTop: 'max(3.5rem, calc(env(safe-area-inset-top) + 1.5rem))',
+            paddingBottom: 'max(3.5rem, calc(env(safe-area-inset-bottom) + 1.5rem))',
+          }}
+        >
+          {/* Animated Icon */}
+          <div
+            className="animate-blur-in motion-reduce:animate-none motion-reduce:opacity-100 relative w-[55px] h-[35px] sm:w-[62px] sm:h-[39px] md:w-[70px] md:h-[44px] lg:w-[78px] lg:h-[49px] xl:w-[86px] xl:h-[54px] transition-all duration-500 hover:scale-105 hover:-translate-y-1"
+            style={{
+              animationDelay: '1.3s',
+              animation: showVictoryBurst
+                ? 'blur-in 3s ease-out backwards, settle-rotate 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55)'
+                : undefined,
+            }}
           >
-            <source src="/videos/bb9897603397493d9b48c695b009df4e.HD-1080p-7.2Mbps-55774870.mp4" type="video/mp4" />
-          </video>
+            <div
+              className="premium-glow-icon animate-breathing-pulse"
+              style={{
+                filter:
+                  'drop-shadow(0 0 60px rgba(125, 30, 30, 0.25)) drop-shadow(0 4px 16px rgba(0,0,0,0.5))',
+                transition: 'filter 1s ease-out',
+              }}
+            >
+              <img
+                src="/images/icon/icon-cream.svg"
+                alt="Arena Boxing"
+                className="w-full h-full object-contain"
+                style={{ imageRendering: 'crisp-edges' }}
+              />
+            </div>
+          </div>
 
-          {/* Dark Burgundy Overlay */}
-          <div className="absolute inset-0 bg-[var(--burgundy-dark)] opacity-70" />
-
-          {/* Grunge Texture Overlay */}
+          {/* "Those Who Dare" SVG Asset (from Landing) */}
           <div
-            className="absolute inset-0 opacity-10"
+            className="animate-blur-in motion-reduce:animate-none motion-reduce:opacity-100 w-full max-w-[340px] sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl opacity-90"
             style={{
-              backgroundImage: 'url(/textures/grunge-light.webp)',
-              backgroundSize: 'cover',
+              animationDelay: '1.0s',
+              letterSpacing: '0.08em',
+              textRendering: 'optimizeLegibility',
+              filter:
+                'drop-shadow(0 4px 16px rgba(0,0,0,0.6)) drop-shadow(0 0 30px rgba(125,30,30,0.15))',
             }}
-          />
+          >
+            <picture>
+              <source srcSet="/images/tagline/those-who-dare-cream.webp" type="image/webp" />
+              <img
+                src="/images/tagline/those-who-dare-cream.svg"
+                alt="those who dare"
+                className="w-full h-auto mx-auto"
+                style={{ imageRendering: 'crisp-edges' }}
+              />
+            </picture>
+          </div>
 
-          {/* Cinematic Spotlight Effect */}
+          {/* CTA Buttons */}
           <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse 50% 40% at 40% 50%, transparent 0%, rgba(0,0,0,0.7) 100%)'
-            }}
-          />
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 animate-blur-in"
+            style={{ animationDelay: '1.6s' }}
+          >
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={handleCTAClick}
+              className="animate-blood-glow transition-all duration-700 hover:tracking-[0.35em]"
+              style={{ letterSpacing: '0.20em' }}
+            >
+              BOOK NOW
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => {
+                document.getElementById('who-we-are')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="transition-all duration-700 hover:tracking-[0.35em]"
+              style={{ letterSpacing: '0.20em' }}
+            >
+              EXPLORE →
+            </Button>
+          </div>
         </div>
 
-        {/* Hero Content - Asymmetric Editorial Layout */}
-        <div className="relative z-10 container mx-auto px-6 w-full max-w-[45%] ml-[10%]">
-          {/* Beast Symbol - Slow Zoom */}
-          <div className="mb-8">
-            <Image
-              src="/images/ASSET.jpg"
-              alt="Arena Boxing"
-              width={128}
-              height={128}
-              className="object-contain opacity-80 invert animate-slow-zoom animate-staged-fade"
-              style={{ animationDelay: '0s' }}
-              priority
+        {/* Victory Burst Overlay */}
+        {showVictoryBurst && (
+          <div
+            className="fixed inset-0 z-50 pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle, rgba(163,31,31,0.4) 0%, transparent 70%)',
+              animation: 'victory-burst 0.8s ease-out forwards',
+            }}
+          />
+        )}
+      </section>
+
+      {/* ==================== SCROLL TRANSITION ==================== */}
+      <ScrollTransition />
+
+      {/* ==================== SECTION 2: WHO WE ARE ==================== */}
+      <section
+        id="who-we-are"
+        className="relative bg-charcoal-black py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8"
+      >
+        {/* Headline */}
+        <div className="max-w-6xl mx-auto mb-12 md:mb-16">
+          <h2 className="font-ui text-cream-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight uppercase tracking-wider text-center">
+            Arena Boxing Isn't a Gym.
+            <br />
+            It's a Proving Ground.
+          </h2>
+        </div>
+
+        {/* Asymmetric Grid */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[60fr_40fr] gap-8 md:gap-12">
+          {/* Left: Body Copy (60%) */}
+          <div className="space-y-6">
+            <p className="font-body text-cream-primary text-lg md:text-xl leading-relaxed">
+              We don't coddle.
+            </p>
+            <p className="font-body text-cream-primary text-lg md:text-xl leading-relaxed">
+              We don't pander.
+            </p>
+            <p className="font-body text-cream-primary text-lg md:text-xl leading-relaxed">
+              We forge fighters from raw will.
+            </p>
+          </div>
+
+          {/* Right: Oversized "DARE" Pull (40%) */}
+          <div className="relative flex items-center justify-center">
+            {/* Faint beast icon background */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: 'url(/images/icon/icon-cream.svg)',
+                backgroundSize: 'contain',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+              }}
+            />
+
+            {/* DARE text */}
+            <p
+              className="relative font-tagline italic text-blood-red text-6xl sm:text-7xl md:text-8xl lg:text-9xl opacity-25"
+              style={{
+                filter: 'drop-shadow(0 8px 32px rgba(163,31,31,0.5))',
+              }}
+            >
+              DARE
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== SCROLL TRANSITION ==================== */}
+      <ScrollTransition />
+
+      {/* ==================== SECTION 3: CHOOSE YOUR BATTLE ==================== */}
+      <section
+        className="relative py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 50%, rgba(125,30,30,0.3) 0%, rgba(26,26,26,1) 100%)',
+        }}
+      >
+        <div className="max-w-6xl mx-auto">
+          {/* Section Title */}
+          <h2 className="font-ui text-cream-primary text-3xl sm:text-4xl md:text-5xl uppercase tracking-wider text-center mb-12 md:mb-16">
+            Choose Your Battle
+          </h2>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <ExpandableClassCard
+              type="work"
+              isExpanded={expandedCard === 'work'}
+              onToggle={() => handleExpandCard('work')}
+            />
+            <ExpandableClassCard
+              type="craft"
+              isExpanded={expandedCard === 'craft'}
+              onToggle={() => handleExpandCard('craft')}
+            />
+            <ExpandableClassCard
+              type="spar"
+              isExpanded={expandedCard === 'spar'}
+              onToggle={() => handleExpandCard('spar')}
             />
           </div>
+        </div>
+      </section>
 
-          {/* ARENA Wordmark - Dramatic Shadows */}
-          <h1
-            className="
-              font-[family-name:var(--font-display)]
-              text-[clamp(4rem,12vw,10rem)]
-              text-[var(--cream-primary)]
-              uppercase
-              mb-6
-              tracking-wider
-              text-left
-              animate-staged-fade
-            "
+      {/* ==================== SCROLL TRANSITION ==================== */}
+      <ScrollTransition />
+
+      {/* ==================== SECTION 4: BROWSE ALL SESSIONS ==================== */}
+      <section className="relative bg-charcoal-black py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8">
+        <div className="max-w-6xl mx-auto">
+          {/* Section Title */}
+          <h2 className="font-ui text-cream-primary text-3xl sm:text-4xl md:text-5xl uppercase tracking-wider text-center mb-12 md:mb-16">
+            Or Browse All Sessions
+          </h2>
+
+          {/* Hapana Widget */}
+          <div
+            className="border-3 border-cream-dark p-6 md:p-8"
             style={{
-              textShadow: '0 8px 32px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9), 0 0 60px rgba(125,30,30,0.3)',
-              animationDelay: '0.3s'
+              backgroundImage: 'url(/textures/grunge-light.webp)',
+              backgroundBlendMode: 'multiply',
+              backgroundSize: 'cover',
             }}
           >
-            Arena
-          </h1>
+            <RealHapanaWidget dataType="classes" theme="dark" />
+          </div>
 
-          {/* "Those Who Dare" Tagline */}
-          <p
-            className="
-              font-[family-name:var(--font-tagline)]
-              text-[clamp(1.5rem,4vw,3rem)]
-              text-[var(--cream-primary)]
-              italic
-              mb-12
-              tracking-wide
-              opacity-90
-              text-left
-              animate-staged-fade
-            "
-            style={{ animationDelay: '0.6s' }}
-          >
-            those who dare
-          </p>
-
-          {/* CTA - Minimal Underline Style */}
-          <div
-            className="text-left animate-staged-fade"
-            style={{ animationDelay: '0.9s' }}
-          >
+          {/* Free Trial CTA */}
+          <p className="text-center text-cream-primary font-body text-lg md:text-xl mt-8">
+            Not sure where to start?{' '}
             <button
-              className="
-                group
-                relative
-                text-[var(--cream-primary)]
-                text-xl
-                uppercase
-                tracking-[0.2em]
-                font-[family-name:var(--font-ui)]
-                transition-all
-                duration-300
-                bg-transparent
-                border-none
-                pb-2
-                animate-spotlight-glow
-              "
+              onClick={handleCTAClick}
+              className="text-blood-red underline hover:text-cream-primary transition-colors"
             >
-              <span className="relative z-10">Enter The Arena</span>
-              <div className="
-                absolute
-                bottom-0
-                left-0
-                w-32
-                h-[2px]
-                bg-[var(--cream-primary)]
-                group-hover:w-full
-                group-hover:bg-[var(--blood-red)]
-                transition-all
-                duration-500
-              " />
+              Free trial →
             </button>
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-16 md:bottom-12 left-1/2 -translate-x-1/2">
-            <div className="w-6 h-10 border-2 border-[var(--cream-primary)] flex justify-center p-2">
-              <div className="w-1.5 h-3 bg-[var(--cream-primary)]" />
-            </div>
-          </div>
+          </p>
         </div>
       </section>
 
-      {/* Manifesto Section */}
-      <section
-        ref={manifestoRef}
-        className="py-[clamp(4rem,10vw,8rem)] bg-[var(--charcoal-black)] relative"
-      >
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: 'url(/textures/grunge-light.webp)',
-            backgroundSize: 'cover',
-          }}
-        />
+      {/* ==================== SCROLL TRANSITION ==================== */}
+      <ScrollTransition />
 
-        <div className="container mx-auto px-6 relative z-10">
-          {/* Two-Column Asymmetric Layout (60/40) */}
-          <div className="max-w-7xl mx-auto grid md:grid-cols-[60%_40%] gap-12 items-center">
-            {/* Left Column: Main Quote */}
-            <blockquote className="relative">
-              <p className="
-                text-[clamp(1.75rem,3.5vw,3rem)]
-                text-[var(--cream-primary)]
-                text-left
-                leading-loose
-                font-light
-              ">
-                The arena doesn&apos;t care who you were.
-                <br />
-                Only who you become.
-              </p>
-
-              <p className="
-                text-[var(--cream-dark)]
-                text-left
-                text-lg
-                leading-loose
-                mt-8
-              ">
-                This is Bondi&apos;s fight culture. Not a wellness retreat. Not a hardcore gym.
-                A place where courage meets craft, and those who step into the arena.
-              </p>
-            </blockquote>
-
-            {/* Right Column: Pullout Quote "DARE" */}
-            <div className="relative">
-              {/* Beast symbol background */}
-              <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-                <Image
-                  src="/images/ASSET.jpg"
-                  alt=""
-                  fill
-                  className="object-contain invert"
-                />
-              </div>
-
-              {/* Oversized "dare" pullout */}
-              <div className="relative z-10 text-right">
-                <p className="
-                  font-[family-name:var(--font-tagline)]
-                  text-[clamp(4rem,10vw,8rem)]
-                  text-[var(--blood-red)]
-                  italic
-                  leading-[0.9]
-                  opacity-90
-                ">
-                  dare
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Classes Preview */}
-      <section className="py-[clamp(4rem,10vw,8rem)] bg-[var(--burgundy-primary)] relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: 'url(/textures/grunge-light.webp)',
-            backgroundSize: 'cover',
-          }}
-        />
-
-        <div className="container mx-auto px-6 relative z-10">
-          <h2 className="
-            text-center
-            mb-16
-            text-[var(--cream-primary)]
-            font-[family-name:var(--font-display)]
-            text-[clamp(2.5rem,6vw,4rem)]
-          ">
-            Choose Your Trial
+      {/* ==================== SECTION 5: FINAL CTA ==================== */}
+      <section className="relative min-h-screen flex items-center justify-center bg-charcoal-black px-4 sm:px-6 md:px-8">
+        <div className="text-center max-w-3xl mx-auto">
+          {/* Headline */}
+          <h2 className="font-tagline italic text-cream-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-12">
+            First session free.
+            <br />
+            After that, you earn it.
           </h2>
 
-          {/* Irregular Magazine Grid (2fr 1fr 2fr) */}
-          <div
-            ref={cardsRef}
-            className="grid md:grid-cols-[2fr_1fr_2fr] gap-6 lg:gap-8 max-w-7xl mx-auto"
+          {/* CTA Button */}
+          <Button
+            variant="primary"
+            size="lg"
+            onClick={handleCTAClick}
+            className="animate-blood-glow text-xl md:text-2xl px-12 py-6"
           >
-            <Card variant="default" className="card-item">
-              <h3 className="font-[family-name:var(--font-display)] text-2xl mb-4 text-[var(--burgundy-primary)]">
-                10 Rounds
-              </h3>
-              <p className="text-[var(--charcoal-black)] mb-6 leading-loose">
-                The foundational Arena experience. Pure boxing technique, high-intensity rounds, authentic fight culture.
-              </p>
-              <Button variant="secondary" className="w-full">
-                Book Trial
-              </Button>
-            </Card>
-
-            <Card variant="default" className="card-item">
-              <h3 className="font-[family-name:var(--font-display)] text-2xl mb-4 text-[var(--burgundy-primary)]">
-                Fight Camp
-              </h3>
-              <p className="text-[var(--charcoal-black)] mb-6 leading-loose">
-                Strength, conditioning, and boxing combined. Build the fighter&apos;s body, cultivate the fighter&apos;s mind.
-              </p>
-              <Button variant="secondary" className="w-full">
-                Book Trial
-              </Button>
-            </Card>
-
-            <Card variant="default" className="card-item">
-              <h3 className="font-[family-name:var(--font-display)] text-2xl mb-4 text-[var(--burgundy-primary)]">
-                Bondi Sessions
-              </h3>
-              <p className="text-[var(--charcoal-black)] mb-6 leading-loose">
-                Outdoor training at Bondi Beach. Sunrise boxing, headland workouts, beach culture at dawn.
-              </p>
-              <Button variant="secondary" className="w-full">
-                Book Trial
-              </Button>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-[clamp(4rem,10vw,8rem)] bg-[var(--charcoal-black)] relative">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: 'url(/textures/grunge-light.webp)',
-            backgroundSize: 'cover',
-          }}
-        />
-
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <h2 className="
-            font-[family-name:var(--font-tagline)]
-            text-[clamp(2rem,5vw,3.5rem)]
-            text-[var(--cream-primary)]
-            italic
-            mb-8
-          ">
-            Those who dare don&apos;t wait for permission
-          </h2>
-
-          <Button size="lg" variant="primary">
-            Claim Your Trial By Fire
+            CLAIM YOUR TRIAL BY FIRE
           </Button>
         </div>
+
+        {/* Victory Burst on Click */}
+        {showVictoryBurst && (
+          <div
+            className="fixed inset-0 z-50 pointer-events-none"
+            style={{
+              background: 'rgba(163,31,31,0.3)',
+              animation: 'blood-flash 0.2s ease-out forwards',
+            }}
+          />
+        )}
       </section>
     </div>
   );

@@ -16,7 +16,6 @@ export { default as ContactForm } from './forms/ContactForm';
 // Section Components
 export { default as HeroBanner } from './sections/HeroBanner';
 export { default as Footer } from './sections/Footer';
-export { default as ClassSchedule } from './sections/ClassSchedule';
 export { default as TrainersModule } from './sections/TrainersModule';
 export { default as HapanaEmbed } from './sections/HapanaEmbed';
 export { default as GoogleMapsEmbed } from './sections/GoogleMapsEmbed';
@@ -45,7 +44,6 @@ export type { ContactFormProps, ContactFormData } from './forms/ContactForm';
 
 export type { HeroBannerProps } from './sections/HeroBanner';
 export type { FooterProps } from './sections/Footer';
-export type { ClassScheduleProps, ClassScheduleData } from './sections/ClassSchedule';
 export type { TrainersModuleProps, TrainerData } from './sections/TrainersModule';
 export type { HapanaEmbedProps } from './sections/HapanaEmbed';
 export type { GoogleMapsEmbedProps } from './sections/GoogleMapsEmbed';

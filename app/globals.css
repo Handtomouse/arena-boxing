@@ -289,6 +289,23 @@ h3 {
   }
 }
 
+/* Blur Out (cinematic scroll transition) */
+@keyframes blur-out {
+  from {
+    opacity: 1;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    filter: blur(20px);
+  }
+}
+
+.animate-blur-out {
+  animation: blur-out 0.5s ease-in forwards;
+  will-change: filter, opacity;
+}
+
 /* Initial Fast Trace (0-1s: draw in quickly) */
 @keyframes initial-trace {
   from {
@@ -476,6 +493,20 @@ h3 {
 
 .animate-blood-glow {
   animation: blood-glow 1.5s ease-in-out infinite;
+}
+
+/* Breathing Pulse (for icon ambient animation) */
+@keyframes breathing-pulse {
+  0%, 100% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+.animate-breathing-pulse {
+  animation: breathing-pulse 6s ease-in-out infinite;
 }
 
 /* ==================== WORDMARK GLOW PULSE ==================== */

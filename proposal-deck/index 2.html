@@ -19,7 +19,7 @@
             --arena-gray: #1A1A1A;
             --arena-accent: #FF0000;
             --arena-gold: #D4AF37;
-            --arena-text-gray: #ABABAB; /* Round 3 Improvement #13: Improved contrast (was #A0A0A0) */
+            --arena-text-gray: #A0A0A0;
             --arena-dark-red: #990000;
             --arena-light-gray: #2A2A2A;
             --arena-bronze: #CD7F32;
@@ -193,15 +193,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-rendering: optimizeLegibility; /* Round 3 Improvement #17: Optical kerning */
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         h2 {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 48px;
-            line-height: 1.2; /* Round 3 Improvement #16: Consistent line-height */
+            line-height: 1.1;
             letter-spacing: 2px;
             margin-bottom: 30px;
             text-transform: uppercase;
@@ -209,7 +206,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-rendering: optimizeLegibility; /* Round 3 Improvement #17: Optical kerning */
         }
 
         h3 {
@@ -1045,84 +1041,6 @@
             animation: slideInUp 0.6s ease 0.7s backwards;
         }
 
-        /* Round 3 Improvement #9: Gantt Bar Fill Animation */
-        @keyframes fillGantt {
-            from {
-                width: 0;
-            }
-        }
-
-        .gantt-bar {
-            animation: fillGantt 1.2s ease forwards;
-        }
-
-        .gantt-row:nth-child(1) .gantt-bar {
-            animation-delay: 0.1s;
-        }
-
-        .gantt-row:nth-child(2) .gantt-bar {
-            animation-delay: 0.3s;
-        }
-
-        .gantt-row:nth-child(3) .gantt-bar {
-            animation-delay: 0.5s;
-        }
-
-        .gantt-row:nth-child(4) .gantt-bar {
-            animation-delay: 0.7s;
-        }
-
-        .gantt-row:nth-child(5) .gantt-bar {
-            animation-delay: 0.9s;
-        }
-
-        /* Round 3 Improvement #6: Testimonial Callout Box */
-        .testimonial-box {
-            margin: 30px 0;
-            padding: 30px;
-            background: linear-gradient(135deg, var(--arena-gray) 0%, var(--arena-light-gray) 100%);
-            border-left: 5px solid var(--arena-gold);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            position: relative;
-        }
-
-        .testimonial-box::before {
-            content: '"';
-            position: absolute;
-            top: 15px;
-            left: 20px;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 120px;
-            color: var(--arena-gold);
-            opacity: 0.15;
-            line-height: 1;
-        }
-
-        .testimonial-quote {
-            font-size: 16px;
-            font-style: italic;
-            line-height: 1.6;
-            color: var(--arena-white);
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-author {
-            font-size: 13px;
-            color: var(--arena-gold);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .testimonial-details {
-            font-size: 11px;
-            color: var(--arena-text-gray);
-            margin-top: 5px;
-        }
-
         /* Table of Contents styling */
         .toc-grid {
             display: grid;
@@ -1141,13 +1059,9 @@
             transition: all 0.2s ease;
         }
 
-        /* Round 3 Improvement #8: Enhanced TOC Hover States */
         .toc-item:hover {
             background: var(--arena-light-gray);
             border-left-color: var(--arena-accent);
-            transform: scale(1.02);
-            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
-            transition: all 0.15s ease;
         }
 
         .toc-number {
@@ -1261,7 +1175,7 @@
             <div class="slide-number">TABLE OF CONTENTS</div>
         </div>
         <h2>Your Roadmap to Success</h2>
-        <p style="margin-bottom: 40px;">Everything you need to confidently invest in your gym's digital future.</p>
+        <p style="margin-bottom: 40px;">This proposal covers everything you need to make an informed decision about your digital transformation.</p>
 
         <div class="toc-grid">
             <a href="#intro" class="toc-item">
@@ -2060,16 +1974,7 @@
         </div>
         <h2>Proven Results in Combat Sports</h2>
 
-        <!-- Round 3 Improvement #6: Testimonial Callout Box -->
-        <div class="testimonial-box" style="margin-top: 30px;">
-            <div class="testimonial-quote">
-                "Within 3 months of launching our new website, we saw a 45% increase in trial class bookings and added 32 new members. The Hapana integration alone has saved us 10 hours per week in admin work. Best investment we've made in years."
-            </div>
-            <div class="testimonial-author">Marcus Chen, Owner</div>
-            <div class="testimonial-details">Elite Combat Sports, Sydney | 850+ Active Members</div>
-        </div>
-
-        <div class="two-col" style="margin-top: 30px;">
+        <div class="two-col" style="margin-top: 40px;">
             <div>
                 <h3>Industry Benchmarks</h3>
                 <ul>
@@ -2091,7 +1996,7 @@
             </div>
         </div>
 
-        <div class="cta-box" style="margin-top: 30px;">
+        <div class="cta-box" style="margin-top: 50px;">
             <h3>What This Means For You</h3>
             <p>Based on industry averages, a premium website can drive 10+ new member sign-ups per month — that's $92,500+ in annual recurring revenue at typical gym membership rates.</p>
         </div>
@@ -2216,22 +2121,12 @@
             Your website should reflect that.
         </p>
 
-        <!-- Round 3 Improvement #7: Urgency Elements -->
-        <div style="margin-top: 25px; padding: 20px; background: rgba(212, 175, 55, 0.1); border-left: 3px solid var(--arena-gold); max-width: 700px; margin-left: auto; margin-right: auto;">
-            <p style="font-size: 13px; margin: 0; color: var(--arena-gold); font-weight: 600; letter-spacing: 1px;">
-                ⏱️ START BY DEC 15 → LAUNCH BY FEB 15
-            </p>
-            <p style="font-size: 11px; margin: 8px 0 0; color: var(--arena-text-gray);">
-                Limited availability: We take on 2 projects per month to ensure quality
-            </p>
-        </div>
-
         <!-- Improvement #25: Enhanced CTA Button -->
         <a href="mailto:your-email@example.com?subject=Arena%20Boxing%20Website%20Proposal%20-%20Let's%20Start" class="cta-button" style="display: inline-block; margin-top: 20px; padding: 18px 45px; font-size: 22px;">
             SCHEDULE YOUR KICKOFF CALL
         </a>
 
-        <div class="stats-grid" style="margin-top: 25px; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <div class="stats-grid" style="margin-top: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
             <div class="stat-box">
                 <div class="stat-number">8</div>
                 <div class="stat-label">Weeks to Launch</div>

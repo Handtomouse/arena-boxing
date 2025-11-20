@@ -20,6 +20,8 @@ export default function Landing() {
   const [pathLengths, setPathLengths] = useState<number[]>([]);
   const [isDrawing, setIsDrawing] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoFailed, setVideoFailed] = useState(false);
+  const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
     // Preload critical assets
@@ -47,6 +49,20 @@ export default function Landing() {
         }
       });
     };
+  }, []);
+
+  useEffect(() => {
+    // Font loading detection - ensure Old London loads before showing button
+    const checkFont = async () => {
+      try {
+        await document.fonts.load("400 1em 'Old London'");
+        setFontLoaded(true);
+      } catch (e) {
+        // Fallback if font check fails - show button anyway after 2s
+        setTimeout(() => setFontLoaded(true), 2000);
+      }
+    };
+    checkFont();
   }, []);
 
   useEffect(() => {
@@ -138,6 +154,16 @@ export default function Landing() {
     }
   }, []);
 
+  useEffect(() => {
+    // Detect if video fails to play (Low Power Mode) and switch to GIF
+    const timer = setTimeout(() => {
+      if (videoRef.current?.paused) {
+        setVideoFailed(true);
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleEnter = () => {
     // Play sound effect
     const audio = new Audio('/sounds/punch.mp3');
@@ -168,23 +194,34 @@ export default function Landing() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden cursor-crosshair bg-black">
-      {/* Full-Screen Video Background - Fades in over black */}
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{
-          animation: 'ken-burns 20s ease-out forwards, fade-in 4s ease-out forwards',
-        }}
-      >
-        <source
-          src="/videos/arena-background-compressed.mp4"
-          type="video/mp4"
+      {/* Full-Screen Video Background - Fades in over black, GIF fallback for Low Power Mode */}
+      {videoFailed ? (
+        <img
+          src="/images/arena-background.gif"
+          alt="Arena Boxing Background"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            animation: 'ken-burns 20s ease-out forwards, fade-in 4s ease-out forwards',
+          }}
         />
-      </video>
+      ) : (
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            animation: 'ken-burns 20s ease-out forwards, fade-in 4s ease-out forwards',
+          }}
+        >
+          <source
+            src="/videos/arena-background-compressed.mp4"
+            type="video/mp4"
+          />
+        </video>
+      )}
 
       {/* Dark Overlay - Luxury Editorial (75% opacity) */}
       <div className="absolute inset-0 bg-black opacity-75" />
@@ -197,12 +234,12 @@ export default function Landing() {
         }}
       />
 
-      {/* Content - Premium Layout with Perfect Vertical Rhythm */}
+      {/* Content - Premium Layout with Explicit Spacing */}
       <div
-        className="relative z-10 flex flex-col items-center justify-between min-h-[100dvh] min-h-screen px-4 sm:px-5 md:px-6 lg:px-8 pt-14 pb-14 sm:pt-18 sm:pb-18 md:pt-[86px] md:pb-[86px] lg:pt-[101px] lg:pb-[101px]"
+        className="relative z-10 flex flex-col items-center min-h-[100dvh] min-h-screen px-4 sm:px-5 md:px-6 lg:px-8"
         style={{
-          paddingTop: 'max(3.5rem, calc(env(safe-area-inset-top) + 1.5rem))',
-          paddingBottom: 'max(3.5rem, calc(env(safe-area-inset-bottom) + 1.5rem))',
+          paddingTop: 'calc(env(safe-area-inset-top) + 10vh)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom) + 10vh)',
           minHeight: '-webkit-fill-available',
         }}
       >
@@ -228,7 +265,10 @@ export default function Landing() {
           </picture>
         </div>
 
-        {/* 2. MIDDLE: MASSIVE "ARENA" Wordmark + Enter Button */}
+        {/* Spacer to push ARENA to center */}
+        <div className="flex-1" />
+
+        {/* 2. MIDDLE: MASSIVE "ARENA" Wordmark - Absolutely Centered */}
         {/* ARENA Wordmark (HERO) - Stroke-Drawing Animation */}
         <div
           className={`mx-auto w-full max-w-[280px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[520px] xl:max-w-[640px] 2xl:max-w-[720px] transition-transform duration-700 hover:scale-[1.01] ${countdown > 0 && countdown < 20 ? 'wordmark-glow-active' : 'drop-shadow-2xl'}`}
@@ -394,7 +434,10 @@ export default function Landing() {
             </svg>
         </div>
 
-        {/* Enter Button with Enhanced Cinematic Animation */}
+        {/* Spacer between ARENA and button */}
+        <div className="h-[8vh]" />
+
+        {/* Enter Button with Enhanced Cinematic Animation + Font Loading */}
         <button
             onClick={handleEnter}
             className="
@@ -430,6 +473,8 @@ export default function Landing() {
               animationDelay: '1.6s',
               textRendering: 'optimizeLegibility',
               textShadow: '0 4px 16px rgba(0,0,0,0.6), 0 0 30px rgba(125,30,30,0.2)',
+              opacity: fontLoaded ? 1 : 0,
+              transition: 'opacity 0.3s ease-in',
             }}
           >
             Enter
@@ -438,6 +483,9 @@ export default function Landing() {
               className="absolute -bottom-2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--cream-primary)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             />
         </button>
+
+        {/* Spacer to push icon to bottom */}
+        <div className="flex-1" />
 
         {/* 3. BOTTOM: Icon with Premium Blur-In Animation */}
         <div

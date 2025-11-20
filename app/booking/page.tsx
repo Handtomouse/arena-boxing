@@ -68,6 +68,7 @@ export default function BookingPage() {
           <HapanaEmbed
             widgetId="arena-boxing-bondi"
             theme="light"
+            dataType="classes"
             className="mb-8"
           />
 
