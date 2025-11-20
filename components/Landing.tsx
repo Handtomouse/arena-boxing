@@ -55,14 +55,22 @@ export default function Landing() {
     // Font loading detection - ensure Old London loads before showing button
     const checkFont = async () => {
       try {
+        // Force font to load
         await document.fonts.load("400 1em 'Old London'");
-        setFontLoaded(true);
+        // Wait a bit more to ensure it's applied
+        setTimeout(() => setFontLoaded(true), 100);
       } catch (e) {
-        // Fallback if font check fails - show button anyway after 2s
-        setTimeout(() => setFontLoaded(true), 2000);
+        // Fallback if font check fails - show button anyway after 500ms
+        setTimeout(() => setFontLoaded(true), 500);
       }
     };
-    checkFont();
+
+    // Check if font is already loaded (cached)
+    if (document.fonts.check("400 1em 'Old London'")) {
+      setFontLoaded(true);
+    } else {
+      checkFont();
+    }
   }, []);
 
   useEffect(() => {
@@ -145,23 +153,26 @@ export default function Landing() {
     }
   }, []);
 
-  // iOS Safari autoplay fix - programmatic play() call
+  // iOS Safari autoplay fix - programmatic play() call + immediate fallback detection
   useLayoutEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // Ignore autoplay policy errors
-      });
-    }
-  }, []);
+      // Try to play
+      const playPromise = videoRef.current.play();
 
-  useEffect(() => {
-    // Detect if video fails to play (Low Power Mode) and switch to GIF
-    const timer = setTimeout(() => {
-      if (videoRef.current?.paused) {
-        setVideoFailed(true);
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay blocked - switch to GIF immediately
+          setVideoFailed(true);
+        });
       }
-    }, 2000);
-    return () => clearTimeout(timer);
+
+      // Also check after 1 second if video is still paused
+      setTimeout(() => {
+        if (videoRef.current?.paused) {
+          setVideoFailed(true);
+        }
+      }, 1000);
+    }
   }, []);
 
   const handleEnter = () => {
@@ -470,11 +481,10 @@ export default function Landing() {
             "
             style={{
               fontFamily: "'Old London', 'UnifrakturMaguntia', 'Old English Text MT', 'Fraktur', serif",
-              animationDelay: '1.6s',
+              animationDelay: fontLoaded ? '1.6s' : '0s',
               textRendering: 'optimizeLegibility',
               textShadow: '0 4px 16px rgba(0,0,0,0.6), 0 0 30px rgba(125,30,30,0.2)',
-              opacity: fontLoaded ? 1 : 0,
-              transition: 'opacity 0.3s ease-in',
+              visibility: fontLoaded ? 'visible' : 'hidden',
             }}
           >
             Enter
