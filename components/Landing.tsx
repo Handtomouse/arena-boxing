@@ -6,7 +6,7 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Landing() {
@@ -19,6 +19,7 @@ export default function Landing() {
   const [showVictoryFlash, setShowVictoryFlash] = useState(false);
   const [pathLengths, setPathLengths] = useState<number[]>([]);
   const [isDrawing, setIsDrawing] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // Preload critical assets
@@ -128,6 +129,15 @@ export default function Landing() {
     }
   }, []);
 
+  // iOS Safari autoplay fix - programmatic play() call
+  useLayoutEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Ignore autoplay policy errors
+      });
+    }
+  }, []);
+
   const handleEnter = () => {
     // Play sound effect
     const audio = new Audio('/sounds/punch.mp3');
@@ -160,12 +170,12 @@ export default function Landing() {
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden cursor-crosshair bg-black">
       {/* Full-Screen Video Background - Fades in over black */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        poster="/images/video-poster.jpg"
-        className="absolute inset-0 w-full h-full object-cover opacity-0"
+        className="absolute inset-0 w-full h-full object-cover"
         style={{
           animation: 'ken-burns 20s ease-out forwards, fade-in 4s ease-out forwards',
         }}
@@ -416,7 +426,7 @@ export default function Landing() {
               relative
             "
             style={{
-              fontFamily: 'var(--font-display)',
+              fontFamily: "'Old London', 'UnifrakturMaguntia', 'Old English Text MT', 'Fraktur', serif",
               animationDelay: '1.6s',
               textRendering: 'optimizeLegibility',
               textShadow: '0 4px 16px rgba(0,0,0,0.6), 0 0 30px rgba(125,30,30,0.2)',

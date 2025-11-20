@@ -80,7 +80,7 @@ export default function RootLayout({
           href="/fonts/old-london/old-london.ttf"
           as="font"
           type="font/ttf"
-          crossOrigin="anonymous"
+          crossOrigin=""
         />
       </head>
       <body className="antialiased bg-cream-primary">
