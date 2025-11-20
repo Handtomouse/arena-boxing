@@ -219,10 +219,9 @@ export default function Landing() {
         </div>
 
         {/* 2. MIDDLE: MASSIVE "ARENA" Wordmark + Enter Button */}
-        <div className="flex flex-col items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full">
-          {/* ARENA Wordmark (HERO) - Stroke-Drawing Animation */}
-          <div
-            className={`w-full max-w-[280px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[520px] xl:max-w-[640px] 2xl:max-w-[720px] transition-transform duration-700 hover:scale-[1.01] ${countdown > 0 && countdown < 20 ? 'wordmark-glow-active' : 'drop-shadow-2xl'}`}
+        {/* ARENA Wordmark (HERO) - Stroke-Drawing Animation */}
+        <div
+          className={`mx-auto w-full max-w-[280px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[520px] xl:max-w-[640px] 2xl:max-w-[720px] transition-transform duration-700 hover:scale-[1.01] ${countdown > 0 && countdown < 20 ? 'wordmark-glow-active' : 'drop-shadow-2xl'}`}
             style={{
               animation: 'fade-in 3s ease-out forwards',
               opacity: 0
@@ -383,10 +382,10 @@ export default function Landing() {
                 />
               </g>
             </svg>
-          </div>
+        </div>
 
-          {/* Enter Button with Enhanced Cinematic Animation */}
-          <button
+        {/* Enter Button with Enhanced Cinematic Animation */}
+        <button
             onClick={handleEnter}
             className="
               text-[var(--cream-primary)]
@@ -394,7 +393,6 @@ export default function Landing() {
               sm:text-xl
               md:text-2xl
               lg:text-3xl
-              font-[family-name:var(--font-display)]
               font-extralight
               tracking-[0.20em]
               sm:tracking-[0.22em]
@@ -418,6 +416,7 @@ export default function Landing() {
               relative
             "
             style={{
+              fontFamily: 'var(--font-display)',
               animationDelay: '1.6s',
               textRendering: 'optimizeLegibility',
               textShadow: '0 4px 16px rgba(0,0,0,0.6), 0 0 30px rgba(125,30,30,0.2)',
@@ -428,8 +427,7 @@ export default function Landing() {
             <div
               className="absolute -bottom-2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--cream-primary)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             />
-          </button>
-        </div>
+        </button>
 
         {/* 3. BOTTOM: Icon with Premium Blur-In Animation */}
         <div
