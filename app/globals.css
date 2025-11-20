@@ -4,6 +4,15 @@
 /* Gothic/Medieval × Underground Boxing × Grunge Aesthetic */
 /* "Those Who Dare" */
 
+/* Old London Gothic Blackletter Font */
+@font-face {
+  font-family: 'Old London';
+  src: url('/fonts/old-london/old-london.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Arena Brand Colors - Deep Burgundy + Cream */
   --burgundy-primary: #7D1E1E;

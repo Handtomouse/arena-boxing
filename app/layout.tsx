@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/ui/Navigation";
 import Footer from "@/components/sections/Footer";
@@ -9,17 +8,6 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
-});
-
-const oldLondon = localFont({
-  src: [{
-    path: '../public/fonts/old-london/old-london.ttf',
-    weight: '400',
-    style: 'normal',
-  }],
-  variable: '--font-display',
-  display: 'swap',
-  fallback: ['Georgia', 'serif'],
 });
 
 export const viewport: Viewport = {
@@ -85,7 +73,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${oldLondon.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body className="antialiased bg-cream-primary">
         <Navigation />
         <main>
