@@ -239,6 +239,67 @@ h3 {
 
 /* ==================== LANDING PAGE ANIMATIONS ==================== */
 
+/* Cinematic Blur-Fade-In (for premium entrance) */
+@keyframes blur-fade-in {
+  from {
+    opacity: 0;
+    filter: blur(20px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.animate-blur-in {
+  animation: blur-fade-in 3s ease-out backwards;
+  will-change: filter, opacity;
+}
+
+/* Standard Fade-In (no blur) */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 2s ease-out backwards;
+}
+
+/* Fade Out (for home page transition overlay) */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Initial Fast Trace (0-1s: draw in quickly) */
+@keyframes initial-trace {
+  from {
+    stroke-dashoffset: var(--path-length);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Breathing Trace Loop (1s+: continuous untrace/retrace) */
+@keyframes breathing-trace {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: var(--path-length);
+  }
+}
+
 /* Blood-Red Flash (Skip Feedback) */
 @keyframes blood-flash {
   0% {
@@ -408,19 +469,33 @@ h3 {
   animation: blood-glow 1.5s ease-in-out infinite;
 }
 
-/* ==================== PREMIUM ICON GLOW ==================== */
+/* ==================== WORDMARK GLOW PULSE ==================== */
 
-/* Luxury Ambient Glow (Premium, Sophisticated) */
-@keyframes premium-ambient-glow {
+/* Wordmark Blood-Red Glow (During Stroke Animation) */
+@keyframes wordmark-glow-pulse {
   0%, 100% {
-    filter:
-      drop-shadow(0 0 40px rgba(125, 30, 30, 0.15))
-      drop-shadow(0 0 80px rgba(125, 30, 30, 0.08));
+    filter: drop-shadow(0 0 20px rgba(163, 31, 31, 0.3))
+            drop-shadow(0 0 40px rgba(163, 31, 31, 0.15));
   }
   50% {
-    filter:
-      drop-shadow(0 0 50px rgba(125, 30, 30, 0.2))
-      drop-shadow(0 0 100px rgba(125, 30, 30, 0.12));
+    filter: drop-shadow(0 0 30px rgba(163, 31, 31, 0.5))
+            drop-shadow(0 0 60px rgba(163, 31, 31, 0.25));
+  }
+}
+
+.wordmark-glow-active {
+  animation: wordmark-glow-pulse 2s ease-in-out infinite;
+}
+
+/* ==================== PREMIUM ICON GLOW ==================== */
+
+/* Premium Icon Glow (Clean, No Artifacts) */
+@keyframes premium-ambient-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 60px rgba(125, 30, 30, 0.25));
+  }
+  50% {
+    filter: drop-shadow(0 0 80px rgba(125, 30, 30, 0.35));
   }
 }
 

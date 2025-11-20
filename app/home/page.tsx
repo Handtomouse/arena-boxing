@@ -58,7 +58,15 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      {/* Pure Black Transition Overlay (fades out after transition complete) */}
+      <div
+        className="fixed inset-0 bg-black z-[100] pointer-events-none"
+        style={{
+          animation: 'fade-out 0.5s ease-out 1.5s forwards',
+        }}
+      />
+
       {/* Hero Section - Full Screen Video Background */}
       <section className="relative h-screen w-full overflow-hidden flex items-center justify-start pt-[20vh] pb-[30vh]">
         {/* Video Background */}
