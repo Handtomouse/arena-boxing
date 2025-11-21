@@ -339,7 +339,11 @@ export default function HomePage() {
               backgroundSize: 'cover',
             }}
           >
-            <RealHapanaWidget dataType="classes" theme="dark" />
+            <RealHapanaWidget
+              widgetId={process.env.NEXT_PUBLIC_HAPANA_WIDGET_ID || 'ZjV0eGJ3cGUzU1c1VGtlcUxGOVFDUT09'}
+              dataType="classes"
+              theme="dark"
+            />
           </div>
 
           {/* Free Trial CTA */}
