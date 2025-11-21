@@ -120,6 +120,13 @@ body {
   overflow-x: hidden;
 }
 
+/* Mobile Touch Target Accessibility - 44px minimum */
+@media (max-width: 768px) {
+  button, a, input, select, textarea {
+    min-height: 44px;
+  }
+}
+
 /* Gothic Typography Defaults */
 h1, h2, h3 {
   font-family: var(--font-display);
