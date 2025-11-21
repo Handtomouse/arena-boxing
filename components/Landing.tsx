@@ -21,7 +21,6 @@ export default function Landing() {
   const [isDrawing, setIsDrawing] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoFailed, setVideoFailed] = useState(false);
-  const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
     // Preload critical assets
@@ -49,28 +48,6 @@ export default function Landing() {
         }
       });
     };
-  }, []);
-
-  useEffect(() => {
-    // Font loading detection - ensure Old London loads before showing button
-    const checkFont = async () => {
-      try {
-        // Force font to load
-        await document.fonts.load("400 1em 'Old London'");
-        // Wait a bit more to ensure it's applied
-        setTimeout(() => setFontLoaded(true), 100);
-      } catch (e) {
-        // Fallback if font check fails - show button anyway after 500ms
-        setTimeout(() => setFontLoaded(true), 500);
-      }
-    };
-
-    // Check if font is already loaded (cached)
-    if (document.fonts.check("400 1em 'Old London'")) {
-      setFontLoaded(true);
-    } else {
-      checkFont();
-    }
   }, []);
 
   useEffect(() => {
@@ -205,10 +182,10 @@ export default function Landing() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden cursor-crosshair bg-black">
-      {/* Full-Screen Video Background - Fades in over black, GIF fallback for Low Power Mode */}
+      {/* Full-Screen Video Background - Fades in over black, poster fallback for Low Power Mode */}
       {videoFailed ? (
         <img
-          src="/images/arena-background.gif"
+          src="/images/video-poster.jpg"
           alt="Arena Boxing Background"
           className="absolute inset-0 w-full h-full object-cover"
           style={{
@@ -222,6 +199,7 @@ export default function Landing() {
           loop
           muted
           playsInline
+          poster="/images/video-poster.jpg"
           className="absolute inset-0 w-full h-full object-cover"
           style={{
             animation: 'ken-burns 20s ease-out forwards, fade-in 4s ease-out forwards',
@@ -481,10 +459,9 @@ export default function Landing() {
             "
             style={{
               fontFamily: "'Old London', 'UnifrakturMaguntia', 'Old English Text MT', 'Fraktur', serif",
-              animationDelay: fontLoaded ? '1.6s' : '0s',
+              animationDelay: '1.6s',
               textRendering: 'optimizeLegibility',
               textShadow: '0 4px 16px rgba(0,0,0,0.6), 0 0 30px rgba(125,30,30,0.2)',
-              visibility: fontLoaded ? 'visible' : 'hidden',
             }}
           >
             Enter
