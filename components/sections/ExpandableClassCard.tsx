@@ -124,6 +124,7 @@ export default function ExpandableClassCard({
               {config.title} CLASSES THIS WEEK
             </h4>
             <RealHapanaWidget
+              widgetId={process.env.NEXT_PUBLIC_HAPANA_WIDGET_ID || 'ZjV0eGJ3cGUzU1c1VGtlcUxGOVFDUT09'}
               dataType="classes"
               theme="dark"
               // Note: Hapana widget filtering might need custom implementation
