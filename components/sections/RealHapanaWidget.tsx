@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import { loadHapanaScript } from '@/lib/hapana-loader';
 
 export interface RealHapanaWidgetProps {
   widgetId: string;
@@ -41,41 +42,16 @@ const RealHapanaWidget: React.FC<RealHapanaWidgetProps> = ({
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Hapana script URL (official)
-    const scriptUrl = process.env.NEXT_PUBLIC_HAPANA_SCRIPT_URL || 'https://widget.hapana.com/hapana_widget.js';
+    // Use singleton loader to prevent multiple script loads
+    loadHapanaScript()
+      .then(() => {
+        setIsScriptLoaded(true);
+      })
+      .catch((err) => {
+        setError(err.message || 'Failed to load Hapana booking script');
+      });
 
-    // Check if script already exists
-    const existingScript = document.getElementById('hapana-widget-script');
-
-    if (existingScript) {
-      // Script already loaded
-      setIsScriptLoaded(true);
-      return;
-    }
-
-    // Load Hapana script
-    const script = document.createElement('script');
-    script.id = 'hapana-widget-script';
-    script.src = scriptUrl;
-    script.async = true;
-
-    script.onload = () => {
-      console.log('✅ Hapana widget script loaded successfully');
-      setIsScriptLoaded(true);
-    };
-
-    script.onerror = () => {
-      const errorMsg = 'Failed to load Hapana booking script';
-      setError(errorMsg);
-      console.error('❌', errorMsg, 'from:', scriptUrl);
-    };
-
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup: Remove script on unmount if needed
-      // Note: Usually keep script loaded for performance across page navigations
-    };
+    // No cleanup needed - script persists across navigations for performance
   }, []);
 
   // Render custom element after script loads

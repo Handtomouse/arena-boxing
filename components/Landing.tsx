@@ -8,6 +8,7 @@
 
 import { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Landing() {
   const router = useRouter();
@@ -130,26 +131,49 @@ export default function Landing() {
     }
   }, []);
 
-  // iOS Safari autoplay fix - programmatic play() call + immediate fallback detection
+  // IntersectionObserver for better video autoplay detection
   useLayoutEffect(() => {
-    if (videoRef.current) {
-      // Try to play
-      const playPromise = videoRef.current.play();
+    if (!videoRef.current) return;
 
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Autoplay blocked - switch to GIF immediately
-          setVideoFailed(true);
+    const video = videoRef.current;
+
+    // IntersectionObserver to only play video when visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Video is visible, attempt to play
+            const playPromise = video.play();
+
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {
+                // Autoplay blocked - switch to poster immediately
+                setVideoFailed(true);
+              });
+            }
+
+            // Also check after 1 second if video is still paused
+            setTimeout(() => {
+              if (video.paused) {
+                setVideoFailed(true);
+              }
+            }, 1000);
+          } else {
+            // Video not visible, pause to save resources
+            video.pause();
+          }
         });
+      },
+      {
+        threshold: 0.5, // Video must be at least 50% visible
       }
+    );
 
-      // Also check after 1 second if video is still paused
-      setTimeout(() => {
-        if (videoRef.current?.paused) {
-          setVideoFailed(true);
-        }
-      }, 1000);
-    }
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   const handleEnter = () => {
@@ -184,10 +208,13 @@ export default function Landing() {
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden cursor-crosshair bg-black">
       {/* Full-Screen Video Background - Fades in over black, poster fallback for Low Power Mode */}
       {videoFailed ? (
-        <img
+        <Image
           src="/images/video-poster.jpg"
           alt="Arena Boxing Background"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          priority
+          quality={90}
+          className="object-cover"
           style={{
             animation: 'ken-burns 20s ease-out forwards, fade-in 4s ease-out forwards',
           }}
