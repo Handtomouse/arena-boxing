@@ -29,11 +29,11 @@ export default function Navigation() {
   }, []);
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/classes', label: 'Classes' },
-    { href: '/manifesto', label: 'Manifesto' },
-    { href: '/fighters', label: 'Fighters' },
-    { href: '/contact', label: 'Contact' },
+    { href: '/home', label: 'Home' },
+    { href: '/booking', label: 'Book' },
+    { href: '/timetable', label: 'Timetable' },
+    { href: '/membership', label: 'Membership' },
+    { href: '/about', label: 'About' },
   ];
 
   return (
@@ -121,7 +121,7 @@ export default function Navigation() {
 
             {/* CTA Button */}
             <Link
-              href="/trial"
+              href="/booking"
               className="
                 px-6 py-3
                 bg-[var(--blood-red)]
@@ -179,7 +179,7 @@ export default function Navigation() {
               ))}
 
               <Link
-                href="/trial"
+                href="/booking"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="
                   px-6 py-4

@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Landing() {
   const router = useRouter();
-  const [countdown, setCountdown] = useState(20);
+  const [countdown, setCountdown] = useState(10);
   const [isFirstVisit, setIsFirstVisit] = useState(true);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -506,14 +506,22 @@ export default function Landing() {
           </div>
 
           {/* Countdown Text with Urgency Escalation */}
-          <p
-            className="mt-3 sm:mt-4 text-cream-primary/40 text-sm sm:text-[13px] lg:text-[14px] leading-tight font-[family-name:var(--font-body)]"
-            style={{
-              animation: `countdown-pulse ${countdown > 15 ? '2s' : countdown > 10 ? '1.5s' : countdown > 5 ? '1s' : '0.5s'} ease-in-out infinite`,
-            }}
-          >
-            {countdown}s
-          </p>
+          <div className="flex flex-col items-center gap-2">
+            <p
+              className="mt-3 sm:mt-4 text-cream-primary/40 text-sm sm:text-[13px] lg:text-[14px] leading-tight font-[family-name:var(--font-body)]"
+              style={{
+                animation: `countdown-pulse ${countdown > 7 ? '2s' : countdown > 5 ? '1.5s' : countdown > 3 ? '1s' : '0.5s'} ease-in-out infinite`,
+              }}
+            >
+              {countdown}s
+            </p>
+            <p
+              className="text-cream-primary/30 text-xs font-[family-name:var(--font-body)] uppercase tracking-widest animate-pulse"
+              style={{ animationDelay: '0.5s' }}
+            >
+              Press ENTER to skip
+            </p>
+          </div>
 
           {/* Victory Flash Burst */}
           {showVictoryFlash && (
