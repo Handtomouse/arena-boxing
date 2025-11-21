@@ -7,7 +7,10 @@ import Footer from "@/components/sections/Footer";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
-  display: "swap",
+  display: "block",
+  preload: true,
+  weight: ["400", "500", "600", "700"],
+  fallback: ["system-ui", "arial"],
 });
 
 export const viewport: Viewport = {

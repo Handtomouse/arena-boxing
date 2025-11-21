@@ -8,11 +8,43 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import Button from '@/components/ui/Button';
 import StrokeAnimatedIcon from '@/components/ui/StrokeAnimatedIcon';
 import ScrollTransition from '@/components/sections/ScrollTransition';
-import ExpandableClassCard, { ClassType } from '@/components/sections/ExpandableClassCard';
-import RealHapanaWidget from '@/components/sections/RealHapanaWidget';
+
+// Code-split heavy components that aren't needed for initial render
+const ExpandableClassCard = dynamic(
+  () => import('@/components/sections/ExpandableClassCard'),
+  {
+    loading: () => (
+      <div className="animate-pulse bg-charcoal-light h-64 border-3 border-cream-primary"></div>
+    ),
+  }
+);
+
+const RealHapanaWidget = dynamic(
+  () => import('@/components/sections/RealHapanaWidget'),
+  {
+    loading: () => (
+      <div className="flex items-center justify-center p-12 min-h-[400px]">
+        <div className="text-center">
+          <div className="relative w-16 h-16 mx-auto mb-4">
+            <div className="absolute inset-0 border-4 border-burgundy-primary/20 rounded-full"></div>
+            <div className="absolute inset-0 border-4 border-burgundy-primary border-t-transparent rounded-full animate-spin"></div>
+          </div>
+          <p className="text-burgundy-primary font-semibold uppercase text-sm tracking-wide">
+            Loading Booking System
+          </p>
+        </div>
+      </div>
+    ),
+    ssr: false, // Hapana widget requires browser APIs
+  }
+);
+
+// Import ClassType separately for type safety
+import type { ClassType } from '@/components/sections/ExpandableClassCard';
 
 export default function HomePage() {
   const router = useRouter();
