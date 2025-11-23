@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/ui/Navigation";
 import Footer from "@/components/sections/Footer";
+import { getOrganizationSchema, getLocalBusinessSchema, getWebSiteSchema } from "@/lib/structured-data";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -75,6 +76,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://arenaboxing.com.au';
+
+  // Generate structured data
+  const organizationSchema = getOrganizationSchema(baseUrl);
+  const localBusinessSchema = getLocalBusinessSchema(baseUrl);
+  const webSiteSchema = getWebSiteSchema(baseUrl);
+
   return (
     <html lang="en" className={inter.variable}>
       <head>
@@ -84,6 +92,26 @@ export default function RootLayout({
           as="font"
           type="font/ttf"
           crossOrigin=""
+        />
+
+        {/* Schema.org Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(webSiteSchema),
+          }}
         />
       </head>
       <body className="antialiased bg-cream-primary">
