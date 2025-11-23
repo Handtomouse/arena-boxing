@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/ui/Navigation";
 import Footer from "@/components/sections/Footer";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import { getOrganizationSchema, getLocalBusinessSchema, getWebSiteSchema } from "@/lib/structured-data";
 
 const inter = Inter({
@@ -115,6 +116,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-cream-primary">
+        {/* Google Analytics 4 */}
+        <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
+
         <Navigation />
         <main>
           {children}
