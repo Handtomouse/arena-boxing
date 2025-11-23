@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { loadHapanaScript } from '@/lib/hapana-loader';
+import HapanaSkeleton from '@/components/ui/HapanaSkeleton';
 
 export interface RealHapanaWidgetProps {
   widgetId: string;
@@ -140,20 +141,7 @@ const RealHapanaWidget: React.FC<RealHapanaWidgetProps> = ({
       }}
     >
       {/* Hapana widget will render here as <hapana-widget> custom element */}
-      {!isScriptLoaded && (
-        <div className="flex items-center justify-center p-12 min-h-[400px]">
-          <div className="text-center">
-            <div className="relative w-16 h-16 mx-auto mb-4">
-              <div className="absolute inset-0 border-4 border-burgundy-primary/20 rounded-full"></div>
-              <div className="absolute inset-0 border-4 border-burgundy-primary border-t-transparent rounded-full animate-spin"></div>
-            </div>
-            <p className="text-burgundy-primary font-semibold uppercase text-sm tracking-wide">
-              Loading Booking System
-            </p>
-            <p className="text-xs text-gray-500 mt-2">Please wait...</p>
-          </div>
-        </div>
-      )}
+      {!isScriptLoaded && <HapanaSkeleton />}
     </div>
   );
 };
