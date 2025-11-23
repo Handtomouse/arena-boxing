@@ -7,6 +7,7 @@
 
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 declare global {
   interface Window {
@@ -15,7 +16,7 @@ declare global {
   }
 }
 
-export default function GoogleAnalytics({ measurementId }: { measurementId: string }) {
+function GoogleAnalyticsInner({ measurementId }: { measurementId: string }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -33,6 +34,10 @@ export default function GoogleAnalytics({ measurementId }: { measurementId: stri
     console.log('📊 GA4 Pageview:', url);
   }, [pathname, searchParams, measurementId]);
 
+  return null;
+}
+
+export default function GoogleAnalytics({ measurementId }: { measurementId: string }) {
   // Don't render anything if no measurement ID
   if (!measurementId) {
     console.warn('⚠️ Google Analytics: No measurement ID provided');
@@ -59,6 +64,11 @@ export default function GoogleAnalytics({ measurementId }: { measurementId: stri
           `,
         }}
       />
+
+      {/* Wrap pageview tracker in Suspense boundary */}
+      <Suspense fallback={null}>
+        <GoogleAnalyticsInner measurementId={measurementId} />
+      </Suspense>
     </>
   );
 }
