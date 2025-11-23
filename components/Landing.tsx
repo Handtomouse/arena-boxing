@@ -9,6 +9,7 @@
 import { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { detectLowPowerMode } from '@/lib/detect-low-power-mode';
 
 export default function Landing() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function Landing() {
   const [isDrawing, setIsDrawing] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoFailed, setVideoFailed] = useState(false);
+  const [isLowPowerMode, setIsLowPowerMode] = useState(false);
 
   useEffect(() => {
     // Preload critical assets
@@ -131,9 +133,20 @@ export default function Landing() {
     }
   }, []);
 
+  // Detect Low Power Mode early
+  useEffect(() => {
+    detectLowPowerMode().then((isLowPower) => {
+      if (isLowPower) {
+        console.log('📱 Low Power Mode detected - using static image fallback');
+        setIsLowPowerMode(true);
+        setVideoFailed(true);
+      }
+    });
+  }, []);
+
   // IntersectionObserver for better video autoplay detection
   useLayoutEffect(() => {
-    if (!videoRef.current) return;
+    if (!videoRef.current || isLowPowerMode) return;
 
     const video = videoRef.current;
 
@@ -148,6 +161,7 @@ export default function Landing() {
             if (playPromise !== undefined) {
               playPromise.catch(() => {
                 // Autoplay blocked - switch to poster immediately
+                console.log('📱 Autoplay blocked - switching to poster image');
                 setVideoFailed(true);
               });
             }
@@ -174,7 +188,7 @@ export default function Landing() {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [isLowPowerMode]);
 
   const handleEnter = () => {
     // Play sound effect

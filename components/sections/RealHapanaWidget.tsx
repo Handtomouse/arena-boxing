@@ -118,7 +118,7 @@ const RealHapanaWidget: React.FC<RealHapanaWidgetProps> = ({
     <div
       ref={containerRef}
       id="real-hapana-widget-container"
-      className="hapana-widget-wrapper"
+      className="hapana-widget-wrapper w-full overflow-x-hidden"
       data-widget-id={widgetId}
       data-theme={theme}
       style={{
@@ -131,8 +131,12 @@ const RealHapanaWidget: React.FC<RealHapanaWidgetProps> = ({
         ['--hapana-accent-color' as string]: '#A31F1F',       // Blood Red
         ['--hapana-border-radius' as string]: '4px',
         ['--hapana-font-family' as string]: 'var(--font-body)',
-        minHeight: '600px',
+        // Responsive min-height
+        minHeight: 'clamp(400px, 60vh, 600px)',
         width: '100%',
+        // Mobile optimizations
+        maxWidth: '100%',
+        overflowX: 'hidden',
       }}
     >
       {/* Hapana widget will render here as <hapana-widget> custom element */}

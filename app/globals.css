@@ -675,3 +675,51 @@ h3 {
   min-height: 100dvh;
   min-height: -webkit-fill-available;
 }
+
+/* ==================== HAPANA WIDGET MOBILE OPTIMIZATIONS ==================== */
+
+/* Hapana widget container optimizations */
+.hapana-widget-wrapper {
+  /* Prevent horizontal scroll on mobile */
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Mobile-specific Hapana styles */
+@media (max-width: 768px) {
+  .hapana-widget-wrapper {
+    /* Smaller padding on mobile */
+    padding: 0.5rem;
+  }
+
+  /* Make Hapana buttons larger on mobile (44px minimum) */
+  .hapana-widget-wrapper button,
+  .hapana-widget-wrapper a[role="button"] {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  /* Larger text on mobile for readability */
+  .hapana-widget-wrapper {
+    font-size: 16px !important; /* Prevents iOS zoom on input focus */
+  }
+
+  /* Ensure calendar/date picker is mobile-friendly */
+  .hapana-widget-wrapper input[type="date"],
+  .hapana-widget-wrapper input[type="time"],
+  .hapana-widget-wrapper select {
+    font-size: 16px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* Tablet breakpoint */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hapana-widget-wrapper {
+    padding: 1rem;
+  }
+}
