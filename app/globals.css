@@ -66,6 +66,10 @@
   /* UI: Bold Sans-Serif (buttons, labels, nav) */
   --font-ui: 'Barlow Semi Condensed', 'Oswald', sans-serif;
 
+  /* Editorial: Serif Italic (for pull-quotes, Roman numerals, accents)
+     The --font-editorial variable is set at the <html> level by next/font
+     in app/layout.tsx (Cormorant_Garamond). No fallback declaration needed here. */
+
   /* ==================== FONT SIZES ==================== */
   --font-size-hero: 96px;
   --font-size-h1: 72px;
