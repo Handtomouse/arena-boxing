@@ -99,7 +99,7 @@ export default function BookingPage() {
               >
                 <span
                   aria-hidden="true"
-                  className="font-[family-name:var(--font-editorial)] italic text-5xl leading-none text-burgundy-primary mb-4"
+                  className="font-[family-name:var(--font-cormorant)] italic text-5xl leading-none text-burgundy-primary mb-4"
                 >
                   {step.numeral}
                 </span>
@@ -115,7 +115,7 @@ export default function BookingPage() {
           </ol>
 
           <figure className="mt-12 max-w-3xl mx-auto text-center border-t border-cream-primary/15 pt-10">
-            <blockquote className="font-[family-name:var(--font-editorial)] italic text-2xl sm:text-3xl text-cream-primary leading-snug">
+            <blockquote className="font-[family-name:var(--font-cormorant)] italic text-2xl sm:text-3xl text-cream-primary leading-snug">
               &ldquo;You won&rsquo;t be the worst in the room. Everyone here started somewhere. We teach technique first &mdash; no contact in class one.&rdquo;
             </blockquote>
             <figcaption className="mt-4 text-sm font-[family-name:var(--font-ui)] uppercase tracking-widest text-burgundy-primary">
