@@ -7,13 +7,19 @@
 
 ## Table of Contents
 
-### Existing Components (Built)
-1. [Button](#1-button-) 
+### Status (Updated 2026-05-28)
+
+**All components shipped.** This doc was originally written when only 4 of 14
+catalog components were built. The build is now complete; see the actual tree
+under `components/` (28 .tsx files across `ui/`, `forms/`, `sections/`,
+`layout/`, `analytics/`, and root `Landing.tsx`). The per-component specs below
+are kept as a reference for behaviour, props, and accessibility intent.
+
+### Catalog Components (all built)
+1. [Button](#1-button-)
 2. [Card](#2-card-)
 3. [Navigation](#3-navigation-)
 4. [Landing](#4-landing-)
-
-### Components to Build
 5. [Hero Banner](#5-hero-banner)
 6. [Footer](#6-footer)
 7. [Contact Form](#7-contact-form)
@@ -293,7 +299,7 @@ Cinematic intro sequence with 20s countdown and auto-redirect.
 
 ## 5. HERO BANNER
 
-**Status:** TO BUILD  
+**Status:** Built and production-ready  
 **Priority:** CRITICAL (blocks all page implementations)
 
 ### Description
@@ -388,7 +394,7 @@ interface HeroBannerProps {
 
 ## 6. FOOTER
 
-**Status:** TO BUILD  
+**Status:** Built and production-ready  
 **Priority:** HIGH (needed on all pages)
 
 ### Description
@@ -478,7 +484,7 @@ interface FooterProps {
 
 ## 7. CONTACT FORM
 
-**Status:** TO BUILD  
+**Status:** Built and production-ready  
 **Priority:** HIGH (needed for Contact page)
 
 ### Description
@@ -579,7 +585,7 @@ interface ContactFormData {
 
 ## 8. MODAL
 
-**Status:** TO BUILD  
+**Status:** Built and production-ready  
 **Priority:** MEDIUM (needed for confirmations)
 
 ### Description
@@ -689,7 +695,7 @@ interface ModalProps {
 
 ## 9. CLASS SCHEDULE
 
-**Status:** TO BUILD
+**Status:** Built and production-ready
 **Priority:** CRITICAL (core business feature)
 
 ### Description
@@ -829,7 +835,7 @@ interface ClassScheduleData {
 
 ## 10. TRAINERS MODULE
 
-**Status:** TO BUILD
+**Status:** Built and production-ready
 **Priority:** MEDIUM (About page feature)
 
 ### Description
@@ -959,7 +965,7 @@ interface TrainerData {
 
 ## 11. EMBED WRAPPERS
 
-**Status:** TO BUILD
+**Status:** Built and production-ready
 **Priority:** MEDIUM (external integrations)
 
 ### Description
@@ -1083,7 +1089,7 @@ interface InstagramEmbedProps {
 
 ## 12. TYPOGRAPHY COMPONENTS
 
-**Status:** TO BUILD
+**Status:** Built and production-ready
 **Priority:** LOW (nice-to-have wrappers)
 
 ### Description
@@ -1192,7 +1198,7 @@ interface TaglineProps {
 
 ## 13. LAYOUT COMPONENTS
 
-**Status:** TO BUILD
+**Status:** Built and production-ready
 **Priority:** MEDIUM (structure components)
 
 ### Description
@@ -1321,7 +1327,7 @@ interface GridProps {
 
 ## 14. FORM FIELDS
 
-**Status:** TO BUILD
+**Status:** Built and production-ready
 **Priority:** HIGH (needed for Contact Form)
 
 ### Description
@@ -1490,24 +1496,22 @@ interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 ## SUMMARY
 
-**Total Components:** 14
+**Status (2026-05-28): All components shipped.**
 
-**Status Breakdown:**
-- ✅ Built: 4 (Button, Card, Navigation, Landing)
-- 🔨 To Build: 10
+**Catalog Components:** 14 / 14 built
 
-**Priority:**
-- 🔴 CRITICAL: Hero Banner, Class Schedule
-- 🟠 HIGH: Footer, Contact Form, Form Fields
-- 🟡 MEDIUM: Modal, Trainers, Embeds, Layout
-- 🟢 LOW: Typography
+**Actual tree on disk:** 28 `.tsx` files across `components/`:
+- `ui/` (11): Button, Card, Navigation, Modal, FAQAccordion, BodyText, Heading,
+  Tagline, PricingCalculator, HapanaSkeleton, StrokeAnimatedIcon
+- `sections/` (8): HeroBanner, Footer, TrainersModule, ExpandableClassCard,
+  HapanaEmbed, RealHapanaWidget, InstagramEmbed, GoogleMapsEmbed, ScrollTransition
+- `forms/` (4): Input, Textarea, Checkbox, ContactForm
+- `layout/` (3): Container, Grid, Section
+- `analytics/` (1): GoogleAnalytics
+- root (1): Landing.tsx
 
-**Next Steps:**
-1. Build Hero Banner (blocks all page work)
-2. Build Footer (needed globally)
-3. Build Form Fields → Contact Form
-4. Build Class Schedule (core feature)
-5. Build remaining components as needed
+**Next Steps:** None. Component build is complete. This doc is reference-only.
+For implementation status of the wider site see `PROJECT_STATUS.md`.
 
 ---
 
