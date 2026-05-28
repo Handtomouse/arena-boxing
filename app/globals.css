@@ -688,6 +688,32 @@ h3 {
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
+/* ==================== HAPANA BOOKING BUTTON LABEL VISIBILITY (P1 FIX) ====================
+ *
+ * Issue: Per-row booking buttons rendered as blank pills on /timetable.
+ *
+ * Root cause: Tailwind v4 preflight resets `button { color: inherit }`. The
+ * sitewide `body { color: var(--foreground); }` rule with `--foreground: var(--cream-primary)`
+ * (#E8DDD3) then cascades cream text into every unstyled button. The Hapana
+ * widget's MUI Button uses a white/light pill background and does not set an
+ * explicit text color on its `bookingButton` class (verified in the widget
+ * bundle: only `maxHeight` + `padding` are declared). Result: cream text on a
+ * white pill is effectively invisible.
+ *
+ * Scope: rule is restricted to `.hapana-widget-wrapper` so it does not touch
+ * the rest of the site's typography. Buttons rendered inside Hapana's Shadow
+ * DOM are unaffected by external CSS regardless, so this rule is a no-op for
+ * those nodes — it is solely a safety net for any buttons rendered in the
+ * light DOM (which the widget bundle does do for portal-rendered overlays
+ * and for branches where shadowRoot is unavailable).
+ */
+.hapana-widget-wrapper button,
+.hapana-widget-wrapper a[role="button"],
+hapana-widget button,
+hapana-widget a[role="button"] {
+  color: var(--charcoal-black);
+}
+
 /* Mobile-specific Hapana styles */
 @media (max-width: 768px) {
   .hapana-widget-wrapper {
