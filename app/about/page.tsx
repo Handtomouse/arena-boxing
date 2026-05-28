@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { HeroBanner, Section, Container, InstagramEmbed } from "@/components";
+import { HeroBanner, Section, Container, InstagramEmbed, TrainersModule } from "@/components";
+import { trainers } from "@/lib/trainers";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -41,21 +42,7 @@ export default function AboutPage() {
 
       <Section variant="dark" spacing="lg">
         <Container>
-          <div className="max-w-2xl mx-auto text-center">
-            <h3 className="font-[family-name:var(--font-display)] text-3xl uppercase tracking-wider text-cream-primary mb-4">
-              Meet Our Coaches
-            </h3>
-            <p className="text-cream-dark text-lg mb-6">
-              Our team of certified boxing coaches brings decades of combined experience from amateur competition to professional training. Coach profiles coming soon.
-            </p>
-            <p className="text-cream-dark/80 text-sm">
-              Want to know more about our coaching team? Visit us in person or{' '}
-              <a href="mailto:hello@arenaboxing.com.au" className="text-cream-primary hover:text-white underline">
-                get in touch
-              </a>
-              .
-            </p>
-          </div>
+          <TrainersModule trainers={trainers} />
         </Container>
       </Section>
 
