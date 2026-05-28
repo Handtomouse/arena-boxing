@@ -7,9 +7,10 @@ export function GET() {
   const currentDate = new Date().toISOString();
 
   // Define all routes with their priorities and change frequencies
+  // Note: '/' is intentionally omitted — the landing intro at '/' redirects to '/home',
+  // which is the canonical homepage. Listing both would create a duplicate-content signal.
   const routes = [
-    { path: '', priority: 1.0, changefreq: 'daily' }, // Landing page
-    { path: '/home', priority: 0.9, changefreq: 'daily' }, // Home page
+    { path: '/home', priority: 1.0, changefreq: 'daily' }, // Home page (canonical)
     { path: '/booking', priority: 0.9, changefreq: 'daily' }, // Booking - high priority
     { path: '/timetable', priority: 0.8, changefreq: 'daily' }, // Timetable
     { path: '/membership', priority: 0.8, changefreq: 'weekly' }, // Membership
