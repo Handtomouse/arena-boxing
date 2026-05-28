@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { HeroBanner, Section, Container, Button } from "@/components";
 
@@ -10,6 +10,11 @@ const faqs = [
   {
     category: "Getting Started",
     questions: [
+      {
+        q: "What happens in my first class?",
+        a: "Arrive 10 minutes early to meet your coach and sign the waiver, we'll wrap your hands for you (and show you how to do it yourself next time), warm up with bodyweight movements and boxing fundamentals, learn footwork and the jab/cross/slip on heavy bags with no contact in class one, then cool down with 5 minutes of Q&A. See the full walkthrough on our booking page.",
+        id: "first-class",
+      },
       {
         q: "Do I need boxing experience to join?",
         a: "Not at all. We welcome complete beginners and design our classes to accommodate all skill levels. Our coaches will teach you proper technique from day one.",
@@ -98,13 +103,23 @@ const faqs = [
   },
 ];
 
-function FAQItem({ question, answer }: { question: string; answer: string }) {
-  const [isOpen, setIsOpen] = useState(false);
-
+function FAQItem({
+  question,
+  answer,
+  id,
+  isOpen,
+  onToggle,
+}: {
+  question: string;
+  answer: string;
+  id?: string;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
   return (
-    <div className="border-b-2 border-burgundy-primary/20">
+    <div id={id} className="border-b-2 border-burgundy-primary/20 scroll-mt-24">
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={onToggle}
         className="w-full py-6 flex justify-between items-start text-left hover:text-blood-red transition-colors duration-300"
         aria-expanded={isOpen}
       >
@@ -124,6 +139,36 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 export default function FAQPage() {
   const router = useRouter();
+  // Lifted accordion state: stores the unique key of the open FAQ ("<categoryIdx>-<questionIdx>")
+  // or null when nothing is expanded. Lifting lets the hash-deep-link effect drive open state.
+  const [openKey, setOpenKey] = useState<string | null>(null);
+
+  // Deep-link handler: if URL has #<id> matching a known FAQ id (e.g. /faq#first-class),
+  // open that item and scroll it into view. Re-runs on hashchange so in-page anchors work too.
+  useEffect(() => {
+    const applyHash = () => {
+      const hash = window.location.hash.replace(/^#/, "");
+      if (!hash) return;
+      for (let ci = 0; ci < faqs.length; ci++) {
+        const cat = faqs[ci];
+        for (let qi = 0; qi < cat.questions.length; qi++) {
+          const q = cat.questions[qi] as { q: string; a: string; id?: string };
+          if (q.id === hash) {
+            setOpenKey(`${ci}-${qi}`);
+            // Defer scroll until after the answer expands so the anchor lands on the open item.
+            requestAnimationFrame(() => {
+              const el = document.getElementById(hash);
+              if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+            return;
+          }
+        }
+      }
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+  }, []);
 
   return (
     <>
@@ -148,15 +193,26 @@ export default function FAQPage() {
           </div>
 
           <div className="space-y-12">
-            {faqs.map((category) => (
+            {faqs.map((category, ci) => (
               <div key={category.category}>
                 <h3 className="font-[family-name:var(--font-display)] text-2xl uppercase tracking-wider text-burgundy-primary mb-6 pb-3 border-b-4 border-burgundy-primary">
                   {category.category}
                 </h3>
                 <div className="space-y-0">
-                  {category.questions.map((faq, idx) => (
-                    <FAQItem key={idx} question={faq.q} answer={faq.a} />
-                  ))}
+                  {category.questions.map((faq, qi) => {
+                    const key = `${ci}-${qi}`;
+                    const q = faq as { q: string; a: string; id?: string };
+                    return (
+                      <FAQItem
+                        key={key}
+                        id={q.id}
+                        question={q.q}
+                        answer={q.a}
+                        isOpen={openKey === key}
+                        onToggle={() => setOpenKey(openKey === key ? null : key)}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             ))}
