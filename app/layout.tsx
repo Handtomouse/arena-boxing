@@ -9,6 +9,7 @@ import {
 import "./globals.css";
 import Navigation from "@/components/ui/Navigation";
 import Footer from "@/components/sections/Footer";
+import StickyBottomCTA from "@/components/ui/StickyBottomCTA";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import { getOrganizationSchema, getLocalBusinessSchema, getWebSiteSchema } from "@/lib/structured-data";
 
@@ -168,6 +169,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <StickyBottomCTA />
       </body>
     </html>
   );
