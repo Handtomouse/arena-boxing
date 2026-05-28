@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { HeroBanner, Section, Container, HapanaEmbed, Button } from "@/components";
+import { HeroBanner, Section, Container, HapanaEmbed } from "@/components";
 
 export const metadata: Metadata = {
   title: "Book a Class",
@@ -24,27 +24,27 @@ export default function BookingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center p-6 border-2 border-burgundy-primary bg-white">
               <div className="text-4xl mb-3">🎁</div>
-              <h3 className="font-[family-name:var(--font-ui)] text-lg uppercase tracking-wide text-burgundy-primary mb-2">
+              <p className="font-[family-name:var(--font-ui)] font-bold text-lg uppercase tracking-wide text-burgundy-primary mb-2">
                 First Class Free
-              </h3>
+              </p>
               <p className="text-sm text-charcoal-black/80">
                 New members get their first session on us. No credit card required.
               </p>
             </div>
             <div className="text-center p-6 border-2 border-burgundy-primary bg-white">
               <div className="text-4xl mb-3">📅</div>
-              <h3 className="font-[family-name:var(--font-ui)] text-lg uppercase tracking-wide text-burgundy-primary mb-2">
+              <p className="font-[family-name:var(--font-ui)] font-bold text-lg uppercase tracking-wide text-burgundy-primary mb-2">
                 Book Anytime
-              </h3>
+              </p>
               <p className="text-sm text-charcoal-black/80">
                 Reserve your spot up to 7 days in advance. Classes fill up fast.
               </p>
             </div>
             <div className="text-center p-6 border-2 border-burgundy-primary bg-white">
               <div className="text-4xl mb-3">🔄</div>
-              <h3 className="font-[family-name:var(--font-ui)] text-lg uppercase tracking-wide text-burgundy-primary mb-2">
+              <p className="font-[family-name:var(--font-ui)] font-bold text-lg uppercase tracking-wide text-burgundy-primary mb-2">
                 Free Cancellation
-              </h3>
+              </p>
               <p className="text-sm text-charcoal-black/80">
                 Cancel up to 12 hours before class with no penalty.
               </p>
@@ -78,18 +78,20 @@ export default function BookingPage() {
               <strong>Need help booking?</strong> Our team is here to assist.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Button variant="outline" size="sm">
-                <a href="tel:+61400123456" className="flex items-center gap-2">
-                  <span>📞</span>
-                  <span>Call Us</span>
-                </a>
-              </Button>
-              <Button variant="outline" size="sm">
-                <a href="mailto:hello@arenaboxing.com.au" className="flex items-center gap-2">
-                  <span>✉️</span>
-                  <span>Email Support</span>
-                </a>
-              </Button>
+              <a
+                href="tel:+61400123456"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-[family-name:var(--font-ui)] uppercase tracking-wide border-2 border-burgundy-primary text-burgundy-primary bg-transparent hover:bg-burgundy-primary hover:text-cream-primary transition-all duration-300"
+              >
+                <span>📞</span>
+                <span>Call Us</span>
+              </a>
+              <a
+                href="mailto:hello@arenaboxing.com.au"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-[family-name:var(--font-ui)] uppercase tracking-wide border-2 border-burgundy-primary text-burgundy-primary bg-transparent hover:bg-burgundy-primary hover:text-cream-primary transition-all duration-300"
+              >
+                <span>✉️</span>
+                <span>Email Support</span>
+              </a>
             </div>
           </div>
         </Container>
