@@ -116,6 +116,13 @@ export default function MembershipPage() {
                 >
                   {plan.cta}
                 </Button>
+                {plan.featured && (
+                  <p
+                    className="font-[family-name:var(--font-ui)] text-[11px] uppercase tracking-[0.18em] text-cream-dark/80 text-center mt-4 pt-3 border-t border-cream-primary/15"
+                  >
+                    Cancel anytime in your account. No lock-in, no email chase.
+                  </p>
+                )}
               </Card>
             ))}
           </Grid>
