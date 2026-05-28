@@ -77,7 +77,7 @@ export default function Error({
         <p className="mt-8 text-cream-dark text-sm">
           Need help?{' '}
           <a
-            href="mailto:info@arenaboxing.com.au"
+            href="mailto:hello@arenaboxing.com.au"
             className="text-blood-red hover:text-cream-primary transition-colors underline"
           >
             Contact Support

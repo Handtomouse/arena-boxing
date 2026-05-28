@@ -83,7 +83,6 @@ const RealHapanaWidget: React.FC<RealHapanaWidgetProps> = ({
     // Listen for Hapana events (if available)
     // Note: Verify event names with Hapana documentation
     const handleBookingComplete = (event: CustomEvent) => {
-      console.log('🎉 Booking completed:', event.detail);
       if (onBookingComplete) {
         onBookingComplete(event.detail);
       }

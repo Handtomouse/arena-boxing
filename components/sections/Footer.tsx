@@ -91,7 +91,7 @@ const Footer: React.FC<FooterProps> = ({
 
           {/* Copyright */}
           <div className="text-cream-dark text-sm space-y-1 pt-6 border-t border-cream-dark/20 w-full">
-            <p>&copy; 2025 Arena Boxing. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Arena Boxing. All rights reserved.</p>
             <p className="font-[family-name:var(--font-tagline)] italic">
               Those who dare.
             </p>

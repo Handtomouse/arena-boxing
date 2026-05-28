@@ -5,7 +5,7 @@ import { HeroBanner, Section, Container, GoogleMapsEmbed, ContactForm, Grid } fr
 export default function LocationPage() {
   const handleFormSubmit = async (data: { name: string; email: string; message: string }) => {
     // TODO: Implement actual form submission
-    console.log("Form submitted:", data);
+    void data;
     await new Promise(resolve => setTimeout(resolve, 1000));
   };
 

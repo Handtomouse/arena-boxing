@@ -28,7 +28,7 @@ export function getOrganizationSchema(baseUrl: string) {
 
     // Contact Information
     telephone: '+61-2-XXXX-XXXX', // TODO: Add real phone number
-    email: 'info@arenaboxing.com.au',
+    email: 'hello@arenaboxing.com.au',
 
     // Address
     address: {
