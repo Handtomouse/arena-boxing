@@ -137,7 +137,6 @@ export default function Landing() {
   useEffect(() => {
     detectLowPowerMode().then((isLowPower) => {
       if (isLowPower) {
-        console.log('📱 Low Power Mode detected - using static image fallback');
         setIsLowPowerMode(true);
         setVideoFailed(true);
       }
@@ -161,7 +160,6 @@ export default function Landing() {
             if (playPromise !== undefined) {
               playPromise.catch(() => {
                 // Autoplay blocked - switch to poster immediately
-                console.log('📱 Autoplay blocked - switching to poster image');
                 setVideoFailed(true);
               });
             }

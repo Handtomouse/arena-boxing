@@ -8,6 +8,7 @@
 
 import { useState } from 'react';
 import RealHapanaWidget from './RealHapanaWidget';
+import { HAPANA_WIDGET_ID_FALLBACK } from '@/lib/hapana-config';
 
 export type ClassType = 'work' | 'craft' | 'spar';
 
@@ -124,7 +125,7 @@ export default function ExpandableClassCard({
               {config.title} CLASSES THIS WEEK
             </h4>
             <RealHapanaWidget
-              widgetId={process.env.NEXT_PUBLIC_HAPANA_WIDGET_ID || 'ZjV0eGJ3cGUzU1c1VGtlcUxGOVFDUT09'}
+              widgetId={process.env.NEXT_PUBLIC_HAPANA_WIDGET_ID || HAPANA_WIDGET_ID_FALLBACK}
               dataType="classes"
               theme="dark"
               // Note: Hapana widget filtering might need custom implementation

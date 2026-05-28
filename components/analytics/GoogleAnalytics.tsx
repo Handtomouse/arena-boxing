@@ -30,8 +30,6 @@ function GoogleAnalyticsInner({ measurementId }: { measurementId: string }) {
     window.gtag('config', measurementId, {
       page_path: url,
     });
-
-    console.log('📊 GA4 Pageview:', url);
   }, [pathname, searchParams, measurementId]);
 
   return null;
@@ -80,7 +78,6 @@ export default function GoogleAnalytics({ measurementId }: { measurementId: stri
 export function trackEvent(eventName: string, eventParams?: Record<string, any>) {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, eventParams);
-    console.log('📊 GA4 Event:', eventName, eventParams);
   }
 }
 
