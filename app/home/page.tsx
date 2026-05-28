@@ -13,6 +13,7 @@ import Button from '@/components/ui/Button';
 import StrokeAnimatedIcon from '@/components/ui/StrokeAnimatedIcon';
 import ScrollTransition from '@/components/sections/ScrollTransition';
 import HapanaSkeleton from '@/components/ui/HapanaSkeleton';
+import { HAPANA_WIDGET_ID_FALLBACK } from '@/lib/hapana-config';
 
 // Code-split heavy components that aren't needed for initial render
 const ExpandableClassCard = dynamic(
@@ -361,7 +362,7 @@ export default function HomePage() {
             }}
           >
             <RealHapanaWidget
-              widgetId={process.env.NEXT_PUBLIC_HAPANA_WIDGET_ID || 'ZjV0eGJ3cGUzU1c1VGtlcUxGOVFDUT09'}
+              widgetId={process.env.NEXT_PUBLIC_HAPANA_WIDGET_ID || HAPANA_WIDGET_ID_FALLBACK}
               dataType="classes"
               theme="dark"
             />
