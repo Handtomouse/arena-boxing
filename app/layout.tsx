@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/ui/Navigation";
 import Footer from "@/components/sections/Footer";
@@ -13,6 +13,15 @@ const inter = Inter({
   preload: true,
   weight: ["400", "500", "600", "700"],
   fallback: ["system-ui", "arial"],
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-editorial",
+  display: "swap",
+  weight: ["400", "500"],
+  style: ["italic"],
+  fallback: ["Georgia", "serif"],
 });
 
 export const viewport: Viewport = {
@@ -85,7 +94,7 @@ export default function RootLayout({
   const webSiteSchema = getWebSiteSchema(baseUrl);
 
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       <head>
         <link
           rel="preload"
