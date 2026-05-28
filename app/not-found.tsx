@@ -3,7 +3,6 @@
  * Branded 404 page for missing routes
  */
 
-import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export default function NotFound() {
@@ -35,15 +34,17 @@ export default function NotFound() {
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/">
-            <Button variant="primary" size="lg">
-              GO HOME
-            </Button>
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center px-12 py-6 text-lg font-[family-name:var(--font-ui)] uppercase tracking-wide border-2 bg-[var(--burgundy-primary)] text-[var(--cream-primary)] border-[var(--cream-primary)] hover:bg-[var(--blood-red)] hover:-translate-y-1 transition-all duration-300"
+          >
+            GO HOME
           </Link>
-          <Link href="/booking">
-            <Button variant="outline" size="lg">
-              BOOK A CLASS
-            </Button>
+          <Link
+            href="/booking"
+            className="inline-flex items-center justify-center px-12 py-6 text-lg font-[family-name:var(--font-ui)] uppercase tracking-wide border-2 bg-transparent text-[var(--cream-primary)] border-[var(--cream-primary)] hover:bg-[var(--burgundy-primary)] hover:border-[var(--blood-red)] transition-all duration-300"
+          >
+            BOOK A CLASS
           </Link>
         </div>
 
