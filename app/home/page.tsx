@@ -87,18 +87,9 @@ export default function HomePage() {
     };
   }, []);
 
-  // Keyboard shortcuts
-  useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        handleCTAClick();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, []);
+  // Note: CTA <Button> elements natively handle Enter/Space when focused.
+  // A window-level keydown listener here would hijack scroll (Space) and
+  // any other focused element's Enter behavior (e.g., the Hapana widget).
 
   return (
     <div className="relative bg-charcoal-black">
