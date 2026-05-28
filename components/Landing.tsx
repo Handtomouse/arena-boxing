@@ -58,7 +58,6 @@ export default function Landing() {
     const hasVisited = localStorage.getItem('arena-visited');
     if (hasVisited) {
       setIsFirstVisit(false);
-      // Note: Keeping 20s countdown for all visitors now
     }
 
     // Auto-enter after countdown
@@ -191,13 +190,6 @@ export default function Landing() {
   }, [isLowPowerMode]);
 
   const handleEnter = () => {
-    // Play sound effect
-    const audio = new Audio('/sounds/punch.mp3');
-    audio.volume = 0.4;
-    audio.play().catch(() => {
-      // Ignore audio play errors (autoplay policy)
-    });
-
     // Haptic feedback on mobile
     if (navigator.vibrate) {
       navigator.vibrate(50);
@@ -301,7 +293,7 @@ export default function Landing() {
         {/* 2. MIDDLE: MASSIVE "ARENA" Wordmark - Absolutely Centered */}
         {/* ARENA Wordmark (HERO) - Stroke-Drawing Animation */}
         <div
-          className={`mx-auto w-full max-w-[280px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[520px] xl:max-w-[640px] 2xl:max-w-[720px] transition-transform duration-700 hover:scale-[1.01] ${countdown > 0 && countdown < 20 ? 'wordmark-glow-active' : 'drop-shadow-2xl'}`}
+          className={`mx-auto w-full max-w-[280px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[520px] xl:max-w-[640px] 2xl:max-w-[720px] transition-transform duration-700 hover:scale-[1.01] ${countdown > 0 ? 'wordmark-glow-active' : 'drop-shadow-2xl'}`}
             style={{
               animation: 'fade-in 3s ease-out forwards',
               opacity: 0
