@@ -28,7 +28,6 @@ export function loadHapanaScript(): Promise<void> {
     script.async = true;
 
     script.onload = () => {
-      console.log('✅ Hapana widget script loaded successfully (singleton)');
       isHapanaScriptLoaded = true;
       resolve();
     };
