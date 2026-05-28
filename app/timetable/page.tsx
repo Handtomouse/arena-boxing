@@ -509,6 +509,7 @@ export default function TimetablePage() {
                     const cardClasses = [
                       s.card,
                       card.waitlist ? s.cardIsWaitlist : "",
+                      card.past ? s.cardIsPast : "",
                     ]
                       .filter(Boolean)
                       .join(" ");
