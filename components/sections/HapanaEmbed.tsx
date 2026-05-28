@@ -80,7 +80,7 @@ const HapanaEmbed: React.FC<HapanaEmbedProps> = ({
           <div className="p-6 border-2 border-burgundy-primary bg-white hover:shadow-lg transition-shadow">
             <div className="font-semibold text-burgundy-primary mb-2">Monday 6:00 AM</div>
             <div className="text-sm mb-1">Bootcamp</div>
-            <div className="text-sm text-gray-600">Sarah Jones</div>
+            <div className="text-sm text-gray-600">Brendan McDonnell</div>
             <div className="text-xs mt-2 text-blood-red">5 spots left</div>
             <Button variant="primary" size="md" className="w-full mt-4">
               Book Now
@@ -91,7 +91,7 @@ const HapanaEmbed: React.FC<HapanaEmbedProps> = ({
           <div className="p-6 border-2 border-burgundy-primary bg-white hover:shadow-lg transition-shadow">
             <div className="font-semibold text-burgundy-primary mb-2">Monday 9:30 AM</div>
             <div className="text-sm mb-1">Technique</div>
-            <div className="text-sm text-gray-600">Tom Wong</div>
+            <div className="text-sm text-gray-600">Henry Payten</div>
             <div className="text-xs mt-2 text-blood-red">12 spots left</div>
             <Button variant="primary" size="md" className="w-full mt-4">
               Book Now
@@ -102,7 +102,7 @@ const HapanaEmbed: React.FC<HapanaEmbedProps> = ({
           <div className="p-6 border-2 border-burgundy-primary bg-white hover:shadow-lg transition-shadow">
             <div className="font-semibold text-burgundy-primary mb-2">Monday 6:00 PM</div>
             <div className="text-sm mb-1">Sparring</div>
-            <div className="text-sm text-gray-600">Coach J</div>
+            <div className="text-sm text-gray-600">Matt Bull</div>
             <div className="text-xs mt-2 text-blood-red">2 spots left</div>
             <Button variant="primary" size="md" className="w-full mt-4">
               Book Now
@@ -113,7 +113,7 @@ const HapanaEmbed: React.FC<HapanaEmbedProps> = ({
           <div className="p-6 border-2 border-burgundy-primary bg-white hover:shadow-lg transition-shadow">
             <div className="font-semibold text-burgundy-primary mb-2">Tuesday 7:00 AM</div>
             <div className="text-sm mb-1">HIIT Burn</div>
-            <div className="text-sm text-gray-600">Sarah Jones</div>
+            <div className="text-sm text-gray-600">Zach Levy</div>
             <div className="text-xs mt-2 text-blood-red">8 spots left</div>
             <Button variant="primary" size="md" className="w-full mt-4">
               Book Now
@@ -124,7 +124,7 @@ const HapanaEmbed: React.FC<HapanaEmbedProps> = ({
           <div className="p-6 border-2 border-burgundy-primary bg-white hover:shadow-lg transition-shadow">
             <div className="font-semibold text-burgundy-primary mb-2">Tuesday 6:30 PM</div>
             <div className="text-sm mb-1">Fight Fitness</div>
-            <div className="text-sm text-gray-600">Tom Wong</div>
+            <div className="text-sm text-gray-600">Henry Payten</div>
             <div className="text-xs mt-2 text-blood-red">10 spots left</div>
             <Button variant="primary" size="md" className="w-full mt-4">
               Book Now
@@ -135,7 +135,7 @@ const HapanaEmbed: React.FC<HapanaEmbedProps> = ({
           <div className="p-6 border-2 border-burgundy-primary bg-white hover:shadow-lg transition-shadow">
             <div className="font-semibold text-burgundy-primary mb-2">Wednesday 6:00 AM</div>
             <div className="text-sm mb-1">Fundamentals</div>
-            <div className="text-sm text-gray-600">Coach J</div>
+            <div className="text-sm text-gray-600">Brendan McDonnell</div>
             <div className="text-xs mt-2 text-blood-red">15 spots left</div>
             <Button variant="primary" size="md" className="w-full mt-4">
               Book Now
