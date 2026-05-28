@@ -2,6 +2,7 @@
 
 import type { Metadata } from "next";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { HeroBanner, Section, Container, Button } from "@/components";
 
 // Note: Metadata export must be in Server Component, so we'll add it separately
@@ -34,7 +35,7 @@ const faqs = [
       },
       {
         q: "Can I cancel my membership anytime?",
-        a: "Yes. Our monthly unlimited membership can be cancelled anytime with 2 weeks notice. No penalties or fees.",
+        a: "Yes. Our monthly unlimited membership can be cancelled anytime with 7 days notice. No penalties or fees.",
       },
       {
         q: "Do you offer student or concession rates?",
@@ -89,7 +90,7 @@ const faqs = [
       },
       {
         q: "Can I freeze my membership?",
-        a: "Monthly unlimited members can freeze for up to 2 weeks per year at no charge. Medical freezes with doctor's note have no time limit.",
+        a: "Monthly unlimited members can freeze for up to 3 months per year at no charge. Medical freezes with doctor's note have no time limit.",
       },
       {
         q: "Do you have rules about fighting outside the gym?",
@@ -124,6 +125,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function FAQPage() {
+  const router = useRouter();
+
   return (
     <>
       <HeroBanner
@@ -173,10 +176,18 @@ export default function FAQPage() {
               Our team is here to help. Send us a message or drop by the gym anytime during open hours.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" size="lg">
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={() => router.push('/location')}
+              >
                 Contact Us
               </Button>
-              <Button variant="secondary" size="lg">
+              <Button
+                variant="secondary"
+                size="lg"
+                onClick={() => router.push('/booking')}
+              >
                 Book Free Trial
               </Button>
             </div>
