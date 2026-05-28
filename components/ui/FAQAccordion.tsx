@@ -46,7 +46,7 @@ const faqs: FAQ[] = [
   },
   {
     question: "Do you offer student or corporate discounts?",
-    answer: "Yes! Students get 10% off Monthly Unlimited with valid student ID. We also offer corporate group rates for teams of 5+ members. Contact us at hello@arenaboxing.com.au for details."
+    answer: "Yes! Students get 15% off Monthly Unlimited with valid student ID. We also offer corporate group rates for teams of 5+ members. Contact us at hello@arenaboxing.com.au for details."
   }
 ];
 
