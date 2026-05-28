@@ -1,12 +1,10 @@
 'use client';
 
-import type { Metadata } from "next";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { HeroBanner, Section, Container, Button } from "@/components";
 
-// Note: Metadata export must be in Server Component, so we'll add it separately
-// For now, this is a Client Component due to accordion interactivity
+// Metadata is exported from ./layout.tsx (this file is a Client Component for accordion interactivity)
 
 const faqs = [
   {
