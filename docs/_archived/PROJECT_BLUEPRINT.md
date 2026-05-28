@@ -1,5 +1,21 @@
 # Arena Boxing - Project Blueprint
 
+> **ARCHIVED (2026-05-28). DO NOT USE AS REFERENCE FOR THE CURRENT BUILD.**
+>
+> This document describes an aspirational architecture that was never built:
+> a `(marketing)` route group with pages `home / classes / manifesto / fighters /
+> contact`, plus API routes `/api/contact`, `/api/webhook/hapana`, `/api/health`.
+> None of that exists in the actual `app/` tree.
+>
+> The site that was actually built is a flat 8-page Next.js App Router structure
+> (`about / booking / faq / home / location / membership / timetable` + root
+> `page.tsx`) with Hapana embedded client-side (no API routes). For the real
+> shipped IA see `PROJECT_STATUS.md` and `SCOPE_OF_WORK.md` in the repo root.
+>
+> Kept here for historical reference only.
+
+---
+
 > **Next.js 14 + App Router + TypeScript + Tailwind CSS + Vercel**
 > Gothic/Grunge Boxing Gym Website with Hapana Integration
 

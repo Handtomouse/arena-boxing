@@ -244,9 +244,10 @@ Topics covered:
 | **Week 6**: Dev Milestone 3 | 5 days | Supporting pages, integrations, mobile optimization | Deliver final content, test full site |
 | **Week 7**: Content Integration | 5 days | Client content integrated across all pages | Review integrated content, final approvals |
 | **Week 8**: QA & Launch | 5 days | Full QA, production deployment, go-live | UAT testing, launch approval |
-| **Week 9-10**: Post-Launch | 10 days | Bug fixes, monitoring, training session | Attend training, report any issues |
 
-**Total Duration**: 10 weeks (50 business days)
+**Total Project Duration**: 8 weeks (40 business days)
+
+**Post-Launch Support** (outside the 8-week project scope): a further 2 weeks / 10 business days of bug fixes, monitoring, and the client training session. Scope and inclusions are defined in §2.7 (Post-Launch Support). The training session itself is covered by project pricing under "Training & Documentation"; ongoing care beyond the 2-week window falls under the separate Care Plan.
 
 ### Key Milestones & Payment Triggers
 - **Milestone 1**: Design Sign-Off (Week 3) → **40% payment due**
