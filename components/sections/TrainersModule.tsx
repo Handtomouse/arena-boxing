@@ -63,7 +63,7 @@ const TrainersModule: React.FC<TrainersModuleProps> = ({
             >
               <div className="md:w-1/3">
                 <img
-                  src={trainer.image || '/images/placeholder-trainer.jpg'}
+                  src={trainer.image}
                   alt={`${trainer.name}, ${trainer.title}`}
                   className="w-full aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500"
                 />
@@ -143,7 +143,7 @@ const TrainersModule: React.FC<TrainersModuleProps> = ({
             <article key={trainer.id} role="listitem">
               <Card variant="dark" className="h-full flex flex-col">
                 <img
-                  src={trainer.image || '/images/placeholder-trainer.jpg'}
+                  src={trainer.image}
                   alt={`${trainer.name}, ${trainer.title}`}
                   className="w-full aspect-square object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500 mb-4"
                 />
