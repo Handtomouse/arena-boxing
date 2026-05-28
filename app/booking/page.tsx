@@ -53,6 +53,78 @@ export default function BookingPage() {
         </Container>
       </Section>
 
+      {/* Your First Class walkthrough — Non-Negotiable #4 (UX brief) */}
+      <Section variant="dark" spacing="lg">
+        <Container maxWidth="lg">
+          <div className="text-center mb-12">
+            <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl uppercase tracking-wider text-cream-primary mb-4">
+              Your First Class
+            </h2>
+            <p className="text-lg text-cream-dark max-w-2xl mx-auto leading-relaxed">
+              Exactly what happens, start to finish. No surprises. No contact in class one.
+            </p>
+          </div>
+
+          <ol className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6 list-none">
+            {[
+              {
+                numeral: "I",
+                title: "Arrive 10 minutes early",
+                body: "Meet your coach, sign the waiver, fit your hand wraps.",
+              },
+              {
+                numeral: "II",
+                title: "We'll wrap your hands",
+                body: "Wraps are lent free; we'll show you how to do it yourself for next time.",
+              },
+              {
+                numeral: "III",
+                title: "Warm-up",
+                body: "Bodyweight movements + boxing fundamentals; everyone's first round is technique-only.",
+              },
+              {
+                numeral: "IV",
+                title: "Bag work",
+                body: "No contact in class one. We teach footwork, jab, cross, slip on heavy bags. No sparring until you ask.",
+              },
+              {
+                numeral: "V",
+                title: "Cool down + Q&A",
+                body: "5 minutes with the coach; ask anything.",
+              },
+            ].map((step) => (
+              <li
+                key={step.numeral}
+                className="bg-charcoal-black/60 border border-cream-primary/15 p-6 flex flex-col"
+              >
+                <span
+                  aria-hidden="true"
+                  className="font-[family-name:var(--font-editorial)] italic text-5xl leading-none text-burgundy-primary mb-4"
+                >
+                  {step.numeral}
+                </span>
+                <h3 className="font-[family-name:var(--font-ui)] text-base uppercase tracking-wide text-cream-primary mb-2">
+                  <span className="sr-only">Step {step.numeral}: </span>
+                  {step.title}
+                </h3>
+                <p className="text-sm text-cream-dark leading-relaxed">
+                  {step.body}
+                </p>
+              </li>
+            ))}
+          </ol>
+
+          <figure className="mt-12 max-w-3xl mx-auto text-center border-t border-cream-primary/15 pt-10">
+            <blockquote className="font-[family-name:var(--font-editorial)] italic text-2xl sm:text-3xl text-cream-primary leading-snug">
+              &ldquo;You won&rsquo;t be the worst in the room. Everyone here started somewhere. We teach technique first &mdash; no contact in class one.&rdquo;
+            </blockquote>
+            <figcaption className="mt-4 text-sm font-[family-name:var(--font-ui)] uppercase tracking-widest text-burgundy-primary">
+              &mdash; Head Coach, Arena Bondi
+            </figcaption>
+          </figure>
+        </Container>
+      </Section>
+
       <Section variant="default" spacing="lg">
         <Container maxWidth="lg">
           <div className="text-center mb-12">
