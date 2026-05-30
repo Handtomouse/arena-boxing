@@ -3,7 +3,7 @@
  * Simple video immersion entry point
  */
 
-import Landing from "@/components/Landing";
+import LandingMockG from "@/components/LandingMockG";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,5 +12,5 @@ export const metadata: Metadata = {
 };
 
 export default function LandingPage() {
-  return <Landing />;
+  return <LandingMockG />;
 }
