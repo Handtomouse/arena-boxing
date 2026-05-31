@@ -32,11 +32,17 @@ export default function LocationPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // Form submission handler — preserved from PR #15.
-  // TODO: Replace with real submission (Hapana / email transport) when ready.
+  // Form submission handler — POSTs to /api/contact (Resend transport).
   const handleFormSubmit = async (data: LocationContactData): Promise<void> => {
-    void data;
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) {
+      const payload = await res.json().catch(() => ({}));
+      throw new Error(payload?.error || `Send failed (${res.status})`);
+    }
   };
 
   const validate = (): boolean => {
