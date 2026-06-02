@@ -1,0 +1,257 @@
+/* Arena Boxing — Footer colophon.
+   The closing plate of the editorial letterpress system: Barlow burgundy
+   kickers, Bebas cream values, Cormorant italic accents, Old London
+   blackletter wordmark. Mirrors app/location/location.css so the footer
+   reads as part of the same publication on every page. */
+
+.footer {
+  position: relative;
+  background: var(--charcoal-black);
+  color: var(--cream-primary);
+  padding: 64px 0 28px;
+  z-index: 1;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── Top folio rail ── */
+.folio {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding-bottom: 18px;
+}
+.folioKey {
+  font-family: var(--font-barlow), 'Barlow Semi Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--burgundy-primary);
+  white-space: nowrap;
+}
+.folioLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(232, 221, 211, 0.45),
+    rgba(232, 221, 211, 0.12)
+  );
+}
+.folioEnd {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 15px;
+  color: #c9a2a2;
+  white-space: nowrap;
+}
+
+/* ── Main block ── */
+.main {
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr;
+  align-items: flex-start;
+  gap: 56px;
+  padding: 40px 0 36px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.wordmark {
+  font-family: var(--font-display), 'Old London', 'UnifrakturMaguntia', serif;
+  font-weight: 400;
+  font-size: clamp(40px, 4.6vw, 60px);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  color: var(--cream-primary);
+  margin: 0;
+  text-transform: none;
+  text-shadow: 0 0 1px rgba(240, 230, 219, 0.4), 0 0 34px rgba(125, 30, 30, 0.2);
+}
+.tagline {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 19px;
+  color: #c9a2a2;
+  letter-spacing: 0.02em;
+}
+.tagline em {
+  color: var(--cream-light);
+  font-style: italic;
+}
+
+/* Contact cells — the hero-bot-cell pattern */
+.cells {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 40px;
+}
+.cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.cellWide {
+  grid-column: 1 / -1;
+}
+.cellKey {
+  font-family: var(--font-barlow), 'Barlow Semi Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--burgundy-primary);
+}
+.cellVal {
+  font-family: var(--font-bebas), 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  line-height: 1.04;
+  color: var(--cream-light);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  word-break: break-word;
+}
+a.cellVal:hover {
+  color: var(--blood-red);
+}
+.cellVal em {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 17px;
+  color: #c9a2a2;
+  letter-spacing: 0.005em;
+  padding-left: 2px;
+}
+.cellFine {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 14px;
+  color: #b9a39a;
+  letter-spacing: 0.01em;
+}
+
+/* Social row */
+.social {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 2px;
+}
+.socialLink {
+  color: var(--cream-primary);
+  display: inline-flex;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.socialLink:hover {
+  color: var(--blood-red);
+  transform: translateY(-1px);
+}
+.socialLink svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ── Bottom edge rail ── */
+.rail {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 20px 0 0;
+  border-top: 1px solid rgba(232, 221, 211, 0.28);
+  font-family: var(--font-barlow), 'Barlow Semi Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--cream-primary);
+  opacity: 0.9;
+}
+.railDot {
+  color: var(--blood-red);
+  opacity: 0.9;
+}
+.liveDot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blood-red);
+  box-shadow: 0 0 0 0 rgba(163, 31, 31, 0.7), 0 0 12px rgba(163, 31, 31, 0.7);
+  animation: footer_pulse 1.6s ease-out infinite;
+  position: relative;
+  top: 0;
+}
+@keyframes footer_pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(163, 31, 31, 0.6), 0 0 12px rgba(163, 31, 31, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 9px rgba(163, 31, 31, 0), 0 0 12px rgba(163, 31, 31, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(163, 31, 31, 0), 0 0 12px rgba(163, 31, 31, 0.7);
+  }
+}
+.railSpacer {
+  flex: 1;
+}
+.railEnd {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 14px;
+  color: #c9a2a2;
+}
+
+/* ── Responsive ── */
+@media (max-width: 880px) {
+  .main {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+@media (max-width: 560px) {
+  .wrap {
+    padding: 0 22px;
+  }
+  .cells {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .folioEnd {
+    display: none;
+  }
+  .rail {
+    letter-spacing: 0.24em;
+  }
+  .railSpacer {
+    flex-basis: 100%;
+    height: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liveDot {
+    animation: none;
+  }
+  .socialLink:hover {
+    transform: none;
+  }
+}

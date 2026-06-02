@@ -324,7 +324,7 @@ export default function LocationPage() {
           <div className="loc-dropin-byline">
             <span className="loc-dropin-mark">&para;</span>
             <p>
-              <strong>Drop in anytime.</strong> Want to check out the gym before committing? Come by
+              <strong>Drop in anytime.</strong>{' '}Want to check out the gym before committing? Come by
               during open hours &mdash; our team will show you around. No appointment, no pitch.
             </p>
             <span className="loc-dropin-tag">No booking required</span>
@@ -373,7 +373,7 @@ export default function LocationPage() {
               <h3 className="loc-transit-mode">BY BUS</h3>
               <span className="loc-transit-rule" />
               <p className="loc-transit-body">
-                The <strong>333</strong>, <strong>380</strong>, and <strong>381</strong> all stop on
+                The <strong>333</strong>, <strong>380</strong>, and <strong>381</strong>{' '}all stop on
                 Campbell Parade. Two minutes&rsquo; walk from the door &mdash; look for the lifeguard
                 tower, we&rsquo;re the next block north.
               </p>
@@ -394,7 +394,7 @@ export default function LocationPage() {
               <span className="loc-transit-rule" />
               <p className="loc-transit-body">
                 Street parking along Campbell Parade is <strong>paid hourly metered</strong> (8am to
-                8pm). For longer stays, use the <strong>council carpark</strong> on Queen Elizabeth
+                8pm). For longer stays, use the <strong>council carpark</strong>{' '}on Queen Elizabeth
                 Drive &mdash; two minutes&rsquo; walk back to the door.
               </p>
               <div className="loc-transit-stat">
@@ -414,7 +414,7 @@ export default function LocationPage() {
               <span className="loc-transit-rule" />
               <p className="loc-transit-body">
                 <strong>Five minutes</strong> from the south end of the beach.{' '}
-                <strong>Eight minutes</strong> from Bondi Junction station &mdash; straight down Bondi
+                <strong>Eight minutes</strong>{' '}from Bondi Junction station &mdash; straight down Bondi
                 Road, then left on Campbell. The walk is the warm-up.
               </p>
               <div className="loc-transit-stat">
