@@ -1,0 +1,209 @@
+/* Arena Boxing — §01 map block.
+   A duotone static map of the studio (charcoal/burgundy, matches the
+   editorial field) with letterpress chrome: coordinate label, scale bar,
+   corner registration ticks, a glowing pin, and a click-through to live
+   Google Maps directions. No third-party iframe, no API key. */
+
+.map {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 580px;
+  overflow: hidden;
+  text-decoration: none;
+  background: #14100e;
+  cursor: pointer;
+}
+
+/* duotone map image */
+.img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.5s ease;
+}
+.map:hover .img {
+  transform: scale(1.045);
+  filter: brightness(1.08);
+}
+
+/* burgundy bloom + edge vignette — ties it to the brand, darkens borders */
+.bloom {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 45% at 50% 50%, rgba(125, 30, 30, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, transparent 62%, rgba(14, 11, 11, 0.2) 86%, rgba(14, 11, 11, 0.44) 100%);
+  mix-blend-mode: normal;
+  z-index: 2;
+}
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  z-index: 3;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* corner registration ticks */
+.corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: rgba(232, 221, 211, 0.6);
+  z-index: 4;
+  pointer-events: none;
+}
+.tl { top: 16px; left: 16px; border-top: 1px solid; border-left: 1px solid; }
+.tr { top: 16px; right: 16px; border-top: 1px solid; border-right: 1px solid; }
+.bl { bottom: 16px; left: 16px; border-bottom: 1px solid; border-left: 1px solid; }
+.br { bottom: 16px; right: 16px; border-bottom: 1px solid; border-right: 1px solid; }
+
+/* coordinate label, top-left */
+.coord {
+  position: absolute;
+  top: 22px;
+  left: 26px;
+  z-index: 5;
+  font-family: var(--font-loc-ui, 'Barlow Semi Condensed', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(240, 230, 219, 0.78);
+  text-shadow: 0 1px 5px rgba(14, 11, 11, 0.9), 0 0 12px rgba(14, 11, 11, 0.7);
+  pointer-events: none;
+}
+
+/* scale bar, bottom-right */
+.scale {
+  position: absolute;
+  bottom: 24px;
+  right: 26px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  font-family: var(--font-loc-ui, 'Barlow Semi Condensed', sans-serif);
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(240, 230, 219, 0.72);
+  text-shadow: 0 1px 5px rgba(14, 11, 11, 0.9);
+  pointer-events: none;
+}
+.scaleBar {
+  width: 64px;
+  height: 1px;
+  background: rgba(232, 221, 211, 0.55);
+  position: relative;
+}
+.scaleBar::before,
+.scaleBar::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  width: 1px;
+  height: 7px;
+  background: rgba(232, 221, 211, 0.55);
+}
+.scaleBar::before { left: 0; }
+.scaleBar::after { right: 0; }
+
+/* center pin + pulse */
+.pinWrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  pointer-events: none;
+}
+.pin {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  color: var(--cream-light, #f0e6db);
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 18px rgba(163, 31, 31, 0.5));
+}
+.pulse {
+  position: absolute;
+  left: 50%;
+  top: 78%;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(163, 31, 31, 0.5);
+  box-shadow: 0 0 0 0 rgba(163, 31, 31, 0.55);
+  animation: mapPulse 2s ease-out infinite;
+}
+@keyframes mapPulse {
+  0% { box-shadow: 0 0 0 0 rgba(163, 31, 31, 0.5); }
+  70% { box-shadow: 0 0 0 22px rgba(163, 31, 31, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(163, 31, 31, 0); }
+}
+.place {
+  font-family: var(--font-loc-ui, 'Barlow Semi Condensed', sans-serif);
+  font-size: 10.5px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--cream-light, #f0e6db);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* open-in-maps pill, bottom-left */
+.open {
+  position: absolute;
+  bottom: 22px;
+  left: 26px;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-loc-ui, 'Barlow Semi Condensed', sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-light, #f0e6db);
+  background: rgba(14, 11, 11, 0.55);
+  border: 1px solid rgba(232, 221, 211, 0.45);
+  padding: 10px 16px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.map:hover .open {
+  background: var(--burgundy-primary, #7d1e1e);
+  border-color: var(--burgundy-primary, #7d1e1e);
+}
+.open .arrow {
+  transition: transform 0.3s ease;
+}
+.map:hover .open .arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 560px) {
+  .map, .img { min-height: 380px; }
+  .coord { top: 16px; left: 18px; }
+  .open { bottom: 16px; left: 18px; font-size: 10px; padding: 9px 13px; }
+  .scale { bottom: 18px; right: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse { animation: none; }
+  .map:hover .img { transform: none; }
+}
