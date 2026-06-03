@@ -1,97 +1,84 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import styles from './GoogleMapsEmbed.module.css';
 
 export interface GoogleMapsEmbedProps {
   address: string;
+  /** Retained for API compatibility; the duotone map is rendered for the studio address. */
   zoom?: number;
   mapType?: 'roadmap' | 'satellite';
   className?: string;
 }
 
-const GoogleMapsEmbed: React.FC<GoogleMapsEmbedProps> = ({
-  address,
-  zoom = 15,
-  mapType = 'roadmap',
-  className = '',
-}) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  const encodedAddress = encodeURIComponent(address);
-  const mapUrl = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodedAddress}&zoom=${zoom}&maptype=${mapType}`;
-
-  // Fallback to simple iframe without API key
-  const fallbackUrl = `https://maps.google.com/maps?q=${encodedAddress}&output=embed`;
-
-  const loadMap = () => {
-    setIsLoaded(true);
-  };
+/**
+ * §01 map block. A duotone static map of the studio (charcoal/burgundy,
+ * matched to the editorial field) with letterpress chrome and a
+ * click-through to live Google Maps directions. No third-party iframe and
+ * no API key — the wayfinding lives in the directions deep-link, which
+ * opens the visitor's native maps app.
+ */
+const GoogleMapsEmbed: React.FC<GoogleMapsEmbedProps> = ({ address, className = '' }) => {
+  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
 
   return (
-    <div role="region" aria-label="Gym location map" className={`relative ${className}`}>
-      {!isLoaded ? (
-        <button
-          onClick={loadMap}
-          aria-label="Load interactive map"
-          className="relative w-full h-[400px] md:h-[500px] overflow-hidden group cursor-pointer"
-        >
-          <img
-            src="/images/map-placeholder.jpg"
-            alt={`Map showing Arena Boxing at ${address}`}
-            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-          />
+    <a
+      href={directionsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      role="region"
+      aria-label={`Map showing Arena Boxing at ${address}. Opens Google Maps directions in a new tab.`}
+      className={`${styles.map} ${className}`}
+    >
+      <img
+        src="/images/map-bondi-duotone.jpg"
+        alt={`Duotone map of ${address}`}
+        className={styles.img}
+        loading="lazy"
+        decoding="async"
+      />
+      <span className={styles.bloom} aria-hidden="true" />
+      <span className={styles.grain} aria-hidden="true" />
 
-          <div className="absolute inset-0 bg-burgundy-primary/50 flex items-center justify-center group-hover:bg-burgundy-primary/30 transition-all duration-300">
-            <div className="text-center space-y-4">
-              <svg
-                className="w-16 h-16 mx-auto text-cream-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-              <p className="font-[family-name:var(--font-ui)] text-cream-primary text-lg uppercase tracking-wide">
-                Load Interactive Map
-              </p>
-            </div>
-          </div>
-        </button>
-      ) : (
-        <div className="w-full h-[400px] md:h-[500px] border-3 border-burgundy-primary">
-          <iframe
-            src={fallbackUrl}
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title={`Map showing location: ${address}`}
-          />
-        </div>
-      )}
+      <span className={`${styles.corner} ${styles.tl}`} aria-hidden="true" />
+      <span className={`${styles.corner} ${styles.tr}`} aria-hidden="true" />
+      <span className={`${styles.corner} ${styles.bl}`} aria-hidden="true" />
+      <span className={`${styles.corner} ${styles.br}`} aria-hidden="true" />
 
-      {/* Address below map */}
-      <div className="mt-4 p-4 bg-cream-primary border-2 border-burgundy-primary">
-        <p className="font-[family-name:var(--font-ui)] text-charcoal-black text-center">
-          <strong>Arena Boxing Bondi</strong>
-          <br />
-          {address}
-        </p>
-      </div>
-    </div>
+      <span className={styles.coord} aria-hidden="true">
+        33&deg;53&prime;S &middot; 151&deg;16&prime;E
+      </span>
+
+      <span className={styles.pinWrap} aria-hidden="true">
+        <span className={styles.pin}>
+          <span className={styles.pulse} />
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="48" height="48">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
+        </span>
+        <span className={styles.place}>Arena Boxing &middot; Bondi</span>
+      </span>
+
+      <span className={styles.open}>
+        Open in Google Maps <span className={styles.arrow}>&rarr;</span>
+      </span>
+
+      <span className={styles.scale} aria-hidden="true">
+        <span className={styles.scaleBar} />
+        <span>200 m</span>
+      </span>
+    </a>
   );
 };
 
