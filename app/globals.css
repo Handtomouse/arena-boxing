@@ -224,9 +224,9 @@ h3 {
   color: var(--cream-primary);
 }
 
-/* Scrollbar Gothic Styling */
+/* Scrollbar Gothic Styling — muted at rest, brand burgundy on hover */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -234,12 +234,19 @@ h3 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--burgundy-primary);
-  border: 2px solid var(--charcoal-black);
+  background: var(--burgundy-dark);
+  border: 3px solid var(--charcoal-black);
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--blood-red);
+  background: var(--burgundy-primary);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--burgundy-dark) var(--charcoal-black);
 }
 
 /* Focus Styles (Blood Red) */
