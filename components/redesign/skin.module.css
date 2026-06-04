@@ -219,8 +219,8 @@
   display: inline-block;
   transition: border-color 0.25s ease, color 0.25s ease;
 }
-.btnSolid:hover { transform: translateY(-1px); }
-.btnGhost:hover { border-color: var(--blood-red, #a31f1f); color: var(--blood-red, #a31f1f); }
+.btnSolid:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(163, 31, 31, 0.5); }
+.btnGhost:hover { border-color: var(--blood-red, #a31f1f); color: var(--blood-red, #a31f1f); background: rgba(163, 31, 31, 0.08); }
 .ctaRow {
   display: flex;
   gap: 14px;
@@ -275,13 +275,13 @@
 .section {
   position: relative;
   z-index: 2;
-  padding: 64px 40px;
+  padding: 76px 40px;
   border-top: 1px solid rgba(232, 221, 211, 0.12);
 }
 .sectionPlate { background: radial-gradient(ellipse at 50% 0%, #14100e 0%, #0a0807 70%); }
 .sectionHead {
   max-width: 1240px;
-  margin: 0 auto 36px;
+  margin: 0 auto 42px;
 }
 .sectionKicker {
   font-family: var(--font-hn);
@@ -369,8 +369,10 @@
   text-transform: uppercase;
   color: var(--blood-red, #a31f1f);
   text-decoration: none;
+  transition: transform 0.22s ease, color 0.2s ease;
 }
-.cardLink:hover { color: #ff5a4a; }
+.cardLink:hover { color: #ff5a4a; transform: translateX(3px); }
+.card:hover .cardIcon { background: rgba(163, 31, 31, 0.14); color: #ff5a4a; }
 
 /* ───────────── numbered step rail ───────────── */
 .steps {
