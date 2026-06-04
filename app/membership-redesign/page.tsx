@@ -17,7 +17,7 @@ const TIERS = [
     name: "DROP-IN",
     amount: "$35",
     unit: "/ session",
-    note: "No commitment, no contract — pay per round.",
+    note: "No commitment, no contract. Pay per round.",
     rec: false,
     cta: "Get Started",
     perks: [
@@ -32,7 +32,7 @@ const TIERS = [
     name: "UNLIMITED",
     amount: "$220",
     unit: "/ month",
-    note: "Pays off after 7 sessions — every class after is on the house.",
+    note: "Pays off after 7 sessions. Every class after is on the house.",
     rec: true,
     cta: "Start Unlimited",
     perks: [
@@ -47,7 +47,7 @@ const TIERS = [
     name: "10-PACK",
     amount: "$300",
     unit: "/ 10 pack",
-    note: "Ten sessions at your own pace — work the week that suits you.",
+    note: "Ten sessions at your own pace. Work the week that suits you.",
     rec: false,
     cta: "Buy 10-Pack",
     perks: [
@@ -77,7 +77,7 @@ export default function MembershipRedesignPage() {
       {/* compact hero — dense page, NO focal trace */}
       <section className={s.mhero}>
         <div className={s.mheroWrap}>
-          <p className={sk.kicker}>&mdash; Three tiers, plain math, no lock-in &mdash;</p>
+          <p className={sk.kicker}>Three tiers, plain math, no lock-in</p>
           <h1 className={s.mheroTitle}>MEMBERSHIP</h1>
           <p className={s.mheroSub}>Match your week to a price. Cancel anytime, no contracts.</p>
         </div>
@@ -98,7 +98,7 @@ export default function MembershipRedesignPage() {
               <p className={s.tierBreak}>
                 {t.rec ? (
                   <>
-                    <strong>Pays off after 7 sessions</strong> &mdash; every class
+                    <strong>Pays off after 7 sessions.</strong> Every class
                     after that is on the house.
                   </>
                 ) : (
@@ -130,7 +130,7 @@ export default function MembershipRedesignPage() {
             <h3>THE FOUNDER&rsquo;S SEAT</h3>
             <p>
               A small, invitation-only tier for the regulars who help build the
-              room. Not a price you can buy &mdash; one you&rsquo;re asked into.
+              room. Not a price you can buy. One you&rsquo;re asked into.
             </p>
           </div>
           <Link href="/location-redesign" className={sk.btnGhost}>

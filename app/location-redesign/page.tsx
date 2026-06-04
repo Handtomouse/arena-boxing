@@ -11,7 +11,7 @@ import MonumentCTA from "@/components/redesign/MonumentCTA";
 export const metadata: Metadata = {
   title: "Location (redesign preview)",
   description:
-    "Arena Boxing Bondi — 123 Campbell Pde, a five-minute walk from the beach. Getting here, the hours, and the door.",
+    "Arena Boxing Bondi. 123 Campbell Pde, a five-minute walk from the beach. Getting here, the hours, and the door.",
 };
 
 const MAPS_URL =
@@ -24,7 +24,7 @@ const GETTING = [
 ];
 
 const FACILITIES = [
-  { t: "The Ring", d: "A full competition ring — where THE CRAFT and sparring happen, under a coach's eye." },
+  { t: "The Ring", d: "A full competition ring where THE CRAFT and sparring happen, under a coach's eye." },
   { t: "Heavy Bags", d: "A wall of heavy and speed bags, plus the floor space to actually move between them." },
   { t: "Strength Floor", d: "Rack, bars and free weights. Power built for punchers, not mirrors." },
   { t: "Recovery", d: "Change rooms and showers. Somewhere to land before you walk back into the day." },
@@ -41,7 +41,7 @@ export default function LocationRedesignPage() {
 
         <div className={sk.heroBody}>
           <div>
-            <p className={sk.kicker}>&mdash; A short walk from the surf &mdash;</p>
+            <p className={sk.kicker}>A short walk from the surf</p>
             <p className={sk.preline}>YOU'LL FIND US</p>
             <FocalWord word="Here" dash={1700} viewBox="0 0 560 200" />
             <p className={sk.heroSub}>
@@ -150,8 +150,8 @@ export default function LocationRedesignPage() {
             <h3>HAVE A QUESTION?</h3>
             <p>
               First time, drop-in, or just want to see the place? Walk in during
-              open hours and our team will show you around &mdash; no appointment,
-              no pitch.
+              open hours and our team will show you around. No appointment, no
+              pitch.
             </p>
           </div>
           <Link href="/location" className={sk.btnSolid}>
