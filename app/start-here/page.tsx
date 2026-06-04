@@ -10,12 +10,12 @@ import MonumentCTA from "@/components/redesign/MonumentCTA";
 export const metadata: Metadata = {
   title: "Start Here",
   description:
-    "New to Arena Boxing Bondi? Your first class is on the house. No experience, no kit, no ego — here's exactly what to expect.",
+    "New to Arena Boxing Bondi? Your first class is on the house. No experience, no kit, no ego. Here's exactly what to expect.",
 };
 
 const FIRST = [
   "First class on the house, no commitment",
-  "Gloves and wraps provided — just bring water",
+  "Gloves and wraps provided. Just bring water",
   "Arrive ten minutes early for a quick floor tour",
   "Coach-led from the first bell, capped at twenty",
 ];
@@ -52,7 +52,7 @@ export default function StartHerePage() {
 
         <div className={sk.heroBody}>
           <div>
-            <p className={sk.kicker}>&mdash; New here? We've got you &mdash;</p>
+            <p className={sk.kicker}>New here? We've got you</p>
             <p className={sk.preline}>WHERE YOU</p>
             <FocalWord word="Begin" dash={2150} viewBox="0 0 700 200" />
             <p className={sk.heroSub}>
@@ -162,7 +162,7 @@ export default function StartHerePage() {
               <span className={s.classTime}>Sat 08:00 &middot; Sun 09:00</span>
             </div>
             <p className={s.classBody}>
-              The weekend on-ramp. A slower build for newer hands &mdash; technique
+              The weekend on-ramp. A slower build for newer hands. Technique
               first, sweat second. The friendliest room to walk into cold.
             </p>
             <span className={s.classMeta}>50 min &middot; Intermediate-friendly</span>

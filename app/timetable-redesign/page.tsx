@@ -8,7 +8,7 @@ import TimetableClient from "./TimetableClient";
 export const metadata: Metadata = {
   title: "Timetable (redesign preview)",
   description:
-    "Seven days of boxing at Arena Boxing Bondi — THE WORK, THE LONG ROUND, THE CRAFT and THE OPENER. Coach-led, capped at twenty. Tap a class to book.",
+    "Seven days of boxing at Arena Boxing Bondi: THE WORK, THE LONG ROUND, THE CRAFT and THE OPENER. Coach-led, capped at twenty. Tap a class to book.",
 };
 
 export default function TimetableRedesignPage() {
@@ -19,7 +19,7 @@ export default function TimetableRedesignPage() {
       {/* compact hero — dense page, NO focal trace (solid + legible) */}
       <section className={s.thero}>
         <div className={s.theroWrap}>
-          <p className={sk.kicker}>&mdash; Twenty-seven sessions this week &mdash;</p>
+          <p className={sk.kicker}>Twenty-seven sessions this week</p>
           <h1 className={s.theroTitle}>TIMETABLE</h1>
           <p className={s.theroSub}>Find your hour and book your spot. Tap any class for the detail.</p>
         </div>

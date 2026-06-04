@@ -84,7 +84,7 @@ export default function ProgramsPage() {
 
         <div className={sk.heroBody}>
           <div>
-            <p className={sk.kicker}>&mdash; Five ways to train &mdash;</p>
+            <p className={sk.kicker}>Five ways to train</p>
             <p className={sk.preline}>PUT IN THE</p>
             <FocalWord word="Work" dash={1750} viewBox="0 0 560 200" />
             <p className={sk.heroSub}>
@@ -134,8 +134,8 @@ export default function ProgramsPage() {
           <span className={sk.sectionKicker}>What we train</span>
           <h2 className={sk.sectionTitle}>REAL TRAINING. REAL RESULTS.</h2>
           <p className={sk.sectionSub}>
-            Five disciplines, one standard. Pick a door &mdash; the coaches take
-            it from there.
+            Five disciplines, one standard. Pick a door. The coaches take it
+            from there.
           </p>
         </div>
         <div className={s.progGrid}>

@@ -51,7 +51,7 @@ export default function AboutRedesignPage() {
 
         <div className={sk.heroBody}>
           <div>
-            <p className={sk.kicker}>&mdash; A boxing room in Bondi, est. MMXXV &mdash;</p>
+            <p className={sk.kicker}>A boxing room in Bondi, est. MMXXV</p>
             <p className={sk.preline}>EVERYTHING HERE IS</p>
             <FocalWord word="Built" dash={2050} viewBox="0 0 680 200" />
             <p className={sk.heroSub}>
@@ -95,8 +95,8 @@ export default function AboutRedesignPage() {
           <span className={sk.sectionKicker}>What we stand on</span>
           <h2 className={sk.sectionTitle}>BUILT ON DISCIPLINE. DRIVEN BY COMMUNITY.</h2>
           <p className={sk.sectionSub}>
-            Four things we don't compromise on &mdash; the reason the room feels
-            the way it does.
+            Four things we don't compromise on. The reason the room feels the
+            way it does.
           </p>
         </div>
         <div className={`${sk.cardGrid} ${sk.cols4}`}>
@@ -119,7 +119,7 @@ export default function AboutRedesignPage() {
           <h2 className={sk.sectionTitle}>FOUR COACHES, ONE STANDARD</h2>
           <p className={sk.sectionSub}>
             Fighters and working pros who teach for a living. Full bios landing
-            soon &mdash; for now, come meet them on the floor.
+            soon. For now, come meet them on the floor.
           </p>
         </div>
         <div className={s.coaches}>
@@ -142,8 +142,8 @@ export default function AboutRedesignPage() {
       <section className={s.creed}>
         <p className={s.creedQuote}>
           &ldquo;Authentic training. Certified coaches. No shortcuts. We don't
-          talk about fighting &mdash; we teach it.&rdquo;
-          <span className={s.creedBy}>&mdash; the founding creed, MMXXV</span>
+          talk about fighting. We teach it.&rdquo;
+          <span className={s.creedBy}>The founding creed, MMXXV</span>
         </p>
       </section>
 
