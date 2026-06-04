@@ -12,17 +12,18 @@
 }
 .theroWrap { max-width: 1240px; margin: 0 auto; position: relative; z-index: 2; }
 .theroTitle {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 900;
   font-size: clamp(52px, 8vw, 108px);
   line-height: 0.9;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
   color: var(--cream-light, #f0e6db);
   text-shadow: 0 2px 22px rgba(0, 0, 0, 0.7);
 }
 .theroSub {
-  font-family: var(--font-cormorant, "Cormorant Garamond"), serif;
-  font-style: italic;
-  font-size: 19px;
+  font-family: var(--font-hn);
+  font-weight: 400;
+  font-size: 17px;
   color: #c9a2a2;
   margin-top: 8px;
 }
@@ -43,7 +44,8 @@
   border-bottom: 1px solid rgba(232, 221, 211, 0.12);
 }
 .controlsKey {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 10px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -51,7 +53,7 @@
   margin-right: 4px;
 }
 .chip {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -91,14 +93,16 @@
 }
 .dayHead.today { border-bottom-color: var(--blood-red, #a31f1f); }
 .dayName {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
-  font-size: 19px;
-  letter-spacing: 0.08em;
+  font-family: var(--font-hn);
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 0.02em;
   color: var(--cream-light, #f0e6db);
 }
 .dayName.today { color: var(--blood-red, #a31f1f); }
 .dayDate {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 10px;
   letter-spacing: 0.14em;
   color: rgba(232, 221, 211, 0.45);
@@ -119,7 +123,7 @@
 .classPast { opacity: 0.4; border-left-color: rgba(232, 221, 211, 0.2); }
 .classTime {
   display: block;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -127,9 +131,10 @@
 }
 .className {
   display: block;
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
-  font-size: 17px;
-  letter-spacing: 0.03em;
+  font-family: var(--font-hn);
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: -0.005em;
   color: var(--cream-light, #f0e6db);
   margin: 3px 0 1px;
   line-height: 1.05;
@@ -143,7 +148,8 @@
   gap: 8px;
 }
 .spots {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 10px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -171,7 +177,7 @@
   border-left: 3px solid var(--blood-red, #a31f1f);
   padding: 26px 30px;
 }
-.cantfind h3 { font-family: var(--font-bebas, "Bebas Neue"), sans-serif; font-size: 28px; color: var(--cream-light, #f0e6db); margin-bottom: 5px; }
+.cantfind h3 { font-family: var(--font-hn); font-weight: 900; letter-spacing: -0.01em; font-size: 26px; color: var(--cream-light, #f0e6db); margin-bottom: 5px; }
 .cantfind p { font-size: 13px; line-height: 1.5; color: rgba(232, 221, 211, 0.6); max-width: 58ch; }
 
 /* ───── booking modal ───── */
@@ -220,17 +226,19 @@
 }
 .modalBody { padding: 22px 26px 26px; }
 .modalKey {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 10px;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--blood-red, #a31f1f);
 }
 .modalName {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
-  font-size: 44px;
+  font-family: var(--font-hn);
+  font-weight: 900;
+  font-size: 40px;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
   color: var(--cream-light, #f0e6db);
   margin: 4px 0 12px;
 }
@@ -238,7 +246,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px 18px;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -254,7 +263,8 @@
 }
 .modalK {
   display: block;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;

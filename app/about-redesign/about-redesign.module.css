@@ -1,18 +1,23 @@
-/* /about-redesign — page-specific layout. Shared skin from `sk`. */
+/* /about-redesign — page-specific layout built to docs/wireframes/about.png on
+   the locked kit: combined Hero (aside = THE SPACE panel) + values cards +
+   coach photo cards + testimonial FeatureBand + monument CTA. Page-specific
+   pieces only; the rest is the shared skin. Helvetica Neue (--font-hn)
+   throughout — Black 900 display, Bold 700 labels, 400 body. */
 
-/* hero right — the space panel */
+/* hero right — the space panel (modeled on NextClassCard) */
 .space {
   align-self: center;
   background: #15110f;
   border: 1px solid rgba(232, 221, 211, 0.2);
   border-left: 3px solid var(--blood-red, #a31f1f);
-  padding: 26px 28px;
+  padding: 24px 26px;
 }
 .spaceKey {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 10px;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -20,9 +25,11 @@
   margin-bottom: 12px;
 }
 .spaceHead {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 900;
   font-size: 30px;
-  line-height: 1;
+  line-height: 1.05;
+  letter-spacing: -0.006em;
   color: var(--cream-light, #f0e6db);
   margin-bottom: 14px;
 }
@@ -31,6 +38,8 @@
   display: flex;
   gap: 10px;
   padding: 9px 0;
+  font-family: var(--font-hn);
+  font-weight: 400;
   font-size: 13px;
   color: rgba(232, 221, 211, 0.74);
   border-top: 1px solid rgba(232, 221, 211, 0.1);
@@ -60,13 +69,15 @@
 .coachPhoto img { object-fit: cover; }
 .coachBody { padding: 16px 18px 20px; }
 .coachName {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 24px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.01em;
   color: var(--cream-light, #f0e6db);
 }
 .coachRole {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -74,40 +85,12 @@
   margin: 4px 0 10px;
 }
 .coachBio {
+  font-family: var(--font-hn);
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.5;
   font-style: italic;
   color: rgba(232, 221, 211, 0.45);
-}
-
-/* creed band */
-.creed {
-  position: relative;
-  padding: 72px 40px;
-  text-align: center;
-  background:
-    linear-gradient(rgba(10, 8, 7, 0.78), rgba(10, 8, 7, 0.86)),
-    url("/images/ring.jpg") center / cover;
-  border-top: 1px solid rgba(232, 221, 211, 0.12);
-}
-.creedQuote {
-  max-width: 900px;
-  margin: 0 auto;
-  font-family: var(--font-cormorant, "Cormorant Garamond"), serif;
-  font-style: italic;
-  font-size: clamp(24px, 3.2vw, 40px);
-  line-height: 1.25;
-  color: var(--cream-light, #f0e6db);
-}
-.creedBy {
-  display: block;
-  margin-top: 22px;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
-  font-style: normal;
-  font-size: 11px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--blood-red, #a31f1f);
 }
 
 @media (max-width: 900px) {
@@ -115,5 +98,4 @@
 }
 @media (max-width: 560px) {
   .coaches { grid-template-columns: 1fr; }
-  .creed { padding: 52px 22px; }
 }

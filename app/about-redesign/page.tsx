@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import sk from "@/components/redesign/skin.module.css";
 import s from "./about-redesign.module.css";
 import SkinNav from "@/components/redesign/SkinNav";
-import EdgeFX from "@/components/redesign/EdgeFX";
-import FocalWord from "@/components/redesign/FocalWord";
+import Hero from "@/components/redesign/Hero";
+import FeatureBand from "@/components/redesign/FeatureBand";
 import MonumentCTA from "@/components/redesign/MonumentCTA";
 
 export const metadata: Metadata = {
@@ -40,41 +39,23 @@ export default function AboutRedesignPage() {
     <div className={sk.page}>
       <SkinNav />
 
-      {/* hero */}
-      <section className={sk.hero}>
-        <div
-          className={sk.heroPhoto}
-          aria-hidden="true"
-          style={{ "--hero-img": "url(/images/gym-atmosphere.jpg)" } as React.CSSProperties}
-        />
-        <span className={sk.heroBloom} aria-hidden="true" />
-
-        <div className={sk.heroBody}>
-          <div>
-            <p className={sk.kicker}>A boxing room in Bondi, est. MMXXV</p>
-            <p className={sk.preline}>EVERYTHING HERE IS</p>
-            <FocalWord word="Built" dash={2050} viewBox="0 0 680 200" />
-            <p className={sk.heroSub}>
-              On discipline, driven by community. Authentic training, certified
-              coaches, no shortcuts. Four coaches, one standard.
-            </p>
-            <div className={sk.ctaRow}>
-              <Link href="/booking" className={sk.btnSolid}>
-                Book a Class &rarr;
-              </Link>
-              <Link href="/timetable-redesign" className={sk.btnGhost}>
-                View Timetable
-              </Link>
-            </div>
-          </div>
-
-          {/* the space */}
+      <Hero
+        kicker="A boxing room in Bondi, est. MMXXV"
+        preline="EVERYTHING HERE IS"
+        focal={{ word: "Built", dash: 2050, viewBox: "0 0 680 200" }}
+        ghost="Dare"
+        sub="On discipline, driven by community. Authentic training, certified coaches, no shortcuts. Four coaches, one standard."
+        photo="/images/gym-atmosphere.jpg"
+        photoAlt="The Arena floor in Bondi"
+        primaryCta={{ href: "/booking", label: "Book a Class" }}
+        secondaryCta={{ href: "/timetable-redesign", label: "View Timetable" }}
+        aside={
           <aside className={s.space}>
             <span className={s.spaceKey}>
               <span className={sk.dot} aria-hidden="true" />
-              The Arena
+              The Space
             </span>
-            <p className={s.spaceHead}>A SPACE BUILT FOR THE WORK</p>
+            <p className={s.spaceHead}>A SPACE BUILT FOR PURPOSE</p>
             <ul className={s.spaceList}>
               {SPACE.map((f) => (
                 <li key={f}>
@@ -84,18 +65,16 @@ export default function AboutRedesignPage() {
               ))}
             </ul>
           </aside>
-        </div>
-
-        <EdgeFX />
-      </section>
+        }
+      />
 
       {/* values */}
       <section className={sk.section}>
         <div className={sk.sectionHead}>
-          <span className={sk.sectionKicker}>What we stand on</span>
+          <span className={sk.sectionKicker}>Our Values</span>
           <h2 className={sk.sectionTitle}>BUILT ON DISCIPLINE. DRIVEN BY COMMUNITY.</h2>
           <p className={sk.sectionSub}>
-            Four things we don't compromise on. The reason the room feels the
+            Four things we don&apos;t compromise on. The reason the room feels the
             way it does.
           </p>
         </div>
@@ -115,7 +94,7 @@ export default function AboutRedesignPage() {
       {/* coaches */}
       <section className={`${sk.section} ${sk.sectionPlate}`}>
         <div className={sk.sectionHead}>
-          <span className={sk.sectionKicker}>Meet the team</span>
+          <span className={sk.sectionKicker}>Our Coaches</span>
           <h2 className={sk.sectionTitle}>FOUR COACHES, ONE STANDARD</h2>
           <p className={sk.sectionSub}>
             Fighters and working pros who teach for a living. Full bios landing
@@ -138,14 +117,11 @@ export default function AboutRedesignPage() {
         </div>
       </section>
 
-      {/* creed band */}
-      <section className={s.creed}>
-        <p className={s.creedQuote}>
-          &ldquo;Authentic training. Certified coaches. No shortcuts. We don't
-          talk about fighting. We teach it.&rdquo;
-          <span className={s.creedBy}>The founding creed, MMXXV</span>
-        </p>
-      </section>
+      <FeatureBand
+        mode="quote"
+        quote="BEST TRAINING. BEST PEOPLE. BEST DECISION I'VE EVER MADE."
+        cite="A regular, two years in"
+      />
 
       <MonumentCTA
         ghost="Built"
