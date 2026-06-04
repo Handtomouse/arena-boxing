@@ -4,6 +4,7 @@
    beneath. Route-scoped via ChromeFooter — the live site keeps its own footer. */
 
 .footer {
+  --font-hn: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   position: relative;
   background: #080605;
   border-top: 1px solid rgba(232, 221, 211, 0.14);
@@ -22,7 +23,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
   font-size: 10px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -52,8 +53,8 @@
 }
 .tagline {
   display: block;
-  font-family: var(--font-cormorant, "Cormorant Garamond"), serif;
-  font-style: italic;
+  font-family: var(--font-hn);
+  
   font-size: 16px;
   color: #c9a2a2;
   margin: 8px 0 18px;
@@ -73,7 +74,7 @@
 .social svg { width: 16px; height: 16px; }
 
 .colKey {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
   font-size: 10px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -83,7 +84,7 @@
 .col p,
 .col a {
   display: block;
-  font-family: var(--font-body, "Inter"), sans-serif;
+  font-family: var(--font-hn);
   font-size: 13px;
   line-height: 1.7;
   color: rgba(232, 221, 211, 0.68);
@@ -102,7 +103,8 @@
 
 /* giant ghost line */
 .monument {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 800;
   font-size: clamp(30px, 6.2vw, 92px);
   line-height: 0.96;
   letter-spacing: 0.01em;
@@ -122,7 +124,7 @@
   flex-wrap: wrap;
   padding-top: 22px;
   border-top: 1px solid rgba(232, 221, 211, 0.12);
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;

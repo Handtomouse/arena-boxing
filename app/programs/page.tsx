@@ -3,8 +3,8 @@ import Link from "next/link";
 import sk from "@/components/redesign/skin.module.css";
 import s from "./programs.module.css";
 import SkinNav from "@/components/redesign/SkinNav";
-import EdgeFX from "@/components/redesign/EdgeFX";
-import FocalWord from "@/components/redesign/FocalWord";
+import Hero from "@/components/redesign/Hero";
+import NextClassCard from "@/components/redesign/NextClassCard";
 import MonumentCTA from "@/components/redesign/MonumentCTA";
 
 export const metadata: Metadata = {
@@ -12,14 +12,6 @@ export const metadata: Metadata = {
   description:
     "Boxing, strength, conditioning, sparring and private coaching at Arena Boxing Bondi. Coach-led, capped at twenty, real results.",
 };
-
-const DISCIPLINES = [
-  { name: "Boxing", tag: "The base" },
-  { name: "Strength", tag: "Power" },
-  { name: "Conditioning", tag: "The engine" },
-  { name: "Sparring", tag: "By approval" },
-  { name: "Private", tag: "One-on-one" },
-];
 
 const PROGRAMS = [
   {
@@ -50,22 +42,10 @@ const PROGRAMS = [
 ];
 
 const PATHWAY = [
-  {
-    t: "Turn Up",
-    d: "Book THE WORK or THE OPENER. First class on the house, gloves and wraps provided.",
-  },
-  {
-    t: "Learn The Base",
-    d: "Stance, guard, the first three punches. No experience assumed, no one rushed.",
-  },
-  {
-    t: "Find Your Rounds",
-    d: "Add THE LONG ROUND once the basics land. Build the engine that carries the work.",
-  },
-  {
-    t: "Step Up",
-    d: "When you're ready, THE CRAFT and sparring. The coach says when, not the calendar.",
-  },
+  { t: "Turn Up", d: "Book THE WORK or THE OPENER. First class on the house, gloves and wraps provided." },
+  { t: "Learn The Base", d: "Stance, guard, the first three punches. No experience assumed, no one rushed." },
+  { t: "Find Your Rounds", d: "Add THE LONG ROUND once the basics land. Build the engine that carries the work." },
+  { t: "Step Up", d: "When you're ready, THE CRAFT and sparring. The coach says when, not the calendar." },
 ];
 
 export default function ProgramsPage() {
@@ -73,82 +53,43 @@ export default function ProgramsPage() {
     <div className={sk.page}>
       <SkinNav />
 
-      {/* hero */}
-      <section className={sk.hero}>
-        <div
-          className={sk.heroPhoto}
-          aria-hidden="true"
-          style={{ "--hero-img": "url(/images/gym-training.jpg)" } as React.CSSProperties}
-        />
-        <span className={sk.heroBloom} aria-hidden="true" />
+      <Hero
+        kicker="Five ways to train"
+        preline="PUT IN THE"
+        focal={{ word: "Work", dash: 1750, viewBox: "0 0 560 200" }}
+        ghost="Dare"
+        sub="Boxing, strength, conditioning, sparring and private coaching. Coaching that meets you where you are, then pushes from there."
+        photo="/images/gym-atmosphere.jpg"
+        photoAlt="Boxers training on the Arena floor"
+        primaryCta={{ href: "/booking", label: "Book a Class" }}
+        secondaryCta={{ href: "/timetable-redesign", label: "View Timetable" }}
+        aside={
+          <NextClassCard
+            title="THE WORK"
+            meta={["Today 06:30", "50 min", "Floor 1"]}
+            spotsTaken={6}
+            spotsTotal={16}
+            ctaLabel="Book 06:30 The Work"
+          />
+        }
+      />
 
-        <div className={sk.heroBody}>
-          <div>
-            <p className={sk.kicker}>Five ways to train</p>
-            <p className={sk.preline}>PUT IN THE</p>
-            <FocalWord word="Work" dash={1750} viewBox="0 0 560 200" />
-            <p className={sk.heroSub}>
-              Boxing, strength, conditioning, sparring and private coaching. Real
-              coaching that meets you where you are, then pushes from there.
-            </p>
-            <div className={sk.ctaRow}>
-              <Link href="/timetable-redesign" className={sk.btnSolid}>
-                View Timetable &rarr;
-              </Link>
-              <Link href="/start-here" className={sk.btnGhost}>
-                New Here? Start Here
-              </Link>
-            </div>
-          </div>
-
-          {/* disciplines index — solid, legible */}
-          <aside className={s.index}>
-            <span className={s.indexKey}>
-              <span className={sk.dot} aria-hidden="true" />
-              The Disciplines
-            </span>
-            <div className={s.indexList}>
-              {DISCIPLINES.map((d) => (
-                <div key={d.name} className={s.indexRow}>
-                  <span className={s.indexName}>{d.name}</span>
-                  <span className={s.indexTag}>{d.tag}</span>
-                </div>
-              ))}
-            </div>
-            <p className={s.indexNote}>
-              Every class coach-led and capped at twenty. Plain-English
-              difficulty, no filler rounds.
-            </p>
-            <Link href="/timetable-redesign" className={sk.btnSolid} style={{ display: "block", textAlign: "center" }}>
-              See The Week &rarr;
-            </Link>
-          </aside>
-        </div>
-
-        <EdgeFX />
-      </section>
-
-      {/* program cards */}
+      {/* disciplines */}
       <section className={sk.section}>
         <div className={sk.sectionHead}>
           <span className={sk.sectionKicker}>What we train</span>
           <h2 className={sk.sectionTitle}>REAL TRAINING. REAL RESULTS.</h2>
           <p className={sk.sectionSub}>
-            Five disciplines, one standard. Pick a door. The coaches take it
-            from there.
+            Five disciplines, one standard. Pick a door. The coaches take it from there.
           </p>
         </div>
-        <div className={s.progGrid}>
+        <div className={s.disc}>
           {PROGRAMS.map((p) => (
             <article key={p.t} className={sk.card}>
-              <span className={sk.cardIcon} aria-hidden="true">
-                &#10022;
-              </span>
+              <span className={sk.cardIcon} aria-hidden="true">&#10022;</span>
               <h3 className={sk.cardTitle}>{p.t}</h3>
               <p className={sk.cardBody}>{p.d}</p>
-              <Link href="/timetable-redesign" className={sk.cardLink}>
-                {p.tag} &rarr;
-              </Link>
+              <Link href="/timetable-redesign" className={sk.cardLink}>{p.tag} &rarr;</Link>
             </article>
           ))}
         </div>
@@ -160,8 +101,7 @@ export default function ProgramsPage() {
           <span className={sk.sectionKicker}>How to progress</span>
           <h2 className={sk.sectionTitle}>THE BEGINNER PATHWAY</h2>
           <p className={sk.sectionSub}>
-            Four honest steps from first class to sparring. No fast-tracking, no
-            gatekeeping.
+            Four honest steps from first class to sparring. No fast-tracking, no gatekeeping.
           </p>
         </div>
         <div className={s.pathway}>
@@ -177,13 +117,7 @@ export default function ProgramsPage() {
 
       <MonumentCTA
         ghost="Work"
-        head={
-          <>
-            READY TO
-            <br />
-            PUT IN THE WORK?
-          </>
-        }
+        head={<>READY TO<br />PUT IN THE WORK?</>}
         sub="First class on the house. Coach-led, capped at twenty, no follow-up."
         cta="Book Your First Class →"
       />
