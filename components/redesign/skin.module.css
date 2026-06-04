@@ -1,23 +1,21 @@
 /* Arena Boxing — shared redesign skin kit.
-   Single source of truth for the LOCKED loader-skin direction proven on
-   /home-redesign (app/home-redesign/home-redesign.module.css). Tokens here
-   are copied verbatim from that reference so every rolled-out page matches it
-   exactly, plus shared primitives the reference didn't need (mobile nav menu,
-   generic section heads, solid data tables for the dense pages, booking modal).
+   Single source of truth for the redesign direction: Old London blackletter
+   focal/ghost + Helvetica Neue (Black 900 display, Bold labels, Regular body),
+   built to the comps in docs/wireframes/. Provides the nav, section heads,
+   card grid, step rail, fill bar, Monument CTA band and the type system. The
+   content-page hero frame lives in Hero.module.css; the footer in SkinFooter.
 
-   By-job motion: DRAW-ON settle on page heroes (FocalWord), NO trace on dense
-   pages (timetable grid / membership table / forms — solid + legible),
-   Monument treatment on CTA bands. prefers-reduced-motion settles everything.
-
-   The committed reference page is intentionally NOT refactored onto this kit —
-   it stays the frozen diff anchor. Keep these tokens in lockstep with it. */
+   By-job motion: DRAW-ON focal settle on heroes (FocalWord), NO trace on dense
+   pages (timetable grid / membership table — solid + legible), Monument on CTA
+   bands, scroll-reveal on sections. prefers-reduced-motion settles everything. */
 
 /* ───────────── page shell ───────────── */
 .page {
-  /* type pairing: Old London (blackletter focal) + Helvetica Neue Bold.
-     System stack — renders true on Apple; falls back to Arial elsewhere
-     until a licensed Helvetica Neue is self-hosted. */
-  --font-hn: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  /* type pairing: Old London (blackletter focal) + Helvetica Neue.
+     Apple gets the real Helvetica Neue; everyone else gets self-hosted Arimo
+     (metric-compatible with Helvetica) before the Arial backstop. Swap a
+     licensed Helvetica Neue in front of --font-arimo to ship full fidelity. */
+  --font-hn: "Helvetica Neue", "HelveticaNeue", var(--font-arimo), Helvetica, Arial, sans-serif;
   background: #0a0807;
   color: var(--cream-primary, #e8ddd3);
   font-family: var(--font-hn);
@@ -229,44 +227,7 @@
   flex-wrap: wrap;
 }
 
-/* ───────────── hero ───────────── */
-.hero {
-  position: relative;
-  min-height: 560px;
-  display: flex;
-  flex-direction: column;
-  background: radial-gradient(ellipse at 40% 42%, #14100e 0%, #0a0807 55%, #000 100%);
-  overflow: hidden;
-}
-.heroPhoto {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: var(--hero-img, url("/images/ring.jpg")) center / cover;
-  opacity: 0.26;
-  filter: grayscale(0.45) contrast(1.2) brightness(0.7);
-}
-.heroBloom {
-  position: absolute;
-  left: -160px;
-  top: -120px;
-  width: 520px;
-  height: 520px;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(163, 31, 31, 0.28), transparent 65%);
-}
-.heroBody {
-  position: relative;
-  z-index: 7;
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1.3fr 0.9fr;
-  gap: 44px;
-  align-items: center;
-  padding: 56px 40px;
-}
-.heroBodyWide { grid-template-columns: 1fr; }
+/* ───────────── hero content labels (the hero frame lives in Hero.module.css) ───────────── */
 .kicker {
   font-family: var(--font-hn);
   font-size: 11px;
@@ -275,23 +236,6 @@
   color: var(--blood-red, #a31f1f);
   margin-bottom: 14px;
 }
-.preline {
-  font-family: var(--font-hn);
-  font-size: clamp(30px, 3.4vw, 48px);
-  letter-spacing: 0.14em;
-  line-height: 1;
-  color: var(--cream-light, #f0e6db);
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.7);
-}
-.heroSub {
-  font-family: var(--font-hn);
-  
-  font-size: 19px;
-  color: #c9a2a2;
-  margin: 20px 0 26px;
-  max-width: 46ch;
-}
-
 /* ───────────── focal blackletter SVG trace (draw-on settle) ───────────── */
 .focalSvg {
   display: block;
@@ -334,7 +278,6 @@
   padding: 64px 40px;
   border-top: 1px solid rgba(232, 221, 211, 0.12);
 }
-.sectionDark { background: #0a0807; }
 .sectionPlate { background: radial-gradient(ellipse at 50% 0%, #14100e 0%, #0a0807 70%); }
 .sectionHead {
   max-width: 1240px;
@@ -384,7 +327,13 @@
   background: #100c0b;
   padding: 30px 24px 34px;
   min-height: 168px;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
 }
+.card:hover {
+  background: #17110f;
+  box-shadow: inset 2px 0 0 var(--blood-red, #a31f1f);
+}
+.card:hover .cardTitle { color: #fff; }
 .cardIcon {
   width: 32px;
   height: 32px;
@@ -457,24 +406,7 @@
   color: rgba(232, 221, 211, 0.6);
 }
 
-/* ───────────── solid data panel (dense pages — NO trace) ───────────── */
-.panel {
-  background: #15110f;
-  border: 1px solid rgba(232, 221, 211, 0.2);
-  border-left: 3px solid var(--blood-red, #a31f1f);
-  padding: 24px 26px;
-}
-.panelKey {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-hn);
-  font-size: 10px;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--blood-red, #a31f1f);
-  margin-bottom: 10px;
-}
+/* ───────────── fill bar (booking-modal spots) ───────────── */
 .fillBar {
   display: flex;
   gap: 3px;
@@ -533,7 +465,6 @@
 
 /* ───────────── responsive ───────────── */
 @media (max-width: 900px) {
-  .heroBody { grid-template-columns: 1fr; gap: 30px; }
   .cols4 { grid-template-columns: 1fr 1fr; }
   .cols3 { grid-template-columns: 1fr 1fr; }
   .steps { grid-template-columns: 1fr 1fr !important; }
@@ -543,7 +474,6 @@
 }
 @media (max-width: 560px) {
   .topbar { padding: 16px 22px; }
-  .heroBody { padding: 40px 22px; }
   .section, .cta { padding: 48px 22px; }
   .cols4, .cols3, .cols2 { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr !important; }
@@ -557,6 +487,25 @@
   .focalDraw { animation: none; stroke-dashoffset: 0 !important; }
   .focalRun { display: none; }
   .burger span { transition: none; }
+}
+
+/* ───────────── scroll reveal ─────────────
+   Sections rise in as they scroll into view. Guarded by @supports so browsers
+   without scroll-driven animation (Safari/Firefox today) show content normally,
+   and by reduced-motion. No JS. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .section,
+    .cta {
+      animation: revealUp linear both;
+      animation-timeline: view();
+      animation-range: entry 8% cover 26%;
+    }
+  }
+}
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: none; }
 }
 
 /* ───────────── Helvetica Neue display weights ─────────────

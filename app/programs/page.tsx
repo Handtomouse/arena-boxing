@@ -59,7 +59,7 @@ export default function ProgramsPage() {
         focal={{ word: "Work", dash: 1750, viewBox: "0 0 560 200" }}
         ghost="Dare"
         sub="Boxing, strength, conditioning, sparring and private coaching. Coaching that meets you where you are, then pushes from there."
-        photo="/images/gym-atmosphere.jpg"
+        photo="/images/gym-training.jpg"
         photoAlt="Boxers training on the Arena floor"
         primaryCta={{ href: "/booking", label: "Book a Class" }}
         secondaryCta={{ href: "/timetable-redesign", label: "View Timetable" }}

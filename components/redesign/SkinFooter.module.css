@@ -4,7 +4,7 @@
    beneath. Route-scoped via ChromeFooter — the live site keeps its own footer. */
 
 .footer {
-  --font-hn: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  --font-hn: "Helvetica Neue", "HelveticaNeue", var(--font-arimo), Helvetica, Arial, sans-serif;
   position: relative;
   background: #080605;
   border-top: 1px solid rgba(232, 221, 211, 0.14);

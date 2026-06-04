@@ -47,7 +47,7 @@ export default function LocationRedesignPage() {
         focal={{ word: "Here", dash: 1700, viewBox: "0 0 560 200" }}
         ghost="Dare"
         sub="123 Campbell Pde, Bondi. Five minutes from the beach, eight from the Junction. Open today 06.00 &ndash; 21.00."
-        photo="/images/gym-atmosphere.jpg"
+        photo="/images/bondi-beach.jpg"
         photoAlt="The Arena Boxing floor in Bondi"
         primaryCta={{ href: MAPS_URL, label: "Get Directions" }}
         secondaryCta={{ href: "/timetable-redesign", label: "View Timetable" }}
