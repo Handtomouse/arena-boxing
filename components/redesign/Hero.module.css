@@ -13,7 +13,19 @@
   background: #000;
 }
 .photo { position: absolute; inset: 0; z-index: 0; }
-.photo img { object-fit: cover; filter: grayscale(0.35) contrast(1.16) brightness(0.5); }
+.photo img {
+  object-fit: cover;
+  filter: grayscale(0.35) contrast(1.16) brightness(0.5);
+  transform-origin: 60% 40%;
+  animation: kenburns 26s ease-in-out infinite alternate;
+}
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.07); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo img { animation: none; }
+}
 .shade { position: absolute; inset: 0; z-index: 1; background: linear-gradient(100deg, rgba(8,5,4,0.94) 0%, rgba(8,5,4,0.66) 40%, rgba(8,5,4,0.2) 78%, rgba(8,5,4,0.5) 100%); }
 .vig { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse 92% 94% at 42% 48%, transparent 0%, transparent 44%, rgba(0,0,0,0.55) 84%, rgba(0,0,0,0.92) 100%); }
 .bloom { position: absolute; left: -120px; top: -100px; width: 540px; height: 540px; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(163,31,31,0.3), transparent 64%); }

@@ -357,7 +357,7 @@
   font-family: var(--font-hn);
   font-size: 13px;
   line-height: 1.55;
-  color: rgba(232, 221, 211, 0.62);
+  color: rgba(232, 221, 211, 0.72);
 }
 .cardLink {
   display: inline-block;
@@ -506,6 +506,40 @@
 @keyframes revealUp {
   from { opacity: 0; transform: translateY(26px); }
   to { opacity: 1; transform: none; }
+}
+
+/* ───────────── polish: focus rings, animated active nav, section indices ───────────── */
+.btnSolid:focus-visible,
+.btnGhost:focus-visible,
+.bookBtn:focus-visible,
+.cardLink:focus-visible,
+.navlinks a:focus-visible,
+.mobilePanel a:focus-visible {
+  outline: 2px solid var(--blood-red, #a31f1f);
+  outline-offset: 3px;
+}
+/* animated underline on hover + active nav link */
+.navlinks a { position: relative; }
+.navlinks a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 1px;
+  background: var(--blood-red, #a31f1f);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s ease;
+}
+.navlinks a:hover::after,
+.navlinks a[data-active="true"]::after { transform: scaleX(1); }
+/* editorial section indices — 01 · / 02 · prepended to each section kicker */
+.page { counter-reset: arena-section; }
+.sectionHead { counter-increment: arena-section; }
+.sectionKicker::before {
+  content: counter(arena-section, decimal-leading-zero) "  ·  ";
+  color: rgba(232, 221, 211, 0.34);
 }
 
 /* ───────────── Helvetica Neue display weights ─────────────
