@@ -283,6 +283,40 @@
 }
 .modalActions { display: flex; gap: 12px; flex-wrap: wrap; }
 
+/* labelled modal sections (Class Details / What to Bring / Cancellation) */
+.modalSection { margin-bottom: 20px; }
+.modalSectionKey {
+  display: block;
+  font-family: var(--font-hn);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blood-red, #a31f1f);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(232, 221, 211, 0.12);
+}
+.modalSection .modalGrid { margin: 0 0 12px; }
+.modalSection .modalCancel { margin-bottom: 0; }
+.bring { list-style: none; margin: 0; padding: 0; }
+.bring li {
+  position: relative;
+  padding: 7px 0 7px 20px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(232, 221, 211, 0.74);
+}
+.bring li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 6px;
+  height: 6px;
+  background: var(--blood-red, #a31f1f);
+}
+
 @media (max-width: 900px) {
   .grid { grid-template-columns: 1fr; gap: 1px; max-width: 620px; }
   .col { background: transparent; }

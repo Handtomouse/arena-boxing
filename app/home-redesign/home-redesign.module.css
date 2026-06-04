@@ -1,419 +1,90 @@
-/* Arena Boxing — Home redesign (loader-skin reference page).
-   Locked direction: Old London blackletter focal word + neon outline trace,
-   edge package (grain / vignette / bloom), by-job motion (draw-on on heroes),
-   legible solid content bands, prefers-reduced-motion fallback.
-   Scoped CSS module — no global bleed. Promote to /home once blessed. */
+/* Arena Boxing — Home redesign.
+   On the locked kit (SkinNav + Hero + MonumentCTA from @/components/redesign).
+   This module holds ONLY the page-specific WHY photo-card grid; everything
+   else is the shared skin. Type: Helvetica Neue (900 display / 700 labels /
+   400 body), Old London reserved for the focal/ghost in the kit. */
 
-.page {
-  background: #0a0807;
-  color: var(--cream-primary, #e8ddd3);
-  font-family: var(--font-body, "Inter", sans-serif);
-  overflow-x: hidden;
-}
-
-/* ───────────── shared edge layers ───────────── */
-.grain {
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  pointer-events: none;
-  opacity: 0.13;
-  mix-blend-mode: overlay;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-.scan {
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  pointer-events: none;
-  opacity: 0.04;
-  background: repeating-linear-gradient(0deg, #fff 0 1px, transparent 1px 3px);
-}
-.vignette {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-  background: radial-gradient(ellipse 90% 92% at 42% 48%, transparent 0%, transparent 44%, rgba(0, 0, 0, 0.5) 82%, rgba(0, 0, 0, 0.9) 100%);
-}
-
-/* ───────────── skinned top bar ───────────── */
-.topbar {
-  position: relative;
-  z-index: 8;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 40px;
-  border-bottom: 1px solid rgba(232, 221, 211, 0.16);
-}
-.wordmark {
-  font-family: var(--font-display, "Old London"), serif;
-  font-size: 30px;
-  line-height: 1;
-  color: var(--cream-light, #f0e6db);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 14px rgba(0, 0, 0, 0.7);
-  text-decoration: none;
-}
-.navlinks {
-  display: flex;
-  gap: 26px;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(232, 221, 211, 0.72);
-}
-.navlinks a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.25s ease;
-}
-.navlinks a:hover {
-  color: var(--blood-red, #a31f1f);
-}
-.navright {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.live {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(232, 221, 211, 0.55);
-}
-.dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--blood-red, #a31f1f);
-  box-shadow: 0 0 0 0 rgba(163, 31, 31, 0.7), 0 0 10px rgba(163, 31, 31, 0.8);
-  animation: pulse 1.8s ease-out infinite;
-}
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(163, 31, 31, 0.6), 0 0 10px rgba(163, 31, 31, 0.7); }
-  70% { box-shadow: 0 0 0 8px rgba(163, 31, 31, 0), 0 0 10px rgba(163, 31, 31, 0.3); }
-  100% { box-shadow: 0 0 0 0 rgba(163, 31, 31, 0), 0 0 10px rgba(163, 31, 31, 0.6); }
-}
-.bookBtn {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--cream-light, #f0e6db);
-  border: 1px solid var(--blood-red, #a31f1f);
-  background: rgba(163, 31, 31, 0.14);
-  padding: 10px 16px;
-  text-decoration: none;
-  transition: background 0.3s ease;
-}
-.bookBtn:hover {
-  background: var(--blood-red, #a31f1f);
-}
-
-/* ───────────── hero ───────────── */
-.hero {
-  position: relative;
-  min-height: 620px;
-  display: flex;
-  flex-direction: column;
-  background: radial-gradient(ellipse at 40% 42%, #14100e 0%, #0a0807 55%, #000 100%);
-  overflow: hidden;
-}
-.heroPhoto {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: url("/images/ring.jpg") center / cover;
-  opacity: 0.28;
-  filter: grayscale(0.45) contrast(1.2) brightness(0.7);
-}
-.heroBloom {
-  position: absolute;
-  left: -160px;
-  top: -120px;
-  width: 520px;
-  height: 520px;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(163, 31, 31, 0.28), transparent 65%);
-}
-.heroBody {
-  position: relative;
-  z-index: 7;
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1.3fr 0.9fr;
-  gap: 44px;
-  align-items: center;
-  padding: 56px 40px;
-}
-.kicker {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--blood-red, #a31f1f);
-  margin-bottom: 14px;
-}
-.preline {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
-  font-size: clamp(30px, 3.4vw, 48px);
-  letter-spacing: 0.14em;
-  line-height: 1;
-  color: var(--cream-light, #f0e6db);
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.7);
-}
-/* focal blackletter SVG trace */
-.focalSvg {
-  display: block;
-  width: min(560px, 90%);
-  height: auto;
-  overflow: visible;
-  margin-top: -2px;
-  filter: drop-shadow(0 0 5px rgba(163, 31, 31, 0.85)) drop-shadow(0 0 22px rgba(125, 30, 30, 0.5));
-}
-.focalSvg text {
-  font-family: var(--font-display, "Old London"), serif;
-  font-size: 188px;
-}
-.focalBase {
-  fill: none;
-  stroke: rgba(232, 221, 211, 0.1);
-  stroke-width: 1.4;
-}
-.focalDraw {
-  fill: none;
-  stroke: var(--blood-red, #a31f1f);
-  stroke-width: 2;
-  stroke-dasharray: 1700;
-  stroke-dashoffset: 1700;
-  animation: draw 3s cubic-bezier(0.6, 0.05, 0.3, 1) forwards;
-}
-.focalRun {
-  fill: none;
-  stroke: #ff5a4a;
-  stroke-width: 2.4;
-  stroke-dasharray: 55 1645;
-  stroke-dashoffset: 1700;
-  animation: run 4.5s linear 3s infinite;
-}
-@keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes run { to { stroke-dashoffset: 0; } }
-
-.heroSub {
-  font-family: var(--font-cormorant, "Cormorant Garamond"), serif;
-  font-style: italic;
-  font-size: 19px;
-  color: #c9a2a2;
-  margin: 20px 0 26px;
-}
-.ctaRow {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.btnSolid {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  background: var(--blood-red, #a31f1f);
-  color: #fff;
-  padding: 15px 24px;
-  text-decoration: none;
-  box-shadow: 0 0 24px rgba(163, 31, 31, 0.4);
-  transition: transform 0.2s ease;
-}
-.btnGhost {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  border: 1px solid rgba(232, 221, 211, 0.5);
-  color: var(--cream-light, #f0e6db);
-  padding: 15px 24px;
-  text-decoration: none;
-  transition: border-color 0.25s ease, color 0.25s ease;
-}
-.btnSolid:hover { transform: translateY(-1px); }
-.btnGhost:hover { border-color: var(--blood-red, #a31f1f); color: var(--blood-red, #a31f1f); }
-
-/* THE WORK panel — solid, legible (content band) */
-.work {
-  align-self: center;
-  background: #15110f;
-  border: 1px solid rgba(232, 221, 211, 0.2);
-  border-left: 3px solid var(--blood-red, #a31f1f);
-  padding: 24px 26px;
-}
-.workKey {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--blood-red, #a31f1f);
-  margin-bottom: 10px;
-}
-.workTitle {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
-  font-size: 40px;
-  line-height: 1;
-  color: var(--cream-light, #f0e6db);
-  letter-spacing: 0.02em;
-}
-.workMeta {
-  display: flex;
-  gap: 18px;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(232, 221, 211, 0.7);
-  margin: 10px 0 16px;
-}
-.workBar {
-  display: flex;
-  gap: 3px;
-  margin-bottom: 16px;
-}
-.workBar i {
-  flex: 1;
-  height: 6px;
-  background: rgba(232, 221, 211, 0.18);
-}
-.workBar i.on {
-  background: var(--blood-red, #a31f1f);
-}
-.workBtn {
-  display: block;
-  text-align: center;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  background: var(--blood-red, #a31f1f);
-  color: #fff;
-  padding: 14px;
-  text-decoration: none;
-}
-
-/* ───────────── WHY ARENA ───────────── */
-.why {
+/* ───────────── WHY ARENA — photo-backed cards ───────────── */
+.whyGrid {
   position: relative;
   z-index: 2;
+  max-width: 1240px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: rgba(232, 221, 211, 0.14);
-  border-top: 1px solid rgba(232, 221, 211, 0.16);
-  border-bottom: 1px solid rgba(232, 221, 211, 0.16);
-}
-.card {
-  background: #100c0b;
-  padding: 30px 24px 34px;
-  min-height: 168px;
-}
-.cardIcon {
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--blood-red, #a31f1f);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--blood-red, #a31f1f);
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-.cardTitle {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.02em;
-  color: var(--cream-light, #f0e6db);
-  margin-bottom: 8px;
-}
-.cardBody {
-  font-family: var(--font-body, "Inter"), sans-serif;
-  font-size: 13px;
-  line-height: 1.55;
-  color: rgba(232, 221, 211, 0.62);
+  background: rgba(232, 221, 211, 0.16);
+  border: 1px solid rgba(232, 221, 211, 0.16);
 }
 
-/* ───────────── conversion band ───────────── */
-.cta {
+.photoCard {
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  flex-wrap: wrap;
-  padding: 64px 40px;
-  background: radial-gradient(ellipse at 50% 50%, #1a1311 0%, #0a0807 70%);
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 300px;
+  padding: 26px 24px 30px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   overflow: hidden;
+  isolation: isolate;
 }
-.ctaGhost {
+
+/* darkening overlay so the label/body stay legible over any photo */
+.shade {
   position: absolute;
-  right: -20px;
-  top: 50%;
-  transform: translateY(-50%);
+  inset: 0;
   z-index: 0;
-  font-family: var(--font-display, "Old London"), serif;
-  font-size: clamp(160px, 24vw, 340px);
-  line-height: 0.8;
-  color: transparent;
-  -webkit-text-stroke: 1.4px rgba(163, 31, 31, 0.4);
-  text-shadow: 0 0 30px rgba(125, 30, 30, 0.22);
   pointer-events: none;
-  white-space: nowrap;
+  background: linear-gradient(
+    to top,
+    rgba(8, 6, 5, 0.92) 0%,
+    rgba(8, 6, 5, 0.72) 38%,
+    rgba(8, 6, 5, 0.34) 70%,
+    rgba(8, 6, 5, 0.2) 100%
+  );
 }
-.ctaLeft {
+
+.cardBody {
   position: relative;
   z-index: 1;
 }
-.ctaHead {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
-  font-size: clamp(40px, 5vw, 68px);
-  line-height: 0.92;
+
+.cardTitle {
+  font-family: var(--font-hn, "Helvetica Neue", Helvetica, Arial, sans-serif);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
   color: var(--cream-light, #f0e6db);
-  letter-spacing: 0.01em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
 }
-.ctaSub {
-  font-family: var(--font-cormorant, "Cormorant Garamond"), serif;
-  font-style: italic;
-  font-size: 18px;
-  color: #c9a2a2;
-  margin-top: 10px;
+
+.cardText {
+  font-family: var(--font-hn, "Helvetica Neue", Helvetica, Arial, sans-serif);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(232, 221, 211, 0.82);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
 }
 
 /* ───────────── responsive ───────────── */
 @media (max-width: 900px) {
-  .heroBody { grid-template-columns: 1fr; gap: 30px; }
-  .why { grid-template-columns: 1fr 1fr; }
-  .navlinks { display: none; }
+  .whyGrid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 @media (max-width: 560px) {
-  .topbar { padding: 16px 22px; }
-  .heroBody { padding: 40px 22px; }
-  .why { grid-template-columns: 1fr; }
-  .ctaGhost { display: none; }
+  .whyGrid {
+    grid-template-columns: 1fr;
+  }
+  .photoCard {
+    min-height: 240px;
+  }
 }
 
-/* ───────────── reduced motion: settle, no animation ───────────── */
-@media (prefers-reduced-motion: reduce) {
-  .dot { animation: none; }
-  .focalDraw { animation: none; stroke-dashoffset: 0; }
-  .focalRun { display: none; }
-}
+/* ───────────── reduced motion: nothing to settle here ───────────── */
