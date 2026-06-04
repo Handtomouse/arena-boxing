@@ -1,0 +1,287 @@
+/* /timetable-redesign — dense page, NO trace. Solid + legible.
+   Shared skin from `sk`; this file holds the week grid, filter chips, the
+   booking modal. */
+
+/* compact hero (no focal trace on a dense page) */
+.thero {
+  position: relative;
+  padding: 56px 40px 30px;
+  background: radial-gradient(ellipse at 40% 0%, #14100e 0%, #0a0807 70%);
+  border-bottom: 1px solid rgba(232, 221, 211, 0.12);
+  overflow: hidden;
+}
+.theroWrap { max-width: 1240px; margin: 0 auto; position: relative; z-index: 2; }
+.theroTitle {
+  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-size: clamp(52px, 8vw, 108px);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  color: var(--cream-light, #f0e6db);
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.7);
+}
+.theroSub {
+  font-family: var(--font-cormorant, "Cormorant Garamond"), serif;
+  font-style: italic;
+  font-size: 19px;
+  color: #c9a2a2;
+  margin-top: 8px;
+}
+
+/* controls bar — filter chips */
+.controls {
+  position: sticky;
+  top: 0;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 14px 40px;
+  background: rgba(8, 6, 6, 0.94);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(232, 221, 211, 0.12);
+}
+.controlsKey {
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(232, 221, 211, 0.5);
+  margin-right: 4px;
+}
+.chip {
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(232, 221, 211, 0.7);
+  background: transparent;
+  border: 1px solid rgba(232, 221, 211, 0.22);
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.chip:hover { border-color: rgba(163, 31, 31, 0.6); color: var(--cream-light, #f0e6db); }
+.chipOn {
+  color: #fff;
+  background: var(--blood-red, #a31f1f);
+  border-color: var(--blood-red, #a31f1f);
+}
+
+/* week grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 16px 8px;
+  background: transparent;
+}
+.col { display: flex; flex-direction: column; gap: 1px; }
+.dayHead {
+  position: sticky;
+  top: 49px;
+  z-index: 6;
+  background: #0a0807;
+  padding: 14px 10px 10px;
+  border-bottom: 1px solid rgba(232, 221, 211, 0.16);
+}
+.dayHead.today { border-bottom-color: var(--blood-red, #a31f1f); }
+.dayName {
+  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-size: 19px;
+  letter-spacing: 0.08em;
+  color: var(--cream-light, #f0e6db);
+}
+.dayName.today { color: var(--blood-red, #a31f1f); }
+.dayDate {
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(232, 221, 211, 0.45);
+}
+
+.class {
+  text-align: left;
+  width: 100%;
+  background: #100c0b;
+  border: 1px solid rgba(232, 221, 211, 0.1);
+  border-left: 2px solid var(--blood-red, #a31f1f);
+  padding: 12px 12px 13px;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
+}
+.class:hover { background: #181210; border-color: rgba(232, 221, 211, 0.22); border-left-color: var(--blood-red, #a31f1f); }
+.classDim { opacity: 0.16; pointer-events: none; }
+.classPast { opacity: 0.4; border-left-color: rgba(232, 221, 211, 0.2); }
+.classTime {
+  display: block;
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--blood-red, #a31f1f);
+}
+.className {
+  display: block;
+  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.03em;
+  color: var(--cream-light, #f0e6db);
+  margin: 3px 0 1px;
+  line-height: 1.05;
+}
+.classCoach { display: block; font-size: 11px; color: rgba(232, 221, 211, 0.5); }
+.classFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 9px;
+  gap: 8px;
+}
+.spots {
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(232, 221, 211, 0.55);
+}
+.spotsLow { color: #e0a13a; }
+.spotsNone { color: var(--blood-red, #a31f1f); }
+.lvlDot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.lvlbeg { background: #4a8f5c; }
+.lvlint { background: #3a78c4; }
+.lvladv { background: #a31f1f; }
+.lvlall { background: rgba(232, 221, 211, 0.6); }
+
+/* can't find a time band */
+.cantfind {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  max-width: 1240px;
+  margin: 40px auto 0;
+  background: #15110f;
+  border: 1px solid rgba(232, 221, 211, 0.18);
+  border-left: 3px solid var(--blood-red, #a31f1f);
+  padding: 26px 30px;
+}
+.cantfind h3 { font-family: var(--font-bebas, "Bebas Neue"), sans-serif; font-size: 28px; color: var(--cream-light, #f0e6db); margin-bottom: 5px; }
+.cantfind p { font-size: 13px; line-height: 1.5; color: rgba(232, 221, 211, 0.6); max-width: 58ch; }
+
+/* ───── booking modal ───── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(4, 3, 3, 0.78);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.modal {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #100c0b;
+  border: 1px solid rgba(232, 221, 211, 0.2);
+  border-top: 3px solid var(--blood-red, #a31f1f);
+}
+.modalPhoto {
+  position: relative;
+  height: 150px;
+  background: url("/images/ring.jpg") center / cover;
+  filter: grayscale(0.4) contrast(1.15) brightness(0.6);
+}
+.modalClose {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--cream-light, #f0e6db);
+  background: rgba(8, 6, 6, 0.7);
+  border: 1px solid rgba(232, 221, 211, 0.25);
+  cursor: pointer;
+}
+.modalBody { padding: 22px 26px 26px; }
+.modalKey {
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--blood-red, #a31f1f);
+}
+.modalName {
+  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--cream-light, #f0e6db);
+  margin: 4px 0 12px;
+}
+.modalMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(232, 221, 211, 0.7);
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(232, 221, 211, 0.14);
+}
+.modalGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 20px;
+  margin: 18px 0;
+}
+.modalK {
+  display: block;
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232, 221, 211, 0.45);
+  margin-bottom: 3px;
+}
+.modalV { font-size: 13px; color: var(--cream-light, #f0e6db); }
+.modalDesc { font-size: 13px; line-height: 1.6; color: rgba(232, 221, 211, 0.66); margin-bottom: 16px; }
+.modalCancel {
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(232, 221, 211, 0.5);
+  border-left: 2px solid rgba(232, 221, 211, 0.18);
+  padding-left: 12px;
+  margin-bottom: 20px;
+}
+.modalActions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; gap: 1px; max-width: 620px; }
+  .col { background: transparent; }
+  .dayHead { position: static; padding: 18px 6px 8px; }
+  .controls { padding: 12px 22px; }
+  .thero { padding: 44px 22px 24px; }
+}
+@media (max-width: 560px) {
+  .modalName { font-size: 36px; }
+  .modalActions { flex-direction: column; }
+  .modalActions a { text-align: center; }
+}
