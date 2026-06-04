@@ -67,3 +67,22 @@
   .body { grid-template-columns: 1fr; gap: 28px; padding: 48px 22px; }
   .ghost { font-size: clamp(200px, 56vw, 340px); }
 }
+
+/* page-load orchestration — the hero stack rises in sequence */
+@media (prefers-reduced-motion: no-preference) {
+  .kicker,
+  .pre,
+  .focal,
+  .sub,
+  .ctas { animation: heroIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .kicker { animation-delay: 0.05s; }
+  .pre { animation-delay: 0.15s; }
+  .focal { animation-delay: 0.28s; }
+  .sub { animation-delay: 0.46s; }
+  .ctas { animation-delay: 0.58s; }
+  .body > div:nth-child(2) { animation: heroIn 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: 0.52s; }
+}
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
