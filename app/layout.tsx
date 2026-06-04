@@ -7,7 +7,7 @@ import {
   Bebas_Neue,
 } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/sections/Footer";
+import ChromeFooter from "@/components/redesign/ChromeFooter";
 import LegacyChrome from "@/components/redesign/LegacyChrome";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import { getOrganizationSchema, getLocalBusinessSchema, getWebSiteSchema } from "@/lib/structured-data";
@@ -167,7 +167,7 @@ export default function RootLayout({
         <main>
           {children}
         </main>
-        <Footer />
+        <ChromeFooter />
       </body>
     </html>
   );

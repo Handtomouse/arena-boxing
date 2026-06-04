@@ -8,65 +8,90 @@ import MonumentCTA from "@/components/redesign/MonumentCTA";
 export const metadata: Metadata = {
   title: "Membership (redesign preview)",
   description:
-    "Three tiers, plain math, no lock-in. Drop-in $35, Unlimited $220/month, 10-Pack $300, plus an invitation-only Founder's seat at Arena Boxing Bondi.",
+    "Flexible options, no lock-in contracts. Drop-in $35, Unlimited $79/week, 10-Class Pack $320, Private Coaching $120 at Arena Boxing Bondi.",
 };
+
+const CHIPS = ["No lock-in contracts", "Cancel anytime", "Same coaches, every tier", "Student discount"];
 
 const TIERS = [
   {
-    persona: "First class · tourists · once-off",
-    name: "DROP-IN",
+    name: "DROP IN",
+    persona: "Pay as you train",
     amount: "$35",
-    unit: "/ session",
-    note: "No commitment, no contract. Pay per round.",
+    unit: "/ class",
     rec: false,
     cta: "Get Started",
+    href: "/booking",
     perks: [
-      "Single session, any class type",
-      "No commitment, no lock-in",
-      "Same coaches, same standard",
-      "Cancel up to 12 hours before",
+      "Any class, any time",
+      "Gloves and wraps provided",
+      "Book up to 12 hours ahead",
+      "No lock-in, cancel anytime",
     ],
   },
   {
-    persona: "Daily training · fighters · committed",
     name: "UNLIMITED",
-    amount: "$220",
-    unit: "/ month",
-    note: "Pays off after 7 sessions. Every class after is on the house.",
+    persona: "Train as often as you like",
+    amount: "$79",
+    unit: "/ week",
     rec: true,
-    cta: "Start Unlimited",
+    cta: "Get Started",
+    href: "/booking",
     perks: [
       "Unlimited classes, every coach",
-      "Priority booking · 14 days ahead",
-      "Free fight-night seating · house events",
+      "Priority booking, 14 days ahead",
+      "Bring-a-friend pass each month",
       "Freeze up to 3 months a year",
     ],
   },
   {
-    persona: "2x a week · corporate · irregular",
-    name: "10-PACK",
-    amount: "$300",
-    unit: "/ 10 pack",
-    note: "Ten sessions at your own pace. Work the week that suits you.",
+    name: "10 CLASS PACK",
+    persona: "Ten sessions, your pace",
+    amount: "$320",
+    unit: "/ 10 classes",
     rec: false,
-    cta: "Buy 10-Pack",
+    cta: "Buy Now",
+    href: "/booking",
     perks: [
-      "Ten sessions, any class type",
-      "Use them on your own schedule",
-      "Same coaches, same standard",
+      "Ten classes, any type",
+      "Valid for six months",
       "Gloves and wraps provided",
+      "Share with a training partner",
+    ],
+  },
+  {
+    name: "PRIVATE COACHING",
+    persona: "One-on-one with a coach",
+    amount: "$120",
+    unit: "/ session",
+    rec: false,
+    cta: "Enquire",
+    href: "/location-redesign",
+    perks: [
+      "1:1 with a head coach",
+      "Built around your goals",
+      "Technique-first, no filler",
+      "Flexible scheduling",
     ],
   },
 ];
 
 const ROWS: { label: string; cells: (boolean | string)[] }[] = [
-  { label: "Any class type", cells: [true, true, true] },
-  { label: "Coach-led, capped at twenty", cells: [true, true, true] },
-  { label: "Gloves & wraps provided", cells: [true, true, true] },
-  { label: "Priority booking · 14 days ahead", cells: [false, true, false] },
-  { label: "Freeze up to 3 months a year", cells: [false, true, false] },
-  { label: "Free fight-night seating", cells: [false, true, false] },
-  { label: "Cancellation window", cells: ["12 hours", "7 days", "12 hours"] },
+  { label: "Any class type", cells: [true, true, true, true] },
+  { label: "Gloves and wraps provided", cells: [true, true, true, true] },
+  { label: "Coach-led, capped at twenty", cells: [true, true, true, "1:1"] },
+  { label: "Priority booking, 14 days ahead", cells: [false, true, false, true] },
+  { label: "Freeze / pause option", cells: [false, true, false, false] },
+  { label: "One-on-one coaching", cells: [false, false, false, true] },
+  { label: "Cancellation window", cells: ["12 hours", "7 days", "6 months", "24 hours"] },
+];
+
+const PAYMENT = [
+  { k: "Billing", v: "Unlimited bills weekly. No contracts, no joining fee." },
+  { k: "Freeze and cancel", v: "Pause or cancel any membership with 7 days notice." },
+  { k: "Drop-ins", v: "Refundable up to 12 hours before class." },
+  { k: "Students", v: "15% off Unlimited with a valid student ID." },
+  { k: "Prices", v: "All prices in AUD, GST included." },
 ];
 
 export default function MembershipRedesignPage() {
@@ -77,14 +102,24 @@ export default function MembershipRedesignPage() {
       {/* compact hero — dense page, NO focal trace */}
       <section className={s.mhero}>
         <div className={s.mheroWrap}>
-          <p className={sk.kicker}>Three tiers, plain math, no lock-in</p>
-          <h1 className={s.mheroTitle}>MEMBERSHIP</h1>
-          <p className={s.mheroSub}>Match your week to a price. Cancel anytime, no contracts.</p>
+          <div>
+            <p className={sk.kicker}>Flexible options, no lock-in</p>
+            <h1 className={s.mheroTitle}>MEMBERSHIP OPTIONS</h1>
+            <p className={s.mheroSub}>Match your week to a price. Cancel anytime, no contracts.</p>
+          </div>
+          <ul className={s.chips}>
+            {CHIPS.map((c) => (
+              <li key={c}>
+                <span className={sk.dot} aria-hidden="true" />
+                {c}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
       {/* tiers */}
-      <section className={sk.section} style={{ borderTop: "0" }}>
+      <section className={s.tierSection}>
         <div className={s.tiers}>
           {TIERS.map((t) => (
             <article key={t.name} className={`${s.tier}${t.rec ? ` ${s.tierRec}` : ""}`}>
@@ -95,90 +130,80 @@ export default function MembershipRedesignPage() {
                 <span className={`${s.tierAmount}${t.rec ? ` ${s.tierAmountRec}` : ""}`}>{t.amount}</span>
                 <span className={s.tierUnit}>{t.unit}</span>
               </div>
-              <p className={s.tierBreak}>
-                {t.rec ? (
-                  <>
-                    <strong>Pays off after 7 sessions.</strong> Every class
-                    after that is on the house.
-                  </>
-                ) : (
-                  t.note
-                )}
-              </p>
               <ul className={s.tierList}>
                 {t.perks.map((p) => (
                   <li key={p}>
-                    <span aria-hidden="true">&#10022;</span>
+                    <span aria-hidden="true">&#10003;</span>
                     {p}
                   </li>
                 ))}
               </ul>
-              <Link
-                href="/booking"
-                className={t.rec ? sk.btnSolid : sk.btnGhost}
-                style={{ textAlign: "center" }}
-              >
+              <Link href={t.href} className={t.rec ? sk.btnSolid : sk.btnGhost} style={{ textAlign: "center" }}>
                 {t.cta} &rarr;
               </Link>
             </article>
           ))}
         </div>
-
-        {/* founder strip */}
-        <div className={s.founder}>
-          <div className={s.founderText}>
-            <h3>THE FOUNDER&rsquo;S SEAT</h3>
-            <p>
-              A small, invitation-only tier for the regulars who help build the
-              room. Not a price you can buy. One you&rsquo;re asked into.
-            </p>
-          </div>
-          <Link href="/location-redesign" className={sk.btnGhost}>
-            Enquire &rarr;
-          </Link>
-        </div>
-
-        <p className={s.policy}>
-          All tiers month-to-month, no contracts. 15% student discount on Unlimited
-          with valid ID. Prices in AUD, GST included.
-        </p>
       </section>
 
-      {/* comparison table */}
+      {/* what's included + payment */}
       <section className={`${sk.section} ${sk.sectionPlate}`}>
-        <div className={sk.sectionHead}>
-          <span className={sk.sectionKicker}>Side by side</span>
-          <h2 className={sk.sectionTitle}>WHAT&rsquo;S INCLUDED</h2>
-        </div>
-        <div className={s.tableWrap}>
-          <table className={s.table}>
-            <thead>
-              <tr>
-                <th aria-hidden="true" />
-                <th>Drop-in</th>
-                <th className={s.rec}>Unlimited</th>
-                <th>10-Pack</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ROWS.map((r) => (
-                <tr key={r.label}>
-                  <th scope="row">{r.label}</th>
-                  {r.cells.map((c, i) => (
-                    <td key={i}>
-                      {typeof c === "string" ? (
-                        <span className={s.cellNote}>{c}</span>
-                      ) : c ? (
-                        <span className={s.yes} aria-label="Included">&#10003;</span>
-                      ) : (
-                        <span className={s.no} aria-label="Not included">&ndash;</span>
-                      )}
-                    </td>
+        <div className={s.includeGrid}>
+          <div>
+            <div className={sk.sectionHead}>
+              <span className={sk.sectionKicker}>Side by side</span>
+              <h2 className={sk.sectionTitle}>WHAT&rsquo;S INCLUDED</h2>
+            </div>
+            <div className={s.tableWrap}>
+              <table className={s.table}>
+                <thead>
+                  <tr>
+                    <th aria-hidden="true" />
+                    <th>Drop-in</th>
+                    <th className={s.rec}>Unlimited</th>
+                    <th>10-Pack</th>
+                    <th>Private</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {ROWS.map((r) => (
+                    <tr key={r.label}>
+                      <th scope="row">{r.label}</th>
+                      {r.cells.map((c, i) => (
+                        <td key={i}>
+                          {typeof c === "string" ? (
+                            <span className={s.cellNote}>{c}</span>
+                          ) : c ? (
+                            <span className={s.yes} aria-label="Included">&#10003;</span>
+                          ) : (
+                            <span className={s.no} aria-label="Not included">&ndash;</span>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <aside className={s.payment}>
+            <span className={s.paymentKey}>
+              <span className={sk.dot} aria-hidden="true" />
+              Payment &amp; Cancellation
+            </span>
+            <dl className={s.paymentList}>
+              {PAYMENT.map((p) => (
+                <div key={p.k}>
+                  <dt>{p.k}</dt>
+                  <dd>{p.v}</dd>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </dl>
+            <Link href="/timetable-redesign" className={sk.btnGhost} style={{ textAlign: "center" }}>
+              View Timetable &rarr;
+            </Link>
+          </aside>
         </div>
       </section>
 
@@ -186,9 +211,9 @@ export default function MembershipRedesignPage() {
         ghost="In"
         head={
           <>
-            YOU&rsquo;RE
+            READY TO
             <br />
-            IN.
+            START TRAINING?
           </>
         }
         sub="First class on the house. Pick a tier when you're ready, not before."
