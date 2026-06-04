@@ -46,7 +46,7 @@ export default function StartHerePage() {
         focal={{ word: "Begin", dash: 2150, viewBox: "0 0 700 200" }}
         ghost="Dare"
         sub="First class on the house. No experience, no kit, no ego. Turn up, wrap your hands, and we'll take it from there."
-        photo="/images/gym-atmosphere.jpg"
+        photo="/images/ring.jpg"
         photoAlt="The Arena floor before a class"
         primaryCta={{ href: "/booking", label: "Book Your First Class" }}
         secondaryCta={{ href: "/timetable-redesign", label: "View Timetable" }}
