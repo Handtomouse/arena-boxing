@@ -1,4 +1,9 @@
-/* /location-redesign — page-specific layout. Shared skin from `sk`. */
+/* /location-redesign — built to docs/wireframes/location.png on the locked kit:
+   combined Hero (aside = duotone map plate) + getting-here + facility
+   highlights + opening hours + contact FeatureBand + monument CTA. Page-specific
+   layout only (map plate, hours grid); the rest is the shared skin. All type
+   uses var(--font-hn) with explicit weights — 900 display / 700 labels / 400
+   body — to match the locked kit. */
 
 /* hero right — map plate (reuses the shipped duotone map asset) */
 .mapPlate {
@@ -33,7 +38,8 @@
   box-shadow: 0 0 0 6px rgba(163, 31, 31, 0.25), 0 0 18px rgba(163, 31, 31, 0.8);
 }
 .mapPinLabel {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -52,7 +58,8 @@
   flex-wrap: wrap;
   padding: 12px 16px;
   background: linear-gradient(transparent, rgba(8, 6, 6, 0.9));
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 400;
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -73,42 +80,27 @@
 .hoursCell { background: #100c0b; padding: 24px 22px; }
 .hoursCell.focal { background: #15110f; border-top: 2px solid var(--blood-red, #a31f1f); }
 .hoursDay {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 900;
   font-size: 26px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: var(--cream-light, #f0e6db);
 }
 .hoursTime {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.06em;
   color: var(--blood-red, #a31f1f);
   margin: 8px 0 10px;
 }
-.hoursNote { font-size: 12px; line-height: 1.45; color: rgba(232, 221, 211, 0.55); }
-
-/* contact band */
-.contact {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-  max-width: 1240px;
-  margin: 0 auto;
-  background: #15110f;
-  border: 1px solid rgba(232, 221, 211, 0.18);
-  border-left: 3px solid var(--blood-red, #a31f1f);
-  padding: 28px 30px;
+.hoursNote {
+  font-family: var(--font-hn);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(232, 221, 211, 0.55);
 }
-.contactText { max-width: 60ch; }
-.contactText h3 {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
-  font-size: 30px;
-  color: var(--cream-light, #f0e6db);
-  margin-bottom: 6px;
-}
-.contactText p { font-size: 13px; line-height: 1.55; color: rgba(232, 221, 211, 0.62); }
 
 @media (max-width: 900px) {
   .hours { grid-template-columns: 1fr 1fr; }

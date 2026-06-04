@@ -1,0 +1,45 @@
+/* FeatureBand — the horizontal statement bands in the comps:
+   "quote" mode (About testimonial) and "cta" mode (Location contact, generic).
+   Full-bleed dark band, Helvetica Neue + Old London accent. */
+
+.band {
+  position: relative;
+  padding: 64px 40px;
+  border-top: 1px solid rgba(232, 221, 211, 0.12);
+  background: radial-gradient(ellipse at 50% 50%, #15110f 0%, #0a0807 72%);
+  overflow: hidden;
+}
+.inner { max-width: 1240px; margin: 0 auto; }
+
+/* quote mode */
+.quote { text-align: center; }
+.mark {
+  font-family: var(--font-display, "Old London"), serif;
+  font-size: 64px; line-height: 0.6; color: rgba(163, 31, 31, 0.6);
+  display: block; margin-bottom: 4px;
+}
+.quoteText {
+  font-family: var(--font-hn); font-weight: 800;
+  font-size: clamp(24px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.01em;
+  color: var(--cream-light, #f0e6db); max-width: 22ch; margin: 0 auto;
+  text-transform: uppercase;
+}
+.cite {
+  display: block; margin-top: 20px;
+  font-family: var(--font-hn); font-weight: 700; font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--blood-red, #a31f1f); font-style: normal;
+}
+
+/* cta mode */
+.cta { display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+.ctaText { max-width: 60ch; }
+.ctaHead {
+  font-family: var(--font-hn); font-weight: 900;
+  font-size: clamp(26px, 3.2vw, 40px); line-height: 1; letter-spacing: -0.01em; text-transform: uppercase;
+  color: var(--cream-light, #f0e6db); margin-bottom: 10px;
+}
+.ctaBody { font-family: var(--font-hn); font-weight: 400; font-size: 15px; line-height: 1.55; color: rgba(232, 221, 211, 0.66); }
+
+@media (max-width: 560px) {
+  .band { padding: 48px 22px; }
+}

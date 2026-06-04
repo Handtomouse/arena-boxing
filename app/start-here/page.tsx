@@ -3,8 +3,8 @@ import Link from "next/link";
 import sk from "@/components/redesign/skin.module.css";
 import s from "./start-here.module.css";
 import SkinNav from "@/components/redesign/SkinNav";
-import EdgeFX from "@/components/redesign/EdgeFX";
-import FocalWord from "@/components/redesign/FocalWord";
+import Hero from "@/components/redesign/Hero";
+import NextClassCard from "@/components/redesign/NextClassCard";
 import MonumentCTA from "@/components/redesign/MonumentCTA";
 
 export const metadata: Metadata = {
@@ -12,13 +12,6 @@ export const metadata: Metadata = {
   description:
     "New to Arena Boxing Bondi? Your first class is on the house. No experience, no kit, no ego. Here's exactly what to expect.",
 };
-
-const FIRST = [
-  "First class on the house, no commitment",
-  "Gloves and wraps provided. Just bring water",
-  "Arrive ten minutes early for a quick floor tour",
-  "Coach-led from the first bell, capped at twenty",
-];
 
 const EXPECT = [
   { t: "Book It", d: "Grab a spot in THE WORK or THE OPENER online. Free for your first." },
@@ -36,64 +29,39 @@ const ESSENTIALS = [
   { t: "How Early?", d: "Ten minutes for a first class. Enough for the tour and to wrap your hands." },
 ];
 
+const ETHOS = [
+  { t: "Sign Up", d: "Book a beginner-friendly class. First one on the house, no commitment." },
+  { t: "Work Hard", d: "Turn up, put in the round, and you'll feel the difference. Effort over ego." },
+  { t: "Respect", d: "We train hard, look out for each other, and get better together." },
+];
+
 export default function StartHerePage() {
   return (
     <div className={sk.page}>
       <SkinNav />
 
-      {/* hero */}
-      <section className={sk.hero}>
-        <div
-          className={sk.heroPhoto}
-          aria-hidden="true"
-          style={{ "--hero-img": "url(/images/gym-atmosphere.jpg)" } as React.CSSProperties}
-        />
-        <span className={sk.heroBloom} aria-hidden="true" />
+      <Hero
+        kicker="New here? We've got you"
+        preline="WHERE YOU"
+        focal={{ word: "Begin", dash: 2150, viewBox: "0 0 700 200" }}
+        ghost="Dare"
+        sub="First class on the house. No experience, no kit, no ego. Turn up, wrap your hands, and we'll take it from there."
+        photo="/images/gym-atmosphere.jpg"
+        photoAlt="The Arena floor before a class"
+        primaryCta={{ href: "/booking", label: "Book Your First Class" }}
+        secondaryCta={{ href: "/timetable-redesign", label: "View Timetable" }}
+        aside={
+          <NextClassCard
+            title="THE OPENER"
+            meta={["Sat 08:00", "50 min", "Beginner"]}
+            spotsTaken={4}
+            spotsTotal={16}
+            ctaLabel="Book The Opener"
+          />
+        }
+      />
 
-        <div className={sk.heroBody}>
-          <div>
-            <p className={sk.kicker}>New here? We've got you</p>
-            <p className={sk.preline}>WHERE YOU</p>
-            <FocalWord word="Begin" dash={2150} viewBox="0 0 700 200" />
-            <p className={sk.heroSub}>
-              First class on the house. No experience, no kit, no ego. Turn up,
-              wrap your hands, and we'll take it from there.
-            </p>
-            <div className={sk.ctaRow}>
-              <Link href="/booking" className={sk.btnSolid}>
-                Book Your First Class &rarr;
-              </Link>
-              <Link href="/timetable-redesign" className={sk.btnGhost}>
-                View Timetable
-              </Link>
-            </div>
-          </div>
-
-          {/* first class panel */}
-          <aside className={s.first}>
-            <span className={s.firstKey}>
-              <span className={sk.dot} aria-hidden="true" />
-              Your First Class
-            </span>
-            <p className={s.firstHead}>FREE. NO CATCH.</p>
-            <ul className={s.firstList}>
-              {FIRST.map((f) => (
-                <li key={f}>
-                  <span aria-hidden="true">&#10022;</span>
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <Link href="/booking" className={sk.btnSolid} style={{ display: "block", textAlign: "center" }}>
-              Claim Your Free Class &rarr;
-            </Link>
-          </aside>
-        </div>
-
-        <EdgeFX />
-      </section>
-
-      {/* what to expect */}
+      {/* what to expect — six numbered steps */}
       <section className={sk.section}>
         <div className={sk.sectionHead}>
           <span className={sk.sectionKicker}>What to expect</span>
@@ -102,7 +70,7 @@ export default function StartHerePage() {
             Six steps. No surprises. This is exactly how a first class runs.
           </p>
         </div>
-        <div className={s.expect}>
+        <div className={`${sk.steps} ${s.expect}`}>
           {EXPECT.map((e, i) => (
             <article key={e.t} className={sk.step}>
               <span className={sk.stepNum}>{`0${i + 1}`}</span>
@@ -113,18 +81,19 @@ export default function StartHerePage() {
         </div>
       </section>
 
-      {/* essentials */}
+      {/* the essentials — four cards */}
       <section className={`${sk.section} ${sk.sectionPlate}`}>
         <div className={sk.sectionHead}>
           <span className={sk.sectionKicker}>The essentials</span>
           <h2 className={sk.sectionTitle}>THE FOUR QUESTIONS EVERYONE ASKS</h2>
+          <p className={sk.sectionSub}>
+            Everything you need to know for your first class. No guesswork.
+          </p>
         </div>
         <div className={`${sk.cardGrid} ${sk.cols4}`}>
           {ESSENTIALS.map((e) => (
             <article key={e.t} className={sk.card}>
-              <span className={sk.cardIcon} aria-hidden="true">
-                ?
-              </span>
+              <span className={sk.cardIcon} aria-hidden="true">?</span>
               <h3 className={sk.cardTitle}>{e.t}</h3>
               <p className={sk.cardBody}>{e.d}</p>
             </article>
@@ -132,7 +101,7 @@ export default function StartHerePage() {
         </div>
       </section>
 
-      {/* beginner-friendly classes */}
+      {/* beginner-friendly classes — two class cards */}
       <section className={sk.section}>
         <div className={sk.sectionHead}>
           <span className={sk.sectionKicker}>Where to start</span>
@@ -165,7 +134,7 @@ export default function StartHerePage() {
               The weekend on-ramp. A slower build for newer hands. Technique
               first, sweat second. The friendliest room to walk into cold.
             </p>
-            <span className={s.classMeta}>50 min &middot; Intermediate-friendly</span>
+            <span className={s.classMeta}>50 min &middot; Beginner</span>
             <Link href="/booking" className={sk.cardLink}>
               Book The Opener &rarr;
             </Link>
@@ -173,13 +142,34 @@ export default function StartHerePage() {
         </div>
       </section>
 
+      {/* no ego. just effort. — three-item ethos band */}
+      <section className={`${sk.section} ${sk.sectionPlate}`}>
+        <div className={sk.sectionHead}>
+          <span className={sk.sectionKicker}>How we train</span>
+          <h2 className={sk.sectionTitle}>NO EGO. JUST EFFORT.</h2>
+          <p className={sk.sectionSub}>
+            Arena is built on respect, hard work and looking out for each other.
+            We train hard, we support each other, and we all get better together.
+          </p>
+        </div>
+        <div className={`${sk.cardGrid} ${sk.cols3}`}>
+          {ETHOS.map((e) => (
+            <article key={e.t} className={sk.card}>
+              <span className={sk.cardIcon} aria-hidden="true">&#10022;</span>
+              <h3 className={sk.cardTitle}>{e.t}</h3>
+              <p className={sk.cardBody}>{e.d}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <MonumentCTA
         ghost="Begin"
         head={
           <>
-            NO EGO.
+            READY TO
             <br />
-            JUST EFFORT.
+            BEGIN?
           </>
         }
         sub="First class on the house. Walk in a stranger, leave a regular."

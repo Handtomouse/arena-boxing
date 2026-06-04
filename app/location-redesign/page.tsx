@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import sk from "@/components/redesign/skin.module.css";
 import s from "./location-redesign.module.css";
 import SkinNav from "@/components/redesign/SkinNav";
-import EdgeFX from "@/components/redesign/EdgeFX";
-import FocalWord from "@/components/redesign/FocalWord";
+import Hero from "@/components/redesign/Hero";
+import FeatureBand from "@/components/redesign/FeatureBand";
 import MonumentCTA from "@/components/redesign/MonumentCTA";
 
 export const metadata: Metadata = {
@@ -30,50 +29,49 @@ const FACILITIES = [
   { t: "Recovery", d: "Change rooms and showers. Somewhere to land before you walk back into the day." },
 ];
 
+const HOURS = [
+  { day: "MON – FRI", time: "06.00 – 21.00", note: "First call 06.00, last bell 21.00.", focal: true },
+  { day: "SAT", time: "07.00 – 13.00", note: "Long round 07.00 (members)." },
+  { day: "SUN", time: "08.00 – 12.00", note: "Open floor, bag and rope, no class." },
+  { day: "PUB HOL", time: "Reduced", note: "Check before you walk." },
+];
+
 export default function LocationRedesignPage() {
   return (
     <div className={sk.page}>
       <SkinNav />
 
-      {/* hero */}
-      <section className={sk.hero}>
-        <span className={sk.heroBloom} aria-hidden="true" />
-
-        <div className={sk.heroBody}>
-          <div>
-            <p className={sk.kicker}>A short walk from the surf</p>
-            <p className={sk.preline}>YOU'LL FIND US</p>
-            <FocalWord word="Here" dash={1700} viewBox="0 0 560 200" />
-            <p className={sk.heroSub}>
-              123 Campbell Pde, Bondi. Five minutes from the beach, eight from the
-              Junction. Open today 05.30 &ndash; 21.00.
-            </p>
-            <div className={sk.ctaRow}>
-              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={sk.btnSolid}>
-                Get Directions &rarr;
-              </a>
-              <Link href="/timetable-redesign" className={sk.btnGhost}>
-                View Timetable
-              </Link>
-            </div>
-          </div>
-
-          {/* map plate */}
+      <Hero
+        kicker="A short walk from the surf"
+        preline="YOU'LL FIND US"
+        focal={{ word: "Here", dash: 1700, viewBox: "0 0 560 200" }}
+        ghost="Dare"
+        sub="123 Campbell Pde, Bondi. Five minutes from the beach, eight from the Junction. Open today 06.00 &ndash; 21.00."
+        photo="/images/gym-atmosphere.jpg"
+        photoAlt="The Arena Boxing floor in Bondi"
+        primaryCta={{ href: MAPS_URL, label: "Get Directions" }}
+        secondaryCta={{ href: "/timetable-redesign", label: "View Timetable" }}
+        aside={
           <div className={s.mapPlate}>
-            <Image src="/images/map-bondi-duotone.jpg" alt="Map of Bondi showing Arena Boxing on Campbell Parade" fill sizes="(max-width: 900px) 100vw, 40vw" />
+            <Image
+              src="/images/map-bondi-duotone.jpg"
+              alt="Map of Bondi showing Arena Boxing on Campbell Parade"
+              fill
+              sizes="(max-width: 900px) 100vw, 40vw"
+            />
             <span className={s.mapPin} aria-hidden="true">
               <span className={s.mapPinDot} />
               <span className={s.mapPinLabel}>Arena</span>
             </span>
             <div className={s.mapMeta}>
-              <span><b>123 Campbell Pde</b> &middot; Bondi NSW 2026</span>
+              <span>
+                <b>123 Campbell Pde</b> &middot; Bondi Beach NSW 2026
+              </span>
               <span>33&deg;53&prime;S 151&deg;16&prime;E</span>
             </div>
           </div>
-        </div>
-
-        <EdgeFX />
-      </section>
+        }
+      />
 
       {/* getting here */}
       <section className={sk.section}>
@@ -117,48 +115,29 @@ export default function LocationRedesignPage() {
       <section className={sk.section}>
         <div className={sk.sectionHead}>
           <span className={sk.sectionKicker}>When we're open</span>
-          <h2 className={sk.sectionTitle}>THE DOOR, THE HOURS, NO FINE PRINT</h2>
+          <h2 className={sk.sectionTitle}>OPENING HOURS</h2>
         </div>
         <div className={s.hours}>
-          <div className={`${s.hoursCell} ${s.focal}`}>
-            <p className={s.hoursDay}>MON &ndash; FRI</p>
-            <p className={s.hoursTime}>06.00 &ndash; 21.00</p>
-            <p className={s.hoursNote}>First call 06.00 &middot; last bell 21.00.</p>
-          </div>
-          <div className={s.hoursCell}>
-            <p className={s.hoursDay}>SAT</p>
-            <p className={s.hoursTime}>07.00 &ndash; 13.00</p>
-            <p className={s.hoursNote}>Long round 07.00 (members).</p>
-          </div>
-          <div className={s.hoursCell}>
-            <p className={s.hoursDay}>SUN</p>
-            <p className={s.hoursTime}>08.00 &ndash; 12.00</p>
-            <p className={s.hoursNote}>Open floor &middot; bag &amp; rope, no class.</p>
-          </div>
-          <div className={s.hoursCell}>
-            <p className={s.hoursDay}>PUB HOL</p>
-            <p className={s.hoursTime}>Reduced</p>
-            <p className={s.hoursNote}>Check before you walk.</p>
-          </div>
+          {HOURS.map((h) => (
+            <div
+              key={h.day}
+              className={`${s.hoursCell}${h.focal ? ` ${s.focal}` : ""}`}
+            >
+              <p className={s.hoursDay}>{h.day}</p>
+              <p className={s.hoursTime}>{h.time}</p>
+              <p className={s.hoursNote}>{h.note}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* contact band */}
-      <section className={sk.section}>
-        <div className={s.contact}>
-          <div className={s.contactText}>
-            <h3>HAVE A QUESTION?</h3>
-            <p>
-              First time, drop-in, or just want to see the place? Walk in during
-              open hours and our team will show you around. No appointment, no
-              pitch.
-            </p>
-          </div>
-          <Link href="/location" className={sk.btnSolid}>
-            Send a Message &rarr;
-          </Link>
-        </div>
-      </section>
+      <FeatureBand
+        mode="cta"
+        head="HAVE A QUESTION?"
+        body="First time, drop-in, or just want to see the place? Walk in during open hours and our team will show you around. No appointment, no pitch."
+        cta={{ href: "/location", label: "Send a Message" }}
+      />
 
       <MonumentCTA
         ghost="Here"

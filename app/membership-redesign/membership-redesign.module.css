@@ -20,16 +20,17 @@
   flex-wrap: wrap;
 }
 .mheroTitle {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 900;
   font-size: clamp(40px, 6vw, 84px);
   line-height: 0.9;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
   color: var(--cream-light, #f0e6db);
   text-shadow: 0 2px 22px rgba(0, 0, 0, 0.7);
 }
 .mheroSub {
-  font-family: var(--font-cormorant, "Cormorant Garamond"), serif;
-  font-style: italic;
+  font-family: var(--font-hn);
+  font-weight: 400;
   font-size: 19px;
   color: #c9a2a2;
   margin-top: 8px;
@@ -46,7 +47,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 600;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -85,7 +87,7 @@
   position: absolute;
   top: -1px;
   right: -1px;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -95,31 +97,36 @@
   padding: 6px 12px;
 }
 .tierPersona {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 600;
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(232, 221, 211, 0.5);
 }
 .tierName {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 900;
   font-size: 30px;
   line-height: 1.02;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.01em;
   color: var(--cream-light, #f0e6db);
   margin: 8px 0 6px;
   min-height: 60px;
 }
 .tierPrice { display: flex; align-items: baseline; gap: 6px; margin-bottom: 18px; }
 .tierAmount {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 900;
   font-size: 50px;
   line-height: 1;
+  letter-spacing: -0.01em;
   color: var(--cream-light, #f0e6db);
 }
 .tierAmountRec { color: var(--blood-red, #a31f1f); }
 .tierUnit {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 600;
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -130,6 +137,8 @@
   display: flex;
   gap: 10px;
   padding: 9px 0;
+  font-family: var(--font-hn);
+  font-weight: 400;
   font-size: 13px;
   line-height: 1.4;
   color: rgba(232, 221, 211, 0.74);
@@ -148,29 +157,30 @@
   align-items: start;
 }
 .tableWrap { overflow-x: auto; }
-.table { width: 100%; border-collapse: collapse; min-width: 540px; }
+.table { width: 100%; border-collapse: collapse; min-width: 540px; font-family: var(--font-hn); }
 .table th, .table td {
   padding: 13px 14px;
   border-bottom: 1px solid rgba(232, 221, 211, 0.12);
   text-align: center;
 }
 .table thead th {
-  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 800;
   font-size: 19px;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.005em;
   color: var(--cream-light, #f0e6db);
   border-bottom: 1px solid rgba(232, 221, 211, 0.22);
 }
 .table thead th.rec { color: var(--blood-red, #a31f1f); }
 .table tbody th {
   text-align: left;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 13px;
   color: rgba(232, 221, 211, 0.78);
 }
 .yes { color: var(--blood-red, #a31f1f); font-size: 15px; }
 .no { color: rgba(232, 221, 211, 0.22); }
-.cellNote { font-size: 12px; color: rgba(232, 221, 211, 0.6); }
+.cellNote { font-family: var(--font-hn); font-weight: 600; font-size: 12px; color: rgba(232, 221, 211, 0.6); }
 
 /* payment & cancellation panel */
 .payment {
@@ -183,7 +193,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -197,7 +208,8 @@
 }
 .paymentList > div:first-child { border-top: 0; padding-top: 0; }
 .paymentList dt {
-  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-family: var(--font-hn);
+  font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -206,6 +218,8 @@
 }
 .paymentList dd {
   margin: 0;
+  font-family: var(--font-hn);
+  font-weight: 400;
   font-size: 13px;
   line-height: 1.5;
   color: rgba(232, 221, 211, 0.62);
