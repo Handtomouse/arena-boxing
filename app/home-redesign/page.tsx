@@ -1,145 +1,97 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import sk from "@/components/redesign/skin.module.css";
 import s from "./home-redesign.module.css";
+import SkinNav from "@/components/redesign/SkinNav";
+import Hero from "@/components/redesign/Hero";
+import NextClassCard from "@/components/redesign/NextClassCard";
+import MonumentCTA from "@/components/redesign/MonumentCTA";
 
 export const metadata: Metadata = {
-  title: "Home (redesign preview)",
+  title: "Arena Boxing Bondi",
   description:
-    "Loader-skin Home reference — Old London focal blackletter, neon outline trace, edge package. Preview route on the redesign branch.",
+    "Real training, real coaches, real results. Coach-led boxing in Bondi, capped at twenty. Book your first class on the house.",
 };
 
-// Timetable / Membership / About are live routes. Programs + Start Here are
-// part of the redesign rollout and not built yet — placeholder "#" so the
-// preview never 404s. Wire to real routes when those pages land.
-const NAV = [
-  { href: "/timetable", label: "Timetable" },
-  { href: "#", label: "Programs" },
-  { href: "/membership", label: "Membership" },
-  { href: "#", label: "Start Here" },
-  { href: "/about", label: "About" },
-];
-
 const WHY = [
-  { t: "Real Training", d: "Coaching that meets you where you are and pushes from there. No filler rounds." },
-  { t: "Real Coaches", d: "Fighters and working pros who actually teach, corner to corner, every session." },
-  { t: "Real Environment", d: "A room that respects the work. No mirrors to pose in, no ego to feed." },
-  { t: "Real Community", d: "People who show up for the work, and for each other. You'll be missed if you don't." },
+  {
+    t: "Real Training",
+    d: "Coaching that meets you where you are and pushes from there. No filler rounds.",
+    photo: "/images/gym-training.jpg",
+  },
+  {
+    t: "Real Coaches",
+    d: "Fighters and working pros who actually teach, corner to corner, every session.",
+    photo: "/images/trainers/henry-payten.jpg",
+  },
+  {
+    t: "Real Environment",
+    d: "A room that respects the work. No mirrors to pose in, no ego to feed.",
+    photo: "/images/ring.jpg",
+  },
+  {
+    t: "Real Community",
+    d: "People who show up for the work, and for each other. You'll be missed if you don't.",
+    photo: "/images/gym-atmosphere.jpg",
+  },
 ];
 
 export default function HomeRedesignPage() {
   return (
-    <div className={s.page}>
-      {/* skinned top bar */}
-      <header className={s.topbar}>
-        <Link href="/home-redesign" className={s.wordmark}>
-          Arena
-        </Link>
-        <nav className={s.navlinks} aria-label="Primary">
-          {NAV.map((n) => (
-            <Link key={n.href} href={n.href}>
-              {n.label}
-            </Link>
-          ))}
-        </nav>
-        <div className={s.navright}>
-          <span className={s.live}>
-            <span className={s.dot} aria-hidden="true" />
-            Open &middot; Bondi &middot; 05.30
-          </span>
-          <Link href="/booking" className={s.bookBtn}>
-            Book a Class
-          </Link>
-        </div>
-      </header>
+    <div className={sk.page}>
+      <SkinNav />
 
-      {/* hero */}
-      <section className={s.hero}>
-        <div className={s.heroPhoto} aria-hidden="true" />
-        <span className={s.heroBloom} aria-hidden="true" />
+      <Hero
+        kicker="A boxing room in Bondi, after dark"
+        preline="THOSE WHO"
+        focal={{ word: "Dare", dash: 1700, viewBox: "0 0 560 200" }}
+        ghost="Arena"
+        sub="Real training. Real coaches. Real results."
+        photo="/images/gym-atmosphere.jpg"
+        photoAlt="Boxers training on the Arena floor in Bondi"
+        primaryCta={{ href: "/booking", label: "Book Your Class" }}
+        secondaryCta={{ href: "/timetable-redesign", label: "View Timetable" }}
+        aside={
+          <NextClassCard
+            title="THE WORK"
+            meta={["Today 06:30", "50 min", "Floor 1"]}
+            spotsTaken={6}
+            spotsTotal={16}
+            ctaLabel="Book 06:30 The Work"
+          />
+        }
+      />
 
-        <div className={s.heroBody}>
-          <div>
-            <p className={s.kicker}>&mdash; A boxing room in Bondi, after dark &mdash;</p>
-            <p className={s.preline}>THOSE WHO</p>
-            <svg
-              className={s.focalSvg}
-              viewBox="0 0 560 200"
-              role="img"
-              aria-label="Dare"
+      {/* WHY ARENA — photo-backed cards */}
+      <section className={sk.section} aria-label="Why Arena">
+        <div className={s.whyGrid}>
+          {WHY.map((c) => (
+            <article
+              key={c.t}
+              className={s.photoCard}
+              style={{ backgroundImage: `url(${c.photo})` }}
             >
-              <text className={s.focalBase} x="0" y="160">Dare</text>
-              <text className={s.focalDraw} x="0" y="160">Dare</text>
-              <text className={s.focalRun} x="0" y="160">Dare</text>
-            </svg>
-            <p className={s.heroSub}>Real training. Real coaches. Real results.</p>
-            <div className={s.ctaRow}>
-              <Link href="/booking" className={s.btnSolid}>
-                Book Your Class &rarr;
-              </Link>
-              <Link href="/timetable" className={s.btnGhost}>
-                View Timetable
-              </Link>
-            </div>
-          </div>
-
-          {/* THE WORK — next class panel (solid, legible) */}
-          <aside className={s.work}>
-            <span className={s.workKey}>
-              <span className={s.dot} aria-hidden="true" />
-              Next Class
-            </span>
-            <p className={s.workTitle}>THE WORK</p>
-            <div className={s.workMeta}>
-              <span>Today 06:30</span>
-              <span>50 min</span>
-              <span>Floor 1</span>
-            </div>
-            <div className={s.workBar} aria-label="6 of 16 spots left">
-              {Array.from({ length: 16 }).map((_, i) => (
-                <i key={i} className={i < 6 ? s.on : undefined} />
-              ))}
-            </div>
-            <Link href="/booking" className={s.workBtn}>
-              Book 06:30 The Work &rarr;
-            </Link>
-          </aside>
+              <span className={s.shade} aria-hidden="true" />
+              <div className={s.cardBody}>
+                <h3 className={s.cardTitle}>{c.t}</h3>
+                <p className={s.cardText}>{c.d}</p>
+              </div>
+            </article>
+          ))}
         </div>
-
-        <div className={s.grain} aria-hidden="true" />
-        <div className={s.scan} aria-hidden="true" />
-        <div className={s.vignette} aria-hidden="true" />
       </section>
 
-      {/* WHY ARENA */}
-      <section className={s.why} aria-label="Why Arena">
-        {WHY.map((c) => (
-          <article key={c.t} className={s.card}>
-            <span className={s.cardIcon} aria-hidden="true">
-              &#10022;
-            </span>
-            <h3 className={s.cardTitle}>{c.t}</h3>
-            <p className={s.cardBody}>{c.d}</p>
-          </article>
-        ))}
-      </section>
-
-      {/* conversion band */}
-      <section className={s.cta}>
-        <span className={s.ctaGhost} aria-hidden="true">
-          Begin
-        </span>
-        <div className={s.ctaLeft}>
-          <h2 className={s.ctaHead}>
+      <MonumentCTA
+        ghost="Begin"
+        head={
+          <>
             READY TO
             <br />
             GET STARTED?
-          </h2>
-          <p className={s.ctaSub}>First class on the house. No commitment, no follow-up.</p>
-        </div>
-        <Link href="/booking" className={s.btnSolid} style={{ position: "relative", zIndex: 1 }}>
-          Book Your First Class &rarr;
-        </Link>
-      </section>
+          </>
+        }
+        sub="First class on the house. No commitment, no follow-up."
+        cta="Book Your First Class →"
+      />
     </div>
   );
 }

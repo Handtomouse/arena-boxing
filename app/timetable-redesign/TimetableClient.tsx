@@ -127,9 +127,9 @@ function spotsLabel(c: ClassCard) {
 
 export default function TimetableClient() {
   const [filter, setFilter] = useState<Level | "all-classes">("all-classes");
-  const [active, setActive] = useState<ClassCard | null>(null);
+  const [active, setActive] = useState<(ClassCard & { date: string }) | null>(null);
 
-  const openClass = useCallback((c: ClassCard) => setActive(c), []);
+  const openClass = useCallback((c: ClassCard, date: string) => setActive({ ...c, date }), []);
   const close = useCallback(() => {
     setActive(null);
     if (typeof window !== "undefined") {
@@ -144,7 +144,7 @@ export default function TimetableClient() {
     for (const d of WEEK) {
       const hit = d.cards.find((c) => slugify(c.name) === param && !c.past);
       if (hit) {
-        setActive(hit);
+        setActive({ ...hit, date: d.date });
         break;
       }
     }
@@ -199,7 +199,7 @@ export default function TimetableClient() {
                 <button
                   key={`${c.time}-${i}`}
                   type="button"
-                  onClick={() => openClass(c)}
+                  onClick={() => openClass(c, d.date)}
                   className={`${s.class}${dim ? ` ${s.classDim}` : ""}${c.past ? ` ${s.classPast}` : ""}`}
                   aria-label={`${c.name} ${c.time} with ${c.coach}`}
                 >
@@ -255,42 +255,48 @@ export default function TimetableClient() {
                 <span>{info.floor}</span>
               </div>
 
-              <div className={s.modalGrid}>
-                <div className={s.modalRow}>
-                  <span className={s.modalK}>Coach</span>
-                  <span className={s.modalV}>{active.coach}</span>
+              <p className={s.modalDesc}>{info.desc}</p>
+
+              <div className={s.modalSection}>
+                <span className={s.modalSectionKey}>Class Details</span>
+                <div className={s.modalGrid}>
+                  <div className={s.modalRow}><span className={s.modalK}>Intensity</span><span className={s.modalV}>{info.intensity}</span></div>
+                  <div className={s.modalRow}><span className={s.modalK}>Level</span><span className={s.modalV}>{LEVEL_LABEL[active.level]}</span></div>
+                  <div className={s.modalRow}>
+                    <span className={s.modalK}>Spots left</span>
+                    <span className={s.modalV}>
+                      {active.waitlist || active.open === 0 ? "Waitlist only" : `${active.open} of ${active.total}`}
+                    </span>
+                  </div>
+                  <div className={s.modalRow}><span className={s.modalK}>Date</span><span className={s.modalV}>{active.date}</span></div>
+                  <div className={s.modalRow}><span className={s.modalK}>Time</span><span className={s.modalV}>{active.time}</span></div>
+                  <div className={s.modalRow}><span className={s.modalK}>Location</span><span className={s.modalV}>{info.floor}</span></div>
                 </div>
-                <div className={s.modalRow}>
-                  <span className={s.modalK}>Intensity</span>
-                  <span className={s.modalV}>{info.intensity}</span>
-                </div>
-                <div className={s.modalRow}>
-                  <span className={s.modalK}>Spots</span>
-                  <span className={s.modalV}>
-                    {active.waitlist || active.open === 0
-                      ? "Waitlist only"
-                      : `${active.open} of ${active.total} left`}
-                  </span>
-                </div>
-                <div className={s.modalRow}>
-                  <span className={s.modalK}>Bring</span>
-                  <span className={s.modalV}>Water &amp; a towel</span>
-                </div>
+                {!(active.waitlist || active.open === 0) && (
+                  <div className={`${sk.fillBar}`} aria-hidden="true">
+                    {Array.from({ length: active.total }).map((_, i) => (
+                      <i key={i} className={i < active.total - active.open ? sk.on : undefined} />
+                    ))}
+                  </div>
+                )}
               </div>
 
-              {!(active.waitlist || active.open === 0) && (
-                <div className={`${sk.fillBar}`} aria-hidden="true">
-                  {Array.from({ length: active.total }).map((_, i) => (
-                    <i key={i} className={i < active.total - active.open ? sk.on : undefined} />
-                  ))}
-                </div>
-              )}
+              <div className={s.modalSection}>
+                <span className={s.modalSectionKey}>What to Bring</span>
+                <ul className={s.bring}>
+                  <li>Gloves and wraps, provided here</li>
+                  <li>A water bottle</li>
+                  <li>A small towel</li>
+                  <li>Training shoes you can move in</li>
+                </ul>
+              </div>
 
-              <p className={s.modalDesc}>{info.desc}</p>
-              <p className={s.modalCancel}>
-                Gloves and wraps provided. Cancel up to 12 hours before for
-                drop-ins, 7 days for members. Freeze up to 3 months a year.
-              </p>
+              <div className={s.modalSection}>
+                <span className={s.modalSectionKey}>Cancellation Policy</span>
+                <p className={s.modalCancel}>
+                  Cancel up to 12 hours before for drop-ins, 7 days for members. Freeze up to 3 months a year.
+                </p>
+              </div>
 
               <div className={s.modalActions}>
                 <Link href="/booking" className={sk.btnSolid}>
