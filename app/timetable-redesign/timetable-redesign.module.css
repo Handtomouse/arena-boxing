@@ -66,6 +66,12 @@
   transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 .chip:hover { border-color: rgba(163, 31, 31, 0.6); color: var(--cream-light, #f0e6db); }
+.chip:focus-visible,
+.class:focus-visible,
+.modalClose:focus-visible {
+  outline: 2px solid var(--blood-red, #a31f1f);
+  outline-offset: 2px;
+}
 .chipOn {
   color: #fff;
   background: var(--blood-red, #a31f1f);
