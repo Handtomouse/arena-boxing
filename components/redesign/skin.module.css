@@ -14,9 +14,13 @@
 
 /* ───────────── page shell ───────────── */
 .page {
+  /* type pairing: Old London (blackletter focal) + Helvetica Neue Bold.
+     System stack — renders true on Apple; falls back to Arial elsewhere
+     until a licensed Helvetica Neue is self-hosted. */
+  --font-hn: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   background: #0a0807;
   color: var(--cream-primary, #e8ddd3);
-  font-family: var(--font-body, "Inter", sans-serif);
+  font-family: var(--font-hn);
   overflow-x: hidden;
 }
 
@@ -312,7 +316,16 @@
   stroke-width: 2;
   animation: draw 3s cubic-bezier(0.6, 0.05, 0.3, 1) forwards;
 }
+/* the living highlight — a short bright segment that loops the glyph outline,
+   the layer that makes the home "Dare" feel alive. dasharray set per-word. */
+.focalRun {
+  fill: none;
+  stroke: #ff5a4a;
+  stroke-width: 2.4;
+  animation: run 4.5s linear 3s infinite;
+}
 @keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes run { to { stroke-dashoffset: 0; } }
 
 /* ───────────── section scaffolding ───────────── */
 .section {
@@ -542,5 +555,6 @@
 @media (prefers-reduced-motion: reduce) {
   .dot { animation: none; }
   .focalDraw { animation: none; stroke-dashoffset: 0 !important; }
+  .focalRun { display: none; }
   .burger span { transition: none; }
 }
