@@ -1,0 +1,119 @@
+/* /about-redesign — page-specific layout. Shared skin from `sk`. */
+
+/* hero right — the space panel */
+.space {
+  align-self: center;
+  background: #15110f;
+  border: 1px solid rgba(232, 221, 211, 0.2);
+  border-left: 3px solid var(--blood-red, #a31f1f);
+  padding: 26px 28px;
+}
+.spaceKey {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--blood-red, #a31f1f);
+  margin-bottom: 12px;
+}
+.spaceHead {
+  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--cream-light, #f0e6db);
+  margin-bottom: 14px;
+}
+.spaceList { list-style: none; padding: 0; margin: 0; }
+.spaceList li {
+  display: flex;
+  gap: 10px;
+  padding: 9px 0;
+  font-size: 13px;
+  color: rgba(232, 221, 211, 0.74);
+  border-top: 1px solid rgba(232, 221, 211, 0.1);
+}
+.spaceList li:first-child { border-top: 0; }
+.spaceList li span { color: var(--blood-red, #a31f1f); flex: none; }
+
+/* coaches grid */
+.coaches {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.coach {
+  background: #100c0b;
+  border: 1px solid rgba(232, 221, 211, 0.16);
+}
+.coachPhoto {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: #0a0807;
+  filter: grayscale(0.5) contrast(1.08) brightness(0.92);
+}
+.coachPhoto img { object-fit: cover; }
+.coachBody { padding: 16px 18px 20px; }
+.coachName {
+  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.03em;
+  color: var(--cream-light, #f0e6db);
+}
+.coachRole {
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blood-red, #a31f1f);
+  margin: 4px 0 10px;
+}
+.coachBio {
+  font-size: 12px;
+  line-height: 1.5;
+  font-style: italic;
+  color: rgba(232, 221, 211, 0.45);
+}
+
+/* creed band */
+.creed {
+  position: relative;
+  padding: 72px 40px;
+  text-align: center;
+  background:
+    linear-gradient(rgba(10, 8, 7, 0.78), rgba(10, 8, 7, 0.86)),
+    url("/images/ring.jpg") center / cover;
+  border-top: 1px solid rgba(232, 221, 211, 0.12);
+}
+.creedQuote {
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: var(--font-cormorant, "Cormorant Garamond"), serif;
+  font-style: italic;
+  font-size: clamp(24px, 3.2vw, 40px);
+  line-height: 1.25;
+  color: var(--cream-light, #f0e6db);
+}
+.creedBy {
+  display: block;
+  margin-top: 22px;
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--blood-red, #a31f1f);
+}
+
+@media (max-width: 900px) {
+  .coaches { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .coaches { grid-template-columns: 1fr; }
+  .creed { padding: 52px 22px; }
+}
