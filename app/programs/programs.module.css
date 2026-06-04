@@ -1,0 +1,86 @@
+/* /programs — page-specific layout. Shared skin tokens come from
+   components/redesign/skin.module.css (imported as `sk`). This file only holds
+   the grids and the hero index panel that the kit doesn't generalise. */
+
+/* hero index panel (right column) — solid + legible, mirrors Home's THE WORK */
+.index {
+  align-self: center;
+  background: #15110f;
+  border: 1px solid rgba(232, 221, 211, 0.2);
+  border-left: 3px solid var(--blood-red, #a31f1f);
+  padding: 24px 26px;
+}
+.indexKey {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--blood-red, #a31f1f);
+  margin-bottom: 14px;
+}
+.indexList { display: flex; flex-direction: column; }
+.indexRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  border-top: 1px solid rgba(232, 221, 211, 0.12);
+}
+.indexRow:first-of-type { border-top: 0; }
+.indexName {
+  font-family: var(--font-bebas, "Bebas Neue"), sans-serif;
+  font-size: 21px;
+  letter-spacing: 0.03em;
+  color: var(--cream-light, #f0e6db);
+}
+.indexTag {
+  font-family: var(--font-barlow, "Barlow Semi Condensed"), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232, 221, 211, 0.55);
+  white-space: nowrap;
+}
+.indexNote {
+  margin: 14px 0 16px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(232, 221, 211, 0.6);
+}
+
+/* program cards — 5 disciplines in one row, mirrors the kit cardGrid look */
+.progGrid {
+  position: relative;
+  z-index: 2;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: rgba(232, 221, 211, 0.14);
+  border: 1px solid rgba(232, 221, 211, 0.16);
+}
+
+/* beginner pathway — 4 numbered steps */
+.pathway {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(232, 221, 211, 0.14);
+  border: 1px solid rgba(232, 221, 211, 0.16);
+}
+
+@media (max-width: 900px) {
+  .progGrid { grid-template-columns: 1fr 1fr; }
+  .pathway { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .progGrid { grid-template-columns: 1fr; }
+  .pathway { grid-template-columns: 1fr; }
+}
