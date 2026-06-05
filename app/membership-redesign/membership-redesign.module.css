@@ -20,13 +20,15 @@
   flex-wrap: wrap;
 }
 .mheroTitle {
-  font-family: var(--font-hn);
-  font-weight: 900;
-  font-size: clamp(40px, 6vw, 84px);
-  line-height: 0.9;
-  letter-spacing: -0.01em;
-  color: var(--cream-light, #f0e6db);
-  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.7);
+  /* wraps the FocalWord SVG — Old London draw-on + looping red running highlight,
+     parity with the timetable hero and the other focal words. text-transform:none
+     so the SVG text isn't uppercased by the global h1 rule. */
+  margin: 0;
+  text-transform: none;
+}
+/* element selector beats .focalSvg so the focal is sized for this side-by-side hero */
+.mheroTitle svg {
+  width: min(470px, 90%);
 }
 .mheroSub {
   font-family: var(--font-hn);

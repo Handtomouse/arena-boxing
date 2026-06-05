@@ -4,6 +4,7 @@ import sk from "@/components/redesign/skin.module.css";
 import s from "./membership-redesign.module.css";
 import SkinNav from "@/components/redesign/SkinNav";
 import MonumentCTA from "@/components/redesign/MonumentCTA";
+import FocalWord from "@/components/redesign/FocalWord";
 
 export const metadata: Metadata = {
   title: "Membership (redesign preview)",
@@ -99,12 +100,15 @@ export default function MembershipRedesignPage() {
     <div className={sk.page}>
       <SkinNav />
 
-      {/* compact hero — dense page, NO focal trace */}
+      {/* compact hero — Old London focal word with draw-on + red running highlight
+          (parity with the timetable hero) */}
       <section className={s.mhero}>
         <div className={s.mheroWrap}>
           <div>
             <p className={sk.kicker}>Flexible options, no lock-in</p>
-            <h1 className={s.mheroTitle}>MEMBERSHIP OPTIONS</h1>
+            <h1 className={s.mheroTitle}>
+              <FocalWord word="Membership" dash={4200} viewBox="0 0 770 200" ariaLabel="Membership" />
+            </h1>
             <p className={s.mheroSub}>Match your week to a price. Cancel anytime, no contracts.</p>
           </div>
           <ul className={s.chips}>
