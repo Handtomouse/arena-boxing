@@ -248,6 +248,12 @@
 .focalSvg text {
   font-family: var(--font-display, "Old London"), serif;
   font-size: 188px;
+  /* Old London is a 400-only font with no bold master. Without pinning this,
+     focal words wrapped in an <h1> (timetable/membership) inherit the global
+     h1 { font-weight: 700 } and the browser synthesizes faux-bold, multi-striking
+     each glyph contour; on a fill:none stroked outline that turns every pen-stroke
+     into 2-3 thick parallel red lines. Pin 400 for one clean line, like the heroes. */
+  font-weight: 400;
 }
 .focalBase {
   fill: none;
