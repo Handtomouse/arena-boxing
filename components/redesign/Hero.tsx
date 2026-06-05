@@ -49,27 +49,29 @@ export default function Hero({
       {ghost ? <span className={s.ghost} aria-hidden="true">{ghost}</span> : null}
       <span className={s.bloom} aria-hidden="true" />
 
-      <div className={`${s.body}${aside ? "" : ` ${s.bodyNoAside}`}`}>
-        <div>
-          <p className={s.kicker}>{kicker}</p>
-          <p className={s.pre}>{preline}</p>
-          <div className={s.focal}>
-            <FocalWord
-              word={focal.word}
-              dash={focal.dash ?? 1750}
-              runLen={focal.runLen}
-              viewBox={focal.viewBox ?? "0 0 560 200"}
-            />
-          </div>
-          <p className={s.sub}>{sub}</p>
-          <div className={s.ctas}>
-            <Link href={primaryCta.href} className={sk.btnSolid}>{primaryCta.label} &rarr;</Link>
-            {secondaryCta ? (
-              <Link href={secondaryCta.href} className={sk.btnGhost}>{secondaryCta.label}</Link>
-            ) : null}
-          </div>
+      <div className={s.body}>
+        <p className={s.kicker}>{kicker}</p>
+        <p className={s.pre}>{preline}</p>
+        <div className={s.focal}>
+          <FocalWord
+            word={focal.word}
+            dash={focal.dash ?? 1750}
+            runLen={focal.runLen}
+            viewBox={focal.viewBox ?? "0 0 560 200"}
+          />
         </div>
-        {aside ? <div>{aside}</div> : null}
+        <div className={`${s.lower}${aside ? "" : ` ${s.lowerNoAside}`}`}>
+          <div>
+            <p className={s.sub}>{sub}</p>
+            <div className={s.ctas}>
+              <Link href={primaryCta.href} className={sk.btnSolid}>{primaryCta.label} &rarr;</Link>
+              {secondaryCta ? (
+                <Link href={secondaryCta.href} className={sk.btnGhost}>{secondaryCta.label}</Link>
+              ) : null}
+            </div>
+          </div>
+          {aside ? <div>{aside}</div> : null}
+        </div>
       </div>
 
       <EdgeFX />
