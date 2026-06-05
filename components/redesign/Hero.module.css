@@ -40,10 +40,12 @@
 .body {
   position: relative; z-index: 6;
   width: 100%; max-width: 1240px; margin: 0 auto;
-  display: grid; grid-template-columns: 1.25fr 0.78fr; gap: 44px; align-items: center;
-  padding: 64px 40px;
+  padding: 58px 40px;
 }
-.bodyNoAside { grid-template-columns: 1fr; }
+/* full-width focal band: kicker + preline + focal span the whole width, then a
+   lower row carries the sub/CTAs (left) and the swappable aside card (right). */
+.lower { display: grid; grid-template-columns: 1.3fr 0.72fr; gap: 44px; align-items: end; margin-top: 26px; }
+.lowerNoAside { grid-template-columns: 1fr; }
 
 .kicker {
   font-family: var(--font-hn); font-weight: 700;
@@ -55,7 +57,8 @@
   font-size: clamp(30px, 4.4vw, 60px); line-height: 1; letter-spacing: -0.012em; text-transform: uppercase;
   color: var(--cream-light, #f0e6db); text-shadow: 0 2px 18px rgba(0,0,0,0.75); padding-left: 2px;
 }
-.focal { display: block; width: min(640px, 98%); margin-top: -0.12em; }
+.focal { display: block; width: 100%; margin-top: -0.04em; }
+.focal svg { width: auto; height: clamp(120px, 15.5vw, 200px); max-width: 100%; }
 .sub {
   font-family: var(--font-hn); font-weight: 400;
   font-size: 17px; line-height: 1.5; color: #c9a2a2; margin: 18px 0 26px; max-width: 46ch;
@@ -64,7 +67,8 @@
 
 @media (max-width: 900px) {
   .hero { min-height: 0; }
-  .body { grid-template-columns: 1fr; gap: 28px; padding: 48px 22px; }
+  .body { padding: 44px 22px; }
+  .lower { grid-template-columns: 1fr; gap: 22px; margin-top: 18px; }
   .ghost { font-size: clamp(200px, 56vw, 340px); }
 }
 
@@ -80,7 +84,7 @@
   .focal { animation-delay: 0.28s; }
   .sub { animation-delay: 0.46s; }
   .ctas { animation-delay: 0.58s; }
-  .body > div:nth-child(2) { animation: heroIn 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: 0.52s; }
+  .lower > div:nth-child(2) { animation: heroIn 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: 0.52s; }
 }
 @keyframes heroIn {
   from { opacity: 0; transform: translateY(16px); }
