@@ -12,13 +12,13 @@
 }
 .theroWrap { max-width: 1240px; margin: 0 auto; position: relative; z-index: 2; }
 .theroTitle {
-  font-family: var(--font-hn);
-  font-weight: 900;
-  font-size: clamp(52px, 8vw, 108px);
-  line-height: 0.9;
-  letter-spacing: -0.01em;
-  color: var(--cream-light, #f0e6db);
-  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.7);
+  /* wraps the FocalWord SVG — Old London draw-on + looping red running highlight,
+     matching the other heroes' focal words. The glyph trace, red glow and motion
+     all live on .focalSvg in the skin; this is just the heading box. */
+  margin: 2px 0 0;
+  /* the SVG <text> inherits the global h1 uppercase (globals.css) otherwise;
+     none keeps it title-case "Timetable" to match the other focal words. */
+  text-transform: none;
 }
 .theroSub {
   font-family: var(--font-hn);

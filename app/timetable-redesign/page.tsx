@@ -3,6 +3,7 @@ import sk from "@/components/redesign/skin.module.css";
 import s from "./timetable-redesign.module.css";
 import SkinNav from "@/components/redesign/SkinNav";
 import MonumentCTA from "@/components/redesign/MonumentCTA";
+import FocalWord from "@/components/redesign/FocalWord";
 import TimetableClient from "./TimetableClient";
 
 export const metadata: Metadata = {
@@ -16,11 +17,14 @@ export default function TimetableRedesignPage() {
     <div className={sk.page}>
       <SkinNav />
 
-      {/* compact hero — dense page, NO focal trace (solid + legible) */}
+      {/* compact hero — Old London focal word with draw-on + red running highlight
+          (per Nate; overrides the dense-page no-trace default) */}
       <section className={s.thero}>
         <div className={s.theroWrap}>
           <p className={sk.kicker}>Twenty-seven sessions this week</p>
-          <h1 className={s.theroTitle}>TIMETABLE</h1>
+          <h1 className={s.theroTitle}>
+            <FocalWord word="Timetable" dash={3500} viewBox="0 0 685 200" ariaLabel="Timetable" />
+          </h1>
           <p className={s.theroSub}>Find your hour and book your spot. Tap any class for the detail.</p>
         </div>
       </section>
