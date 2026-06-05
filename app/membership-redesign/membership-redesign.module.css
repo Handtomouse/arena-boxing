@@ -14,10 +14,10 @@
   max-width: 1240px;
   margin: 0 auto;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 30px;
-  flex-wrap: wrap;
+  /* stack chips below the title so the focal word can go full-width at hero letter-size */
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
 }
 .mheroTitle {
   /* wraps the FocalWord SVG — Old London draw-on + looping red running highlight,
@@ -28,7 +28,7 @@
 }
 /* element selector beats .focalSvg so the focal is sized for this side-by-side hero */
 .mheroTitle svg {
-  width: min(470px, 90%);
+  width: min(780px, 96%);
 }
 .mheroSub {
   font-family: var(--font-hn);

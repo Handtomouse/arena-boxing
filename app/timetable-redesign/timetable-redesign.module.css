@@ -20,6 +20,10 @@
      none keeps it title-case "Timetable" to match the other focal words. */
   text-transform: none;
 }
+/* size to hero letter-size (~188px) so it matches the other focal words */
+.theroTitle svg {
+  width: min(680px, 96%);
+}
 .theroSub {
   font-family: var(--font-hn);
   font-weight: 400;
