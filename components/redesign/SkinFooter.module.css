@@ -4,7 +4,6 @@
    beneath. Route-scoped via ChromeFooter — the live site keeps its own footer. */
 
 .footer {
-  --font-hn: "Helvetica Neue", "HelveticaNeue", var(--font-arimo), Helvetica, Arial, sans-serif;
   position: relative;
   background: #080605;
   border-top: 1px solid rgba(232, 221, 211, 0.14);
@@ -45,11 +44,16 @@
 }
 .brand {}
 .wordmark {
-  font-family: var(--font-display, "Old London"), serif;
-  font-size: 34px;
-  line-height: 1;
-  color: var(--cream-light, #f0e6db);
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+  display: inline-flex;
+  align-items: center;
+  width: 136px;
+  height: 50px;
+}
+.wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.7));
 }
 .tagline {
   display: block;
@@ -145,7 +149,13 @@
   .brand { grid-column: 1 / -1; }
 }
 @media (max-width: 560px) {
-  .wrap { padding: 44px 22px 24px; }
+  .wrap { padding: 44px 22px 64px; }
   .cols { grid-template-columns: 1fr; }
+  .monument {
+    font-size: clamp(19px, 8vw, 32px);
+    line-height: 1.08;
+    white-space: normal;
+    overflow: visible;
+  }
   .railEnd { margin-left: 0; width: 100%; margin-top: 6px; }
 }

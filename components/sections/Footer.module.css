@@ -67,15 +67,15 @@
   gap: 14px;
 }
 .wordmark {
-  font-family: var(--font-display), 'Old London', 'UnifrakturMaguntia', serif;
-  font-weight: 400;
-  font-size: clamp(40px, 4.6vw, 60px);
-  line-height: 0.95;
-  letter-spacing: 0.01em;
-  color: var(--cream-primary);
+  width: min(260px, 72vw);
+  line-height: 0;
   margin: 0;
-  text-transform: none;
-  text-shadow: 0 0 1px rgba(240, 230, 219, 0.4), 0 0 34px rgba(125, 30, 30, 0.2);
+}
+.wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 1px rgba(240, 230, 219, 0.4)) drop-shadow(0 0 34px rgba(125, 30, 30, 0.2));
 }
 .tagline {
   font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
