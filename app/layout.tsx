@@ -5,11 +5,11 @@ import {
   Cormorant_Garamond,
   Barlow_Semi_Condensed,
   Bebas_Neue,
+  Arimo,
 } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/components/ui/Navigation";
-import Footer from "@/components/sections/Footer";
-import StickyBottomCTA from "@/components/ui/StickyBottomCTA";
+import ChromeFooter from "@/components/redesign/ChromeFooter";
+import LegacyChrome from "@/components/redesign/LegacyChrome";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import { getOrganizationSchema, getLocalBusinessSchema, getWebSiteSchema } from "@/lib/structured-data";
 
@@ -55,6 +55,18 @@ const bebas = Bebas_Neue({
   weight: "400",
   display: "swap",
   fallback: ["Oswald", "sans-serif"],
+});
+
+// Arimo — metric-compatible with Helvetica, self-hosted by next/font. The
+// deployable fallback in the --font-hn stack so off-Apple visitors get a
+// Helvetica-near face instead of Arial. (Static weights; Black-900 display
+// degrades to Arimo 700 off-Apple until a licensed Helvetica Neue is hosted.)
+const arimo = Arimo({
+  subsets: ["latin"],
+  variable: "--font-arimo",
+  weight: ["400", "700"],
+  display: "swap",
+  fallback: ["Helvetica", "Arial", "sans-serif"],
 });
 
 export const viewport: Viewport = {
@@ -129,7 +141,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${unifraktur.variable} ${cormorant.variable} ${barlow.variable} ${bebas.variable}`}
+      className={`${inter.variable} ${unifraktur.variable} ${cormorant.variable} ${barlow.variable} ${bebas.variable} ${arimo.variable}`}
     >
       <head>
         <link
@@ -164,12 +176,11 @@ export default function RootLayout({
         {/* Google Analytics 4 */}
         <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
 
-        <Navigation />
+        <LegacyChrome />
         <main>
           {children}
         </main>
-        <Footer />
-        <StickyBottomCTA />
+        <ChromeFooter />
       </body>
     </html>
   );

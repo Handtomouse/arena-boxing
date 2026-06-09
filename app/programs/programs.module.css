@@ -1,0 +1,40 @@
+/* /programs — built to docs/wireframes/programs-01.png on the locked kit:
+   combined Hero (aside = NextClassCard) + five disciplines + beginner pathway
+   + monument CTA. Page-specific grids only; the rest is the shared skin. */
+
+/* five disciplines — contained grid, hairline dividers (matches kit cards) */
+.disc {
+  position: relative;
+  z-index: 2;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: rgba(232, 221, 211, 0.14);
+  border: 1px solid rgba(232, 221, 211, 0.16);
+}
+
+/* beginner pathway — 4 numbered steps */
+.pathway {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(232, 221, 211, 0.14);
+  border: 1px solid rgba(232, 221, 211, 0.16);
+}
+
+@media (max-width: 1040px) {
+  .disc { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .pathway { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 620px) {
+  .disc { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .disc, .pathway { grid-template-columns: 1fr; }
+}
