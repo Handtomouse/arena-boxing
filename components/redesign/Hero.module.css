@@ -1,0 +1,102 @@
+/* Arena Boxing — content-page hero (the locked "combined" direction):
+   cinematic photo + Old London monument ghost + three-layer focal word +
+   swappable right aside (live class card / panel / map). Type pairing is
+   Old London (focal/ghost) + Helvetica Neue (Black 900 display, everything
+   else via the page's --font-hn). Dense pages use their own compact hero. */
+
+.hero {
+  position: relative;
+  min-height: 660px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #000;
+}
+.photo { position: absolute; inset: 0; z-index: 0; }
+.photo img {
+  object-fit: cover;
+  filter: grayscale(0.35) contrast(1.16) brightness(0.5);
+  transform-origin: 60% 40%;
+  animation: kenburns 26s ease-in-out infinite alternate;
+}
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.07); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo img { animation: none; }
+}
+.shade { position: absolute; inset: 0; z-index: 1; background: linear-gradient(100deg, rgba(8,5,4,0.94) 0%, rgba(8,5,4,0.66) 40%, rgba(8,5,4,0.2) 78%, rgba(8,5,4,0.5) 100%); }
+.vig { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse 92% 94% at 42% 48%, transparent 0%, transparent 44%, rgba(0,0,0,0.55) 84%, rgba(0,0,0,0.92) 100%); }
+.bloom { position: absolute; left: -120px; top: -100px; width: 540px; height: 540px; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(163,31,31,0.3), transparent 64%); }
+.ghost {
+  position: absolute; left: 46%; top: 50%; transform: translate(-50%,-50%); z-index: 2;
+  font-family: var(--font-display, "Old London"), serif;
+  font-size: clamp(280px, 42vw, 620px); line-height: 0.78; white-space: nowrap;
+  color: transparent; -webkit-text-stroke: 1.5px rgba(163,31,31,0.2);
+  text-shadow: 0 0 60px rgba(125,30,30,0.18); pointer-events: none;
+}
+
+.body {
+  position: relative; z-index: 6;
+  width: 100%; max-width: 1240px; margin: 0 auto;
+  padding: 58px 40px;
+}
+/* full-width focal band: kicker + preline + focal span the whole width, then a
+   lower row carries the sub/CTAs (left) and the swappable aside card (right). */
+.lower { display: grid; grid-template-columns: 1.3fr 0.72fr; gap: 44px; align-items: end; margin-top: 26px; }
+.lowerNoAside { grid-template-columns: 1fr; }
+
+.kicker {
+  font-family: var(--font-hn); font-weight: 700;
+  font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--blood-red, #a31f1f); margin-bottom: 16px;
+}
+.pre {
+  font-family: var(--font-hn); font-weight: 900;
+  font-size: clamp(30px, 4.4vw, 60px); line-height: 1; letter-spacing: -0.012em; text-transform: uppercase;
+  color: var(--cream-light, #f0e6db); text-shadow: 0 2px 18px rgba(0,0,0,0.75); padding-left: 2px;
+}
+.focal {
+  display: block;
+  width: 100%;
+  margin-top: clamp(-30px, -1.8vw, -16px);
+  line-height: 0;
+}
+.focal svg {
+  display: block;
+  width: auto;
+  height: clamp(120px, 15.5vw, 200px);
+  max-width: 100%;
+}
+.sub {
+  font-family: var(--font-hn); font-weight: 400;
+  font-size: 17px; line-height: 1.5; color: #c9a2a2; margin: 18px 0 26px; max-width: 46ch;
+}
+.ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .hero { min-height: 0; }
+  .body { padding: 44px 22px; }
+  .lower { grid-template-columns: 1fr; gap: 22px; margin-top: 18px; }
+  .ghost { font-size: clamp(200px, 56vw, 340px); }
+}
+
+/* page-load orchestration — the hero stack rises in sequence */
+@media (prefers-reduced-motion: no-preference) {
+  .kicker,
+  .pre,
+  .focal,
+  .sub,
+  .ctas { animation: heroIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .kicker { animation-delay: 0.05s; }
+  .pre { animation-delay: 0.15s; }
+  .focal { animation-delay: 0.28s; }
+  .sub { animation-delay: 0.46s; }
+  .ctas { animation-delay: 0.58s; }
+  .lower > div:nth-child(2) { animation: heroIn 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: 0.52s; }
+}
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}

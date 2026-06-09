@@ -29,7 +29,9 @@ const Footer: React.FC<FooterProps> = ({ showSocial = true, className = '' }) =>
         <div className={styles.main}>
           {/* Brand */}
           <div className={styles.brand}>
-            <h2 className={styles.wordmark}>Arena Boxing Bondi</h2>
+            <h2 className={styles.wordmark}>
+              <img src="/images/wordmark/arena-cream.svg" alt="Arena Boxing Bondi" />
+            </h2>
             <span className={styles.tagline}>
               Those who <em>dare.</em>
             </span>

@@ -1,0 +1,101 @@
+/* /about-redesign — page-specific layout built to docs/wireframes/about.png on
+   the locked kit: combined Hero (aside = THE SPACE panel) + values cards +
+   coach photo cards + testimonial FeatureBand + monument CTA. Page-specific
+   pieces only; the rest is the shared skin. Helvetica Neue (--font-hn)
+   throughout — Black 900 display, Bold 700 labels, 400 body. */
+
+/* hero right — the space panel (modeled on NextClassCard) */
+.space {
+  align-self: center;
+  background: #15110f;
+  border: 1px solid rgba(232, 221, 211, 0.2);
+  border-left: 3px solid var(--blood-red, #a31f1f);
+  padding: 24px 26px;
+}
+.spaceKey {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-hn);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--blood-red, #a31f1f);
+  margin-bottom: 12px;
+}
+.spaceHead {
+  font-family: var(--font-hn);
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 1.05;
+  letter-spacing: -0.006em;
+  color: var(--cream-light, #f0e6db);
+  margin-bottom: 14px;
+}
+.spaceList { list-style: none; padding: 0; margin: 0; }
+.spaceList li {
+  display: flex;
+  gap: 10px;
+  padding: 9px 0;
+  font-family: var(--font-hn);
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(232, 221, 211, 0.74);
+  border-top: 1px solid rgba(232, 221, 211, 0.1);
+}
+.spaceList li:first-child { border-top: 0; }
+.spaceList li span { color: var(--blood-red, #a31f1f); flex: none; }
+
+/* coaches grid */
+.coaches {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.coach {
+  background: #100c0b;
+  border: 1px solid rgba(232, 221, 211, 0.16);
+}
+.coachPhoto {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: #0a0807;
+  filter: grayscale(0.5) contrast(1.08) brightness(0.92);
+}
+.coachPhoto img { object-fit: cover; }
+.coachBody { padding: 16px 18px 20px; }
+.coachName {
+  font-family: var(--font-hn);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.01em;
+  color: var(--cream-light, #f0e6db);
+}
+.coachRole {
+  font-family: var(--font-hn);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blood-red, #a31f1f);
+  margin: 4px 0 10px;
+}
+.coachBio {
+  font-family: var(--font-hn);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  font-style: italic;
+  color: rgba(232, 221, 211, 0.45);
+}
+
+@media (max-width: 900px) {
+  .coaches { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .coaches { grid-template-columns: 1fr; }
+}

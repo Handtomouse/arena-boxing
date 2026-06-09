@@ -1,0 +1,90 @@
+/* Arena Boxing — Home redesign.
+   On the locked kit (SkinNav + Hero + MonumentCTA from @/components/redesign).
+   This module holds ONLY the page-specific WHY photo-card grid; everything
+   else is the shared skin. Type: Helvetica Neue (900 display / 700 labels /
+   400 body), Old London reserved for the focal/ghost in the kit. */
+
+/* ───────────── WHY ARENA — photo-backed cards ───────────── */
+.whyGrid {
+  position: relative;
+  z-index: 2;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(232, 221, 211, 0.16);
+  border: 1px solid rgba(232, 221, 211, 0.16);
+}
+
+.photoCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 300px;
+  padding: 26px 24px 30px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* darkening overlay so the label/body stay legible over any photo */
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(8, 6, 5, 0.92) 0%,
+    rgba(8, 6, 5, 0.72) 38%,
+    rgba(8, 6, 5, 0.34) 70%,
+    rgba(8, 6, 5, 0.2) 100%
+  );
+}
+
+.cardBody {
+  position: relative;
+  z-index: 1;
+}
+
+.cardTitle {
+  font-family: var(--font-hn, "Helvetica Neue", Helvetica, Arial, sans-serif);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--cream-light, #f0e6db);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
+}
+
+.cardText {
+  font-family: var(--font-hn, "Helvetica Neue", Helvetica, Arial, sans-serif);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(232, 221, 211, 0.82);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* ───────────── responsive ───────────── */
+@media (max-width: 900px) {
+  .whyGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .whyGrid {
+    grid-template-columns: 1fr;
+  }
+  .photoCard {
+    min-height: 240px;
+  }
+}
+
+/* ───────────── reduced motion: nothing to settle here ───────────── */

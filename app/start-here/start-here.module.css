@@ -1,0 +1,70 @@
+/* /start-here — built to docs/wireframes/start-here.png on the locked kit:
+   combined Hero (aside = NextClassCard) + six what-to-expect steps + four
+   essentials + two beginner-friendly classes + no-ego ethos band + monument
+   CTA. Page-specific grids/cards only; the rest is the shared skin.
+   All page type uses Helvetica via var(--font-hn) — never bebas/barlow. */
+
+/* six what-to-expect steps — one row of 6 (overrides bare sk.steps) */
+.expect {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* beginner-friendly class list */
+.classes {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.classCard {
+  background: #15110f;
+  border: 1px solid rgba(232, 221, 211, 0.18);
+  border-left: 3px solid var(--blood-red, #a31f1f);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.classTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+}
+.className {
+  font-family: var(--font-hn);
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: 0.03em;
+  color: var(--cream-light, #f0e6db);
+}
+.classTime {
+  font-family: var(--font-hn);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blood-red, #a31f1f);
+  white-space: nowrap;
+}
+.classBody { font-size: 13px; line-height: 1.55; color: rgba(232, 221, 211, 0.62); }
+.classMeta {
+  font-family: var(--font-hn);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(232, 221, 211, 0.5);
+}
+
+@media (max-width: 1040px) {
+  .expect { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .expect { grid-template-columns: 1fr 1fr; }
+  .classes { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .expect { grid-template-columns: 1fr; }
+}

@@ -14,6 +14,13 @@
 }
 
 :root {
+  /* Redesign skin display face — single source of truth for --font-hn.
+     Apple gets the real Helvetica Neue; everyone else self-hosted Arimo
+     (metric-compatible) before the Arial backstop. Was duplicated in the skin
+     .page + SkinFooter .footer; hoisted here so the promoted nav/footer that
+     render outside .page resolve it too. */
+  --font-hn: "Helvetica Neue", "HelveticaNeue", var(--font-arimo), Helvetica, Arial, sans-serif;
+
   /* Arena Brand Colors - Deep Burgundy + Cream */
   --burgundy-primary: #7D1E1E;
   --burgundy-light: #8B2635;
@@ -1017,6 +1024,16 @@ hapana-widget a[role="button"] {
   filter: blur(18px);
   animation: lp-blur-fade-in 3s cubic-bezier(0.2, 0.7, 0.2, 1) 0s forwards;
 }
+.landing-page .lp-wordmark img {
+  display: block;
+  width: min(760px, 86vw);
+  height: auto;
+  margin: 0 auto;
+  filter:
+    drop-shadow(0 2px 0 rgba(0, 0, 0, 0.4))
+    drop-shadow(0 18px 60px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 0 38px rgba(163, 31, 31, 0.22));
+}
 .landing-page .lp-wordmark::after {
   content: "";
   position: absolute;
@@ -1271,6 +1288,9 @@ hapana-widget a[role="button"] {
   }
   .landing-page .lp-wordmark {
     font-size: clamp(110px, 30vw, 180px);
+  }
+  .landing-page .lp-wordmark img {
+    width: min(520px, 88vw);
   }
   .landing-page .lp-skip::before,
   .landing-page .lp-skip::after {
