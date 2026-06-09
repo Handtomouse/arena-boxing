@@ -12,30 +12,68 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const STORAGE_KEY = 'arena_intro_seen';
 
-export default function LandingMockG() {
+type LandingMockGProps = {
+  mode?: 'gate' | 'route';
+  exitHref?: string;
+  onComplete?: () => void;
+};
+
+export default function LandingMockG({
+  mode = 'route',
+  exitHref = '/',
+  onComplete,
+}: LandingMockGProps) {
   const router = useRouter();
   const [countdown, setCountdown] = useState(10);
   const [skipping, setSkipping] = useState(false);
 
+  const completeIntro = useCallback(
+    (delay: number) => {
+      if (skipping) return;
+      setSkipping(true);
+
+      setTimeout(() => {
+        try {
+          sessionStorage.setItem(STORAGE_KEY, '1');
+        } catch {
+          // Ignore storage failures; the intro should still exit.
+        }
+
+        if (onComplete) {
+          onComplete();
+          return;
+        }
+
+        router.push(exitHref);
+      }, delay);
+    },
+    [exitHref, onComplete, router, skipping]
+  );
+
   useEffect(() => {
-    // Return-visit bypass: skip the cinematic
-    if (typeof window !== 'undefined' && sessionStorage.getItem(STORAGE_KEY)) {
-      router.push('/home');
-      return;
+    if (mode === 'gate') {
+      try {
+        if (sessionStorage.getItem(STORAGE_KEY)) {
+          onComplete?.();
+          return;
+        }
+      } catch {
+        // Storage can fail in private modes; show the intro.
+      }
     }
-    sessionStorage.setItem(STORAGE_KEY, '1');
+
+    if (skipping) return;
 
     const timer = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          setSkipping(true);
-          setTimeout(() => router.push('/home'), 800);
+          completeIntro(800);
           return 0;
         }
         return prev - 1;
@@ -43,12 +81,10 @@ export default function LandingMockG() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [router]);
+  }, [completeIntro, mode, onComplete, skipping]);
 
   const handleEnter = () => {
-    if (skipping) return;
-    setSkipping(true);
-    setTimeout(() => router.push('/home'), 600);
+    completeIntro(600);
   };
 
   return (
@@ -140,7 +176,7 @@ export default function LandingMockG() {
           <span className="lmg-meta-lbl">Skip in</span>
           <span className="lmg-meta-val">{countdown}s</span>
         </div>
-        <div className="lmg-kicker">&mdash; A boxing room in Bondi, after dark &mdash;</div>
+        <div className="lmg-kicker">A boxing room in Bondi, after dark</div>
 
         {/* Bottom rail */}
         <div className="lmg-bot-rail">
@@ -165,7 +201,7 @@ export default function LandingMockG() {
 }
 
 const CSS = `
-.lmg-stage{position:fixed;inset:0;z-index:50;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0A0808;background:radial-gradient(ellipse at 50% 50%, #14100E 0%, #0A0808 50%, #000 100%);cursor:crosshair}
+.lmg-stage{position:fixed;inset:0;z-index:1000;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0A0808;background:radial-gradient(ellipse at 50% 50%, #14100E 0%, #0A0808 50%, #000 100%);cursor:crosshair}
 .lmg-stage *,.lmg-stage *::before,.lmg-stage *::after{box-sizing:border-box}
 
 @keyframes lmgCurtainTop{0%{transform:translateY(0)}100%{transform:translateY(-100%)}}
