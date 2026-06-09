@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import sk from "@/components/redesign/skin.module.css";
 import s from "./start-here.module.css";
-import SkinNav from "@/components/redesign/SkinNav";
 import Hero from "@/components/redesign/Hero";
 import NextClassCard from "@/components/redesign/NextClassCard";
 import MonumentCTA from "@/components/redesign/MonumentCTA";
@@ -38,8 +37,6 @@ const ETHOS = [
 export default function StartHerePage() {
   return (
     <div className={sk.page}>
-      <SkinNav />
-
       <Hero
         kicker="New here? We've got you"
         preline="WHERE YOU"
@@ -49,7 +46,7 @@ export default function StartHerePage() {
         photo="/images/ring.jpg"
         photoAlt="The Arena floor before a class"
         primaryCta={{ href: "/booking", label: "Book Your First Class" }}
-        secondaryCta={{ href: "/timetable-redesign", label: "View Timetable" }}
+        secondaryCta={{ href: "/timetable", label: "View Timetable" }}
         aside={
           <NextClassCard
             title="THE OPENER"

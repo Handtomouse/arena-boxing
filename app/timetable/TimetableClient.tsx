@@ -226,7 +226,7 @@ export default function TimetableClient() {
             for same-day drop-ins, or message us and we'll find you a round.
           </p>
         </div>
-        <Link href="/location-redesign" className={sk.btnGhost}>
+        <Link href="/location" className={sk.btnGhost}>
           Ask the Desk &rarr;
         </Link>
       </div>
