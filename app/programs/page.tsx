@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import sk from "@/components/redesign/skin.module.css";
 import s from "./programs.module.css";
-import SkinNav from "@/components/redesign/SkinNav";
 import Hero from "@/components/redesign/Hero";
 import NextClassCard from "@/components/redesign/NextClassCard";
 import MonumentCTA from "@/components/redesign/MonumentCTA";
@@ -51,8 +50,6 @@ const PATHWAY = [
 export default function ProgramsPage() {
   return (
     <div className={sk.page}>
-      <SkinNav />
-
       <Hero
         kicker="Five ways to train"
         preline="PUT IN THE"
@@ -62,7 +59,7 @@ export default function ProgramsPage() {
         photo="/images/gym-training.jpg"
         photoAlt="Boxers training on the Arena floor"
         primaryCta={{ href: "/booking", label: "Book a Class" }}
-        secondaryCta={{ href: "/timetable-redesign", label: "View Timetable" }}
+        secondaryCta={{ href: "/timetable", label: "View Timetable" }}
         aside={
           <NextClassCard
             title="THE WORK"
@@ -89,7 +86,7 @@ export default function ProgramsPage() {
               <span className={sk.cardIcon} aria-hidden="true">&#10022;</span>
               <h3 className={sk.cardTitle}>{p.t}</h3>
               <p className={sk.cardBody}>{p.d}</p>
-              <Link href="/timetable-redesign" className={sk.cardLink}>{p.tag} &rarr;</Link>
+              <Link href="/timetable" className={sk.cardLink}>{p.tag} &rarr;</Link>
             </article>
           ))}
         </div>

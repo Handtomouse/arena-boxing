@@ -3,26 +3,27 @@
 import { usePathname } from "next/navigation";
 import Navigation from "@/components/ui/Navigation";
 import StickyBottomCTA from "@/components/ui/StickyBottomCTA";
+import SkinNav from "./SkinNav";
 
 /**
- * Renders the legacy global chrome (old burgundy Navigation + sticky bottom
- * CTA) on every route EXCEPT the redesign-rollout preview routes, where the
- * skinned SkinNav owns the top bar. This is the "redesign the global nav
- * (layout.tsx)" deliverable done without editing the locked reference file:
- * the old nav simply doesn't mount on skinned routes, killing the top-edge
- * bleed. Footer stays global (composes with the skin by design).
+ * Global top-chrome switch, rendered once from app/layout.tsx.
  *
- * Scoped to the branch — at promotion this flips to render SkinNav globally.
+ * On the promoted canonical routes (home, programs, start-here, timetable,
+ * membership, about, location) the skinned SkinNav owns the top bar. This is
+ * the header-promotion deliverable: SkinNav is defined here, not per page, so
+ * one definition serves every redesign route. Every other route (booking, faq,
+ * api, ...) keeps the legacy burgundy Navigation + sticky bottom CTA until it
+ * is migrated too.
  */
 
 const REDESIGN_PREFIXES = [
-  "/home-redesign",
+  "/",
   "/programs",
   "/start-here",
-  "/timetable-redesign",
-  "/membership-redesign",
-  "/about-redesign",
-  "/location-redesign",
+  "/timetable",
+  "/membership",
+  "/about",
+  "/location",
 ];
 
 function isRedesignRoute(pathname: string | null): boolean {
@@ -34,7 +35,7 @@ function isRedesignRoute(pathname: string | null): boolean {
 
 export default function LegacyChrome() {
   const pathname = usePathname();
-  if (isRedesignRoute(pathname)) return null;
+  if (isRedesignRoute(pathname)) return <SkinNav />;
   return (
     <>
       <Navigation />

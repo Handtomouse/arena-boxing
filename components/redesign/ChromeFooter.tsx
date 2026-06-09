@@ -5,20 +5,19 @@ import Footer from "@/components/sections/Footer";
 import SkinFooter from "./SkinFooter";
 
 /**
- * Route-scoped footer switch — the dark skinned footer on the redesign-rollout
- * routes, the shipped site footer everywhere else. Mirrors LegacyChrome's
- * prefix logic so the two switches stay in lockstep. The live site footer is
- * left untouched.
+ * Route-scoped footer switch — the dark skinned footer on the promoted
+ * canonical routes, the legacy site footer everywhere else. Mirrors
+ * LegacyChrome's prefix logic so the two switches stay in lockstep.
  */
 
 const REDESIGN_PREFIXES = [
-  "/home-redesign",
+  "/",
   "/programs",
   "/start-here",
-  "/timetable-redesign",
-  "/membership-redesign",
-  "/about-redesign",
-  "/location-redesign",
+  "/timetable",
+  "/membership",
+  "/about",
+  "/location",
 ];
 
 function isRedesignRoute(pathname: string | null): boolean {

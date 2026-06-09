@@ -7,10 +7,12 @@ export function GET() {
   const currentDate = new Date().toISOString();
 
   // Define all routes with their priorities and change frequencies
-  // Note: '/' is intentionally omitted — the landing intro at '/' redirects to '/home',
-  // which is the canonical homepage. Listing both would create a duplicate-content signal.
+  // '/' is the canonical homepage (the promoted redesign). '/home' now
+  // 308-redirects to '/', so only '/' is listed to avoid a duplicate-content signal.
   const routes = [
-    { path: '/home', priority: 1.0, changefreq: 'daily' }, // Home page (canonical)
+    { path: '/', priority: 1.0, changefreq: 'daily' }, // Home page (canonical)
+    { path: '/programs', priority: 0.7, changefreq: 'monthly' }, // Programs
+    { path: '/start-here', priority: 0.7, changefreq: 'monthly' }, // Start Here
     { path: '/booking', priority: 0.9, changefreq: 'daily' }, // Booking - high priority
     { path: '/timetable', priority: 0.8, changefreq: 'daily' }, // Timetable
     { path: '/membership', priority: 0.8, changefreq: 'weekly' }, // Membership
