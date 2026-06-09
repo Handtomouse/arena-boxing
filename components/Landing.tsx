@@ -149,7 +149,9 @@ export default function Landing() {
       <div className="lp-center">
         <div className="lp-kicker">Those Who Dare</div>
 
-        <h1 className="lp-wordmark">Arena</h1>
+        <h1 className="lp-wordmark">
+          <img src="/images/wordmark/arena-cream.svg" alt="Arena" />
+        </h1>
 
         <div className="lp-counterpoint">those who dare,</div>
 

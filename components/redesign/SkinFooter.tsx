@@ -21,8 +21,8 @@ export default function SkinFooter() {
 
         <div className={s.cols}>
           <div className={s.brand}>
-            <Link href="/home-redesign" className={s.wordmark}>
-              Arena
+            <Link href="/" className={s.wordmark}>
+              <img src="/images/wordmark/arena-cream.svg" alt="Arena Boxing" />
             </Link>
             <span className={s.tagline}>Those who dare.</span>
             <nav className={s.social} aria-label="Social media">

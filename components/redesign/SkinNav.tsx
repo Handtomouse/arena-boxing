@@ -8,23 +8,24 @@ import s from "./skin.module.css";
 /**
  * Skinned top bar — the redesigned global nav. Matches the locked reference
  * topbar (wordmark / nav links / live dot / Book a Class) and adds the mobile
- * hamburger drawer the reference lacked. Links point at the redesign-rollout
- * routes. At promotion, this swaps into layout.tsx globally; for now it's
- * rendered per redesign page (LegacyChrome suppresses the old nav on these
- * routes). Non-sticky, in flow — matches the reference's scroll behaviour.
+ * hamburger drawer the reference lacked. Links point at the canonical routes.
+ * Rendered once from app/layout.tsx via LegacyChrome on the promoted routes
+ * (not per page). Non-sticky, in flow — matches the reference's scroll
+ * behaviour. Carries its own solid dark bg (.topbar) so it reads correctly
+ * outside the dark .page shell.
  */
 
 const NAV = [
-  { href: "/timetable-redesign", label: "Timetable" },
+  { href: "/timetable", label: "Timetable" },
   { href: "/programs", label: "Programs" },
-  { href: "/membership-redesign", label: "Membership" },
+  { href: "/membership", label: "Membership" },
   { href: "/start-here", label: "Start Here" },
-  { href: "/about-redesign", label: "About" },
-  { href: "/location-redesign", label: "Location" },
+  { href: "/about", label: "About" },
+  { href: "/location", label: "Location" },
 ];
 
 export default function SkinNav({
-  wordmarkHref = "/home-redesign",
+  wordmarkHref = "/",
 }: {
   wordmarkHref?: string;
 }) {
@@ -36,7 +37,7 @@ export default function SkinNav({
     <>
       <header className={s.topbar}>
         <Link href={wordmarkHref} className={s.wordmark}>
-          Arena
+          <img src="/images/wordmark/arena-cream.svg" alt="Arena Boxing" />
         </Link>
 
         <nav className={s.navlinks} aria-label="Primary">

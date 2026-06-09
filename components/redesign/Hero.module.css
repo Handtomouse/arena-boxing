@@ -57,8 +57,18 @@
   font-size: clamp(30px, 4.4vw, 60px); line-height: 1; letter-spacing: -0.012em; text-transform: uppercase;
   color: var(--cream-light, #f0e6db); text-shadow: 0 2px 18px rgba(0,0,0,0.75); padding-left: 2px;
 }
-.focal { display: block; width: 100%; margin-top: -0.04em; }
-.focal svg { width: auto; height: clamp(120px, 15.5vw, 200px); max-width: 100%; }
+.focal {
+  display: block;
+  width: 100%;
+  margin-top: clamp(-30px, -1.8vw, -16px);
+  line-height: 0;
+}
+.focal svg {
+  display: block;
+  width: auto;
+  height: clamp(120px, 15.5vw, 200px);
+  max-width: 100%;
+}
 .sub {
   font-family: var(--font-hn); font-weight: 400;
   font-size: 17px; line-height: 1.5; color: #c9a2a2; margin: 18px 0 26px; max-width: 46ch;

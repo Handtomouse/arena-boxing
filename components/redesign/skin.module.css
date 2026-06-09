@@ -15,7 +15,6 @@
      Apple gets the real Helvetica Neue; everyone else gets self-hosted Arimo
      (metric-compatible with Helvetica) before the Arial backstop. Swap a
      licensed Helvetica Neue in front of --font-arimo to ship full fidelity. */
-  --font-hn: "Helvetica Neue", "HelveticaNeue", var(--font-arimo), Helvetica, Arial, sans-serif;
   background: #0a0807;
   color: var(--cream-primary, #e8ddd3);
   font-family: var(--font-hn);
@@ -51,20 +50,28 @@
 /* ───────────── skinned top bar ───────────── */
 .topbar {
   position: relative;
-  z-index: 8;
+  z-index: 60;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 40px;
+  /* solid dark bg so the promoted nav reads correctly outside .page (it now
+     renders from layout, on the cream body, not over the dark page shell). */
+  background: #0a0807;
   border-bottom: 1px solid rgba(232, 221, 211, 0.16);
 }
 .wordmark {
-  font-family: var(--font-display, "Old London"), serif;
-  font-size: 30px;
-  line-height: 1;
-  color: var(--cream-light, #f0e6db);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 14px rgba(0, 0, 0, 0.7);
+  display: inline-flex;
+  align-items: center;
+  width: 122px;
+  height: 44px;
   text-decoration: none;
+}
+.wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.7));
 }
 .navlinks {
   display: flex;
@@ -482,6 +489,11 @@
 }
 @media (max-width: 560px) {
   .topbar { padding: 16px 22px; }
+  .wordmark {
+    width: 104px;
+    height: 38px;
+  }
+  .navright { gap: 12px; }
   .section, .cta { padding: 48px 22px; }
   .cols4, .cols3, .cols2 { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr !important; }
