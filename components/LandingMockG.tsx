@@ -29,7 +29,7 @@ export default function LandingMockG({
   onComplete,
 }: LandingMockGProps) {
   const router = useRouter();
-  const [countdown, setCountdown] = useState(10);
+  const [countdown, setCountdown] = useState(5);
   const [skipping, setSkipping] = useState(false);
 
   const completeIntro = useCallback(
@@ -90,7 +90,7 @@ export default function LandingMockG({
   return (
     <>
       <style>{CSS}</style>
-      <section className="lmg-stage" aria-label="Arena Boxing intro">
+      <section className="lmg-stage" aria-label="Arena Boxing intro" onClick={handleEnter}>
         <div className="lmg-bloom-cnr" />
         <div className="lmg-bloom-cnr2" />
         <div className="lmg-vignette" />
@@ -207,13 +207,13 @@ const CSS = `
 @keyframes lmgCurtainTop{0%{transform:translateY(0)}100%{transform:translateY(-100%)}}
 @keyframes lmgCurtainBot{0%{transform:translateY(0)}100%{transform:translateY(100%)}}
 @keyframes lmgFadeIn{from{opacity:0}to{opacity:var(--final-opacity,1)}}
-@keyframes lmgPulse{0%{box-shadow:0 0 0 0 rgba(163,31,31,.7)}70%{box-shadow:0 0 0 10px rgba(163,31,31,0)}100%{box-shadow:0 0 0 0 rgba(163,31,31,0)}}
+@keyframes lmgFadeScale{from{opacity:0;transform:scale(.94)}to{opacity:var(--final-opacity,1);transform:scale(1)}}
+@keyframes lmgFadeScaleC{from{opacity:0;transform:translate(-50%,-50%) scale(.92)}to{opacity:var(--final-opacity,1);transform:translate(-50%,-50%) scale(1)}}
+@keyframes lmgPulse{0%{box-shadow:0 0 0 0 rgba(163,31,31,.7)}70%{box-shadow:0 0 0 9px rgba(163,31,31,0)}100%{box-shadow:0 0 0 0 rgba(163,31,31,0)}}
 @keyframes lmgTraceDraw{to{stroke-dashoffset:0}}
-@keyframes lmgArenaRun{0%{stroke-dasharray:35 65;stroke-dashoffset:100}100%{stroke-dasharray:35 65;stroke-dashoffset:0}}
 @keyframes lmgEnterDraw{to{stroke-dashoffset:0}}
-@keyframes lmgEnterRun{0%{stroke-dasharray:300 700;stroke-dashoffset:1000}100%{stroke-dasharray:300 700;stroke-dashoffset:0}}
-@keyframes lmgTowdBreath{0%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:18;opacity:0.65}}
-@keyframes lmgLogoBreath{0%,100%{opacity:0.30}50%{opacity:0.18}}
+@keyframes lmgTowdBreath{0%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:18;opacity:0.7}}
+@keyframes lmgLogoBreath{0%,100%{opacity:0.28}50%{opacity:0.18}}
 @keyframes lmgSkipFlash{0%{opacity:0}50%{opacity:0.85}100%{opacity:0}}
 
 /* Atmosphere */
@@ -223,36 +223,36 @@ const CSS = `
 .lmg-grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.08;mix-blend-mode:overlay;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
 
 /* Logo backdrop (hazy) */
-.lmg-brand-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;width:min(108vh,175vw);max-width:none;opacity:0;animation:lmgFadeIn 2.2s ease-out 5.3s forwards, lmgLogoBreath 8s ease-in-out 8s infinite;--final-opacity:0.30}
-.lmg-brand-icon svg{width:100%;height:auto;display:block;filter:blur(2px) drop-shadow(0 0 14px rgba(255,255,255,0.20)) drop-shadow(0 0 36px rgba(0,0,0,0.55))}
+.lmg-brand-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;width:min(108vh,175vw);max-width:none;opacity:0;animation:lmgFadeIn 1.4s ease-out 1.8s forwards, lmgLogoBreath 8s ease-in-out 3.2s infinite;--final-opacity:0.28}
+.lmg-brand-icon svg{width:100%;height:auto;display:block;filter:blur(2px) drop-shadow(0 0 14px rgba(255,255,255,0.18)) drop-shadow(0 0 36px rgba(0,0,0,0.55))}
 
 /* ARENA wordmark */
-.lmg-arena{position:relative;width:96vw;z-index:4;opacity:0;animation:lmgFadeIn 1.2s ease-out 2.6s forwards;--final-opacity:1}
-.lmg-arena svg{width:100%;height:auto;display:block;filter:drop-shadow(0 1px 0 rgba(255,255,255,.18)) drop-shadow(0 2px 0 rgba(125,30,30,.4)) drop-shadow(0 12px 36px rgba(0,0,0,.75)) drop-shadow(0 0 80px rgba(163,31,31,.18))}
+.lmg-arena{position:relative;width:96vw;z-index:4;opacity:0;animation:lmgFadeIn 0.5s ease-out 0.8s forwards;--final-opacity:1}
+.lmg-arena svg{width:100%;height:auto;display:block;filter:drop-shadow(0 12px 36px rgba(0,0,0,.75)) drop-shadow(0 0 80px rgba(163,31,31,.18))}
 .lmg-arena-fill{opacity:0;display:none}
-.lmg-arena-trace path{stroke-dasharray:100;stroke-dashoffset:100;filter:drop-shadow(0 0 4px rgba(163,31,31,0.85)) drop-shadow(0 0 14px rgba(163,31,31,0.55)) drop-shadow(0 0 30px rgba(125,30,30,0.4));animation:lmgTraceDraw 3.5s cubic-bezier(.65,.05,.35,1) 2.6s forwards, lmgArenaRun 3s linear 6.5s infinite}
+.lmg-arena-trace path{stroke-dasharray:100;stroke-dashoffset:100;filter:drop-shadow(0 0 5px rgba(163,31,31,0.8)) drop-shadow(0 0 18px rgba(125,30,30,0.45));animation:lmgTraceDraw 1.7s cubic-bezier(.65,.05,.35,1) 0.8s forwards}
 
 /* Tagline visible below */
-.lmg-tagline-visible{position:absolute;left:50%;bottom:11vh;transform:translateX(-50%);width:min(380px,42vw);z-index:8;pointer-events:none;opacity:0;animation:lmgFadeIn 1.4s ease-out 5.6s forwards;--final-opacity:1}
-.lmg-tagline-visible svg{width:100%;height:auto;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.7)) drop-shadow(0 0 14px rgba(201,162,162,0.5)) drop-shadow(0 0 24px rgba(125,30,30,0.35))}
-.lmg-towd-trace path{stroke-dasharray:100;stroke-dashoffset:100;animation:lmgTraceDraw 2.5s cubic-bezier(.65,.05,.35,1) 5.6s forwards, lmgTowdBreath 6s ease-in-out 8.2s infinite alternate}
+.lmg-tagline-visible{position:absolute;left:50%;bottom:11vh;transform:translateX(-50%);width:min(380px,42vw);z-index:8;pointer-events:none;opacity:0;animation:lmgFadeIn 1s ease-out 2.0s forwards;--final-opacity:1}
+.lmg-tagline-visible svg{width:100%;height:auto;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.7)) drop-shadow(0 0 14px rgba(201,162,162,0.45))}
+.lmg-towd-trace path{stroke-dasharray:100;stroke-dashoffset:100;animation:lmgTraceDraw 1.4s cubic-bezier(.65,.05,.35,1) 2.0s forwards, lmgTowdBreath 6s ease-in-out 3.6s infinite alternate}
 
 /* Enter */
-.lmg-enter-wrap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:10;background:none;border:0;padding:0;cursor:pointer;opacity:0;animation:lmgFadeIn 1.2s ease-out 2.6s forwards;--final-opacity:1}
+.lmg-enter-wrap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:10;background:none;border:0;padding:0;cursor:pointer;opacity:0;animation:lmgFadeIn 0.5s ease-out 0.8s forwards;--final-opacity:1}
 .lmg-enter-halo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:48vw;height:48vw;max-width:620px;max-height:620px;background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,.40) 0%, rgba(0,0,0,.20) 35%, transparent 65%);pointer-events:none}
-.lmg-enter-svg{position:relative;width:clamp(26rem,46vw,54rem);height:auto;display:block;filter:drop-shadow(0 1px 0 rgba(255,255,255,.25)) drop-shadow(0 2px 0 rgba(125,30,30,.5)) drop-shadow(0 14px 44px rgba(0,0,0,.85)) drop-shadow(0 0 60px rgba(255,255,255,.15)) drop-shadow(0 0 120px rgba(163,31,31,.30))}
-.lmg-enter-trace{stroke-dasharray:1000;stroke-dashoffset:1000;filter:drop-shadow(0 0 4px rgba(255,255,255,0.85)) drop-shadow(0 0 14px rgba(255,255,255,0.45)) drop-shadow(0 0 30px rgba(125,30,30,0.3));animation:lmgEnterDraw 3.5s cubic-bezier(.65,.05,.35,1) 2.6s forwards, lmgEnterRun 9s linear 6.5s infinite}
+.lmg-enter-svg{position:relative;width:clamp(20rem,46vw,54rem);height:auto;display:block;filter:drop-shadow(0 14px 44px rgba(0,0,0,.85)) drop-shadow(0 0 60px rgba(255,255,255,.13))}
+.lmg-enter-trace{stroke-dasharray:1000;stroke-dashoffset:1000;filter:drop-shadow(0 0 5px rgba(255,255,255,0.8)) drop-shadow(0 0 18px rgba(125,30,30,0.3));animation:lmgEnterDraw 1.7s cubic-bezier(.65,.05,.35,1) 0.8s forwards}
 
 /* Top chrome */
-.lmg-meta-tl{position:absolute;top:24px;left:24px;z-index:20;display:flex;align-items:center;gap:12px;font-family:var(--font-barlow), 'Barlow Semi Condensed', sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(232,221,211,.55);opacity:0;animation:lmgFadeIn .8s ease-out 2.6s forwards;--final-opacity:1}
-.lmg-ldot{width:7px;height:7px;border-radius:50%;background:#A31F1F;box-shadow:0 0 0 0 rgba(163,31,31,.7);animation:lmgPulse 1.8s ease-out 3s infinite}
-.lmg-meta-tr{position:absolute;top:24px;right:24px;z-index:20;display:flex;align-items:baseline;gap:8px;font-family:var(--font-barlow), 'Barlow Semi Condensed', sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(232,221,211,.55);opacity:0;animation:lmgFadeIn .8s ease-out 2.8s forwards;--final-opacity:1}
+.lmg-meta-tl{position:absolute;top:24px;left:24px;z-index:20;display:flex;align-items:center;gap:12px;font-family:var(--font-barlow), 'Barlow Semi Condensed', sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(232,221,211,.55);opacity:0;animation:lmgFadeIn .6s ease-out 0.8s forwards;--final-opacity:1}
+.lmg-ldot{width:7px;height:7px;border-radius:50%;background:#A31F1F;box-shadow:0 0 0 0 rgba(163,31,31,.7);animation:lmgPulse 1.8s ease-out 1.2s infinite}
+.lmg-meta-tr{position:absolute;top:24px;right:24px;z-index:20;display:flex;align-items:baseline;gap:8px;font-family:var(--font-barlow), 'Barlow Semi Condensed', sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(232,221,211,.55);opacity:0;animation:lmgFadeIn .6s ease-out 1.0s forwards;--final-opacity:1}
 .lmg-meta-lbl{font-size:10px;color:rgba(232,221,211,.40)}
 .lmg-meta-val{font-size:14px;font-weight:500;color:rgba(232,221,211,.78);font-variant-numeric:tabular-nums}
-.lmg-kicker{position:absolute;top:80px;left:0;right:0;text-align:center;z-index:20;font-family:var(--font-cormorant), 'Cormorant Garamond', serif;font-style:italic;font-weight:500;font-size:17px;color:rgba(232,221,211,.55);letter-spacing:.02em;opacity:0;animation:lmgFadeIn 1s ease-out 5.0s forwards;--final-opacity:1}
+.lmg-kicker{position:absolute;top:80px;left:0;right:0;text-align:center;z-index:20;font-family:var(--font-cormorant), 'Cormorant Garamond', serif;font-style:italic;font-weight:500;font-size:17px;color:rgba(232,221,211,.55);letter-spacing:.02em;opacity:0;animation:lmgFadeIn .8s ease-out 1.6s forwards;--final-opacity:1}
 
 /* Bottom rail */
-.lmg-bot-rail{position:absolute;left:0;right:0;bottom:0;z-index:20;padding:18px 32px 22px;display:flex;align-items:center;justify-content:center;gap:18px;opacity:0;animation:lmgFadeIn 1s ease-out 6.0s forwards;--final-opacity:1}
+.lmg-bot-rail{position:absolute;left:0;right:0;bottom:0;z-index:20;padding:18px 32px 22px;display:flex;align-items:center;justify-content:center;gap:18px;opacity:0;animation:lmgFadeIn .9s ease-out 2.2s forwards;--final-opacity:1}
 .lmg-rail-icon{width:28px;height:auto;opacity:.85;filter:drop-shadow(0 1px 0 rgba(255,255,255,.15)) drop-shadow(0 2px 8px rgba(0,0,0,.6))}
 .lmg-rail-rule{flex:0 0 80px;height:1px;background:linear-gradient(90deg, transparent, rgba(232,221,211,.45), transparent)}
 .lmg-rail-byline{font-family:var(--font-barlow), 'Barlow Semi Condensed', sans-serif;font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:rgba(232,221,211,.55);font-weight:600;text-align:center}
@@ -260,18 +260,35 @@ const CSS = `
 
 /* Curtain */
 .lmg-curtain-top,.lmg-curtain-bot{position:absolute;left:0;right:0;height:50%;background:#000;z-index:90;pointer-events:none}
-.lmg-curtain-top{top:0;animation:lmgCurtainTop 2.4s cubic-bezier(.55,.05,.25,1) forwards}
-.lmg-curtain-bot{bottom:0;animation:lmgCurtainBot 2.4s cubic-bezier(.55,.05,.25,1) forwards}
+.lmg-curtain-top{top:0;animation:lmgCurtainTop 1s cubic-bezier(.55,.05,.25,1) forwards}
+.lmg-curtain-bot{bottom:0;animation:lmgCurtainBot 1s cubic-bezier(.55,.05,.25,1) forwards}
 
 /* Skip flash on enter/end */
 .lmg-skip-flash{position:absolute;inset:0;z-index:95;background:#A31F1F;pointer-events:none;animation:lmgSkipFlash 0.6s ease-out forwards}
 
+/* ===== Mobile: contained layout + fade+scale reveal (no stroke-draw, smooth) ===== */
+@media (max-width:560px){
+  .lmg-stage{cursor:default}
+  .lmg-enter-svg{width:min(82vw,300px)}
+  .lmg-enter-halo{width:72vw;height:72vw}
+  .lmg-arena-trace path{stroke-dashoffset:0 !important;animation:none !important;filter:drop-shadow(0 0 4px rgba(163,31,31,0.7))}
+  .lmg-arena{opacity:0;transform-origin:center;animation:lmgFadeScale 0.7s cubic-bezier(.2,.7,.2,1) 0.8s forwards;--final-opacity:1}
+  .lmg-enter-trace{stroke-dashoffset:0 !important;animation:none !important;filter:drop-shadow(0 0 4px rgba(255,255,255,0.7))}
+  .lmg-enter-wrap{animation:lmgFadeScaleC 0.7s cubic-bezier(.2,.7,.2,1) 0.8s forwards}
+  .lmg-tagline-visible{width:min(80vw,300px);bottom:13vh}
+  .lmg-towd-trace path{stroke-dashoffset:0 !important;animation:none !important}
+  .lmg-kicker{font-size:14px;top:60px;padding:0 16px}
+  .lmg-meta-tl{top:16px;left:16px;gap:8px}
+  .lmg-meta-tr{top:16px;right:16px}
+  .lmg-bot-rail{display:none}
+  .lmg-brand-icon{width:155vw}
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce){
-  .lmg-curtain-top,.lmg-curtain-bot,.lmg-brand-icon,.lmg-arena-trace path,.lmg-towd-trace path,.lmg-enter-trace,.lmg-ldot,.lmg-arena,.lmg-tagline-visible,.lmg-enter-wrap,.lmg-meta-tl,.lmg-meta-tr,.lmg-kicker,.lmg-bot-rail{animation:none !important;opacity:1 !important;transform:translate(-50%,-50%) !important}
-  .lmg-arena-trace path{stroke-dasharray:none !important}
-  .lmg-towd-trace path{stroke-dasharray:none !important}
-  .lmg-enter-trace{stroke-dasharray:none !important}
+  .lmg-curtain-top,.lmg-curtain-bot,.lmg-brand-icon,.lmg-arena-trace path,.lmg-towd-trace path,.lmg-enter-trace,.lmg-ldot,.lmg-arena,.lmg-tagline-visible,.lmg-enter-wrap,.lmg-meta-tl,.lmg-meta-tr,.lmg-kicker,.lmg-bot-rail{animation:none !important;opacity:1 !important}
+  .lmg-arena-trace path,.lmg-towd-trace path,.lmg-enter-trace{stroke-dasharray:none !important;stroke-dashoffset:0 !important}
+  .lmg-enter-wrap,.lmg-brand-icon{transform:translate(-50%,-50%) !important}
   .lmg-curtain-top,.lmg-curtain-bot{display:none}
 }
 `;
