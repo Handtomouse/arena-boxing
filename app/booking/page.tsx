@@ -20,8 +20,8 @@
  *   - No nested interactive elements (PR #14 fix)
  *   - var(--font-cormorant) only (PR #25 rename)
  *
- * Pay buttons are <button type="button" disabled> placeholders — real
- * payment wiring is Task #11.
+ * Payment marks are non-interactive (role="img"); real checkout/payment
+ * is handled inside the live Hapana booking widget.
  */
 import type { Metadata } from "next";
 import { HapanaEmbed } from "@/components";
@@ -351,10 +351,10 @@ export default function BookingPage() {
             </div>
           </div>
 
-          {/* Checkout preview — Apple Pay / Google Pay (visual placeholders) */}
+          {/* Payment marks: Apple Pay / Google Pay / card accepted at checkout (via Hapana) */}
           <div className={s.checkout}>
             <div className={s.checkoutL}>
-              <span className={s.checkoutK}>Checkout preview</span>
+              <span className={s.checkoutK}>At checkout</span>
               <h3 className={s.checkoutTitle}>
                 After you pick a session<em>,</em>
                 <br />
@@ -366,11 +366,10 @@ export default function BookingPage() {
             </div>
             <div className={s.checkoutR}>
               <div className={s.payRow}>
-                <button
-                  type="button"
-                  disabled
+                <span
                   className={s.payBtn}
-                  aria-label="Apple Pay, available at checkout"
+                  role="img"
+                  aria-label="Apple Pay accepted at checkout"
                 >
                   <svg viewBox="0 0 32 32" aria-hidden="true">
                     <path
@@ -379,12 +378,11 @@ export default function BookingPage() {
                     />
                   </svg>
                   <span>Pay</span>
-                </button>
-                <button
-                  type="button"
-                  disabled
+                </span>
+                <span
                   className={s.payBtn}
-                  aria-label="Google Pay, available at checkout"
+                  role="img"
+                  aria-label="Google Pay accepted at checkout"
                 >
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path
@@ -405,7 +403,7 @@ export default function BookingPage() {
                     />
                   </svg>
                   <span>Pay</span>
-                </button>
+                </span>
               </div>
               <div className={s.payDivider}>or pay with card</div>
               <span className={s.payCard}>
