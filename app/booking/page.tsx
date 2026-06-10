@@ -25,6 +25,7 @@
  */
 import type { Metadata } from "next";
 import { HapanaEmbed } from "@/components";
+import { HAPANA_WIDGET_ID_FALLBACK } from "@/lib/hapana-config";
 import s from "./booking.module.css";
 
 export const metadata: Metadata = {
@@ -330,7 +331,8 @@ export default function BookingPage() {
 
             <div className={s.widgetBody}>
               <HapanaEmbed
-                widgetId="arena-boxing-bondi"
+                mode="live"
+                widgetId={process.env.NEXT_PUBLIC_HAPANA_WIDGET_ID || HAPANA_WIDGET_ID_FALLBACK}
                 theme="light"
                 dataType="classes"
               />
