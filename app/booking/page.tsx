@@ -25,6 +25,7 @@
  */
 import type { Metadata } from "next";
 import { HapanaEmbed } from "@/components";
+import { HAPANA_WIDGET_ID_FALLBACK } from "@/lib/hapana-config";
 import s from "./booking.module.css";
 
 export const metadata: Metadata = {
@@ -109,7 +110,7 @@ const bringChips: BringChip[] = [
     name: "SHOES",
     desc: (
       <>
-        <strong>Clean indoor only</strong> &mdash; sand off the soles. Trainers,
+        <strong>Clean indoor only</strong>, sand off the soles. Trainers,
         runners, or boxing shoes all work.
       </>
     ),
@@ -144,7 +145,7 @@ const firstClassSteps: FirstClassStep[] = [
         wood pigeonholes by the rope.
       </>
     ),
-    tag: "— Take a breath. You're in the room.",
+    tag: "Take a breath. You're in the room.",
   },
   {
     numeral: "II.",
@@ -152,17 +153,17 @@ const firstClassSteps: FirstClassStep[] = [
     title: "WRAP UP",
     body: (
       <>
-        Coach hand-wraps you the first time &mdash; slow, no rush. You&rsquo;ll
+        Coach hand-wraps you the first time, slow, no rush. You&rsquo;ll
         learn it inside three sessions. Gloves come off the wall; we size you,
         then you&rsquo;re tied in.
       </>
     ),
-    tag: "— We do this for you, the first one.",
+    tag: "We do this for you, the first one.",
     focal: true,
   },
   {
     numeral: "III.",
-    time: "0 — 12 MIN",
+    time: "0-12 MIN",
     title: "WARM-UP",
     body: (
       <>
@@ -171,33 +172,33 @@ const firstClassSteps: FirstClassStep[] = [
         pressure to keep up.
       </>
     ),
-    tag: "— Technique first. Always.",
+    tag: "Technique first. Always.",
   },
   {
     numeral: "IV.",
-    time: "12 — 42 MIN",
+    time: "12-42 MIN",
     title: "BAG WORK",
     body: (
       <>
         Heavy bag, six rounds, three minutes on / one off. Coach walks the room
-        &mdash; corrections, not commands. <strong>No contact in class one.</strong>{" "}
+        , corrections, not commands. <strong>No contact in class one.</strong>{" "}
         Just you and the bag.
       </>
     ),
-    tag: "— Sweat by round three. Promise.",
+    tag: "Sweat by round three. Promise.",
   },
   {
     numeral: "V.",
-    time: "42 — 50 MIN",
+    time: "42-50 MIN",
     title: "COOL-DOWN",
     body: (
       <>
         Stretch on the floor, core finisher, a slow round of breath work. Walk
         out. Coffee at the front desk, on us if it&rsquo;s your first. Soreness
-        day two is normal &mdash; water helps.
+        day two is normal, water helps.
       </>
     ),
-    tag: "— You made it through. Same time tomorrow?",
+    tag: "You made it through. Same time tomorrow?",
   },
 ];
 
@@ -211,7 +212,7 @@ export default function BookingPage() {
         <div className={s.heroWrap}>
           <div className={s.heroRailSub}>
             <span className={s.heroKicker}>
-              &mdash; Reserve your spot. Nothing else asked. &mdash;
+              Reserve your spot. Nothing else asked.
             </span>
             <span className={s.heroKickerR}>
               <span className={s.livedot} aria-hidden="true" />
@@ -228,12 +229,12 @@ export default function BookingPage() {
               <span className={s.anchorSideNote}>
                 Pick a session. Step under the rope.
                 <br />
-                <em>First class on the house</em> &mdash; no card asked.
+                <em>First class on the house</em>, no card asked.
               </span>
             </div>
             <div className={s.anchorMain}>
               <span className={s.anchorOverline}>
-                &mdash; Select a class from the calendar below &mdash;
+                Select a class from the calendar below
               </span>
               <h1 id="booking-hero-title" className={s.anchorWord}>
                 RESERVE.
@@ -257,13 +258,13 @@ export default function BookingPage() {
             <div className={`${s.heroBotCell} ${s.heroBotCellCenter}`}>
               <span className={s.heroBotK}>Cap per session</span>
               <span className={s.heroBotV}>
-                20 <em>&mdash;</em> personalised attention
+                20 <em>&middot;</em> personalised attention
               </span>
             </div>
             <div className={`${s.heroBotCell} ${s.heroBotCellRight}`}>
               <span className={s.heroBotK}>Cancellation</span>
               <span className={s.heroBotV}>
-                12<em>h</em> notice <em>&mdash;</em> no penalty
+                12<em>h</em> notice <em>&middot;</em> no penalty
               </span>
             </div>
           </div>
@@ -277,7 +278,7 @@ export default function BookingPage() {
             <span className={s.edgeFolio}>Plate I</span>
             <span className={s.edgeLine} />
             <span className={s.edgeMeta}>
-              Before the bell &mdash; three small things
+              Before the bell: three small things
             </span>
           </div>
 
@@ -288,7 +289,7 @@ export default function BookingPage() {
                 What to bring<em>,</em>
               </h2>
               <span className={s.sheadSub}>
-                &mdash; and what we&rsquo;ll already have waiting.
+                and what we&rsquo;ll already have waiting.
               </span>
             </div>
             <div className={s.sheadR}>
@@ -323,14 +324,15 @@ export default function BookingPage() {
                 Sessions &middot; <strong>This week + next</strong>
               </span>
               <span className={s.widgetHeadC}>
-                &mdash; Select a class from the calendar below &mdash;
+                Select a class from the calendar below
               </span>
               <span className={s.widgetHeadR}>Live availability</span>
             </div>
 
             <div className={s.widgetBody}>
               <HapanaEmbed
-                widgetId="arena-boxing-bondi"
+                mode="live"
+                widgetId={process.env.NEXT_PUBLIC_HAPANA_WIDGET_ID || HAPANA_WIDGET_ID_FALLBACK}
                 theme="light"
                 dataType="classes"
               />
@@ -359,7 +361,7 @@ export default function BookingPage() {
                 pay the way that suits.
               </h3>
               <span className={s.checkoutSub}>
-                First class on the house &mdash; no card required at all.
+                First class on the house, no card required at all.
               </span>
             </div>
             <div className={s.checkoutR}>
@@ -368,7 +370,7 @@ export default function BookingPage() {
                   type="button"
                   disabled
                   className={s.payBtn}
-                  aria-label="Apple Pay — available at checkout"
+                  aria-label="Apple Pay, available at checkout"
                 >
                   <svg viewBox="0 0 32 32" aria-hidden="true">
                     <path
@@ -382,7 +384,7 @@ export default function BookingPage() {
                   type="button"
                   disabled
                   className={s.payBtn}
-                  aria-label="Google Pay — available at checkout"
+                  aria-label="Google Pay, available at checkout"
                 >
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path
@@ -405,7 +407,7 @@ export default function BookingPage() {
                   <span>Pay</span>
                 </button>
               </div>
-              <div className={s.payDivider}>&mdash; or pay with card &mdash;</div>
+              <div className={s.payDivider}>or pay with card</div>
               <span className={s.payCard}>
                 Card &middot; Visa / Mastercard / Amex
               </span>
@@ -414,16 +416,16 @@ export default function BookingPage() {
 
           {/* Cancellation hairline line */}
           <div className={s.cancel}>
-            <span className={s.cancelK}>&mdash; Cancellation policy &mdash;</span>
+            <span className={s.cancelK}>Cancellation policy</span>
             <p className={s.cancelP}>
-              Cancel anytime up to 12 hours before &mdash; no penalty.{" "}
+              Cancel anytime up to 12 hours before, no penalty.{" "}
               <em>No lock-in on memberships.</em>
             </p>
           </div>
 
           <div className={s.edgeBot}>
             <span className={s.edgeMeta}>
-              &mdash; Live availability through Hapana &mdash;
+              Live availability through Hapana
             </span>
             <span className={s.edgeLine} />
             <span className={s.edgeFolio}>End § 01</span>
@@ -438,7 +440,7 @@ export default function BookingPage() {
             <span className={s.edgeFolio}>Plate II</span>
             <span className={s.edgeLine} />
             <span className={s.edgeMeta}>
-              Minute by minute &mdash; what to expect
+              Minute by minute: what to expect
             </span>
           </div>
 
@@ -449,7 +451,7 @@ export default function BookingPage() {
                 Your First Class<em>,</em>
               </h2>
               <span className={s.sheadSub}>
-                &mdash; five steps, no surprises, no contact.
+                five steps, no surprises, no contact.
               </span>
             </div>
             <div className={s.sheadR}>
@@ -484,7 +486,7 @@ export default function BookingPage() {
 
           <div className={s.edgeBot}>
             <span className={s.edgeMeta}>
-              &mdash; Every first class follows this shape &mdash;
+              Every first class follows this shape
             </span>
             <span className={s.edgeLine} />
             <span className={s.edgeFolio}>End § 02</span>
@@ -500,17 +502,17 @@ export default function BookingPage() {
           </span>
           <div className={s.quoteBody}>
             <span className={s.quoteOverline}>
-              &mdash; Coach voice &middot; pre-class &mdash;
+              Coach voice &middot; pre-class
             </span>
             <blockquote className={s.quoteText}>
               You <em>won&rsquo;t</em> be the worst in the room. Everyone here
-              started somewhere. We teach <em>technique first</em> &mdash; no
+              started somewhere. We teach <em>technique first</em>, no
               contact in class one.
             </blockquote>
             <div className={s.quoteAttr}>
               <span className={s.quoteAttrLine} />
               <span className={s.quoteAttrTxt}>
-                &mdash; Head Coach, Arena Bondi
+                Head Coach, Arena Bondi
               </span>
             </div>
           </div>
@@ -524,7 +526,7 @@ export default function BookingPage() {
             <span className={s.edgeFolio}>Plate III</span>
             <span className={s.edgeLine} />
             <span className={s.edgeMeta}>
-              If the widget won&rsquo;t &mdash; talk to a human
+              If the widget won&rsquo;t, talk to a human
             </span>
           </div>
 
@@ -535,7 +537,7 @@ export default function BookingPage() {
                 Or just call<em>,</em>
               </h2>
               <span className={s.sheadSub}>
-                &mdash; a person picks up between 0530 and 2100.
+                a person picks up between 0530 and 2100.
               </span>
             </div>
             <div className={s.sheadR}>
@@ -550,14 +552,14 @@ export default function BookingPage() {
               <span className={s.fallKey}>A &middot; Call us</span>
               <span className={s.fallRule} />
               <span className={s.fallOverline}>
-                &mdash; Direct line to the desk &mdash;
+                Direct line to the desk
               </span>
               <a className={s.fallNum} href="tel:+61400123456">
                 0400<span className={s.sep}>&middot;</span>123
                 <span className={s.sep}>&middot;</span>456
               </a>
               <span className={s.fallMeta}>
-                MON &mdash; FRI 05.30 → 21.00
+                MON-FRI 05.30 → 21.00
                 <br />
                 SAT 06.00 → 18.00 &middot; SUN 07.00 → 14.00
                 <br />
@@ -569,7 +571,7 @@ export default function BookingPage() {
               <span className={s.fallKey}>B &middot; Email us</span>
               <span className={s.fallRule} />
               <span className={s.fallOverline}>
-                &mdash; For longer notes or gifting &mdash;
+                For longer notes or gifting
               </span>
               <a
                 className={`${s.fallNum} ${s.fallEmail}`}
@@ -589,7 +591,7 @@ export default function BookingPage() {
 
           <div className={s.edgeBot}>
             <span className={s.edgeMeta}>
-              &mdash; Bookings shouldn&rsquo;t be the hard part &mdash;
+              Bookings shouldn&rsquo;t be the hard part
             </span>
             <span className={s.edgeLine} />
             <span className={s.edgeFolio}>End § 03</span>
