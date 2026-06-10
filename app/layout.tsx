@@ -171,6 +171,13 @@ export default function RootLayout({
             __html: JSON.stringify(webSiteSchema),
           }}
         />
+        {/* Pre-paint intro gate: kill the cinematic intro flash for return visitors */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(sessionStorage.getItem('arena_intro_seen')){document.documentElement.setAttribute('data-intro-seen','');var st=document.createElement('style');st.textContent='[data-intro-seen] .lmg-stage{display:none!important}';document.head.appendChild(st);}}catch(e){}",
+          }}
+        />
       </head>
       <body className="antialiased bg-cream-primary">
         {/* Google Analytics 4 */}
