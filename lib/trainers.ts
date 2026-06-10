@@ -13,7 +13,7 @@ export const trainers: TrainerData[] = [
     name: 'Brendan McDonnell',
     title: 'Head Coach',
     image: '/images/trainers/brendan-mcdonnell.jpg',
-    bio: '[BIO PENDING — Brendan to supply]',
+    bio: '[BIO PENDING, Brendan to supply]',
     specialties: [],
     certifications: ['[CREDENTIALS PENDING]'],
     instagram: '[HANDLE PENDING]',

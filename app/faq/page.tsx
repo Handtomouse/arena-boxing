@@ -727,11 +727,11 @@ export default function FAQPage() {
                   <span className="folio-b">08</span>
                 </span>
               </div>
-              <span className="rail-meta">Question Hall — MMXXVI</span>
+              <span className="rail-meta">Question Hall · MMXXVI</span>
             </header>
 
             <div className="rail-sub">
-              <span className="kicker">— Everything before your first round. —</span>
+              <span className="kicker">Everything before your first round.</span>
               <span className="kicker-r">
                 <span className="ab-livedot" aria-hidden="true"></span>
                 <span className="live-lbl">LIVE</span>
@@ -747,7 +747,7 @@ export default function FAQPage() {
                 <span className="anchor-side-note">
                   The questions we hear before a first class.
                   <br />
-                  <em>Answered plainly</em> — no corporate caveats.
+                  <em>Answered plainly</em>, no corporate caveats.
                 </span>
               </div>
               <div className="anchor-main">
@@ -772,13 +772,13 @@ export default function FAQPage() {
               <a href="#beginner" className="hero-bot-cell">
                 <span className="hero-bot-k">§ 01</span>
                 <span className="hero-bot-v">
-                  Beginner <em>—</em> anxiety
+                  Beginner <em>·</em> anxiety
                 </span>
               </a>
               <a href="#classes" className="hero-bot-cell">
                 <span className="hero-bot-k">§ 02</span>
                 <span className="hero-bot-v">
-                  Classes <em>—</em> timetable
+                  Classes <em>·</em> timetable
                 </span>
               </a>
               <a href="#membership" className="hero-bot-cell">
@@ -788,7 +788,7 @@ export default function FAQPage() {
               <a href="#gift" className="hero-bot-cell">
                 <span className="hero-bot-k">§ 04</span>
                 <span className="hero-bot-v">
-                  Gift <em>—</em> vouchers
+                  Gift <em>·</em> vouchers
                 </span>
               </a>
             </div>
@@ -802,7 +802,7 @@ export default function FAQPage() {
               <span className="ab-edge-folio">Plate I</span>
               <span className="ab-edge-line"></span>
               <span className="ab-edge-meta">
-                Lead with this — most asked, most stalls a booking
+                Lead with this, most asked, most stalls a booking
               </span>
             </div>
 
@@ -813,7 +813,7 @@ export default function FAQPage() {
                   Beginner anxiety<em>,</em>
                 </h2>
                 <span className="ab-shead-sub">
-                  — the questions that stop a first booking.
+                  the questions that stop a first booking.
                 </span>
               </div>
               <div className="ab-shead-r">
@@ -847,7 +847,7 @@ export default function FAQPage() {
                     <li>
                       <span>
                         <strong>Hand wraps.</strong> A coach wraps your hands for you the
-                        first time — and shows you how, so you can do your own from class
+                        first time, and shows you how, so you can do your own from class
                         two.
                       </span>
                     </li>
@@ -892,7 +892,7 @@ export default function FAQPage() {
                 <div className="faq-q-body">
                   <p>
                     <strong>
-                      Yes — and most of the room is in the same boat as you.
+                      Yes, and most of the room is in the same boat as you.
                     </strong>{" "}
                     About half of our floor on any given morning is people who&apos;ve
                     never boxed before they walked in here. The other half were beginners
@@ -905,7 +905,7 @@ export default function FAQPage() {
                   </p>
                   <p>
                     The coaches are watching for one thing in a first class: that you leave
-                    wanting to come back. Technique gets layered on from class two onward —
+                    wanting to come back. Technique gets layered on from class two onward,
                     the first class is about you finding your feet, not throwing a perfect
                     hook.
                   </p>
@@ -914,10 +914,10 @@ export default function FAQPage() {
 
               {/* ─── INLINE CTA after top 2 (per UX brief) ─── */}
               <div className="faq-inline-cta" role="note">
-                <span className="faq-inline-cta-k">— Ready —</span>
+                <span className="faq-inline-cta-k">Ready</span>
                 <span className="faq-inline-cta-t">
                   <em>That&apos;s the two big ones answered.</em> The rest of this page is
-                  for after — go book your first round.
+                  for after, go book your first round.
                 </span>
                 <a className="faq-inline-cta-btn" href="/booking">
                   Book your first class
@@ -936,14 +936,14 @@ export default function FAQPage() {
                 </summary>
                 <div className="faq-q-body">
                   <p>
-                    <strong>You can — and you should.</strong> Boxing is one of the few
+                    <strong>You can, and you should.</strong> Boxing is one of the few
                     cardio rooms in the city where you control the pace round by round.
                     Hit the bag at 60% if 60% is what your body has today. The coach will
                     tell you when to back off and when to push.
                   </p>
                   <p>
                     You&apos;ll be sore for two days after a first class. That&apos;s
-                    normal — your shoulders, lats, and obliques aren&apos;t used to
+                    normal, your shoulders, lats, and obliques aren&apos;t used to
                     throwing combinations for forty minutes. By class three or four, the
                     soreness fades and the fitness starts banking.
                   </p>
@@ -970,17 +970,17 @@ export default function FAQPage() {
                     <strong>No one hits a person in a beginner class.</strong> All work is
                     on the heavy bag, the focus mitts with the coach, or pad-work with a
                     partner who&apos;s not throwing back. Sparring is a separate, opt-in
-                    track that only opens after months of technique drilling — and only
+                    track that only opens after months of technique drilling, and only
                     ever with mouthguards, headgear, and a coach in the ring with you.
                   </p>
                   <p>
                     The two real injury risks in a beginner class are <em>wrist sprain</em>{" "}
-                    (handled by wrapping the hands properly before every round — we&apos;ll
+                    (handled by wrapping the hands properly before every round, we&apos;ll
                     wrap you in your first class) and <em>shin splints from skipping</em>{" "}
                     (handled by good shoes and ramping up over weeks, not minutes).
                   </p>
                   <p>
-                    If you have an existing injury — back, knee, shoulder, anything — tell
+                    If you have an existing injury (back, knee, shoulder, anything) tell
                     the coach when you arrive. They&apos;ll modify the round for you.
                   </p>
                 </div>
@@ -997,7 +997,7 @@ export default function FAQPage() {
                 <div className="faq-q-body">
                   <p>
                     <strong>
-                      Whatever you&apos;d wear to a gym — but pick shoes you can move in.
+                      Whatever you&apos;d wear to a gym, but pick shoes you can move in.
                     </strong>{" "}
                     T-shirt or singlet. Shorts or training tights. Cross-trainers, runners,
                     or court shoes are fine. <em>Bare-bones rule of thumb:</em> if you can
@@ -1010,7 +1010,7 @@ export default function FAQPage() {
                   </p>
                   <p>
                     We have showers, changing rooms, and a wall of fresh towels. Hand wraps
-                    and gloves are lent free for your first class — bring your own from
+                    and gloves are lent free for your first class, bring your own from
                     class two if you want, or buy a set at the front desk.
                   </p>
                 </div>
@@ -1018,7 +1018,7 @@ export default function FAQPage() {
             </div>
 
             <div className="ab-edge-bot">
-              <span className="ab-edge-folio">— End of Plate I —</span>
+              <span className="ab-edge-folio">End of Plate I</span>
               <span className="ab-edge-line"></span>
               <span className="ab-edge-meta">I / V · Continue to Classes</span>
             </div>
@@ -1032,7 +1032,7 @@ export default function FAQPage() {
               <span className="ab-edge-folio">Plate II</span>
               <span className="ab-edge-line"></span>
               <span className="ab-edge-meta">
-                How the floor works — booking, cancelling, the three formats
+                How the floor works: booking, cancelling, the three formats
               </span>
             </div>
 
@@ -1042,7 +1042,7 @@ export default function FAQPage() {
                 <h2 className="ab-shead-title">
                   Classes &amp; timetable<em>,</em>
                 </h2>
-                <span className="ab-shead-sub">— the room, the rounds, the rope.</span>
+                <span className="ab-shead-sub">the room, the rounds, the rope.</span>
               </div>
               <div className="ab-shead-r">
                 <span className="ab-shead-kicker">Four questions</span>
@@ -1065,7 +1065,7 @@ export default function FAQPage() {
                 <div className="faq-q-body">
                   <p>
                     Three class formats. <em>You&apos;ll see all three on the timetable.</em>{" "}
-                    Pick by mood and time, not by level — every format runs
+                    Pick by mood and time, not by level, every format runs
                     beginner-to-advanced lanes side by side.
                   </p>
                   <ul>
@@ -1073,13 +1073,13 @@ export default function FAQPage() {
                       <span>
                         <strong className="lead">The Work.</strong> 50 minutes.
                         Conditioning-led, high-volume bag rounds, less technique work. The
-                        bread-and-butter — most people&apos;s two or three sessions a week.
+                        bread-and-butter, most people&apos;s two or three sessions a week.
                       </span>
                     </li>
                     <li>
                       <span>
                         <strong className="lead">The Craft.</strong> 60 minutes.
-                        Technique-led — slower tempo, more drilling of combinations, mitt
+                        Technique-led: slower tempo, more drilling of combinations, mitt
                         work with the coach. Skill banks here.
                       </span>
                     </li>
@@ -1130,14 +1130,14 @@ export default function FAQPage() {
                     </li>
                     <li>
                       <span>
-                        <strong>Call us.</strong> <code>+61 2 8000 2025</code> — open 0530
+                        <strong>Call us.</strong> <code>+61 2 8000 2025</code>, open 0530
                         to 2100. We can book you in by phone if the widget is giving you
                         grief.
                       </span>
                     </li>
                   </ol>
                   <p>
-                    <em>First class is on the house</em> — no card asked, no commitment
+                    <em>First class is on the house</em>, no card asked, no commitment
                     after.
                   </p>
                 </div>
@@ -1154,7 +1154,7 @@ export default function FAQPage() {
                 <div className="faq-q-body">
                   <p>
                     <strong>
-                      Yes — up to 12 hours before the class starts, no penalty.
+                      Yes, up to 12 hours before the class starts, no penalty.
                     </strong>{" "}
                     Cancel from the confirmation email, your account, or a phone call. The
                     class pack credit goes straight back to your account.
@@ -1162,13 +1162,13 @@ export default function FAQPage() {
                   <div className="faq-q-callout">
                     <span className="faq-q-callout-k">Policy</span>
                     <span className="faq-q-callout-v">
-                      <strong>12h</strong> notice — no penalty, no questions.
+                      <strong>12h</strong> notice, no penalty, no questions.
                     </span>
                   </div>
                   <p>
                     Cancel inside the 12-hour window and the class credit is forfeited
                     (someone on the waitlist gets your seat).{" "}
-                    <em>If you wake up sick on the morning of a class</em> — call us,
+                    <em>If you wake up sick on the morning of a class</em>, call us,
                     we&apos;ll move the credit by hand. We&apos;re not interested in
                     penalising someone for catching the flu.
                   </p>
@@ -1185,7 +1185,7 @@ export default function FAQPage() {
                 </summary>
                 <div className="faq-q-body">
                   <p>
-                    <strong>Join the waitlist on the booking page</strong> — it&apos;s the
+                    <strong>Join the waitlist on the booking page</strong>, it&apos;s the
                     small &quot;join waitlist&quot; link under any full session. We text
                     you the moment a spot opens up, which is usually 12 to 24 hours before
                     the class (cancellations cluster the day before).
@@ -1193,11 +1193,11 @@ export default function FAQPage() {
                   <p>
                     <em>About 8 in 10 waitlists clear</em> for any session at least a few
                     hours ahead of time. If you don&apos;t get in, the waitlist doesn&apos;t
-                    cost a thing — no credit pulled, no card touched.
+                    cost a thing, no credit pulled, no card touched.
                   </p>
                   <p>
                     <em>Or:</em> we run the same class earlier and later most days. The
-                    0530 and 1900 slots almost never fill — if you can flex the time,
+                    0530 and 1900 slots almost never fill, if you can flex the time,
                     you&apos;ll always get a seat.
                   </p>
                 </div>
@@ -1205,7 +1205,7 @@ export default function FAQPage() {
             </div>
 
             <div className="ab-edge-bot">
-              <span className="ab-edge-folio">— End of Plate II —</span>
+              <span className="ab-edge-folio">End of Plate II</span>
               <span className="ab-edge-line"></span>
               <span className="ab-edge-meta">II / V · Continue to Membership</span>
             </div>
@@ -1219,7 +1219,7 @@ export default function FAQPage() {
               <span className="ab-edge-folio">Plate III</span>
               <span className="ab-edge-line"></span>
               <span className="ab-edge-meta">
-                Price, freeze, cancel, refund — answered straight
+                Price, freeze, cancel, refund, answered straight
               </span>
             </div>
 
@@ -1230,7 +1230,7 @@ export default function FAQPage() {
                   Membership<em>,</em>
                 </h2>
                 <span className="ab-shead-sub">
-                  — prices, freezes, what happens if you leave.
+                  prices, freezes, what happens if you leave.
                 </span>
               </div>
               <div className="ab-shead-r">
@@ -1253,7 +1253,7 @@ export default function FAQPage() {
                 </summary>
                 <div className="faq-q-body">
                   <p>
-                    <strong>Three tiers, picked by frequency — not level.</strong>
+                    <strong>Three tiers, picked by frequency, not level.</strong>
                   </p>
                   <ul>
                     <li>
@@ -1266,14 +1266,14 @@ export default function FAQPage() {
                     <li>
                       <span>
                         <strong className="lead">10-Pack.</strong> $290 for ten classes
-                        ($29 each) valid 3 months from purchase. Best for casual training —
+                        ($29 each) valid 3 months from purchase. Best for casual training,
                         one to two classes a week, flexibility over volume.
                       </span>
                     </li>
                     <li>
                       <span>
                         <strong className="lead">Unlimited.</strong> $189 per month, no
-                        lock-in contract. Pays off after seven visits in a month — most
+                        lock-in contract. Pays off after seven visits in a month, most
                         unlimited members train three to four times a week.
                       </span>
                     </li>
@@ -1281,7 +1281,7 @@ export default function FAQPage() {
                   <p>
                     <em>Not sure?</em> Start on a 10-Pack, see how many weekly classes you
                     actually settle into, and move up to Unlimited when the maths tips.
-                    We&apos;ll make the switch by hand — no penalty.
+                    We&apos;ll make the switch by hand, no penalty.
                   </p>
                 </div>
               </details>
@@ -1297,7 +1297,7 @@ export default function FAQPage() {
                 <div className="faq-q-body">
                   <p>
                     <strong>
-                      Yes — Unlimited members can freeze for up to three months per year,
+                      Yes, Unlimited members can freeze for up to three months per year,
                       in blocks.
                     </strong>{" "}
                     Travelling for a month? Recovering from an injury? Off the floor for
@@ -1307,11 +1307,11 @@ export default function FAQPage() {
                   <div className="faq-q-callout">
                     <span className="faq-q-callout-k">Freeze allowance</span>
                     <span className="faq-q-callout-v">
-                      <strong>3 months</strong> per calendar year — split however you want.
+                      <strong>3 months</strong> per calendar year, split however you want.
                     </span>
                   </div>
                   <p>
-                    <em>You don&apos;t need a reason</em> — the form has a single
+                    <em>You don&apos;t need a reason</em>, the form has a single
                     date-range picker, no &quot;tell us why&quot; field. Resume any time
                     before the freeze ends, the system catches up the billing
                     automatically.
@@ -1337,7 +1337,7 @@ export default function FAQPage() {
                   <div className="faq-q-callout">
                     <span className="faq-q-callout-k">Notice</span>
                     <span className="faq-q-callout-v">
-                      <strong>7 days</strong> from the day you cancel — final class
+                      <strong>7 days</strong> from the day you cancel, final class
                       included.
                     </span>
                   </div>
@@ -1347,7 +1347,7 @@ export default function FAQPage() {
                     retention call, no &quot;wait, give us another chance&quot; survey.
                   </p>
                   <p>
-                    <em>If you ever want to come back</em> — the door is open, the rate is
+                    <em>If you ever want to come back</em>, the door is open, the rate is
                     whatever the public rate is on the day, and we won&apos;t make you
                     fill anything out twice.
                   </p>
@@ -1367,16 +1367,16 @@ export default function FAQPage() {
                 <div className="faq-q-body">
                   <p>
                     <strong>
-                      Yes — 15% off any tier with a valid student or concession card.
+                      Yes, 15% off any tier with a valid student or concession card.
                     </strong>{" "}
                     Applies to drop-ins, 10-packs, and Unlimited. Show your card at the
                     front desk on your first visit and we&apos;ll apply the discount to
-                    your account forever — no need to re-prove it.
+                    your account forever, no need to re-prove it.
                   </p>
                   <div className="faq-q-callout">
                     <span className="faq-q-callout-k">Discount</span>
                     <span className="faq-q-callout-v">
-                      <strong>15%</strong> off — student, concession, healthcare card
+                      <strong>15%</strong> off, student, concession, healthcare card
                       holders.
                     </span>
                   </div>
@@ -1384,7 +1384,7 @@ export default function FAQPage() {
                     <em>Who qualifies:</em> full-time students at any Sydney university or
                     TAFE, Centrelink concession card holders, healthcare card holders,
                     full-time apprentices, and Seniors Card holders. If you&apos;re not
-                    sure, just ask — we don&apos;t make people prove edge cases.
+                    sure, just ask, we don&apos;t make people prove edge cases.
                   </p>
                 </div>
               </details>
@@ -1399,19 +1399,19 @@ export default function FAQPage() {
                 </summary>
                 <div className="faq-q-body">
                   <p>
-                    <strong>Yes — within 14 days, if you haven&apos;t used any classes.</strong>{" "}
+                    <strong>Yes, within 14 days, if you haven&apos;t used any classes.</strong>{" "}
                     Pull the trigger on a 10-pack, decide it&apos;s not for you before
                     stepping on the floor, email us inside 14 days for a full refund to
                     the same card. No questions, no fees.
                   </p>
                   <p>
-                    <em>Once you&apos;ve used a class,</em> we can&apos;t refund the pack —
+                    <em>Once you&apos;ve used a class,</em> we can&apos;t refund the pack,
                     but we can credit the unused balance to a friend&apos;s account, or
                     hold it for you indefinitely (no expiry while it&apos;s on hold).
                   </p>
                   <p>
                     <em>Bought a pack as a gift and the recipient doesn&apos;t want it?</em>{" "}
-                    See <a href="#gift-purchase">Buying as a gift</a> below — we&apos;ll
+                    See <a href="#gift-purchase">Buying as a gift</a> below, we&apos;ll
                     re-route it or refund the giver, whichever they prefer.
                   </p>
                 </div>
@@ -1419,7 +1419,7 @@ export default function FAQPage() {
             </div>
 
             <div className="ab-edge-bot">
-              <span className="ab-edge-folio">— End of Plate III —</span>
+              <span className="ab-edge-folio">End of Plate III</span>
               <span className="ab-edge-line"></span>
               <span className="ab-edge-meta">III / V · Continue to Gift</span>
             </div>
@@ -1433,7 +1433,7 @@ export default function FAQPage() {
               <span className="ab-edge-folio">Plate IV</span>
               <span className="ab-edge-line"></span>
               <span className="ab-edge-meta">
-                For someone else — purchase, redemption, expiry
+                For someone else: purchase, redemption, expiry
               </span>
             </div>
 
@@ -1444,7 +1444,7 @@ export default function FAQPage() {
                   Buying as a gift<em>,</em>
                 </h2>
                 <span className="ab-shead-sub">
-                  — for the partner, sibling, friend who&apos;s been hinting.
+                  for the partner, sibling, friend who&apos;s been hinting.
                 </span>
               </div>
               <div className="ab-shead-r">
@@ -1473,7 +1473,7 @@ export default function FAQPage() {
                     <li>
                       <span>
                         <strong>From the membership page.</strong> Hit the{" "}
-                        <em>&quot;Gift this&quot;</em> link on any tier card — drop-in,
+                        <em>&quot;Gift this&quot;</em> link on any tier card, drop-in,
                         10-pack, or a month of Unlimited. Pay with Apple Pay, Google Pay,
                         or card. We email you a PDF voucher to forward.
                       </span>
@@ -1481,7 +1481,7 @@ export default function FAQPage() {
                     <li>
                       <span>
                         <strong>From the location page.</strong> Use the contact form with
-                        &quot;Gift purchase&quot; as the subject — useful if you want
+                        &quot;Gift purchase&quot; as the subject, useful if you want
                         something custom (a six-month membership, a couple&apos;s pack, a
                         birthday combo). We&apos;ll come back inside one business day with
                         a tailored voucher.
@@ -1489,7 +1489,7 @@ export default function FAQPage() {
                     </li>
                   </ol>
                   <p>
-                    <em>You don&apos;t pay GST on the gift itself</em> — only on what your
+                    <em>You don&apos;t pay GST on the gift itself</em>, only on what your
                     recipient eventually redeems. The voucher acts as a credit, not a
                     pre-paid service.
                   </p>
@@ -1514,20 +1514,20 @@ export default function FAQPage() {
                     <li>
                       <span>
                         Enter the code at checkout on the{" "}
-                        <a href="/booking">booking page</a> — credits land in their
+                        <a href="/booking">booking page</a>, credits land in their
                         account instantly.
                       </span>
                     </li>
                     <li>
                       <span>
-                        Bring the printed voucher to the front desk on a first visit —
+                        Bring the printed voucher to the front desk on a first visit,
                         we&apos;ll add the credit by hand and book them straight in.
                       </span>
                     </li>
                   </ol>
                   <p>
                     <em>The recipient doesn&apos;t need an account to redeem.</em> The
-                    first time they book is the first time we ask for an email — they can
+                    first time they book is the first time we ask for an email, they can
                     do it at the front desk if they&apos;d rather not deal with the
                     website.
                   </p>
@@ -1546,19 +1546,19 @@ export default function FAQPage() {
                   <p>
                     <strong>Three years from the day you buy it.</strong> That&apos;s the
                     statutory minimum under Australian gift-card law (NSW Gift Cards Act,
-                    2018) — we hold to it strictly and never expire vouchers earlier than
+                    2018), we hold to it strictly and never expire vouchers earlier than
                     that, even on partial-use balances.
                   </p>
                   <div className="faq-q-callout">
                     <span className="faq-q-callout-k">Expiry</span>
                     <span className="faq-q-callout-v">
-                      <strong>3 years</strong> from purchase — the legal floor, not the
+                      <strong>3 years</strong> from purchase, the legal floor, not the
                       ceiling.
                     </span>
                   </div>
                   <p>
-                    <em>If your recipient redeems part of the voucher</em> — say they use
-                    4 of 10 classes from a 10-pack — the remaining 6 stay live for the
+                    <em>If your recipient redeems part of the voucher</em>, say they use
+                    4 of 10 classes from a 10-pack, the remaining 6 stay live for the
                     full original 3-year window. No &quot;use it or lose it&quot; tricks.
                   </p>
                   <p>
@@ -1602,7 +1602,7 @@ export default function FAQPage() {
                     </li>
                     <li>
                       <span>
-                        Pick up a hand-numbered printed voucher at the studio —
+                        Pick up a hand-numbered printed voucher at the studio,
                         letterpressed on Colorplan, ring ahead to make sure we&apos;ve got
                         one set aside.
                       </span>
@@ -1617,9 +1617,9 @@ export default function FAQPage() {
             </div>
 
             <div className="ab-edge-bot">
-              <span className="ab-edge-folio">— End of Plate IV —</span>
+              <span className="ab-edge-folio">End of Plate IV</span>
               <span className="ab-edge-line"></span>
-              <span className="ab-edge-meta">IV / V · Anything else? — keep going</span>
+              <span className="ab-edge-meta">IV / V · Anything else? · keep going</span>
             </div>
           </div>
         </section>
@@ -1634,9 +1634,9 @@ export default function FAQPage() {
                 QUESTIONS?
               </h2>
               <div className="faq-final-sub">
-                <span className="faq-final-sub-k">§ 05 — Reach the room</span>
+                <span className="faq-final-sub-k">§ 05 · Reach the room</span>
                 <span className="faq-final-sub-t">
-                  We answer email by hand inside one business day. Or come in —
+                  We answer email by hand inside one business day. Or come in,
                   kettle&apos;s always on.
                 </span>
               </div>
@@ -1652,7 +1652,7 @@ export default function FAQPage() {
                 <div className="faq-cta-card-body">
                   <h3 className="faq-cta-card-title">VISIT US.</h3>
                   <p className="faq-cta-card-desc">
-                    <strong>204 Campbell Parade, Bondi Beach.</strong> Open 0530 — 2100
+                    <strong>204 Campbell Parade, Bondi Beach.</strong> Open 0530-2100
                     daily. Drop in, take the tour, watch a class run before you book.{" "}
                     <em>The kettle&apos;s always on.</em>
                   </p>
@@ -1672,7 +1672,7 @@ export default function FAQPage() {
                 <div className="faq-cta-card-body">
                   <h3 className="faq-cta-card-title">EMAIL US.</h3>
                   <p className="faq-cta-card-desc">
-                    <strong>hello@arenaboxing.com.au</strong> — read by Lewis and answered
+                    <strong>hello@arenaboxing.com.au</strong>, read by Lewis and answered
                     by hand. One business day, normally same morning.{" "}
                     <em>No bots, no ticket numbers, no scripts.</em>
                   </p>
