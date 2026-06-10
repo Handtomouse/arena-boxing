@@ -27,7 +27,7 @@ export default function StickyBottomCTA() {
   return (
     <Link
       href="/booking"
-      aria-label="Book my first class — free, no card required"
+      aria-label="Book my first class, free, no card required"
       className="
         fixed
         bottom-0

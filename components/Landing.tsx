@@ -118,7 +118,7 @@ export default function Landing() {
   return (
     <section
       className="landing-page"
-      aria-label="Arena Boxing Bondi — intro"
+      aria-label="Arena Boxing Bondi intro"
     >
       {/* Atmosphere stack */}
       <div className="lp-bloom" aria-hidden="true" />
