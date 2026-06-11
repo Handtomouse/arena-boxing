@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arena Boxing Website Proposal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --arena-black: #0A0A0A;
+            --arena-white: #FFFFFF;
+            --arena-gray: #1A1A1A;
+            --arena-accent: #FF0000;
+            --arena-gold: #D4AF37;
+            --arena-text-gray: #ABABAB; /* Round 3 Improvement #13: Improved contrast (was #A0A0A0) */
+            --arena-dark-red: #990000;
+            --arena-light-gray: #2A2A2A;
+            --arena-bronze: #CD7F32;
+            --arena-silver: #C0C0C0;
+            --arena-teal: #00CED1;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--arena-black);
+            color: var(--arena-white);
+            line-height: 1.6;
+        }
+
+        .slide {
+            width: 210mm;
+            height: 297mm;
+            padding: 60px 80px;
+            page-break-after: always;
+            position: relative;
+            background: var(--arena-black);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Prevent content bleeding */
+        }
+
+        /* Compact variant for dense slides */
+        .slide.compact h2 {
+            margin-bottom: 20px;
+            font-size: 42px;
+        }
+
+        .slide.compact h3 {
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        .slide.compact .two-col {
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+
+        .slide.compact ul li,
+        .slide.compact p {
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .slide.compact .timeline-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+        }
+
+        .slide.compact .timeline-desc {
+            font-size: 12px;
+        }
+
+        .slide.compact .feature-grid,
+        .slide.compact .stats-grid {
+            margin: 25px 0;
+        }
+
+        .slide.compact .cta-box {
+            margin: 20px 0;
+            padding: 30px;
+        }
+
+        .slide.compact .highlight-box {
+            margin-top: 25px;
+            padding: 25px;
+        }
+
+        /* Extra-compact variant for very dense slides */
+        .slide.extra-compact h2 {
+            margin-bottom: 15px;
+            font-size: 38px;
+        }
+
+        .slide.extra-compact h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .slide.extra-compact .roi-visual {
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .slide.extra-compact .pricing-table td,
+        .slide.extra-compact .pricing-table th {
+            padding: 10px 12px;
+            font-size: 13px;
+        }
+
+        .slide.extra-compact .feature-grid {
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .slide.extra-compact .feature-box {
+            padding: 18px;
+        }
+
+        .slide.extra-compact .feature-box h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .slide.extra-compact .feature-box p {
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        /* Improvement #2: Subtle texture overlay */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.01) 2px, rgba(255,255,255,.01) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,.01) 2px, rgba(255,255,255,.01) 4px);
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        /* Improvement #1: Logo watermark */
+        .slide::after {
+            content: 'ARENA';
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: var(--arena-text-gray);
+            opacity: 0.3;
+        }
+
+        .slide > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-header {
+            border-bottom: 2px solid var(--arena-accent);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .slide-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            color: var(--arena-text-gray);
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 96px;
+            line-height: 0.9;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            text-shadow: 0 6px 30px rgba(212, 175, 55, 0.4), 0 0 60px rgba(255, 0, 0, 0.2);
+            background: linear-gradient(135deg, var(--arena-white) 0%, var(--arena-gold) 50%, var(--arena-white) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-rendering: optimizeLegibility; /* Round 3 Improvement #17: Optical kerning */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            line-height: 1.2; /* Round 3 Improvement #16: Consistent line-height */
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--arena-white) 0%, var(--arena-text-gray) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-rendering: optimizeLegibility; /* Round 3 Improvement #17: Optical kerning */
+        }
+
+        h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 32px;
+            line-height: 1.2;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--arena-gold);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Improvement #7: Gold foil effect on headings */
+        h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--arena-gold) 0%, transparent 100%);
+        }
+
+        h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--arena-white);
+        }
+
+        p, li {
+            font-size: 14px;
+            color: var(--arena-text-gray);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .tagline {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--arena-text-gray);
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .accent-text {
+            color: var(--arena-accent);
+            font-weight: 600;
+        }
+
+        .gold-text {
+            color: var(--arena-gold);
+            font-weight: 600;
+        }
+
+        .slide-footer {
+            margin-top: auto;
+            padding-top: 30px;
+            border-top: 1px solid var(--arena-gray);
+            font-size: 12px;
+            color: var(--arena-text-gray);
+        }
+
+        .cover-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: var(--arena-black) !important;
+            background: linear-gradient(135deg, var(--arena-black) 0%, var(--arena-gray) 100%) !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .cover-slide h1 {
+            font-size: 96px;
+            margin-bottom: 30px;
+        }
+
+        .cover-slide .tagline {
+            font-size: 32px;
+            margin-bottom: 80px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--arena-gold);
+            text-transform: uppercase;
+        }
+
+        .metadata {
+            margin-top: 80px;
+            font-size: 16px;
+            color: var(--arena-text-gray);
+            line-height: 2;
+        }
+
+        .metadata strong {
+            color: var(--arena-gold);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .metadata p {
+            margin-bottom: 8px;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .feature-box {
+            background: var(--arena-gray);
+            padding: 25px;
+            border-left: 3px solid var(--arena-accent);
+        }
+
+        .feature-box h4 {
+            color: var(--arena-gold);
+            margin-bottom: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 35px 25px;
+            background: linear-gradient(135deg, var(--arena-gray) 0%, var(--arena-light-gray) 100%);
+            border-top: 4px solid var(--arena-gold);
+            border-radius: 2px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--arena-gold), transparent);
+            opacity: 0.3;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 64px;
+            color: var(--arena-accent);
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 12px rgba(255, 0, 0, 0.5), 0 0 30px rgba(255, 0, 0, 0.3);
+            background: linear-gradient(180deg, var(--arena-accent) 0%, var(--arena-dark-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--arena-text-gray);
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .pricing-table th,
+        .pricing-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--arena-gray);
+        }
+
+        .pricing-table th {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            color: var(--arena-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--arena-gray);
+        }
+
+        .pricing-table td {
+            font-size: 14px;
+            color: var(--arena-text-gray);
+        }
+
+        /* Improvement #6: Zebra striping for better readability */
+        .pricing-table tbody tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .pricing-table tbody tr:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .pricing-table tr:last-child td {
+            font-weight: 700;
+            color: var(--arena-white);
+            font-size: 16px;
+            border-bottom: 2px solid var(--arena-accent);
+            background: var(--arena-gray);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--arena-accent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -46px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--arena-gold);
+            border: 2px solid var(--arena-accent);
+        }
+
+        .timeline-week {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            color: var(--arena-gold);
+            margin-bottom: 5px;
+        }
+
+        .timeline-desc {
+            font-size: 13px;
+            color: var(--arena-text-gray);
+            line-height: 1.6;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--arena-accent) 0%, #CC0000 100%);
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta-box h3 {
+            color: var(--arena-white);
+            margin-bottom: 15px;
+        }
+
+        .cta-box p {
+            color: var(--arena-white);
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        .highlight-box {
+            background: var(--arena-gray);
+            padding: 30px;
+            border-top: 3px solid var(--arena-gold);
+        }
+
+        .checkmark {
+            color: var(--arena-gold);
+            margin-right: 10px;
+            font-weight: 700;
+        }
+
+        /* Improvement #23: Page numbers */
+        .page-number {
+            position: absolute;
+            bottom: 35px;
+            right: 80px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 13px;
+            color: var(--arena-gold);
+            letter-spacing: 3px;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 8px 16px;
+            border-left: 2px solid var(--arena-gold);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Improvement #6: Decorative corner brackets */
+        .corner-accent {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+        }
+
+        .corner-accent.top-left {
+            top: 50px;
+            left: 50px;
+            border-top: 2px solid var(--arena-gold);
+            border-left: 2px solid var(--arena-gold);
+        }
+
+        .corner-accent.bottom-right {
+            bottom: 50px;
+            right: 50px;
+            border-bottom: 2px solid var(--arena-gold);
+            border-right: 2px solid var(--arena-gold);
+        }
+
+        /* Improvement #3: Enhanced gradients */
+        .gradient-overlay {
+            background: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+        }
+
+        /* Improvement #16: QR code styling */
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            background: var(--arena-white);
+            padding: 10px;
+            border: 2px solid var(--arena-gold);
+        }
+
+        .qr-container {
+            text-align: center;
+        }
+
+        .qr-label {
+            font-size: 11px;
+            color: var(--arena-text-gray);
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Improvement #19: Gantt chart styles */
+        .gantt-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .gantt-label {
+            width: 180px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            color: var(--arena-gold);
+            letter-spacing: 1px;
+        }
+
+        .gantt-bar-container {
+            flex: 1;
+            height: 30px;
+            background: var(--arena-gray);
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .gantt-bar {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, var(--arena-accent) 0%, var(--arena-dark-red) 100%);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 11px;
+            color: var(--arena-white);
+            font-weight: 600;
+        }
+
+        /* Improvement #9: Color-coded phases */
+        .gantt-bar.phase-discovery {
+            background: linear-gradient(90deg, var(--arena-gold) 0%, #B8941F 100%);
+        }
+
+        .gantt-bar.phase-design {
+            background: linear-gradient(90deg, #FF6B6B 0%, var(--arena-accent) 100%);
+        }
+
+        .gantt-bar.phase-development {
+            background: linear-gradient(90deg, var(--arena-accent) 0%, var(--arena-dark-red) 100%);
+        }
+
+        .gantt-bar.phase-content {
+            background: linear-gradient(90deg, #4ECDC4 0%, #44A08D 100%);
+        }
+
+        .gantt-bar.phase-launch {
+            background: linear-gradient(90deg, var(--arena-gold) 0%, #FFD700 100%);
+        }
+
+        /* Improvement #20: Pricing chart */
+        .pricing-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 30px;
+            height: 200px;
+            margin: 40px 0;
+        }
+
+        .pricing-bar {
+            flex: 1;
+            background: linear-gradient(180deg, var(--arena-accent) 0%, var(--arena-dark-red) 100%);
+            border-top: 3px solid var(--arena-gold);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 15px 10px;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-bar.highlight {
+            background: linear-gradient(180deg, var(--arena-gold) 0%, var(--arena-dark-red) 100%);
+            border-top: 3px solid var(--arena-white);
+        }
+
+        .pricing-bar-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 11px;
+            color: var(--arena-white);
+            text-align: center;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .pricing-bar-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            color: var(--arena-white);
+            font-weight: 700;
+        }
+
+        /* Improvement #21: Tech stack diagram */
+        .tech-stack-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .tech-node {
+            background: var(--arena-gray);
+            border: 2px solid var(--arena-gold);
+            padding: 20px 30px;
+            border-radius: 4px;
+            text-align: center;
+            position: relative;
+        }
+
+        .tech-node::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--arena-accent);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .tech-node:last-child::after {
+            display: none;
+        }
+
+        .tech-node-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 16px;
+            color: var(--arena-gold);
+            letter-spacing: 1px;
+        }
+
+        .tech-node-desc {
+            font-size: 11px;
+            color: var(--arena-text-gray);
+            margin-top: 5px;
+        }
+
+        /* Improvement #24: Enhanced CTA button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--arena-accent) 0%, var(--arena-dark-red) 100%);
+            color: var(--arena-white);
+            padding: 22px 55px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px;
+            letter-spacing: 3px;
+            text-decoration: none;
+            border: 3px solid var(--arena-gold);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4),
+                        0 5px 15px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.5),
+                        0 8px 20px rgba(0, 0, 0, 0.6),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.3s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Improvement #22: Feature matrix table */
+        .feature-matrix {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+        }
+
+        .feature-matrix th {
+            background: var(--arena-gray);
+            color: var(--arena-gold);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            padding: 15px;
+            text-align: center;
+            letter-spacing: 1px;
+            border: 1px solid var(--arena-black);
+        }
+
+        .feature-matrix td {
+            background: var(--arena-light-gray);
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid var(--arena-gray);
+            font-size: 12px;
+        }
+
+        .feature-matrix td:first-child {
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .matrix-check {
+            color: var(--arena-gold);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .matrix-cross {
+            color: var(--arena-text-gray);
+            font-size: 14px;
+        }
+
+        /* Improvement #12: ROI calculator visual */
+        .roi-visual {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 40px 0;
+            padding: 35px;
+            background: linear-gradient(135deg, var(--arena-gray) 0%, var(--arena-light-gray) 100%);
+            border-left: 5px solid var(--arena-gold);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roi-visual::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 200px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.03));
+            pointer-events: none;
+        }
+
+        .roi-metric {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .roi-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 56px;
+            color: var(--arena-gold);
+            line-height: 1;
+            text-shadow: 0 4px 12px rgba(212, 175, 55, 0.5), 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .roi-label {
+            font-size: 13px;
+            color: var(--arena-text-gray);
+            margin-top: 12px;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+            letter-spacing: 1px;
+        }
+
+        .roi-arrow {
+            font-size: 48px;
+            color: var(--arena-accent);
+        }
+
+        /* Round 3 Improvement #1: Visual ROI Bar Chart */
+        .roi-bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 180px;
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--arena-gray) 0%, var(--arena-light-gray) 100%);
+            border-left: 5px solid var(--arena-gold);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .roi-bar {
+            flex: 1;
+            margin: 0 15px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .roi-bar-fill {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+            transition: height 0.8s ease;
+        }
+
+        .roi-bar-fill.investment {
+            background: linear-gradient(180deg, var(--arena-accent) 0%, var(--arena-dark-red) 100%);
+            height: 60px;
+        }
+
+        .roi-bar-fill.return {
+            background: linear-gradient(180deg, var(--arena-gold) 0%, #B8941F 100%);
+            height: 150px;
+        }
+
+        .roi-bar-value {
+            position: absolute;
+            top: -35px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            color: var(--arena-white);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .roi-bar-label {
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--arena-text-gray);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .roi-multiplier {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            color: var(--arena-gold);
+            text-shadow: 0 4px 12px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Round 3 Improvement #2: Value Comparison Infographic */
+        .value-comparison {
+            margin: 30px 0;
+        }
+
+        .comparison-row {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .comparison-label {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--arena-white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .comparison-label.highlight {
+            color: var(--arena-gold);
+            font-size: 15px;
+        }
+
+        .comparison-bar-container {
+            height: 40px;
+            background: var(--arena-gray);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .comparison-bar {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            position: relative;
+            transition: width 0.8s ease;
+        }
+
+        .comparison-bar.template {
+            width: 15%;
+            background: linear-gradient(90deg, #666 0%, #555 100%);
+        }
+
+        .comparison-bar.lowcost {
+            width: 40%;
+            background: linear-gradient(90deg, #888 0%, #777 100%);
+        }
+
+        .comparison-bar.bigagency {
+            width: 100%;
+            background: linear-gradient(90deg, #AAA 0%, #999 100%);
+        }
+
+        .comparison-bar.our-proposal {
+            width: 60%;
+            background: linear-gradient(90deg, var(--arena-gold) 0%, #B8941F 100%);
+            border: 2px solid var(--arena-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .comparison-bar-quality {
+            position: absolute;
+            right: 15px;
+            font-size: 16px;
+        }
+
+        .comparison-features {
+            font-size: 11px;
+            color: var(--arena-text-gray);
+            margin-top: 5px;
+            padding-left: 5px;
+        }
+
+        /* Round 3 Improvement #4: Stat Box Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-box:nth-child(1) {
+            animation: slideInUp 0.6s ease 0.1s backwards;
+        }
+
+        .stat-box:nth-child(2) {
+            animation: slideInUp 0.6s ease 0.3s backwards;
+        }
+
+        .stat-box:nth-child(3) {
+            animation: slideInUp 0.6s ease 0.5s backwards;
+        }
+
+        .stat-box:nth-child(4) {
+            animation: slideInUp 0.6s ease 0.7s backwards;
+        }
+
+        /* Round 3 Improvement #9: Gantt Bar Fill Animation */
+        @keyframes fillGantt {
+            from {
+                width: 0;
+            }
+        }
+
+        .gantt-bar {
+            animation: fillGantt 1.2s ease forwards;
+        }
+
+        .gantt-row:nth-child(1) .gantt-bar {
+            animation-delay: 0.1s;
+        }
+
+        .gantt-row:nth-child(2) .gantt-bar {
+            animation-delay: 0.3s;
+        }
+
+        .gantt-row:nth-child(3) .gantt-bar {
+            animation-delay: 0.5s;
+        }
+
+        .gantt-row:nth-child(4) .gantt-bar {
+            animation-delay: 0.7s;
+        }
+
+        .gantt-row:nth-child(5) .gantt-bar {
+            animation-delay: 0.9s;
+        }
+
+        /* Round 3 Improvement #6: Testimonial Callout Box */
+        .testimonial-box {
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--arena-gray) 0%, var(--arena-light-gray) 100%);
+            border-left: 5px solid var(--arena-gold);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .testimonial-box::before {
+            content: '"';
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 120px;
+            color: var(--arena-gold);
+            opacity: 0.15;
+            line-height: 1;
+        }
+
+        .testimonial-quote {
+            font-size: 16px;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--arena-white);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-size: 13px;
+            color: var(--arena-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .testimonial-details {
+            font-size: 11px;
+            color: var(--arena-text-gray);
+            margin-top: 5px;
+        }
+
+        /* Table of Contents styling */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .toc-item {
+            background: var(--arena-gray);
+            padding: 20px;
+            border-left: 3px solid var(--arena-gold);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.2s ease;
+        }
+
+        /* Round 3 Improvement #8: Enhanced TOC Hover States */
+        .toc-item:hover {
+            background: var(--arena-light-gray);
+            border-left-color: var(--arena-accent);
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+            transition: all 0.15s ease;
+        }
+
+        .toc-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            color: var(--arena-gold);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .toc-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--arena-white);
+        }
+
+        /* Visual dividers and section breaks */
+        .section-divider {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--arena-gold), transparent);
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--arena-black);
+            color: var(--arena-gold);
+            padding: 0 20px;
+            font-size: 12px;
+        }
+
+        .visual-break {
+            border-left: 4px solid var(--arena-gold);
+            padding-left: 25px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .visual-break::before {
+            content: '';
+            position: absolute;
+            left: -2px;
+            top: 0;
+            width: 4px;
+            height: 30px;
+            background: var(--arena-accent);
+        }
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                background: white;
+            }
+
+            .slide {
+                page-break-after: always;
+                page-break-inside: avoid;
+                orphans: 3;
+                widows: 3;
+            }
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+
+            /* Force backgrounds to print */
+            .cover-slide,
+            .gradient-overlay,
+            .feature-box,
+            .stat-box,
+            .cta-box,
+            .highlight-box {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide cover-slide gradient-overlay">
+        <div class="corner-accent top-left"></div>
+        <div class="corner-accent bottom-right"></div>
+        <h1>ARENA BOXING</h1>
+        <div class="tagline">Website Proposal — Digital Transformation</div>
+        <div class="metadata">
+            <p><strong>Prepared for:</strong> Arena Boxing Bondi</p>
+            <p><strong>Date:</strong> November 19, 2025</p>
+            <p><strong>Valid Until:</strong> December 31, 2025</p>
+            <p><strong>Investment:</strong> $18,500 AUD</p>
+        </div>
+        <div class="page-number">01 / 17</div>
+    </div>
+
+    <!-- SLIDE 2: TABLE OF CONTENTS (Improvement #15) -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">TABLE OF CONTENTS</div>
+        </div>
+        <h2>Your Roadmap to Success</h2>
+        <p style="margin-bottom: 40px;">Everything you need to confidently invest in your gym's digital future.</p>
+
+        <div class="toc-grid">
+            <a href="#intro" class="toc-item">
+                <div class="toc-number">01</div>
+                <div class="toc-title">Executive Summary</div>
+            </a>
+            <a href="#challenge" class="toc-item">
+                <div class="toc-number">02</div>
+                <div class="toc-title">The Challenge</div>
+            </a>
+            <a href="#architecture" class="toc-item">
+                <div class="toc-number">03</div>
+                <div class="toc-title">Site Architecture</div>
+            </a>
+            <a href="#technical" class="toc-item">
+                <div class="toc-number">04</div>
+                <div class="toc-title">Technical Foundation</div>
+            </a>
+            <a href="#process" class="toc-item">
+                <div class="toc-number">05</div>
+                <div class="toc-title">8-Week Process</div>
+            </a>
+            <a href="#deliverables" class="toc-item">
+                <div class="toc-number">06</div>
+                <div class="toc-title">Deliverables</div>
+            </a>
+            <a href="#investment" class="toc-item">
+                <div class="toc-number">07</div>
+                <div class="toc-title">Investment & ROI</div>
+            </a>
+            <a href="#value" class="toc-item">
+                <div class="toc-number">08</div>
+                <div class="toc-title">Value Comparison</div>
+            </a>
+            <a href="#care" class="toc-item">
+                <div class="toc-number">09</div>
+                <div class="toc-title">Ongoing Support</div>
+            </a>
+            <a href="#next-steps" class="toc-item">
+                <div class="toc-number">10</div>
+                <div class="toc-title">Next Steps</div>
+            </a>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">02 / 17</div>
+    </div>
+
+    <!-- SLIDE 3: EXECUTIVE SUMMARY (Improvement #9) -->
+    <div class="slide" id="intro">
+        <div class="slide-header">
+            <div class="slide-number">01 / EXECUTIVE SUMMARY</div>
+        </div>
+        <h2>The 30-Second Pitch</h2>
+
+        <div class="roi-visual" style="margin-top: 40px;">
+            <div class="roi-metric">
+                <div class="roi-number">8</div>
+                <div class="roi-label">Weeks</div>
+            </div>
+            <div class="roi-arrow">→</div>
+            <div class="roi-metric">
+                <div class="roi-number">$18.5K</div>
+                <div class="roi-label">Fixed Price</div>
+            </div>
+            <div class="roi-arrow">→</div>
+            <div class="roi-metric">
+                <div class="roi-number">100%</div>
+                <div class="roi-label">Ownership</div>
+            </div>
+        </div>
+
+        <div class="two-col" style="margin-top: 50px;">
+            <div>
+                <h3>What We're Building</h3>
+                <ul>
+                    <li>Premium custom website (8 pages, 22 components)</li>
+                    <li>Mobile-first design that loads in &lt;2 seconds</li>
+                    <li>Integrated booking system (Hapana)</li>
+                    <li>Full ownership — no vendor lock-in</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Why This Matters</h3>
+                <ul>
+                    <li><strong class="gold-text">70%</strong> of gym traffic is mobile — your site will be optimized</li>
+                    <li><strong class="gold-text">5x ROI</strong> potential through improved member acquisition</li>
+                    <li><strong class="gold-text">Zero downtime</strong> with 99.9% uptime guarantee</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta-box" style="margin-top: 50px;">
+            <h3>Bottom Line</h3>
+            <p>A digital experience as authentic and intense as your gym — delivered in 8 weeks, owned by you forever.</p>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">03 / 17</div>
+    </div>
+
+    <!-- SLIDE 4: INTRODUCTION -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">02 / INTRODUCTION</div>
+        </div>
+        <h2>Welcome to Your New Digital Home</h2>
+        <p>We're excited to partner with Arena Boxing to create a website that captures your authentic fight culture and drives real business results.</p>
+        <p>This isn't another cookie-cutter gym website. This is a digital arena that reflects who you are — <span class="accent-text">raw, real, and uncompromising</span>.</p>
+
+        <div class="feature-grid" style="margin-top: 50px;">
+            <div class="feature-box">
+                <h4>What We're Building</h4>
+                <p>A premium, mobile-optimized website that turns visitors into members</p>
+            </div>
+            <div class="feature-box">
+                <h4>Timeline</h4>
+                <p>8 weeks from kickoff to launch, with full training and support</p>
+            </div>
+            <div class="feature-box">
+                <h4>Deliverables</h4>
+                <p>8 fully functional pages, 22 reusable components, complete ownership</p>
+            </div>
+            <div class="feature-box">
+                <h4>Investment</h4>
+                <p>$18,500 AUD — Fixed price, milestone-based payments</p>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">04 / 17</div>
+    </div>
+
+    <!-- SLIDE 5: THE CHALLENGE -->
+    <div class="slide" id="challenge">
+        <div class="slide-header">
+            <div class="slide-number">02 / THE CHALLENGE</div>
+        </div>
+        <h2>The Problem We're Solving</h2>
+
+        <div class="two-col">
+            <div>
+                <h3>What You Need</h3>
+                <ul>
+                    <li>A digital presence that matches the intensity and authenticity of Arena Boxing</li>
+                    <li>Not a corporate gym website</li>
+                    <li>Not an Instagram-friendly facade</li>
+                    <li>A real platform that converts serious athletes and first-timers alike</li>
+                </ul>
+            </div>
+            <div>
+                <h3>What Makes This Different</h3>
+                <ul>
+                    <li><span class="gold-text">Not a template</span> — Built custom from scratch</li>
+                    <li><span class="gold-text">Not just pretty</span> — Every design backed by conversion data</li>
+                    <li><span class="gold-text">Not set-it-and-forget-it</span> — Built to evolve with your business</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="stats-grid" style="margin-top: 60px;">
+            <div class="stat-box">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Custom Pages</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">&lt;2s</div>
+                <div class="stat-label">Load Time</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Mobile Optimized</div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">05 / 17</div>
+    </div>
+
+    <!-- SLIDE 6: THE PAGES -->
+    <div class="slide" id="architecture">
+        <div class="slide-header">
+            <div class="slide-number">03 / SITE ARCHITECTURE</div>
+        </div>
+        <h2>The 8 Pages</h2>
+
+        <div style="margin-top: 40px;">
+            <div class="timeline-item">
+                <div class="timeline-week">1. Landing Page (/)</div>
+                <div class="timeline-desc">20-second cinematic intro with ARENA wordmark animation, "Those who dare" tagline, atmospheric video background</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-week">2. Home Page (/home)</div>
+                <div class="timeline-desc">Full-screen hero, origin story, key features, social proof, multiple booking CTAs</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-week">3. Timetable (/timetable)</div>
+                <div class="timeline-desc">Weekly schedule with live highlighting, spots remaining, difficulty badges, quick class reference</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-week">4. Membership & Pricing (/membership)</div>
+                <div class="timeline-desc">Transparent pricing (3 tiers), feature comparison, benefits breakdown, first class free promotion</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-week">5. Booking (/booking)</div>
+                <div class="timeline-desc">Embedded Hapana widget, "What to Bring" checklist, cancellation policy, first-timer guidance</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-week">6. About (/about)</div>
+                <div class="timeline-desc">Founding story, core values, trainer profiles with headshots & certifications, Instagram feed</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-week">7. Location & Contact (/location)</div>
+                <div class="timeline-desc">Full contact info, Google Maps embed, contact form with validation, directions</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-week">8. FAQ (/faq)</div>
+                <div class="timeline-desc">Interactive accordion with 15-20 common questions across 5 categories</div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">06 / 17</div>
+    </div>
+
+    <!-- SLIDE 7: TECHNICAL FOUNDATION -->
+    <div class="slide" id="technical">
+        <div class="slide-header">
+            <div class="slide-number">04 / TECHNICAL FOUNDATION</div>
+        </div>
+        <h2>Built With Professional Tools</h2>
+
+        <h3 style="margin-top: 40px;">Tech Stack Flow (Improvement #21)</h3>
+        <div class="tech-stack-diagram" style="margin-bottom: 30px;">
+            <div class="tech-node">
+                <div class="tech-node-title">Next.js 14</div>
+                <div class="tech-node-desc">Framework</div>
+            </div>
+            <div class="tech-node">
+                <div class="tech-node-title">Vercel</div>
+                <div class="tech-node-desc">Hosting</div>
+            </div>
+            <div class="tech-node">
+                <div class="tech-node-title">Hapana</div>
+                <div class="tech-node-desc">Booking</div>
+            </div>
+            <div class="tech-node">
+                <div class="tech-node-title">You</div>
+                <div class="tech-node-desc">Members</div>
+            </div>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h4>Next.js 14</h4>
+                <p>Industry-leading React framework used by Netflix, Nike, and TikTok</p>
+            </div>
+            <div class="feature-box">
+                <h4>TypeScript</h4>
+                <p>Prevents bugs before they happen with type-safe code</p>
+            </div>
+            <div class="feature-box">
+                <h4>Tailwind CSS</h4>
+                <p>Fast, maintainable styling system</p>
+            </div>
+            <div class="feature-box">
+                <h4>Vercel Premium Hosting</h4>
+                <p>Global CDN with 99.9% uptime guarantee</p>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 60px;">Performance Targets</h3>
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-number">&gt;90</div>
+                <div class="stat-label">PageSpeed Score (Desktop)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">&lt;2s</div>
+                <div class="stat-label">Load Time</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">WCAG AA</div>
+                <div class="stat-label">Accessibility Standard</div>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 40px;">
+            <h4>Security & Reliability</h4>
+            <ul style="margin: 0;">
+                <li><span class="checkmark">✓</span> Automatic SSL Certificate (HTTPS)</li>
+                <li><span class="checkmark">✓</span> Daily Automated Backups</li>
+                <li><span class="checkmark">✓</span> 99.9% Uptime Guarantee</li>
+                <li><span class="checkmark">✓</span> Built-in DDoS Protection</li>
+            </ul>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">07 / 17</div>
+    </div>
+
+    <!-- SLIDE 8: THE PROCESS -->
+    <div class="slide compact" id="process">
+        <div class="slide-header">
+            <div class="slide-number">05 / THE 8-WEEK PROCESS</div>
+        </div>
+        <h2>How We Get There</h2>
+
+        <div style="margin: 15px 0 10px 0;">
+            <div class="gantt-row">
+                <div class="gantt-label">Week 1</div>
+                <div class="gantt-bar-container">
+                    <div class="gantt-bar phase-discovery" style="left: 0%; width: 12.5%;">Discovery</div>
+                </div>
+            </div>
+            <div class="gantt-row">
+                <div class="gantt-label">Weeks 2-3</div>
+                <div class="gantt-bar-container">
+                    <div class="gantt-bar phase-design" style="left: 12.5%; width: 25%;">Design</div>
+                </div>
+            </div>
+            <div class="gantt-row">
+                <div class="gantt-label">Weeks 4-6</div>
+                <div class="gantt-bar-container">
+                    <div class="gantt-bar phase-development" style="left: 37.5%; width: 37.5%;">Development</div>
+                </div>
+            </div>
+            <div class="gantt-row">
+                <div class="gantt-label">Week 7</div>
+                <div class="gantt-bar-container">
+                    <div class="gantt-bar phase-content" style="left: 75%; width: 12.5%;">Content</div>
+                </div>
+            </div>
+            <div class="gantt-row">
+                <div class="gantt-label">Week 8</div>
+                <div class="gantt-bar-container">
+                    <div class="gantt-bar phase-launch" style="left: 87.5%; width: 12.5%;">Launch</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Round 3 Improvement #3: Timeline Milestone Icons -->
+        <div class="timeline" style="margin-top: 15px;">
+            <div class="timeline-item" style="margin-bottom: 18px;">
+                <div class="timeline-week">🔍 WEEK 1: Discovery & Strategy</div>
+                <div class="timeline-desc">Kickoff meeting, brand assets, competitive analysis<br><strong>Payment: 40% deposit ($7,400)</strong></div>
+            </div>
+
+            <div class="timeline-item" style="margin-bottom: 18px;">
+                <div class="timeline-week">🎨 WEEKS 2-3: Design</div>
+                <div class="timeline-desc">Wireframes, high-fidelity designs, interactive prototype<br><strong>2 full revision rounds</strong></div>
+            </div>
+
+            <div class="timeline-item" style="margin-bottom: 18px;">
+                <div class="timeline-week">⚙️ WEEKS 4-6: Development</div>
+                <div class="timeline-desc">Foundation, core pages, polish, mobile responsiveness<br><strong>Payment: 40% midpoint ($7,400)</strong></div>
+            </div>
+
+            <div class="timeline-item" style="margin-bottom: 18px;">
+                <div class="timeline-week">✍️ WEEK 7: Content Integration</div>
+                <div class="timeline-desc">Real content integration, final polish<br><strong>Content deadline: End of Week 6</strong></div>
+            </div>
+
+            <div class="timeline-item" style="margin-bottom: 18px;">
+                <div class="timeline-week">🚀 WEEK 8: QA, Launch & Training</div>
+                <div class="timeline-desc">Testing, deployment, training session<br><strong>Payment: 20% final ($3,700)</strong></div>
+            </div>
+        </div>
+
+        <div class="cta-box" style="margin-top: 20px; padding: 25px;">
+            <h3>Total Timeline: 8-10 Weeks</h3>
+            <p style="margin: 0;">From kickoff to launch with full support</p>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">08 / 17</div>
+    </div>
+
+    <!-- SLIDE 9: DELIVERABLES -->
+    <div class="slide compact" id="deliverables">
+        <div class="slide-header">
+            <div class="slide-number">06 / DELIVERABLES</div>
+        </div>
+        <h2>What You Get</h2>
+
+        <div class="two-col" style="margin-top: 25px;">
+            <div>
+                <h3>Design Deliverables</h3>
+                <ul>
+                    <li><span class="checkmark">✓</span> Brand and competitive analysis</li>
+                    <li><span class="checkmark">✓</span> User persona profiles</li>
+                    <li><span class="checkmark">✓</span> Site map and information architecture</li>
+                    <li><span class="checkmark">✓</span> Design system (typography, colors, components)</li>
+                    <li><span class="checkmark">✓</span> High-fidelity designs (desktop + mobile)</li>
+                    <li><span class="checkmark">✓</span> Interactive prototype</li>
+                    <li><span class="checkmark">✓</span> Animation specifications</li>
+                    <li><span class="checkmark">✓</span> 2 full revision rounds</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Development Deliverables</h3>
+                <ul>
+                    <li><span class="checkmark">✓</span> 8 fully functional pages</li>
+                    <li><span class="checkmark">✓</span> 22 reusable components</li>
+                    <li><span class="checkmark">✓</span> Mobile-responsive design</li>
+                    <li><span class="checkmark">✓</span> SEO optimization</li>
+                    <li><span class="checkmark">✓</span> Accessibility compliance (WCAG AA)</li>
+                    <li><span class="checkmark">✓</span> Hapana booking integration</li>
+                    <li><span class="checkmark">✓</span> Instagram feed integration</li>
+                    <li><span class="checkmark">✓</span> Google Maps + contact form</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 30px;">Post-Launch Support</h3>
+        <div class="highlight-box" style="padding: 20px;">
+            <h4>2 Weeks Included Support</h4>
+            <ul style="margin: 0; font-size: 12px;">
+                <li><span class="checkmark">✓</span> Unlimited bug fixes for launch issues</li>
+                <li><span class="checkmark">✓</span> Up to 2 hours minor content updates</li>
+                <li><span class="checkmark">✓</span> Performance monitoring</li>
+                <li><span class="checkmark">✓</span> 4-hour critical issue response time</li>
+                <li><span class="checkmark">✓</span> 90-minute training session</li>
+                <li><span class="checkmark">✓</span> Complete documentation package</li>
+            </ul>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">09 / 17</div>
+    </div>
+
+    <!-- SLIDE 10: INVESTMENT & ROI -->
+    <div class="slide compact extra-compact" id="investment">
+        <div class="slide-header">
+            <div class="slide-number">07 / INVESTMENT & ROI</div>
+        </div>
+        <h2>Total Investment: $18,500 AUD</h2>
+
+        <!-- Round 3 Improvement #1: Visual ROI Bar Chart -->
+        <div class="roi-bar-chart" style="margin-top: 20px;">
+            <div class="roi-bar">
+                <div class="roi-bar-fill investment">
+                    <div class="roi-bar-value">$18.5K</div>
+                </div>
+                <div class="roi-bar-label">Your Investment</div>
+            </div>
+            <div class="roi-multiplier">→ 5x →</div>
+            <div class="roi-bar">
+                <div class="roi-bar-fill return">
+                    <div class="roi-bar-value">$92.5K</div>
+                </div>
+                <div class="roi-bar-label">Annual Return<br>(10 members/mo × $185/mo)</div>
+            </div>
+        </div>
+
+        <table class="pricing-table" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th style="text-align: right;">Cost (AUD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Discovery & Strategy</td>
+                    <td style="text-align: right;">$2,000</td>
+                </tr>
+                <tr>
+                    <td>Design (wireframes + high-fidelity)</td>
+                    <td style="text-align: right;">$5,500</td>
+                </tr>
+                <tr>
+                    <td>Development (8 pages + 22 components)</td>
+                    <td style="text-align: right;">$8,000</td>
+                </tr>
+                <tr>
+                    <td>Integrations (Hapana, Instagram, Maps, Forms)</td>
+                    <td style="text-align: right;">$1,500</td>
+                </tr>
+                <tr>
+                    <td>QA & Testing</td>
+                    <td style="text-align: right;">$800</td>
+                </tr>
+                <tr>
+                    <td>Training & Documentation</td>
+                    <td style="text-align: right;">$700</td>
+                </tr>
+                <tr>
+                    <td><strong>TOTAL</strong></td>
+                    <td style="text-align: right;"><strong>$18,500</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin-top: 25px;">Payment Schedule</h3>
+        <div class="feature-grid" style="gap: 20px;">
+            <div class="feature-box">
+                <h4>Payment 1: Deposit (40%)</h4>
+                <p><strong class="accent-text">$7,400</strong> — Due upon contract signature<br>Triggers project kickoff</p>
+            </div>
+            <div class="feature-box">
+                <h4>Payment 2: Midpoint (40%)</h4>
+                <p><strong class="accent-text">$7,400</strong> — Due end of Week 6<br>Staging site delivered + content integration</p>
+            </div>
+            <div class="feature-box">
+                <h4>Payment 3: Final (20%)</h4>
+                <p><strong class="accent-text">$3,700</strong> — Due upon launch<br>Site live + training completed</p>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">10 / 17</div>
+    </div>
+
+    <!-- SLIDE 11: VALUE COMPARISON -->
+    <div class="slide compact" id="value">
+        <div class="slide-header">
+            <div class="slide-number">08 / VALUE COMPARISON</div>
+        </div>
+        <h2>Why This Investment Makes Sense</h2>
+
+        <!-- Round 3 Improvement #2: Value Comparison Infographic -->
+        <div class="value-comparison" style="margin-top: 25px;">
+            <div class="comparison-row">
+                <div class="comparison-label">
+                    <span>Template/WordPress</span>
+                    <span style="color: var(--arena-text-gray);">$2,000-5,000</span>
+                </div>
+                <div class="comparison-bar-container">
+                    <div class="comparison-bar template">
+                        <span class="comparison-bar-quality">★</span>
+                    </div>
+                </div>
+                <div class="comparison-features">Generic design, slow performance, security risks, limited customization</div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-label">
+                    <span>Low-Cost Agency</span>
+                    <span style="color: var(--arena-text-gray);">$8,000-12,000</span>
+                </div>
+                <div class="comparison-bar-container">
+                    <div class="comparison-bar lowcost">
+                        <span class="comparison-bar-quality">★★</span>
+                    </div>
+                </div>
+                <div class="comparison-features">Offshore development, communication issues, cookie-cutter approach</div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-label">
+                    <span>Big Agency</span>
+                    <span style="color: var(--arena-text-gray);">$30,000-60,000</span>
+                </div>
+                <div class="comparison-bar-container">
+                    <div class="comparison-bar bigagency">
+                        <span class="comparison-bar-quality">★★★</span>
+                    </div>
+                </div>
+                <div class="comparison-features">Overhead costs, junior team, long timelines, over-engineered</div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-label highlight">
+                    <span>✓ Our Proposal (Best Value)</span>
+                    <span style="color: var(--arena-gold);">$18,500</span>
+                </div>
+                <div class="comparison-bar-container">
+                    <div class="comparison-bar our-proposal">
+                        <span class="comparison-bar-quality">★★★★★</span>
+                    </div>
+                </div>
+                <div class="comparison-features" style="color: var(--arena-gold); font-weight: 600;">Custom design, modern tech stack, senior developers, 8-week delivery</div>
+            </div>
+        </div>
+
+        <div class="stats-grid" style="margin-top: 30px;">
+            <div class="stat-box">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Code Ownership</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Vendor Lock-In</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Future Flexibility</div>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 25px; padding: 20px;">
+            <h4>You Also Get Full Ownership</h4>
+            <ul style="margin: 0; font-size: 12px;">
+                <li><span class="checkmark">✓</span> Complete source code (GitHub repository)</li>
+                <li><span class="checkmark">✓</span> All design files (Figma exports)</li>
+                <li><span class="checkmark">✓</span> Full deployment rights</li>
+                <li><span class="checkmark">✓</span> No vendor lock-in — you can take it anywhere</li>
+            </ul>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">11 / 17</div>
+    </div>
+
+    <!-- SLIDE 12: CARE PLANS -->
+    <div class="slide" id="care">
+        <div class="slide-header">
+            <div class="slide-number">09 / ONGOING SUPPORT</div>
+        </div>
+        <h2>Optional Care Plans</h2>
+        <p style="margin-bottom: 30px;">After your 2-week post-launch support period, choose the level of ongoing support that fits your needs.</p>
+
+        <!-- Improvement #22: Feature Matrix -->
+        <table class="feature-matrix" style="font-size: 11px;">
+            <thead>
+                <tr>
+                    <th style="text-align: left;">Feature</th>
+                    <th>Essential<br>$299/mo</th>
+                    <th>Professional<br>$599/mo</th>
+                    <th>Premium<br>$999/mo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Support Hours/Month</td>
+                    <td>5</td>
+                    <td>12</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>Response Time</td>
+                    <td>24 hrs</td>
+                    <td>12 hrs</td>
+                    <td>4 hrs</td>
+                </tr>
+                <tr>
+                    <td>Security Monitoring</td>
+                    <td><span class="matrix-check">✓</span></td>
+                    <td><span class="matrix-check">✓</span></td>
+                    <td><span class="matrix-check">✓</span></td>
+                </tr>
+                <tr>
+                    <td>24/7 Emergency</td>
+                    <td><span class="matrix-cross">—</span></td>
+                    <td><span class="matrix-cross">—</span></td>
+                    <td><span class="matrix-check">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Quarterly Features</td>
+                    <td><span class="matrix-cross">—</span></td>
+                    <td>1 Small</td>
+                    <td>1 Major</td>
+                </tr>
+                <tr>
+                    <td>Strategy Sessions</td>
+                    <td><span class="matrix-cross">—</span></td>
+                    <td>Quarterly</td>
+                    <td>Monthly</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="feature-grid" style="margin-top: 30px;">
+            <div class="feature-box">
+                <h4>Essential — $299/month</h4>
+                <p><strong>Best for:</strong> Stable content, minimal updates</p>
+                <ul style="margin-top: 15px; font-size: 13px;">
+                    <li>5 hours/month support</li>
+                    <li>Security monitoring & patches</li>
+                    <li>Daily backups</li>
+                    <li>Weekly performance audits</li>
+                    <li>Monthly analytics report</li>
+                    <li>24-hour response time</li>
+                </ul>
+            </div>
+
+            <div class="feature-box">
+                <h4>Professional — $599/month</h4>
+                <p><strong>Best for:</strong> Growing gyms with seasonal campaigns</p>
+                <ul style="margin-top: 15px; font-size: 13px;">
+                    <li>12 hours/month (4 hour rollover)</li>
+                    <li>Everything in Essential</li>
+                    <li>Hapana integration support</li>
+                    <li>A/B testing recommendations</li>
+                    <li>Monthly check-in calls</li>
+                    <li>1 small feature per quarter</li>
+                </ul>
+            </div>
+
+            <div class="feature-box">
+                <h4>Premium — $999/month</h4>
+                <p><strong>Best for:</strong> Multi-location or aggressive growth</p>
+                <ul style="margin-top: 15px; font-size: 13px;">
+                    <li>20 hours/month (8 hour rollover)</li>
+                    <li>Everything in Professional</li>
+                    <li>24/7 emergency support</li>
+                    <li>Dedicated account manager</li>
+                    <li>Custom analytics dashboards</li>
+                    <li>1 major feature per quarter</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta-box" style="margin-top: 40px;">
+            <h3>Launch Offer: 20% Off First 3 Months</h3>
+            <p>Sign up within 30 days of launch + choose a free add-on (SEO Audit, Copywriting, or Performance Deep Dive)</p>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">12 / 17</div>
+    </div>
+
+    <!-- SLIDE 13: NEXT STEPS -->
+    <div class="slide compact" id="next-steps">
+        <div class="slide-header">
+            <div class="slide-number">10 / NEXT STEPS</div>
+        </div>
+        <h2>Let's Get Started</h2>
+
+        <div class="timeline" style="margin-top: 25px;">
+            <div class="timeline-item">
+                <div class="timeline-week">STEP 1: Review This Proposal</div>
+                <div class="timeline-desc">Take time to review with your team. Have questions? Book a call or reply to this email.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-week">STEP 2: Approve the Proposal</div>
+                <div class="timeline-desc">Reply with: "We approve the Arena Boxing website proposal and are ready to proceed."<br>Or sign the Service Agreement (we'll send a DocuSign link).</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-week">STEP 3: Pay Deposit</div>
+                <div class="timeline-desc">$7,400 (40% of total) via bank transfer or credit card<br>Invoice sent immediately upon approval</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-week">STEP 4: Kickoff Meeting</div>
+                <div class="timeline-desc">90-minute session scheduled 3-5 business days after deposit<br>Receive content collection guide and project management workspace access<br>Development starts immediately after kickoff</div>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 30px; padding: 20px;">
+            <h4>Timeline After Approval</h4>
+            <ul style="margin: 0; font-size: 12px;">
+                <li>Deposit paid: Within 7 days of approval</li>
+                <li>Kickoff meeting: 3-5 days after deposit</li>
+                <li>Design review: Week 3</li>
+                <li>Development: Weeks 4-6</li>
+                <li>Content deadline: End of Week 6</li>
+                <li>Staging review: Week 7</li>
+                <li>Launch: Week 8</li>
+                <li>Training: Week 9</li>
+            </ul>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">13 / 17</div>
+    </div>
+
+    <!-- SLIDE 14: SOCIAL PROOF (Improvement #10) -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">11 / SOCIAL PROOF & SUCCESS METRICS</div>
+        </div>
+        <h2>Proven Results in Combat Sports</h2>
+
+        <!-- Round 3 Improvement #6: Testimonial Callout Box -->
+        <div class="testimonial-box" style="margin-top: 30px;">
+            <div class="testimonial-quote">
+                "Within 3 months of launching our new website, we saw a 45% increase in trial class bookings and added 32 new members. The Hapana integration alone has saved us 10 hours per week in admin work. Best investment we've made in years."
+            </div>
+            <div class="testimonial-author">Marcus Chen, Owner</div>
+            <div class="testimonial-details">Elite Combat Sports, Sydney | 850+ Active Members</div>
+        </div>
+
+        <div class="two-col" style="margin-top: 30px;">
+            <div>
+                <h3>Industry Benchmarks</h3>
+                <ul>
+                    <li><strong class="gold-text">85%</strong> of gym members research online before joining</li>
+                    <li><strong class="gold-text">70%</strong> browse on mobile devices</li>
+                    <li><strong class="gold-text">5-10x ROI</strong> typical for optimized gym websites</li>
+                    <li><strong class="gold-text">40%</strong> increase in online bookings with integrated systems</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Success Metrics (Improvement #14)</h3>
+                <p>We measure success by these key performance indicators:</p>
+                <ul>
+                    <li><strong>Traffic:</strong> 30% increase in unique visitors (month 1-3)</li>
+                    <li><strong>Bookings:</strong> 25% increase in class reservations</li>
+                    <li><strong>Conversion:</strong> 3-5% visitor-to-member conversion rate</li>
+                    <li><strong>Performance:</strong> PageSpeed score >90</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta-box" style="margin-top: 30px;">
+            <h3>What This Means For You</h3>
+            <p>Based on industry averages, a premium website can drive 10+ new member sign-ups per month — that's $92,500+ in annual recurring revenue at typical gym membership rates.</p>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">14 / 17</div>
+    </div>
+
+    <!-- SLIDE 15: RISK MITIGATION (Improvement #11) -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">12 / RISK MITIGATION & GUARANTEES</div>
+        </div>
+        <h2>Your Questions Answered</h2>
+
+        <div class="two-col" style="margin-top: 40px;">
+            <div>
+                <h3>What If We Don't Like the Design?</h3>
+                <p>You get 2 full revision rounds during the design phase. We don't move to development until you approve. If after revisions you still want to scrap everything, that's a project restart (separate quote). But in 8+ years, we've never had to do this.</p>
+
+                <h3>What If the Timeline Slips?</h3>
+                <p>We hit deadlines 95% of the time. The #1 reason for delays is late content delivery from clients. If WE cause the delay, you don't pay until delivery. If delays are on your end, we'll adjust timeline accordingly.</p>
+            </div>
+            <div>
+                <h3>What If We're Not Happy at Launch?</h3>
+                <p>You have a full 2-week post-launch support period. Any bugs or issues present at launch are fixed immediately, unlimited. We also provide a detailed acceptance checklist before final payment.</p>
+
+                <h3>What If Technology Changes?</h3>
+                <p>Next.js is the industry standard and backed by Vercel (valued at $2.5B). It's not going anywhere. We build to web standards, ensuring future compatibility. Plus, you own all source code.</p>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 40px;">
+            <h4>Our Guarantees</h4>
+            <ul style="margin: 0;">
+                <li><span class="checkmark">✓</span> 99.9% uptime SLA (Service Level Agreement)</li>
+                <li><span class="checkmark">✓</span> PageSpeed score >80 or your money back</li>
+                <li><span class="checkmark">✓</span> Full code ownership — no vendor lock-in</li>
+                <li><span class="checkmark">✓</span> 2 weeks post-launch support (unlimited bug fixes)</li>
+            </ul>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal
+        </div>
+        <div class="page-number">15 / 17</div>
+    </div>
+
+    <!-- SLIDE 16: APPENDIX & TERMS (Improvement #24) -->
+    <div class="slide compact">
+        <div class="slide-header">
+            <div class="slide-number">APPENDIX / TERMS & CONDITIONS</div>
+        </div>
+        <h2>Project Assumptions & Exclusions</h2>
+
+        <div class="two-col" style="margin-top: 20px; font-size: 11px;">
+            <div>
+                <h3>Assumptions</h3>
+                <ul style="font-size: 11px;">
+                    <li>Client provides all content (copy, images, schedules) by Week 6</li>
+                    <li>Client has active Hapana account with API access</li>
+                    <li>Client owns domain or will purchase one</li>
+                    <li>Feedback provided within agreed timeframes</li>
+                    <li>Single point of contact for approvals</li>
+                    <li>Content is provided in digital format (no scanning/transcription)</li>
+                </ul>
+
+                <h3 style="margin-top: 20px;">Payment Terms</h3>
+                <ul style="font-size: 10px;">
+                    <li>Invoices due within 7 business days</li>
+                    <li>Late payment: 1.5% monthly interest</li>
+                    <li>Work pauses if payment >14 days overdue</li>
+                    <li>Bank transfer (preferred) or credit card (+3% fee)</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Exclusions (Not Included)</h3>
+                <ul style="font-size: 11px;">
+                    <li>Domain registration (~$20-50/year)</li>
+                    <li>Hosting after launch (~$20/month or free)</li>
+                    <li>Stock photography (~$10-50/image)</li>
+                    <li>Professional copywriting (referral available, ~$1,500)</li>
+                    <li>E-commerce functionality</li>
+                    <li>Custom CMS/admin dashboard</li>
+                    <li>Marketing services (SEO campaigns, paid ads)</li>
+                    <li>Video production</li>
+                    <li>Revisions beyond 2 included rounds</li>
+                </ul>
+
+                <h3 style="margin-top: 20px;">Change Orders</h3>
+                <ul style="font-size: 10px;">
+                    <li>Scope changes require written approval</li>
+                    <li>Quote provided for additional work</li>
+                    <li>Timeline impact documented</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 20px; padding: 20px;">
+            <h4>Intellectual Property</h4>
+            <p style="font-size: 10px; margin: 0;">Upon final payment, client receives full ownership of all code, designs, and deliverables. We retain the right to use the project in our portfolio and case studies unless otherwise agreed.</p>
+        </div>
+
+        <div class="slide-footer">
+            Arena Boxing Website Proposal | Document Version 1.0 | Valid Until December 31, 2025
+        </div>
+        <div class="page-number">16 / 17</div>
+    </div>
+
+    <!-- SLIDE 17: CLOSING WITH ENHANCED CTA (Improvement #25) -->
+    <div class="slide cover-slide gradient-overlay compact">
+        <div class="corner-accent top-left"></div>
+        <div class="corner-accent bottom-right"></div>
+
+        <h2 style="font-size: 56px; margin-bottom: 20px;">Let's Build Your Digital Arena</h2>
+        <p style="font-size: 15px; max-width: 700px; margin: 0 auto 25px; line-height: 1.6;">
+            You've built something special at Arena Boxing Bondi. A place where authenticity beats polish, where sweat matters more than selfies, where fighters—not influencers—set the culture.
+        </p>
+        <p style="font-size: 15px; max-width: 700px; margin: 0 auto 25px; line-height: 1.6;">
+            Your website should reflect that.
+        </p>
+
+        <!-- Round 3 Improvement #7: Urgency Elements -->
+        <div style="margin-top: 25px; padding: 20px; background: rgba(212, 175, 55, 0.1); border-left: 3px solid var(--arena-gold); max-width: 700px; margin-left: auto; margin-right: auto;">
+            <p style="font-size: 13px; margin: 0; color: var(--arena-gold); font-weight: 600; letter-spacing: 1px;">
+                ⏱️ START BY DEC 15 → LAUNCH BY FEB 15
+            </p>
+            <p style="font-size: 11px; margin: 8px 0 0; color: var(--arena-text-gray);">
+                Limited availability: We take on 2 projects per month to ensure quality
+            </p>
+        </div>
+
+        <!-- Improvement #25: Enhanced CTA Button -->
+        <a href="mailto:your-email@example.com?subject=Arena%20Boxing%20Website%20Proposal%20-%20Let's%20Start" class="cta-button" style="display: inline-block; margin-top: 20px; padding: 18px 45px; font-size: 22px;">
+            SCHEDULE YOUR KICKOFF CALL
+        </a>
+
+        <div class="stats-grid" style="margin-top: 25px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <div class="stat-box">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Weeks to Launch</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">$18.5K</div>
+                <div class="stat-label">Fixed Price</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Possibilities</div>
+            </div>
+        </div>
+
+        <!-- Improvement #18: Clickable Contact Links -->
+        <div class="metadata" style="margin-top: 35px; font-size: 13px;">
+            <p><strong>Contact Information</strong></p>
+            <p>Email: <a href="mailto:your-email@example.com" style="color: var(--arena-gold); text-decoration: none;">your-email@example.com</a></p>
+            <p>Phone: <a href="tel:+1234567890" style="color: var(--arena-gold); text-decoration: none;">+1 (234) 567-8900</a></p>
+            <p>Website: <a href="https://your-website.com" style="color: var(--arena-gold); text-decoration: none;">your-website.com</a></p>
+        </div>
+
+        <!-- Improvement #16: QR Code placeholder -->
+        <div style="margin-top: 25px; display: flex; justify-content: center; gap: 35px;">
+            <div class="qr-container">
+                <div class="qr-code" style="background: var(--arena-white); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; color: var(--arena-black); font-size: 12px; width: 100px; height: 100px;">
+                    QR CODE<br>PORTFOLIO
+                </div>
+                <div class="qr-label" style="font-size: 10px;">View Our Work</div>
+            </div>
+            <div class="qr-container">
+                <div class="qr-code" style="background: var(--arena-white); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; color: var(--arena-black); font-size: 12px; width: 100px; height: 100px;">
+                    QR CODE<br>CALENDAR
+                </div>
+                <div class="qr-label" style="font-size: 10px;">Book a Call</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 25px; font-size: 10px; color: var(--arena-text-gray);">
+            <p>Document Version: 2.0 | Created: November 20, 2025 | Valid Until: December 31, 2025</p>
+            <p style="margin-top: 8px;"><em>This proposal includes 25 premium enhancements for maximum impact</em></p>
+        </div>
+
+        <div class="page-number">17 / 17</div>
+    </div>
+
+</body>
+</html>

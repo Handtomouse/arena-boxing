@@ -1,0 +1,751 @@
+@import "tailwindcss";
+
+/* ==================== ARENA BOXING DESIGN SYSTEM ==================== */
+/* Gothic/Medieval × Underground Boxing × Grunge Aesthetic */
+/* "Those Who Dare" */
+
+/* Old London Gothic Blackletter Font */
+@font-face {
+  font-family: 'Old London';
+  src: url('/fonts/old-london/old-london.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  /* Arena Brand Colors - Deep Burgundy + Cream */
+  --burgundy-primary: #7D1E1E;
+  --burgundy-light: #8B2635;
+  --burgundy-dark: #6B1A1A;
+
+  --cream-primary: #E8DDD3;
+  --cream-light: #F0E6DB;
+  --cream-dark: #D4C8BD;
+
+  --charcoal-black: #1A1A1A;
+  --charcoal-light: #2D2D2D;
+
+  --blood-red: #A31F1F; /* Accent/hover */
+
+  /* Arena Background & Foreground */
+  --background: var(--burgundy-primary);
+  --foreground: var(--cream-primary);
+}
+
+@theme inline {
+  /* ==================== COLORS ==================== */
+  --color-burgundy-primary: var(--burgundy-primary);
+  --color-burgundy-light: var(--burgundy-light);
+  --color-burgundy-dark: var(--burgundy-dark);
+
+  --color-cream-primary: var(--cream-primary);
+  --color-cream-light: var(--cream-light);
+  --color-cream-dark: var(--cream-dark);
+
+  --color-charcoal-black: var(--charcoal-black);
+  --color-charcoal-light: var(--charcoal-light);
+
+  --color-blood-red: var(--blood-red);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* ==================== TYPOGRAPHY ==================== */
+  /* Display: Gothic Blackletter (for Arena wordmark, headers) */
+  /* NOTE: Use SVG logo files from /public/images/wordmark/ for best results */
+  --font-display: 'Old London', 'UnifrakturMaguntia', 'Old English Text MT', 'Fraktur', serif;
+
+  /* Tagline: Gothic Alternative (for "those who dare") */
+  /* NOTE: Use SVG logo files from /public/images/tagline/ for best results */
+  --font-tagline: 'Old London Alternative', 'Bebas Neue', 'Oswald', sans-serif;
+
+  /* Body: Clean Sans-Serif (readable content) */
+  --font-body: 'Inter', 'Barlow', 'Source Sans 3', system-ui, sans-serif;
+
+  /* UI: Bold Sans-Serif (buttons, labels, nav) */
+  --font-ui: 'Barlow Semi Condensed', 'Oswald', sans-serif;
+
+  /* ==================== FONT SIZES ==================== */
+  --font-size-hero: 96px;
+  --font-size-h1: 72px;
+  --font-size-h2: 48px;
+  --font-size-h3: 32px;
+  --font-size-body: 18px;
+  --font-size-small: 14px;
+
+  /* ==================== LINE HEIGHTS ==================== */
+  --leading-tight: 1.1;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  /* ==================== SPACING & LAYOUT ==================== */
+  --spacing-section: 6rem;
+  --spacing-content: 2rem;
+
+  /* Spacing Scale (8px baseline grid) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+
+  /* ==================== SHADOWS (Grunge depth) ==================== */
+  --shadow-grunge: 0 4px 12px rgba(26, 26, 26, 0.4);
+  --shadow-intense: 0 8px 24px rgba(125, 30, 30, 0.5);
+
+  /* ==================== TRANSITIONS ==================== */
+  --transition-base: 300ms ease;
+  --transition-fast: 200ms ease;
+}
+
+/* ==================== GLOBAL STYLES ==================== */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--leading-relaxed);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Mobile Touch Target Accessibility - 44px minimum */
+@media (max-width: 768px) {
+  button, a, input, select, textarea {
+    min-height: 44px;
+  }
+}
+
+/* Gothic Typography Defaults */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--cream-primary);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-4);
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 7rem);
+}
+
+h2 {
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+}
+
+h3 {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+}
+
+/* Grunge Texture Base Class */
+.grunge-texture {
+  position: relative;
+}
+
+.grunge-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/textures/grunge-light.webp');
+  background-size: cover;
+  opacity: 0.10;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* Distressed Border Base Class */
+.distressed-border {
+  border: 3px solid var(--cream-primary);
+  position: relative;
+}
+
+/* Container with Standardized Padding */
+.arena-container {
+  width: 100%;
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);   /* 24px */
+  padding-right: var(--space-6);  /* 24px */
+}
+
+@media (min-width: 1024px) {
+  .arena-container {
+    padding-left: var(--space-8);  /* 32px */
+    padding-right: var(--space-8); /* 32px */
+  }
+}
+
+@media (min-width: 1280px) {
+  .arena-container {
+    padding-left: var(--space-12); /* 48px */
+    padding-right: var(--space-12); /* 48px */
+  }
+}
+
+/* Shadow Hierarchy */
+.shadow-subtle {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.shadow-grunge-hover:hover {
+  box-shadow: var(--shadow-grunge);
+}
+
+.shadow-intense-hover:hover {
+  box-shadow: var(--shadow-intense);
+}
+
+/* Selection Color */
+::selection {
+  background-color: var(--blood-red);
+  color: var(--cream-primary);
+}
+
+::-moz-selection {
+  background-color: var(--blood-red);
+  color: var(--cream-primary);
+}
+
+/* Scrollbar Gothic Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--charcoal-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--burgundy-primary);
+  border: 2px solid var(--charcoal-black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blood-red);
+}
+
+/* Focus Styles (Blood Red) */
+*:focus-visible {
+  outline: 3px solid var(--blood-red);
+  outline-offset: 2px;
+}
+
+/* Disable default dark mode (Arena is always burgundy/cream) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Keep Arena colors consistent regardless of system preference */
+    --background: var(--burgundy-primary);
+    --foreground: var(--cream-primary);
+  }
+}
+
+/* ==================== LANDING PAGE ANIMATIONS ==================== */
+
+/* Cinematic Blur-Fade-In (for premium entrance) */
+@keyframes blur-fade-in {
+  from {
+    opacity: 0;
+    filter: blur(20px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.animate-blur-in {
+  animation: blur-fade-in 3s ease-out backwards;
+  will-change: filter, opacity;
+}
+
+/* Standard Fade-In (no blur) */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 2s ease-out backwards;
+}
+
+/* Fade Out (for home page transition overlay) */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Blur Out (cinematic scroll transition) */
+@keyframes blur-out {
+  from {
+    opacity: 1;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    filter: blur(20px);
+  }
+}
+
+.animate-blur-out {
+  animation: blur-out 0.5s ease-in forwards;
+  will-change: filter, opacity;
+}
+
+/* Initial Fast Trace (0-1s: draw in quickly) */
+@keyframes initial-trace {
+  from {
+    stroke-dashoffset: var(--path-length);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Breathing Trace Loop (1s+: continuous untrace/retrace) */
+@keyframes breathing-trace {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: var(--path-length);
+  }
+}
+
+/* Blood-Red Flash (Skip Feedback) */
+@keyframes blood-flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-blood-flash {
+  animation: blood-flash 0.2s ease-out forwards;
+}
+
+/* Icon Float Animation */
+@keyframes icon-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-icon-float {
+  animation: icon-float 5s ease-in-out infinite;
+}
+
+/* Victory Burst (Radial Expansion at Completion) */
+@keyframes victory-burst {
+  0% {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+/* Rotation Settle (Elastic Landing Effect) */
+@keyframes settle-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(3deg);
+  }
+  60% {
+    transform: rotate(-2deg);
+  }
+  80% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Fade Out Transition (Cinematic Exit) */
+@keyframes fade-out-collapse {
+  0% {
+    opacity: 0;
+    clip-path: circle(0% at 50% 50%);
+  }
+  40% {
+    opacity: 1;
+    clip-path: circle(100% at 50% 50%);
+  }
+  100% {
+    opacity: 1;
+    clip-path: circle(100% at 50% 50%);
+  }
+}
+
+.animate-fade-out-collapse {
+  animation: fade-out-collapse 0.8s ease-out forwards;
+}
+
+/* Countdown Pulse */
+@keyframes countdown-pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-countdown-pulse {
+  animation: countdown-pulse 2s ease-in-out infinite;
+}
+
+/* Ken Burns Zoom (for video) */
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 20s ease-out forwards;
+}
+
+/* Micro-Bounce with Spring Physics */
+@keyframes micro-bounce {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.05);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  80% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.hover-micro-bounce:hover {
+  animation: micro-bounce 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Animated Letter Spacing (Cinematic Arrival) */
+@keyframes letter-expand {
+  from {
+    letter-spacing: -0.05em;
+    opacity: 0;
+  }
+  to {
+    letter-spacing: 0.05em;
+    opacity: 1;
+  }
+}
+
+.animate-letter-expand {
+  animation: letter-expand 2s ease-out forwards;
+}
+
+/* Blood-Red Glow Pulse (for button hover) */
+@keyframes blood-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 10px var(--blood-red),
+      0 0 20px var(--blood-red),
+      0 0 30px rgba(163, 31, 31, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 20px var(--blood-red),
+      0 0 40px var(--blood-red),
+      0 0 60px rgba(163, 31, 31, 0.5);
+  }
+}
+
+.animate-blood-glow {
+  animation: blood-glow 1.5s ease-in-out infinite;
+}
+
+/* Breathing Pulse (for icon ambient animation) */
+@keyframes breathing-pulse {
+  0%, 100% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+.animate-breathing-pulse {
+  animation: breathing-pulse 6s ease-in-out infinite;
+}
+
+/* ==================== WORDMARK GLOW PULSE ==================== */
+
+/* Wordmark Blood-Red Glow (During Stroke Animation) */
+@keyframes wordmark-glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(163, 31, 31, 0.3))
+            drop-shadow(0 0 40px rgba(163, 31, 31, 0.15));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(163, 31, 31, 0.5))
+            drop-shadow(0 0 60px rgba(163, 31, 31, 0.25));
+  }
+}
+
+.wordmark-glow-active {
+  animation: wordmark-glow-pulse 2s ease-in-out infinite;
+}
+
+/* ==================== PREMIUM ICON GLOW ==================== */
+
+/* Premium Icon Glow (Clean, No Artifacts) */
+@keyframes premium-ambient-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 60px rgba(125, 30, 30, 0.25));
+  }
+  50% {
+    filter: drop-shadow(0 0 80px rgba(125, 30, 30, 0.35));
+  }
+}
+
+.premium-glow-icon {
+  animation: premium-ambient-glow 6s ease-in-out infinite;
+  position: relative;
+}
+
+/* ==================== CINEMATIC + EDITORIAL ANIMATIONS ==================== */
+
+/* Slow Zoom (for beast symbol) */
+@keyframes slow-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.15);
+  }
+}
+
+.animate-slow-zoom {
+  animation: slow-zoom 20s ease-in-out infinite alternate;
+}
+
+/* Slow Pan (for background video) */
+@keyframes slow-pan {
+  0% {
+    transform: scale(1.2) translateX(-2%);
+  }
+  50% {
+    transform: scale(1.2) translateX(2%);
+  }
+  100% {
+    transform: scale(1.2) translateX(-2%);
+  }
+}
+
+.animate-slow-pan {
+  animation: slow-pan 40s ease-in-out infinite;
+}
+
+/* Staged Fade-In (for hero content) */
+@keyframes staged-fade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-staged-fade {
+  animation: staged-fade 1s ease-out backwards;
+}
+
+/* Slide-In from Bottom (for cards) */
+@keyframes slide-in-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in-bottom 0.8s ease-out backwards;
+}
+
+/* Fade + Slide-Up (for sections) */
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-slide {
+  animation: fade-slide-up 1s ease-out backwards;
+}
+
+/* Spotlight Glow (for CTA button) */
+@keyframes spotlight-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 40px rgba(163,31,31,0.3),
+      inset 0 0 15px rgba(255,255,255,0.05);
+  }
+  50% {
+    box-shadow:
+      0 0 60px rgba(163,31,31,0.5),
+      inset 0 0 20px rgba(255,255,255,0.1);
+  }
+}
+
+.animate-spotlight-glow:hover {
+  animation: spotlight-glow 2s ease-in-out infinite;
+}
+
+/* ==================== SAFE AREA UTILITIES (iOS NOTCH/HOME INDICATOR) ==================== */
+/* Mobile-first utilities for iPhone notch and home indicator spacing */
+
+.pt-safe {
+  padding-top: max(4rem, calc(env(safe-area-inset-top) + 2rem));
+}
+
+.pb-safe {
+  padding-bottom: max(1.5rem, calc(env(safe-area-inset-bottom) + 0.5rem));
+}
+
+.mt-safe {
+  margin-top: max(1rem, env(safe-area-inset-top));
+}
+
+.mb-safe {
+  margin-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+/* Responsive height for iOS Safari */
+.min-h-screen-safe {
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+}
+
+/* ==================== HAPANA WIDGET MOBILE OPTIMIZATIONS ==================== */
+
+/* Hapana widget container optimizations */
+.hapana-widget-wrapper {
+  /* Prevent horizontal scroll on mobile */
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* ==================== HAPANA BOOKING BUTTON LABEL VISIBILITY (P1 FIX) ====================
+ *
+ * Issue: Per-row booking buttons rendered as blank pills on /timetable.
+ *
+ * Root cause: Tailwind v4 preflight resets `button { color: inherit }`. The
+ * sitewide `body { color: var(--foreground); }` rule with `--foreground: var(--cream-primary)`
+ * (#E8DDD3) then cascades cream text into every unstyled button. The Hapana
+ * widget's MUI Button uses a white/light pill background and does not set an
+ * explicit text color on its `bookingButton` class (verified in the widget
+ * bundle: only `maxHeight` + `padding` are declared). Result: cream text on a
+ * white pill is effectively invisible.
+ *
+ * Scope: rule is restricted to `.hapana-widget-wrapper` so it does not touch
+ * the rest of the site's typography. Buttons rendered inside Hapana's Shadow
+ * DOM are unaffected by external CSS regardless, so this rule is a no-op for
+ * those nodes — it is solely a safety net for any buttons rendered in the
+ * light DOM (which the widget bundle does do for portal-rendered overlays
+ * and for branches where shadowRoot is unavailable).
+ */
+.hapana-widget-wrapper button,
+.hapana-widget-wrapper a[role="button"],
+hapana-widget button,
+hapana-widget a[role="button"] {
+  color: var(--charcoal-black);
+}
+
+/* Mobile-specific Hapana styles */
+@media (max-width: 768px) {
+  .hapana-widget-wrapper {
+    /* Smaller padding on mobile */
+    padding: 0.5rem;
+  }
+
+  /* Make Hapana buttons larger on mobile (44px minimum) */
+  .hapana-widget-wrapper button,
+  .hapana-widget-wrapper a[role="button"] {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  /* Larger text on mobile for readability */
+  .hapana-widget-wrapper {
+    font-size: 16px !important; /* Prevents iOS zoom on input focus */
+  }
+
+  /* Ensure calendar/date picker is mobile-friendly */
+  .hapana-widget-wrapper input[type="date"],
+  .hapana-widget-wrapper input[type="time"],
+  .hapana-widget-wrapper select {
+    font-size: 16px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* Tablet breakpoint */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hapana-widget-wrapper {
+    padding: 1rem;
+  }
+}
