@@ -41,3 +41,8 @@ yarn-error.log*
 next-env.d.ts
 node_modules/
 node_modules
+
+# Local artifacts (left untracked intentionally — do not commit)
+.claude/
+docs/wireframes/
+proposal-deck/SESSION_STATE.md
