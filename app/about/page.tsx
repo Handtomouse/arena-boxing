@@ -26,11 +26,12 @@ const VALUES = [
   { t: "The Community", d: "Regulars, sparring partners and first-timers in one room. You'll be missed if you don't show." },
 ];
 
+// bio: fill from the coaches' own words when supplied (do not invent). Empty -> "Bio coming soon."
 const COACHES = [
-  { name: "Brendan McDonnell", role: "Head Coach", img: "/images/trainers/brendan-mcdonnell.jpg" },
-  { name: "Henry Payten", role: "Coach", img: "/images/trainers/henry-payten.jpg" },
-  { name: "Matt Bull", role: "Coach", img: "/images/trainers/matt-bull.jpg" },
-  { name: "Zach Levy", role: "Coach", img: "/images/trainers/zach-levy.jpg" },
+  { name: "Brendan McDonnell", role: "Head Coach", img: "/images/trainers/brendan-mcdonnell.jpg", bio: "" },
+  { name: "Henry Payten", role: "Coach", img: "/images/trainers/henry-payten.jpg", bio: "" },
+  { name: "Matt Bull", role: "Coach", img: "/images/trainers/matt-bull.jpg", bio: "" },
+  { name: "Zach Levy", role: "Coach", img: "/images/trainers/zach-levy.jpg", bio: "" },
 ];
 
 export default function AboutRedesignPage() {
@@ -107,7 +108,7 @@ export default function AboutRedesignPage() {
               <div className={s.coachBody}>
                 <h3 className={s.coachName}>{c.name}</h3>
                 <p className={s.coachRole}>{c.role}</p>
-                <p className={s.coachBio}>Bio coming soon.</p>
+                <p className={s.coachBio}>{c.bio || "Bio coming soon."}</p>
               </div>
             </article>
           ))}
