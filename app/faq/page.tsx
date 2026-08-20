@@ -17,7 +17,7 @@ const styles = `
 .faq-page{
   background:#0E0B0B;
   color:#E8DDD3;
-  font-family:'Inter','Barlow Semi Condensed',system-ui,sans-serif;
+  font-family:var(--font-body),var(--font-barlow),system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;
 }
 .faq-page *{box-sizing:border-box}
@@ -48,7 +48,7 @@ const styles = `
 }
 .faq-page .ab-edge-top, .faq-page .ab-edge-bot{
   display:flex; align-items:center; gap:18px;
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.30em;
   font-size:10px; font-weight:600;
   color:#E8DDD3; opacity:.85;
@@ -61,20 +61,20 @@ const styles = `
   padding:18px 0 0; margin-bottom:0; margin-top:48px;
 }
 .faq-page .ab-edge-folio{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   text-transform:none; letter-spacing:.02em;
   font-size:13px; color:#C9A2A2;
 }
 .faq-page .ab-edge-line{ flex:1; height:1px; background:rgba(232,221,211,.35); }
 .faq-page .ab-edge-meta{
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.30em;
   font-size:10px; font-weight:600;
   color:#E8DDD3; opacity:.7;
 }
 .faq-page .ab-edge-bot .ab-edge-meta{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   text-transform:none; letter-spacing:.02em;
   font-size:13px; color:#C9A2A2; opacity:1;
@@ -92,13 +92,13 @@ const styles = `
 }
 .faq-page .ab-shead-l{ display:flex; align-items:baseline; gap:22px; flex-wrap:wrap; }
 .faq-page .ab-shead-num{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-bebas),sans-serif;
   font-size:54px; line-height:.9;
   color:#7D1E1E; letter-spacing:.02em;
   text-shadow:0 0 28px rgba(163,31,31,.22);
 }
 .faq-page .ab-shead-title{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:66px; line-height:.95;
   color:#F0E6DB; letter-spacing:-0.005em;
@@ -109,7 +109,7 @@ const styles = `
   font-weight:400; padding:0 2px;
 }
 .faq-page .ab-shead-sub{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:400;
   font-size:18px; color:#C9A2A2;
   letter-spacing:.01em; padding-bottom:8px;
@@ -119,7 +119,7 @@ const styles = `
   padding-bottom:14px; justify-self:end;
 }
 .faq-page .ab-shead-kicker{
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.34em;
   font-size:11px; font-weight:700;
   color:#E8DDD3;
@@ -129,7 +129,7 @@ const styles = `
   background:#E8DDD3; opacity:.55;
 }
 .faq-page .ab-shead-index{
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.30em;
   font-size:10px; font-weight:600;
   color:#C9A2A2;
@@ -176,7 +176,7 @@ const styles = `
   border-bottom:1px solid rgba(232,221,211,.55);
 }
 .faq-page .faq-hero .folio{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:18px; color:#C9A2A2; letter-spacing:.02em;
 }
@@ -185,7 +185,7 @@ const styles = `
 .faq-page .faq-hero .folio-b{ opacity:.5; }
 .faq-page .faq-hero .rail-meta{
   justify-self:end;
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.28em;
   font-size:10.5px; font-weight:600;
   color:#E8DDD3; opacity:.85;
@@ -196,14 +196,14 @@ const styles = `
   padding:12px 0 6px;
 }
 .faq-page .faq-hero .kicker{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:15px; color:#C9A2A2; letter-spacing:.02em;
 }
 .faq-page .faq-hero .kicker-r{
   justify-self:end;
   display:inline-flex; align-items:center; gap:10px;
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.32em;
   font-size:10px; font-weight:600;
   color:#E8DDD3; opacity:.85;
@@ -240,7 +240,7 @@ const styles = `
   max-width:260px;
 }
 .faq-page .faq-hero .anchor-side-key{
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.34em;
   font-size:10.5px; font-weight:700;
   color:#7D1E1E;
@@ -250,7 +250,7 @@ const styles = `
   background:#E8DDD3; opacity:.55; margin:6px 0;
 }
 .faq-page .faq-hero .anchor-side-note{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:17px; line-height:1.45;
   color:#C9A2A2; letter-spacing:.005em;
@@ -260,20 +260,20 @@ const styles = `
   display:flex; flex-direction:column; align-items:flex-end; gap:10px;
 }
 .faq-page .faq-hero .anchor-overline{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:16px; color:#C9A2A2;
   letter-spacing:.05em;
 }
 .faq-page .faq-hero .anchor-overline strong{
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   font-style:normal;
   text-transform:uppercase; letter-spacing:.42em;
   font-size:11px; font-weight:700;
   color:#7D1E1E;
 }
 .faq-page .faq-hero .anchor-word{
-  font-family:'Bebas Neue','Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-bebas),var(--font-barlow),sans-serif;
   font-weight:400;
   font-size:clamp(72px,12vw,156px);
   line-height:.86;
@@ -291,7 +291,7 @@ const styles = `
   background:#E8DDD3; opacity:.55;
 }
 .faq-page .faq-hero .anchor-sub-txt{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:22px; color:#C9A2A2;
   letter-spacing:.005em;
@@ -316,18 +316,18 @@ const styles = `
 }
 .faq-page .faq-hero .hero-bot-cell:last-child{ border-right:0; padding-right:0; }
 .faq-page .faq-hero .hero-bot-k{
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.34em;
   font-size:10px; font-weight:700;
   color:#7D1E1E;
 }
 .faq-page .faq-hero .hero-bot-v{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-bebas),sans-serif;
   font-size:24px; line-height:1;
   color:#F0E6DB; letter-spacing:.02em;
 }
 .faq-page .faq-hero .hero-bot-v em{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:14px; color:#C9A2A2;
   letter-spacing:.005em; padding:0 4px;
@@ -364,7 +364,7 @@ const styles = `
 .faq-page .faq-q-head::-webkit-details-marker{ display:none; }
 .faq-page .faq-q-head::marker{ display:none; content:""; }
 .faq-page .faq-q-num{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:18px; color:#7D1E1E;
   letter-spacing:.02em; line-height:1;
@@ -372,7 +372,7 @@ const styles = `
 }
 .faq-page .faq-q-num em{ color:#C9A2A2; font-weight:400; padding:0 1px; }
 .faq-page .faq-q-text{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-bebas),sans-serif;
   font-size:22px; line-height:1.1;
   color:#F0E6DB; letter-spacing:.04em;
   text-transform:uppercase;
@@ -383,7 +383,7 @@ const styles = `
   width:28px; height:28px;
   border:1px solid rgba(232,221,211,.55);
   background:rgba(125,30,30,.08);
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-bebas),sans-serif;
   font-size:20px; line-height:1;
   color:#E8DDD3;
   justify-self:end;
@@ -408,7 +408,7 @@ const styles = `
   gap:16px;
 }
 .faq-page .faq-q-body p{
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:var(--font-body),system-ui,sans-serif;
   font-weight:400;
   font-size:15px; line-height:1.6;
   color:#E8DDD3; opacity:.92;
@@ -419,7 +419,7 @@ const styles = `
   font-weight:600; color:#F0E6DB;
 }
 .faq-page .faq-q-body p em{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; color:#C9A2A2;
   font-size:16px; padding:0 2px;
 }
@@ -439,7 +439,7 @@ const styles = `
   display:grid;
   grid-template-columns:32px 1fr;
   gap:14px; align-items:baseline;
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:var(--font-body),system-ui,sans-serif;
   font-size:14.5px; line-height:1.55;
   color:#E8DDD3; opacity:.92;
 }
@@ -447,7 +447,7 @@ const styles = `
 .faq-page .faq-q-body ol li{ counter-increment:faq-step; }
 .faq-page .faq-q-body ol li::before{
   content:counter(faq-step,decimal-leading-zero);
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-bebas),sans-serif;
   font-size:18px; color:#A31F1F;
   letter-spacing:.02em;
   font-feature-settings:"tnum" 1;
@@ -461,7 +461,7 @@ const styles = `
 }
 .faq-page .faq-q-body strong.lead{
   display:inline-block;
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-bebas),sans-serif;
   font-weight:400;
   font-size:18px; letter-spacing:.04em;
   color:#F0E6DB;
@@ -469,7 +469,7 @@ const styles = `
   margin-right:8px;
 }
 .faq-page .faq-q-body code{
-  font-family:'Barlow Semi Condensed',monospace;
+  font-family:var(--font-barlow),monospace;
   font-weight:600;
   font-size:11.5px; letter-spacing:.18em;
   text-transform:uppercase;
@@ -488,19 +488,19 @@ const styles = `
   max-width:780px;
 }
 .faq-page .faq-q-callout-k{
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.32em;
   font-size:10px; font-weight:700;
   color:#7D1E1E; white-space:nowrap;
 }
 .faq-page .faq-q-callout-v{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:16px; color:#F0E6DB;
   letter-spacing:.005em;
 }
 .faq-page .faq-q-callout-v strong{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-bebas),sans-serif;
   font-style:normal;
   font-size:22px; letter-spacing:.02em;
   color:#F0E6DB; padding:0 4px;
@@ -519,13 +519,13 @@ const styles = `
   margin:24px 0;
 }
 .faq-page .faq-inline-cta-k{
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.34em;
   font-size:10.5px; font-weight:700;
   color:#7D1E1E;
 }
 .faq-page .faq-inline-cta-t{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:19px; color:#F0E6DB;
   letter-spacing:.005em; line-height:1.4;
@@ -533,7 +533,7 @@ const styles = `
 .faq-page .faq-inline-cta-t em{ color:#C9A2A2; font-style:italic; }
 .faq-page .faq-inline-cta-btn{
   display:inline-flex; align-items:center;
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.32em;
   font-size:11px; font-weight:700;
   color:#0E0B0B;
@@ -584,7 +584,7 @@ const styles = `
   border-bottom:1px solid rgba(232,221,211,.55);
 }
 .faq-page .faq-final-anchor{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-bebas),sans-serif;
   font-size:clamp(56px,8vw,108px);
   line-height:.9;
   letter-spacing:.005em;
@@ -597,13 +597,13 @@ const styles = `
   gap:8px; padding-bottom:14px; text-align:right;
 }
 .faq-page .faq-final-sub-k{
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.34em;
   font-size:11px; font-weight:700;
   color:#7D1E1E;
 }
 .faq-page .faq-final-sub-t{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:19px; line-height:1.4;
   color:#C9A2A2; max-width:340px;
@@ -627,7 +627,7 @@ const styles = `
 }
 .faq-page .faq-cta-card-num{
   display:flex; align-items:baseline; gap:14px;
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:16px; color:#7D1E1E;
   letter-spacing:.02em;
@@ -640,13 +640,13 @@ const styles = `
   display:flex; flex-direction:column; gap:10px;
 }
 .faq-page .faq-cta-card-title{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-bebas),sans-serif;
   font-size:48px; line-height:.95;
   color:#F0E6DB; letter-spacing:.02em;
   margin:0;
 }
 .faq-page .faq-cta-card-desc{
-  font-family:'Cormorant Garamond',serif;
+  font-family:var(--font-cormorant),serif;
   font-style:italic; font-weight:500;
   font-size:17px; line-height:1.5;
   color:#C9A2A2; max-width:420px;
@@ -662,14 +662,14 @@ const styles = `
   background:#E8DDD3;
   color:#0E0B0B;
   border:1px solid #E8DDD3;
-  font-family:'Barlow Semi Condensed',sans-serif;
+  font-family:var(--font-barlow),sans-serif;
   text-transform:uppercase; letter-spacing:.30em;
   font-size:11px; font-weight:700;
   line-height:1;
   box-shadow:0 6px 20px rgba(163,31,31,.18);
 }
 .faq-page .faq-cta-card-link .arrow{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:var(--font-bebas),sans-serif;
   font-size:18px; letter-spacing:0;
   color:#7D1E1E;
 }
@@ -714,13 +714,6 @@ const styles = `
 export default function FAQPage() {
   return (
     <>
-      {/* Google Fonts — auto-hoisted to <head> by Next */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Bebas+Neue&family=Barlow+Semi+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet"
-      />
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       <div className="faq-page">

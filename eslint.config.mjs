@@ -17,11 +17,34 @@ const eslintConfig = defineConfig([
     "proposal-deck/**",
   ]),
   {
+    // Raw <img> is the correct element for the static SVG wordmark and icon:
+    // next/image does not optimise SVG, so <Image> would add runtime cost for
+    // no benefit. Scoped to these files so new raster <img> is still caught.
+    files: [
+      "app/error.tsx",
+      "app/not-found.tsx",
+      "components/Landing.tsx",
+      "components/LandingMockG.tsx",
+      "components/redesign/SkinFooter.tsx",
+      "components/redesign/SkinNav.tsx",
+      "components/sections/Footer.tsx",
+      "components/sections/HeroBanner.tsx",
+      "components/ui/StrokeAnimatedIcon.tsx",
+    ],
     rules: {
-      // The existing design intentionally uses raw SVG/bitmap elements and a
-      // page-scoped font stylesheet; neither warning is actionable in Phase 1.
       "@next/next/no-img-element": "off",
-      "@next/next/no-page-custom-font": "off",
+    },
+  },
+  {
+    // TODO(phase2): dead components — no route mounts either of these (verified
+    // 20 Aug 2026). Their raster <img> needs next/image if they are revived;
+    // otherwise delete them. Suppressed here so lint stays green meanwhile.
+    files: [
+      "components/sections/GoogleMapsEmbed.tsx",
+      "components/sections/TrainersModule.tsx",
+    ],
+    rules: {
+      "@next/next/no-img-element": "off",
     },
   },
 ]);

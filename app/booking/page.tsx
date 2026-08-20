@@ -26,7 +26,7 @@
 import type { Metadata } from "next";
 import { HapanaEmbed } from "@/components";
 import { HAPANA_WIDGET_ID_FALLBACK } from "@/lib/hapana-config";
-import { EMAIL_GENERAL, PHONE_E164 } from "@/lib/site-contact";
+import { EMAIL_GENERAL, PHONE_DISPLAY, PHONE_E164 } from "@/lib/site-contact";
 import s from "./booking.module.css";
 
 export const metadata: Metadata = {
@@ -554,8 +554,16 @@ export default function BookingPage() {
                 Direct line to the desk
               </span>
               <a className={s.fallNum} href={`tel:${PHONE_E164}`}>
-                0400<span className={s.sep}>&middot;</span>123
-                <span className={s.sep}>&middot;</span>456
+                {PHONE_DISPLAY.split(" ").flatMap((part, i) =>
+                  i === 0
+                    ? [part]
+                    : [
+                        <span key={`sep-${i}`} className={s.sep}>
+                          &middot;
+                        </span>,
+                        part,
+                      ],
+                )}
               </a>
               <span className={s.fallMeta}>
                 MON-FRI 05.30 → 21.00
@@ -576,7 +584,9 @@ export default function BookingPage() {
                 className={`${s.fallNum} ${s.fallEmail}`}
                 href={`mailto:${EMAIL_GENERAL}`}
               >
-                hello<span className={s.at}>@</span>arenaboxing.com.au
+                {EMAIL_GENERAL.split("@")[0]}
+                <span className={s.at}>@</span>
+                {EMAIL_GENERAL.split("@")[1]}
               </a>
               <span className={s.fallMeta}>
                 Replied within four hours, every day.
