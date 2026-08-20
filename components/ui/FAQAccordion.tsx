@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { EMAIL_GENERAL, PHONE_DISPLAY, PHONE_E164 } from '@/lib/site-contact';
 
 interface FAQ {
   question: string;
@@ -46,7 +47,7 @@ const faqs: FAQ[] = [
   },
   {
     question: "Do you offer student or corporate discounts?",
-    answer: "Yes! Students get 15% off Monthly Unlimited with valid student ID. We also offer corporate group rates for teams of 5+ members. Contact us at hello@arenaboxing.com.au for details."
+    answer: `Yes! Students get 15% off Monthly Unlimited with valid student ID. We also offer corporate group rates for teams of 5+ members. Contact us at ${EMAIL_GENERAL} for details.`
   }
 ];
 
@@ -107,17 +108,17 @@ const FAQAccordion: React.FC = () => {
         <p className="text-sm text-charcoal-black/70">
           Our team is here to help! Email us at{' '}
           <a
-            href="mailto:hello@arenaboxing.com.au"
+            href={`mailto:${EMAIL_GENERAL}`}
             className="text-burgundy-primary hover:text-blood-red underline font-semibold"
           >
-            hello@arenaboxing.com.au
+            {EMAIL_GENERAL}
           </a>
           {' '}or call{' '}
           <a
-            href="tel:+61400123456"
+            href={`tel:${PHONE_E164}`}
             className="text-burgundy-primary hover:text-blood-red underline font-semibold"
           >
-            0400 123 456
+            {PHONE_DISPLAY}
           </a>
         </p>
       </div>

@@ -7,6 +7,7 @@
 
 import { useEffect } from 'react';
 import Button from '@/components/ui/Button';
+import { EMAIL_GENERAL } from '@/lib/site-contact';
 
 export default function Error({
   error,
@@ -38,7 +39,7 @@ export default function Error({
         </h1>
 
         <p className="font-body text-cream-dark text-lg md:text-xl mb-8 max-w-lg mx-auto">
-          Even the best fighters stumble. We've logged this issue and are working to fix it.
+          Even the best fighters stumble. We&apos;ve logged this issue and are working to fix it.
         </p>
 
         {/* Error Details (dev mode only) */}
@@ -77,7 +78,7 @@ export default function Error({
         <p className="mt-8 text-cream-dark text-sm">
           Need help?{' '}
           <a
-            href="mailto:hello@arenaboxing.com.au"
+            href={`mailto:${EMAIL_GENERAL}`}
             className="text-blood-red hover:text-cream-primary transition-colors underline"
           >
             Contact Support

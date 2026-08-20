@@ -137,7 +137,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
           role="alert"
           className="p-4 bg-green-900/30 border-2 border-green-600 text-cream-primary"
         >
-          Thank you for your message! We'll get back to you soon.
+          Thank you for your message! We&apos;ll get back to you soon.
         </div>
       )}
 

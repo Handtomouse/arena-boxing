@@ -3,6 +3,15 @@
  * Improves SEO and rich snippets in search results
  */
 
+import {
+  ADDRESS_LOCALITY,
+  ADDRESS_POSTCODE,
+  ADDRESS_REGION,
+  ADDRESS_STREET,
+  EMAIL_GENERAL,
+  PHONE_STRUCTURED_DATA,
+} from '@/lib/site-contact';
+
 export interface StructuredDataProps {
   url?: string;
   title?: string;
@@ -27,16 +36,16 @@ export function getOrganizationSchema(baseUrl: string) {
     slogan: 'Those Who Dare',
 
     // Contact Information
-    telephone: '+61-2-XXXX-XXXX', // TODO: Add real phone number
-    email: 'hello@arenaboxing.com.au',
+    telephone: PHONE_STRUCTURED_DATA, // TODO: Add real phone number
+    email: EMAIL_GENERAL,
 
     // Address
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '123 Campbell Parade', // TODO: Add real address
-      addressLocality: 'Bondi Beach',
-      addressRegion: 'NSW',
-      postalCode: '2026',
+      streetAddress: ADDRESS_STREET, // TODO: Add real address
+      addressLocality: ADDRESS_LOCALITY,
+      addressRegion: ADDRESS_REGION,
+      postalCode: ADDRESS_POSTCODE,
       addressCountry: 'AU',
     },
 
@@ -122,10 +131,10 @@ export function getLocalBusinessSchema(baseUrl: string) {
 
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '123 Campbell Parade',
-      addressLocality: 'Bondi Beach',
-      addressRegion: 'NSW',
-      postalCode: '2026',
+      streetAddress: ADDRESS_STREET,
+      addressLocality: ADDRESS_LOCALITY,
+      addressRegion: ADDRESS_REGION,
+      postalCode: ADDRESS_POSTCODE,
       addressCountry: 'AU',
     },
 
@@ -135,7 +144,7 @@ export function getLocalBusinessSchema(baseUrl: string) {
       longitude: 151.274856,
     },
 
-    telephone: '+61-2-XXXX-XXXX',
+    telephone: PHONE_STRUCTURED_DATA,
     priceRange: '$$',
 
     amenityFeature: [
@@ -246,7 +255,7 @@ export function getServiceSchema(baseUrl: string, classType: 'work' | 'craft' | 
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: `${baseUrl}/booking`,
-      servicePhone: '+61-2-XXXX-XXXX',
+      servicePhone: PHONE_STRUCTURED_DATA,
     },
   };
 }

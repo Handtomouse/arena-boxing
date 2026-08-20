@@ -149,7 +149,7 @@ const HapanaEmbed: React.FC<HapanaEmbedProps> = ({
             🎭 Demo Mode Active
           </p>
           <p className="text-xs opacity-70">
-            This is a demonstration interface. Real Hapana widget will appear when mode is set to 'live'.
+            This is a demonstration interface. Real Hapana widget will appear when mode is set to &apos;live&apos;.
           </p>
           <p className="text-xs opacity-50 mt-2">
             Set <code className="bg-white/10 px-2 py-1 rounded">NEXT_PUBLIC_HAPANA_MODE=live</code> to enable real bookings.

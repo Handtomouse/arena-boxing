@@ -144,6 +144,8 @@ export default function TimetableClient() {
     for (const d of WEEK) {
       const hit = d.cards.find((c) => slugify(c.name) === param && !c.past);
       if (hit) {
+        // This one-time URL hydration intentionally initializes modal state.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setActive({ ...hit, date: d.date });
         break;
       }
@@ -220,10 +222,10 @@ export default function TimetableClient() {
       {/* can't find a time */}
       <div className={s.cantfind}>
         <div>
-          <h3>CAN'T FIND A TIME?</h3>
+          <h3>CAN&apos;T FIND A TIME?</h3>
           <p>
             Visiting Bondi or chasing an odd hour? Call the front desk before 10am
-            for same-day drop-ins, or message us and we'll find you a round.
+            for same-day drop-ins, or message us and we&apos;ll find you a round.
           </p>
         </div>
         <Link href="/location" className={sk.btnGhost}>

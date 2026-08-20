@@ -5,15 +5,16 @@ import s from "./location-redesign.module.css";
 import Hero from "@/components/redesign/Hero";
 import FeatureBand from "@/components/redesign/FeatureBand";
 import MonumentCTA from "@/components/redesign/MonumentCTA";
+import {
+  ADDRESS_LINE,
+  ADDRESS_SUBURB,
+  MAPS_QUERY_URL,
+} from "@/lib/site-contact";
 
 export const metadata: Metadata = {
   title: "Location",
-  description:
-    "Arena Boxing Bondi. 123 Campbell Pde, a five-minute walk from the beach. Getting here, the hours, and the door.",
+  description: `Arena Boxing Bondi. ${ADDRESS_LINE}, a five-minute walk from the beach. Getting here, the hours, and the door.`,
 };
-
-const MAPS_URL =
-  "https://www.google.com/maps/search/?api=1&query=123+Campbell+Parade+Bondi+Beach+NSW";
 
 const GETTING = [
   { t: "By Bus", d: "The 333 and 380 run Campbell Pde end to end. Step off at Bondi Beach and you're at the door." },
@@ -43,10 +44,10 @@ export default function LocationRedesignPage() {
         preline="YOU'LL FIND US"
         focal={{ word: "Here", dash: 1700, viewBox: "0 0 560 200" }}
         ghost="Dare"
-        sub="123 Campbell Pde, Bondi. Five minutes from the beach, eight from the Junction. Open today 06.00 &ndash; 21.00."
+        sub={`${ADDRESS_LINE}, Bondi. Five minutes from the beach, eight from the Junction. Open today 06.00 – 21.00.`}
         photo="/images/bondi-beach.jpg"
         photoAlt="The Arena Boxing floor in Bondi"
-        primaryCta={{ href: MAPS_URL, label: "Get Directions" }}
+        primaryCta={{ href: MAPS_QUERY_URL, label: "Get Directions" }}
         secondaryCta={{ href: "/timetable", label: "View Timetable" }}
         aside={
           <div className={s.mapPlate}>
@@ -62,7 +63,7 @@ export default function LocationRedesignPage() {
             </span>
             <div className={s.mapMeta}>
               <span>
-                <b>123 Campbell Pde</b> &middot; Bondi Beach NSW 2026
+                <b>{ADDRESS_LINE}</b> &middot; {ADDRESS_SUBURB}
               </span>
               <span>33&deg;53&prime;S 151&deg;16&prime;E</span>
             </div>
@@ -111,7 +112,7 @@ export default function LocationRedesignPage() {
       {/* opening hours */}
       <section className={sk.section}>
         <div className={sk.sectionHead}>
-          <span className={sk.sectionKicker}>When we're open</span>
+          <span className={sk.sectionKicker}>When we&apos;re open</span>
           <h2 className={sk.sectionTitle}>OPENING HOURS</h2>
         </div>
         <div className={s.hours}>
@@ -145,7 +146,7 @@ export default function LocationRedesignPage() {
             RIGHT HERE.
           </>
         }
-        sub="123 Campbell Pde, Bondi. First class on the house."
+        sub={`${ADDRESS_LINE}, Bondi. First class on the house.`}
         cta="Book a Class →"
       />
     </div>

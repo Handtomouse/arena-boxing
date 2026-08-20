@@ -6,7 +6,6 @@
 
 'use client';
 
-import { useState } from 'react';
 import RealHapanaWidget from './RealHapanaWidget';
 import { HAPANA_WIDGET_ID_FALLBACK } from '@/lib/hapana-config';
 
