@@ -44,7 +44,7 @@ export default function LocationRedesignPage() {
         preline="YOU'LL FIND US"
         focal={{ word: "Here", dash: 1700, viewBox: "0 0 560 200" }}
         ghost="Dare"
-        sub={`${ADDRESS_LINE}, Bondi. Five minutes from the beach, eight from the Junction. Open today 06.00 &ndash; 21.00.`}
+        sub={`${ADDRESS_LINE}, Bondi. Five minutes from the beach, eight from the Junction. Open today 06.00 – 21.00.`}
         photo="/images/bondi-beach.jpg"
         photoAlt="The Arena Boxing floor in Bondi"
         primaryCta={{ href: MAPS_QUERY_URL, label: "Get Directions" }}
