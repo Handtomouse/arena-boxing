@@ -1,6 +1,13 @@
 'use client';
 
 import React from 'react';
+import {
+  ADDRESS_LINE,
+  ADDRESS_LOCALITY,
+  EMAIL_GENERAL,
+  PHONE_DISPLAY,
+  PHONE_E164,
+} from '@/lib/site-contact';
 import styles from './Footer.module.css';
 
 export interface FooterProps {
@@ -69,23 +76,23 @@ const Footer: React.FC<FooterProps> = ({ showSocial = true, className = '' }) =>
             <div className={styles.cell}>
               <span className={styles.cellKey}>Visit</span>
               <span className={styles.cellVal}>
-                123 Campbell Pde <em>Bondi Beach</em>
+                {ADDRESS_LINE} <em>{ADDRESS_LOCALITY}</em>
               </span>
               <span className={styles.cellFine}>NSW 2026</span>
             </div>
 
             <div className={styles.cell}>
               <span className={styles.cellKey}>Phone &middot; tap to call</span>
-              <a className={styles.cellVal} href="tel:+61400123456">
-                0400 123 456
+              <a className={styles.cellVal} href={`tel:${PHONE_E164}`}>
+                {PHONE_DISPLAY}
               </a>
               <span className={styles.cellFine}>During open hours.</span>
             </div>
 
             <div className={`${styles.cell} ${styles.cellWide}`}>
               <span className={styles.cellKey}>Email &middot; tap to open</span>
-              <a className={styles.cellVal} href="mailto:hello@arenaboxing.com.au">
-                hello@arenaboxing.com.au
+              <a className={styles.cellVal} href={`mailto:${EMAIL_GENERAL}`}>
+                {EMAIL_GENERAL}
               </a>
               <span className={styles.cellFine}>Replies within one business day.</span>
             </div>

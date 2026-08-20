@@ -11,8 +11,8 @@ import { Suspense } from 'react';
 
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void;
-    dataLayer?: any[];
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
   }
 }
 
@@ -75,7 +75,7 @@ export default function GoogleAnalytics({ measurementId }: { measurementId: stri
  * Helper function to track custom events
  * Usage: trackEvent('button_click', { button_name: 'book_now' })
  */
-export function trackEvent(eventName: string, eventParams?: Record<string, any>) {
+export function trackEvent(eventName: string, eventParams?: Record<string, unknown>) {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, eventParams);
   }

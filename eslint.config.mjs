@@ -12,7 +12,18 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Frozen/generated project material is not part of the root app lint target.
+    ".claude/**",
+    "proposal-deck/**",
   ]),
+  {
+    rules: {
+      // The existing design intentionally uses raw SVG/bitmap elements and a
+      // page-scoped font stylesheet; neither warning is actionable in Phase 1.
+      "@next/next/no-img-element": "off",
+      "@next/next/no-page-custom-font": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

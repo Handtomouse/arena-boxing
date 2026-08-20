@@ -3,11 +3,21 @@
  */
 
 export function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://arenaboxing.com.au';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const baseUrl = siteUrl || 'https://arenaboxing.com.au';
+  let allowCrawlers = false;
+
+  if (siteUrl) {
+    try {
+      allowCrawlers = new URL(siteUrl).hostname === 'arenaboxing.com.au';
+    } catch {
+      allowCrawlers = false;
+    }
+  }
 
   const robotsTxt = `# Arena Boxing - Robots.txt
 User-agent: *
-Allow: /
+${allowCrawlers ? 'Allow: /' : 'Disallow: /'}
 
 # Sitemap
 Sitemap: ${baseUrl}/sitemap.xml

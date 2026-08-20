@@ -147,6 +147,8 @@ const RealHapanaWidget: React.FC<RealHapanaWidgetProps> = ({
 
 // TypeScript declarations for Hapana custom element
 declare global {
+  // The custom element must augment React's global JSX namespace.
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
       'hapana-widget': React.DetailedHTMLProps<

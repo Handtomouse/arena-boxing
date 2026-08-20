@@ -6,6 +6,13 @@
 // Server Component — uses native <details> elements for accordion (no client state).
 // Scoped styles via <style> tag on a .faq-page wrapper, matches mockup chrome.
 
+import {
+  ADDRESS_LINE,
+  ADDRESS_LOCALITY,
+  EMAIL_GENERAL,
+  PHONE_FAQ_DISPLAY,
+} from "@/lib/site-contact";
+
 const styles = `
 .faq-page{
   background:#0E0B0B;
@@ -1130,7 +1137,7 @@ export default function FAQPage() {
                     </li>
                     <li>
                       <span>
-                        <strong>Call us.</strong> <code>+61 2 8000 2025</code>, open 0530
+                        <strong>Call us.</strong> <code>{PHONE_FAQ_DISPLAY}</code>, open 0530
                         to 2100. We can book you in by phone if the widget is giving you
                         grief.
                       </span>
@@ -1652,7 +1659,7 @@ export default function FAQPage() {
                 <div className="faq-cta-card-body">
                   <h3 className="faq-cta-card-title">VISIT US.</h3>
                   <p className="faq-cta-card-desc">
-                    <strong>204 Campbell Parade, Bondi Beach.</strong> Open 0530-2100
+                    <strong>{ADDRESS_LINE}, {ADDRESS_LOCALITY}.</strong> Open 0530-2100
                     daily. Drop in, take the tour, watch a class run before you book.{" "}
                     <em>The kettle&apos;s always on.</em>
                   </p>
@@ -1663,7 +1670,7 @@ export default function FAQPage() {
                 </span>
               </a>
 
-              <a className="faq-cta-card is-primary" href="mailto:hello@arenaboxing.com.au">
+              <a className="faq-cta-card is-primary" href={`mailto:${EMAIL_GENERAL}`}>
                 <div className="faq-cta-card-num">
                   <span>II.</span>
                   <span className="faq-cta-card-num-rule"></span>
@@ -1672,7 +1679,7 @@ export default function FAQPage() {
                 <div className="faq-cta-card-body">
                   <h3 className="faq-cta-card-title">EMAIL US.</h3>
                   <p className="faq-cta-card-desc">
-                    <strong>hello@arenaboxing.com.au</strong>, read by Lewis and answered
+                    <strong>{EMAIL_GENERAL}</strong>, read and answered
                     by hand. One business day, normally same morning.{" "}
                     <em>No bots, no ticket numbers, no scripts.</em>
                   </p>

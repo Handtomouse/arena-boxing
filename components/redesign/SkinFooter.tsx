@@ -1,4 +1,12 @@
 import Link from "next/link";
+import {
+  ADDRESS_LINE,
+  ADDRESS_SUBURB,
+  EMAIL_GENERAL,
+  MAPS_QUERY_URL,
+  PHONE_DISPLAY,
+  PHONE_E164,
+} from "@/lib/site-contact";
 import s from "./SkinFooter.module.css";
 
 /**
@@ -41,10 +49,10 @@ export default function SkinFooter() {
 
           <div className={s.col}>
             <p className={s.colKey}>Find Us</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=123+Campbell+Parade+Bondi+Beach+NSW" target="_blank" rel="noopener noreferrer">
-              123 Campbell Pde
+            <a href={MAPS_QUERY_URL} target="_blank" rel="noopener noreferrer">
+              {ADDRESS_LINE}
             </a>
-            <p>Bondi Beach NSW 2026</p>
+            <p>{ADDRESS_SUBURB}</p>
             <p>Five minutes from the sand.</p>
           </div>
 
@@ -60,8 +68,8 @@ export default function SkinFooter() {
 
           <div className={s.col}>
             <p className={s.colKey}>Contact</p>
-            <a href="tel:+61400123456">0400 123 456</a>
-            <a href="mailto:hello@arenaboxing.com.au">hello@arenaboxing.com.au</a>
+            <a href={`tel:${PHONE_E164}`}>{PHONE_DISPLAY}</a>
+            <a href={`mailto:${EMAIL_GENERAL}`}>{EMAIL_GENERAL}</a>
             <p>Replies within one business day.</p>
           </div>
         </div>

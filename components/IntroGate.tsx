@@ -11,6 +11,8 @@ export default function IntroGate({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       if (sessionStorage.getItem(STORAGE_KEY)) {
+        // Session storage is the external source that initializes this gate.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setShowIntro(false);
       }
     } catch {

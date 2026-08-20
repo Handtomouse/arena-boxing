@@ -2,15 +2,14 @@
 
 import React, { useState, useMemo } from 'react';
 
+const PRICING = {
+  dropIn: 35,
+  monthly: 220,
+  tenPack: 300,
+};
+
 const PricingCalculator: React.FC = () => {
   const [classesPerWeek, setClassesPerWeek] = useState(3);
-
-  // Pricing data
-  const pricing = {
-    dropIn: 35,
-    monthly: 220,
-    tenPack: 300,
-  };
 
   // Calculate cost per class for each plan based on usage
   const calculations = useMemo(() => {
@@ -18,21 +17,21 @@ const PricingCalculator: React.FC = () => {
 
     return {
       dropIn: {
-        totalCost: pricing.dropIn * classesPerMonth,
-        perClass: pricing.dropIn,
+        totalCost: PRICING.dropIn * classesPerMonth,
+        perClass: PRICING.dropIn,
         savings: 0,
       },
       monthly: {
-        totalCost: pricing.monthly,
-        perClass: classesPerMonth > 0 ? pricing.monthly / classesPerMonth : 0,
-        savings: (pricing.dropIn * classesPerMonth) - pricing.monthly,
+        totalCost: PRICING.monthly,
+        perClass: classesPerMonth > 0 ? PRICING.monthly / classesPerMonth : 0,
+        savings: (PRICING.dropIn * classesPerMonth) - PRICING.monthly,
       },
       tenPack: {
-        totalCost: pricing.tenPack,
-        perClass: pricing.tenPack / 10,
+        totalCost: PRICING.tenPack,
+        perClass: PRICING.tenPack / 10,
         classesNeeded: 10,
         monthsCovered: classesPerMonth > 0 ? 10 / classesPerMonth : 0,
-        savings: (pricing.dropIn * 10) - pricing.tenPack,
+        savings: (PRICING.dropIn * 10) - PRICING.tenPack,
       },
     };
   }, [classesPerWeek]);

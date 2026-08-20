@@ -28,8 +28,8 @@ export default function NotFound() {
         </h2>
 
         <p className="font-body text-cream-dark text-lg md:text-xl mb-8 max-w-lg mx-auto">
-          This page doesn't exist. You must have taken a wrong turn.
-          Let's get you back in the ring.
+          This page doesn&apos;t exist. You must have taken a wrong turn.
+          Let&apos;s get you back in the ring.
         </p>
 
         {/* Actions */}

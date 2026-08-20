@@ -69,7 +69,7 @@ export async function isOnBattery(): Promise<boolean> {
   }
 
   try {
-    // @ts-ignore - Battery API not in all TypeScript definitions
+    // @ts-expect-error - Battery API not in all TypeScript definitions
     const battery = await navigator.getBattery();
     return !battery.charging;
   } catch {
