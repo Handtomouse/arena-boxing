@@ -9,7 +9,12 @@ export function GET() {
 
   if (siteUrl) {
     try {
-      allowCrawlers = new URL(siteUrl).hostname === 'arenaboxing.com.au';
+      // The production domain canonicalises apex -> www (verified 20 Aug 2026:
+      // https://arenaboxing.com.au 301s to https://www.arenaboxing.com.au/), so the
+      // www. form MUST be accepted. Rejecting it would emit Disallow: / on the live
+      // site and silently deindex it.
+      const host = new URL(siteUrl).hostname.replace(/^www\./, '');
+      allowCrawlers = host === 'arenaboxing.com.au';
     } catch {
       allowCrawlers = false;
     }
